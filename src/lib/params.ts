@@ -66,7 +66,8 @@ export function parseLocalizedNumber(raw: unknown, range: Range, decimalSeparato
   const s = raw.replace(/[\s\u00a0\u202f']/g, "");
   if (s.length === 0 || s.length > MAX_RAW_LENGTH || !/^[\d.,]+$/.test(s)) return null;
   const groupingSeparator = decimalSeparator === "," ? "." : ",";
-  const grouped = (text: string, sep: string) => new RegExp(`^\\d{1,3}(\\${sep}\\d{3})+$`).test(text);
+  const GROUPED: Record<string, RegExp> = { ",": /^\d{1,3}(,\d{3})+$/, ".": /^\d{1,3}(\.\d{3})+$/ };
+  const grouped = (text: string, sep: string) => GROUPED[sep]!.test(text);
 
   const hasComma = s.includes(",");
   const hasDot = s.includes(".");

@@ -13,7 +13,8 @@ for (const p of PAGES) {
     // L-2: a real, crawlable link
     await expect(link).toHaveAttribute("href", p.alt);
     await link.click();
-    await expect(page).toHaveURL(new RegExp(`${p.alt.replace(/\//g, "\\/")}$`));
+    // Compare the parsed path exactly (no regex built from strings).
+    await expect.poll(() => new URL(page.url()).pathname).toBe(p.alt);
     await expect(page.locator("html")).toHaveAttribute("lang", other);
   });
 }

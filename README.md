@@ -1,9 +1,13 @@
 # Numflo
 
+[![CI](https://github.com/numflo-hq/numflo-web/actions/workflows/ci.yml/badge.svg)](https://github.com/numflo-hq/numflo-web/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/numflo-hq/numflo-web/actions/workflows/codeql.yml/badge.svg)](https://github.com/numflo-hq/numflo-web/actions/workflows/codeql.yml)
+
 Free, private, multilingual financial calculators — [numflo.com](https://numflo.com).
 
 - **Languages:** English (default) and Spanish
 - **Stack:** [Astro](https://astro.build) static site + Tailwind CSS, hosted on Cloudflare Pages
+  (build command `npm run build`, output `dist`, Node version from `.nvmrc`)
 - **Privacy:** no backend, no accounts, no personal data; calculations run in the browser
 
 ## Documents

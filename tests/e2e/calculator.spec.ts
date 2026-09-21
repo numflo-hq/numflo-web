@@ -80,22 +80,148 @@ test.describe("loan calculator (English)", () => {
 });
 
 test.describe("loan calculator (Spanish)", () => {
-  test.use({ locale: "es-ES" });
+  test.use({ locale: "es-ES", timezoneId: "Europe/Madrid" });
 
-  test("defaults to EUR for a Spain locale and uses Spanish formats", async ({ page }) => {
+  test("a visitor from Spain gets EUR with Spanish formats", async ({ page }) => {
+    await page.route("**/cdn-cgi/trace", (r) => r.fulfill({ status: 200, body: "loc=ES\n" }));
     await page.goto("/es/calculadora-de-prestamos");
     await expect(page.locator("[data-currency]")).toHaveValue("EUR");
     await expect(page.locator('[data-out="monthly"]')).toHaveText(/^2013,98\s€$/);
   });
 
   test("accepts Spanish decimal commas", async ({ page }) => {
-    await page.goto("/es/calculadora-de-prestamos");
+    await page.goto("/es/calculadora-de-prestamos?cur=EUR");
     await page.getByLabel("Monto del préstamo", { exact: true }).first().fill("100.000");
     await page.getByLabel("Tasa de interés (anual)").first().fill("10");
     await page.getByLabel("Plazo").first().fill("1");
     await expect(page.locator('[data-out="monthly"]')).toHaveText(/^8791,59\s€$/);
     await page.getByLabel("Tasa de interés (anual)").first().fill("7,5");
     await expect(page.getByLabel("Tasa de interés (anual)").first()).toHaveAttribute("aria-invalid", "false");
+  });
+});
+
+// Default currency from the visitor's country (BRD L-12, issue #3).
+const trace = (loc: string) => `fl=1\nh=numflo.com\nip=203.0.113.9\ncolo=BOM\nloc=${loc}\ntls=TLSv1.3\n`;
+
+test.describe("currency from the visitor's country", () => {
+  // Browser says en-US and a neutral time zone, so only the country can explain the result.
+  test.use({ locale: "en-US", timezoneId: "UTC" });
+
+  for (const [country, currency, symbol] of [
+    ["GB", "GBP", "£"],
+    ["US", "USD", "$"],
+    ["IN", "INR", "₹"],
+    ["DE", "EUR", "€"],
+    ["MX", "MXN", "$"],
+  ] as const) {
+    test(`${country} -> ${currency}`, async ({ page }) => {
+      await page.route("**/cdn-cgi/trace", (r) =>
+        r.fulfill({ status: 200, contentType: "text/plain", body: trace(country) }),
+      );
+      await page.goto("/loan-calculator");
+      await expect(page.locator("[data-currency]")).toHaveValue(currency);
+      await expect(page.locator("[data-symbol]")).toHaveText(symbol);
+    });
+  }
+
+  test.describe("with an en-GB browser (early guess GBP)", () => {
+    test.use({ locale: "en-GB" });
+    test("an unmapped country (JP) falls back to USD", async ({ page }) => {
+      await page.route("**/cdn-cgi/trace", (r) => r.fulfill({ status: 200, body: trace("JP") }));
+      await page.goto("/loan-calculator");
+      await expect(page.locator("[data-currency]")).toHaveValue("USD");
+    });
+    test("a hostile or broken response is ignored", async ({ page }) => {
+      let dialog = false;
+      page.on("dialog", (d) => ((dialog = true), d.dismiss()));
+      await page.route("**/cdn-cgi/trace", (r) =>
+        r.fulfill({ status: 200, body: "loc=<img src=x onerror=alert(1)>\n" }),
+      );
+      await page.goto("/loan-calculator");
+      await page.waitForTimeout(500);
+      await expect(page.locator("[data-currency]")).toHaveValue("GBP");
+      expect(dialog).toBe(false);
+    });
+    test("a failed lookup keeps the early guess and the page works", async ({ page }) => {
+      await page.route("**/cdn-cgi/trace", (r) => r.abort());
+      await page.goto("/loan-calculator");
+      await page.waitForTimeout(500);
+      await expect(page.locator("[data-currency]")).toHaveValue("GBP");
+      await expect(page.locator('[data-out="monthly"]')).toHaveText("£2,013.98");
+    });
+    test("browser region is used when the time zone is unmapped", async ({ page }) => {
+      await page.route("**/cdn-cgi/trace", (r) => r.fulfill({ status: 404, body: "" }));
+      await page.goto("/loan-calculator");
+      await expect(page.locator("[data-currency]")).toHaveValue("GBP");
+    });
+  });
+
+  test("the country is looked up once per visit", async ({ page }) => {
+    let calls = 0;
+    await page.route("**/cdn-cgi/trace", (r) => {
+      calls++;
+      return r.fulfill({ status: 200, body: trace("IN") });
+    });
+    await page.goto("/loan-calculator");
+    await expect(page.locator("[data-currency]")).toHaveValue("INR");
+    await page.goto("/es/calculadora-de-prestamos");
+    await expect(page.locator("[data-currency]")).toHaveValue("INR");
+    expect(calls).toBe(1);
+  });
+
+  test("a late lookup never changes the form once the visitor starts typing", async ({ page }) => {
+    await page.route("**/cdn-cgi/trace", async (r) => {
+      await new Promise((res) => setTimeout(res, 1000));
+      await r.fulfill({ status: 200, body: trace("IN") });
+    });
+    await page.goto("/loan-calculator");
+    const amount = page.getByLabel("Loan amount", { exact: true }).first();
+    await amount.fill("12ab");
+    await page.waitForTimeout(1500);
+    await expect(amount).toHaveValue("12ab");
+    await expect(page.locator("[data-currency]")).toHaveValue("USD");
+    await amount.fill("300000");
+    await page.waitForTimeout(500);
+    // The shareable link matches what is on screen
+    await expect(page).toHaveURL(/cur=USD/);
+  });
+
+  test("a currency in a shared link wins over the country", async ({ page }) => {
+    await page.route("**/cdn-cgi/trace", (r) => r.fulfill({ status: 200, body: trace("IN") }));
+    await page.goto("/loan-calculator?cur=GBP");
+    await page.waitForTimeout(500);
+    await expect(page.locator("[data-currency]")).toHaveValue("GBP");
+  });
+
+  test("the visitor's own choice wins over the country", async ({ page }) => {
+    await page.route("**/cdn-cgi/trace", (r) => r.fulfill({ status: 200, body: trace("IN") }));
+    await page.goto("/loan-calculator");
+    await expect(page.locator("[data-currency]")).toHaveValue("INR");
+    await page.locator("[data-currency]").selectOption("EUR");
+    // A fresh visit without any currency in the link still uses the saved choice
+    await page.goto("/loan-calculator");
+    await page.waitForTimeout(500);
+    await expect(page.locator("[data-currency]")).toHaveValue("EUR");
+  });
+
+  test("a slow lookup never overrides a choice made while waiting", async ({ page }) => {
+    await page.route("**/cdn-cgi/trace", async (r) => {
+      await new Promise((res) => setTimeout(res, 800));
+      await r.fulfill({ status: 200, body: trace("IN") });
+    });
+    await page.goto("/loan-calculator");
+    await page.locator("[data-currency]").selectOption("GBP");
+    await page.waitForTimeout(1200);
+    await expect(page.locator("[data-currency]")).toHaveValue("GBP");
+  });
+});
+
+test.describe("fallback when the country lookup is unavailable", () => {
+  test.use({ locale: "en-US", timezoneId: "Asia/Kolkata" });
+  test("uses the device time zone (India -> INR)", async ({ page }) => {
+    await page.route("**/cdn-cgi/trace", (r) => r.fulfill({ status: 404, body: "" }));
+    await page.goto("/loan-calculator");
+    await expect(page.locator("[data-currency]")).toHaveValue("INR");
   });
 });
 

@@ -72,6 +72,13 @@ createServer((req, res) => {
     res.writeHead(308, { Location: clean.length > 1 ? clean.replace(/\/$/, "") : "/" }).end();
     return;
   }
+  // Emulate Cloudflare's edge trace endpoint so currency detection can be tested locally.
+  if (url.pathname === "/cdn-cgi/trace") {
+    const loc = /^[A-Z]{2}$/.test(process.env.TRACE_COUNTRY ?? "") ? process.env.TRACE_COUNTRY : "US";
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end(`fl=0\nh=localhost\nip=127.0.0.1\nvisit_scheme=http\ncolo=LOCAL\nloc=${loc}\ntls=off\n`);
+    return;
+  }
   const file = resolveFile(url.pathname);
   const status = file ? 200 : 404;
   const body = readFileSync(file ?? join(ROOT, "404.html"));

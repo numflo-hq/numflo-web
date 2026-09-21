@@ -11,6 +11,8 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:4321",
     trace: "retain-on-failure",
+    // Fixed time zone so currency detection does not depend on the machine running the tests.
+    timezoneId: "UTC",
     launchOptions: { executablePath },
   },
   projects: [

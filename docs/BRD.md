@@ -6,7 +6,7 @@
 | Domain | numflo.com |
 | Owner | Vikas Maheshwari |
 | Repository | github.com/numflo-hq/numflo-web (public) |
-| Version | 1.1 |
+| Version | 1.2 |
 | Date | 2026-09-21 |
 | Status | **Approved** by Vikas Maheshwari, 2026-09-21 |
 
@@ -96,7 +96,7 @@ This is the core of the product, so it is specified in detail.
 | ID | Requirement |
 |---|---|
 | L-11 | Language and currency are **separate settings**. A Spanish speaker may be in Mexico (MXN), Spain (EUR) or the US (USD); an English speaker may be in India (INR) or the UK (GBP). |
-| L-12 | A currency selector supports at least USD, EUR, GBP, MXN and INR. The default currency is guessed from the visitor's browser region (e.g. `es-MX` → MXN, `en-GB` → GBP), falling back to USD. This happens in the browser only and never changes the page URL or content, so it has no SEO impact. The visitor can always override it. |
+| L-12 | A currency selector supports at least USD, EUR, GBP, MXN and INR. The default currency follows the visitor's **country**: GB → GBP, US → USD, IN → INR, eurozone → EUR, MX → MXN, any other country → USD. The country comes from Cloudflare's same-site `/cdn-cgi/trace` (no third party, nothing stored on a server). If that is unavailable, the device time zone and then the browser region are used, then USD. Priority: currency in a shared link > the visitor's own saved choice > detected country. This happens in the browser only and never changes the page URL or content, so it has no SEO impact. |
 | L-13 | Numbers follow local conventions automatically: correct decimal and thousands separators per locale (1,234.56 vs 1.234,56), and Indian grouping (12,34,567) when INR is selected. |
 | L-14 | No currency conversion is performed. The currency choice only changes the symbol and formatting. |
 
@@ -373,3 +373,4 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 0.4 | 2026-09-21 | Translation proofreading by Claude (L-15, L-17); added §10 quality, security and release requirements; added SDLC.md; decision D-6 |
 | 1.0 | 2026-09-21 | Approved. Repository made public (D-6). |
 | 1.1 | 2026-09-21 | Q-23/Q-24 wording aligned with SDLC v1.1 (where security scans run) |
+| 1.2 | 2026-09-22 | L-12: default currency from the visitor's country (issue #3, requested by owner during UAT of PR #2) |

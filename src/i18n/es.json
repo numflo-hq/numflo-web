@@ -169,7 +169,8 @@
     "paragraphs": [
       "Numflo está pensado para proteger tu privacidad. No te pedimos crear una cuenta y no recopilamos datos personales.",
       "Todo lo que escribes en una calculadora se queda en tu dispositivo. Los cálculos se hacen en tu navegador y nunca se nos envían ni se guardan en un servidor.",
-      "Tus preferencias de idioma y tema se guardan en tu propio navegador (almacenamiento local) para que el sitio las recuerde la próxima vez. Puedes borrarlas cuando quieras desde la configuración de tu navegador.",
+      "Para mostrar los montos en tu moneda, la calculadora consulta a Cloudflare, nuestro proveedor de alojamiento, desde qué país nos visitas. Solo se usa el código del país. Se conserva en tu navegador únicamente durante la visita actual y no se envía a ningún otro lugar. Si eliges una moneda por tu cuenta, siempre se respeta tu elección.",
+      "Tus preferencias de idioma, tema y moneda se guardan en tu propio navegador (almacenamiento local) para que el sitio las recuerde la próxima vez. Puedes borrarlas cuando quieras desde la configuración de tu navegador.",
       "Medimos las visitas con Cloudflare Web Analytics, que no usa cookies y no te sigue por otros sitios web. Registra totales anónimos, como el número de páginas vistas.",
       "Si esta política cambia, por ejemplo si en el futuro se añade publicidad, primero actualizaremos esta página y explicaremos qué cambia."
     ],

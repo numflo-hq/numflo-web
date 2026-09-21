@@ -40,5 +40,5 @@ export function fill(template: string, values: Record<string, string>): string {
 export const LAST_REVIEWED: Record<RouteKey, string> = {
   home: "2026-09-21",
   loan: "2026-09-21",
-  privacy: "2026-09-21",
+  privacy: "2026-09-22",
 };

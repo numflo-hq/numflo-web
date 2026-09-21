@@ -169,7 +169,8 @@
     "paragraphs": [
       "Numflo is built to be private. We do not ask you to create an account and we do not collect personal data.",
       "Everything you type into a calculator stays on your device. Calculations run in your browser and are never sent to us or stored on a server.",
-      "Your language and theme choices are saved in your own browser (local storage) so the site remembers them next time. You can clear them at any time in your browser settings.",
+      "To show amounts in your currency, the calculator asks Cloudflare, our hosting provider, which country your visit comes from. Only the country code is used. It is kept in your browser for the current visit only and is not sent anywhere else. If you pick a currency yourself, your choice always wins.",
+      "Your language, theme and currency choices are saved in your own browser (local storage) so the site remembers them next time. You can clear them at any time in your browser settings.",
       "We measure visits with Cloudflare Web Analytics, which does not use cookies and does not track you across websites. It records anonymous totals such as page views.",
       "If this policy changes, for example if advertising is added in future, this page will be updated first and will explain what changes."
     ],

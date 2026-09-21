@@ -341,7 +341,8 @@ const labels = {
 
 <script>
   import { calculateLoan } from "../lib/loan";
-  import { currencyForLocales, isCurrency, type Currency } from "../lib/currency";
+  import { isCurrency, type Currency } from "../lib/currency";
+  import { currencyForCountry, detectCountry, offlineCurrencyGuess } from "../lib/geo";
   import { formatMoney, formatNumber, currencySymbol, numberLocale } from "../lib/format";
   import {
     LOAN_LIMITS,
@@ -375,21 +376,27 @@ const labels = {
     ) as Record<Field, HTMLElement>;
     const currencySelect = $<HTMLSelectElement>("[data-currency]")!;
 
-    // ---- State: URL > saved preference > browser region (BRD F-5, L-12) ----
+    // ---- State. Currency priority (BRD L-12, issue #3):
+    //      shared link > visitor's own choice > detected country > time zone > browser region > USD
     const url = new URL(location.href);
     const state: LoanParams = readLoanParams(url.search);
-    let currency: Currency = pickCurrency(url.searchParams.get("cur"));
-
-    function pickCurrency(fromUrl: string | null): Currency {
-      if (isCurrency(fromUrl)) return fromUrl;
+    const urlCurrency = url.searchParams.get("cur");
+    const savedCurrency = (() => {
       try {
-        const saved = localStorage.getItem("numflo:currency");
-        if (isCurrency(saved)) return saved;
+        return localStorage.getItem("numflo:currency");
       } catch {
-        /* ignore */
+        return null;
       }
-      return currencyForLocales(navigator.languages ?? [navigator.language]);
-    }
+    })();
+    const currencyIsFixed = isCurrency(urlCurrency) || isCurrency(savedCurrency);
+    let currency: Currency = isCurrency(urlCurrency)
+      ? urlCurrency
+      : isCurrency(savedCurrency)
+        ? savedCurrency
+        : offlineCurrencyGuess(
+            Intl.DateTimeFormat().resolvedOptions().timeZone,
+            navigator.languages ?? [navigator.language],
+          );
 
     const decimalSeparator = () =>
       new Intl.NumberFormat(numberLocale(lang, currency)).formatToParts(1.5).find((p) => p.type === "decimal")
@@ -524,6 +531,9 @@ const labels = {
     }
 
     // ---- Events ----
+    // Once the visitor starts editing, a late currency detection must not touch the form.
+    let interacted = false;
+    root.addEventListener("input", () => (interacted = true), { capture: true });
     FIELDS.forEach((f) => {
       inputs[f].addEventListener("input", () => {
         const v = parseLocalizedNumber(inputs[f].value, LOAN_LIMITS[f], decimalSeparator());
@@ -550,7 +560,10 @@ const labels = {
       });
     });
 
+    let userPickedCurrency = false;
     currencySelect.addEventListener("change", () => {
+      userPickedCurrency = true;
+      interacted = true;
       if (!isCurrency(currencySelect.value)) return;
       currency = currencySelect.value;
       try {
@@ -609,5 +622,34 @@ const labels = {
     $<HTMLFormElement>("[data-loan-form]")!.addEventListener("submit", (e) => e.preventDefault());
 
     applyCurrency();
+
+    // Refine the guess with the visitor's country from Cloudflare's edge. Never overrides a
+    // currency from a shared link or one the visitor chose, including one chosen while waiting.
+    if (!currencyIsFixed) {
+      void (async () => {
+        let country: string | null = null;
+        try {
+          country = sessionStorage.getItem("numflo:country");
+        } catch {
+          /* ignore */
+        }
+        if (!country) {
+          country = await detectCountry();
+          if (country) {
+            try {
+              sessionStorage.setItem("numflo:country", country);
+            } catch {
+              /* ignore */
+            }
+          }
+        }
+        if (!country || userPickedCurrency || interacted) return;
+        const detected = currencyForCountry(country) ?? "USD";
+        if (detected !== currency) {
+          currency = detected;
+          applyCurrency();
+        }
+      })();
+    }
   }
 </script>

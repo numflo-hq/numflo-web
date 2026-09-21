@@ -1,0 +1,183 @@
+{
+  "site": {
+    "name": "Numflo",
+    "tagline": "Finanzas claras, en números.",
+    "skipToContent": "Saltar al contenido principal",
+    "language": "Idioma",
+    "theme": "Activar o desactivar el modo oscuro",
+    "home": "Inicio",
+    "calculators": "Calculadoras",
+    "comingSoon": "Próximamente",
+    "footerNote": "Numflo ofrece estimaciones solo con fines informativos. No es asesoramiento financiero.",
+    "privacy": "Privacidad",
+    "reportTranslation": "Informar de un error de traducción",
+    "rights": "Numflo",
+    "suggestBanner": "View this page in English",
+    "dismiss": "Cerrar",
+    "breadcrumb": "Ruta de navegación"
+  },
+  "meta": {
+    "home": {
+      "title": "Numflo – Calculadoras financieras gratis en tu idioma",
+      "description": "Calculadoras financieras gratis, rápidas y privadas. Calcula cuotas de préstamos, intereses y más en español o inglés, en tu propia moneda."
+    },
+    "loan": {
+      "title": "Calculadora de préstamos – Cuota mensual | Numflo",
+      "description": "Calcula la cuota mensual de tu préstamo, los intereses totales y el calendario de pagos completo. Gratis, privada y en cualquier moneda."
+    },
+    "privacy": {
+      "title": "Política de privacidad | Numflo",
+      "description": "Numflo no recopila datos personales. Los cálculos se hacen en tu dispositivo y nada de lo que escribes se envía ni se guarda."
+    }
+  },
+  "home": {
+    "heading": "Finanzas claras, en números.",
+    "intro": "Calculadoras gratuitas que te dan el resultado y te explican qué significa. Privadas por diseño: todo se calcula en tu dispositivo.",
+    "cta": "Abrir la calculadora de préstamos",
+    "sectionTitle": "Calculadoras",
+    "cards": {
+      "loan": {
+        "title": "Calculadora de préstamos",
+        "text": "Cuota mensual, intereses totales y calendario de pagos año por año."
+      },
+      "investment": {
+        "title": "Calculadora de inversión",
+        "text": "Descubre cuánto puede crecer una inversión mensual con el tiempo."
+      },
+      "compound": {
+        "title": "Calculadora de interés compuesto",
+        "text": "Entiende cómo el interés sobre el interés hace crecer tus ahorros."
+      }
+    },
+    "why": {
+      "title": "Por qué Numflo",
+      "items": [
+        {
+          "title": "Explicado, no solo calculado",
+          "text": "Cada resultado incluye una explicación sencilla, la fórmula y un ejemplo resuelto."
+        },
+        {
+          "title": "Tu idioma, tu moneda",
+          "text": "Cambia el idioma y la moneda por separado, con el formato numérico de tu país."
+        },
+        {
+          "title": "Privada por diseño",
+          "text": "Sin registro y sin cookies de seguimiento. Lo que escribes nunca sale de tu dispositivo."
+        }
+      ]
+    }
+  },
+  "loan": {
+    "heading": "Calculadora de préstamos",
+    "lead": "Calcula tu cuota mensual, los intereses totales y el calendario de pagos.",
+    "inputs": {
+      "legend": "Datos del préstamo",
+      "amount": "Monto del préstamo",
+      "rate": "Tasa de interés (anual)",
+      "years": "Plazo",
+      "yearsUnit": "años",
+      "currency": "Moneda"
+    },
+    "errors": {
+      "amount": "Escribe un monto entre 1 y 1 000 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 50 %.",
+      "years": "Escribe un plazo entre 1 y 40 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "monthly": "Cuota mensual",
+      "principal": "Capital",
+      "interest": "Intereses totales",
+      "total": "Total pagado",
+      "chartLabel": "Proporción de capital e intereses en el total pagado",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado",
+      "summary": "Cuota mensual de {monthly} durante {years} años. Intereses totales: {interest}. Total pagado: {total}."
+    },
+    "schedule": {
+      "title": "Calendario de pagos",
+      "caption": "Desglose anual del capital, los intereses y el saldo pendiente",
+      "year": "Año",
+      "principal": "Capital pagado",
+      "interest": "Intereses pagados",
+      "balance": "Saldo pendiente"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Una calculadora de préstamos muestra la cuota mensual fija necesaria para devolver un préstamo en un plazo determinado y cuánto de lo que pagas se va en intereses. En muchos países esta cuota se conoce como EMI (cuota mensual equivalente).",
+      "sections": [
+        {
+          "title": "Cómo se calcula la cuota mensual",
+          "paragraphs": [
+            "La mayoría de los préstamos personales, préstamos para vehículos e hipotecas se amortizan con cuotas iguales: pagas la misma cantidad cada mes, y cada pago cubre los intereses de ese mes más una parte del dinero que pediste prestado (el capital).",
+            "La fórmula estándar es: cuota = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), donde P es el monto del préstamo, r es la tasa de interés mensual (la tasa anual dividida entre 12) y n es el número de cuotas mensuales."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Pides un préstamo de 250 000 al 7,5 % anual a 20 años. La tasa mensual es 7,5 ÷ 12 = 0,625 %, y hay 240 cuotas.",
+            "La cuota mensual es de unos 2013,98. En 20 años pagas 483 355,92 en total, de los cuales 233 355,92 son intereses: casi tanto como el préstamo original.",
+            "En el primer mes, 1562,50 de la cuota son intereses y solo 451,48 reducen el saldo. Ese saldo baja cada vez más rápido, así que las cuotas posteriores se destinan cada vez más al capital."
+          ]
+        },
+        {
+          "title": "Por qué las primeras cuotas son casi todo intereses",
+          "paragraphs": [
+            "Los intereses se calculan sobre el saldo que aún debes. Al principio el saldo es el más alto, así que la parte de intereses de cada cuota también es la más alta. A medida que el saldo baja, una parte mayor de cada cuota se destina al capital. El calendario de pagos de arriba muestra este cambio año por año."
+          ]
+        },
+        {
+          "title": "Cómo pagar menos intereses",
+          "paragraphs": [
+            "Elige un plazo más corto: la cuota mensual sube, pero los intereses totales bajan mucho.",
+            "Compara tasas de interés: incluso medio punto porcentual marca una gran diferencia a lo largo de muchos años.",
+            "Pide menos dinero: un pago inicial mayor reduce tanto la cuota como los intereses.",
+            "Haz pagos anticipados cuando puedas: el dinero que adelantas reduce el saldo sobre el que se cobran intereses. Consulta antes si tu entidad financiera cobra una comisión por pago anticipado."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué es una EMI?",
+          "a": "EMI son las siglas en inglés de «cuota mensual equivalente». Es la cantidad fija que pagas cada mes hasta devolver el préstamo e incluye tanto intereses como capital. Es lo mismo que la cuota mensual que muestra esta calculadora."
+        },
+        {
+          "q": "¿El resultado incluye comisiones, seguros o impuestos?",
+          "a": "No. La calculadora solo incluye capital e intereses. Tu entidad financiera puede añadir comisiones de apertura, seguros o impuestos, así que tu cuota real puede ser mayor. Pide a tu entidad financiera el costo total del préstamo (por ejemplo, la TAE en España o el CAT en México)."
+        },
+        {
+          "q": "¿Y si mi tasa de interés es variable?",
+          "a": "La calculadora supone una tasa fija durante todo el plazo. Con una tasa variable, tu cuota cambiará cuando cambie la tasa. Puedes probar distintas tasas para ver cuánto podría variar tu cuota."
+        },
+        {
+          "q": "¿Se guardan los datos que escribo?",
+          "a": "No. Todos los cálculos se hacen en tu navegador. Nada de lo que escribes se envía a Numflo ni se guarda en un servidor."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Los resultados usan la fórmula estándar de amortización con capitalización mensual y tasa de interés fija. Los valores se redondean solo al mostrarlos; los cálculos usan precisión completa.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Las condiciones reales dependen de tu banco o entidad financiera."
+    }
+  },
+  "privacy": {
+    "heading": "Política de privacidad",
+    "updated": "Última actualización",
+    "paragraphs": [
+      "Numflo está pensado para proteger tu privacidad. No te pedimos crear una cuenta y no recopilamos datos personales.",
+      "Todo lo que escribes en una calculadora se queda en tu dispositivo. Los cálculos se hacen en tu navegador y nunca se nos envían ni se guardan en un servidor.",
+      "Tus preferencias de idioma y tema se guardan en tu propio navegador (almacenamiento local) para que el sitio las recuerde la próxima vez. Puedes borrarlas cuando quieras desde la configuración de tu navegador.",
+      "Medimos las visitas con Cloudflare Web Analytics, que no usa cookies y no te sigue por otros sitios web. Registra totales anónimos, como el número de páginas vistas.",
+      "Si esta política cambia, por ejemplo si en el futuro se añade publicidad, primero actualizaremos esta página y explicaremos qué cambia."
+    ],
+    "contact": "¿Tienes preguntas sobre privacidad? Abre una incidencia en nuestro repositorio público de GitHub."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe o se ha movido.",
+    "back": "Ir a la página de inicio"
+  }
+}

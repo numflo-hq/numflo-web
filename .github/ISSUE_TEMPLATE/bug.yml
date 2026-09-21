@@ -1,0 +1,22 @@
+name: Bug or translation issue
+description: Something is wrong, including a mistake in the Spanish or English text
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Link to the page with the problem
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: For translation issues, include the current text and your suggested correction.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce (optional)

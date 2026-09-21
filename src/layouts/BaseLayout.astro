@@ -1,0 +1,93 @@
+---
+import "../styles/global.css";
+import interLatin from "../assets/fonts/inter-latin.woff2?url";
+import Seo from "../components/Seo.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { HREFLANG, ROUTES, t, type Lang, type RouteKey } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  route: RouteKey | null;
+  title: string;
+  description: string;
+  schema?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+const { lang, route, title, description, schema, noindex } = Astro.props;
+const d = t(lang);
+// Commit being served, set by Cloudflare Pages at build time; lets the smoke test confirm a release is live.
+const build = process.env.CF_PAGES_COMMIT_SHA ?? "local";
+const otherLang: Lang = lang === "en" ? "es" : "en";
+const otherHref = route ? ROUTES[route][otherLang] : ROUTES.home[otherLang];
+---
+
+<!doctype html>
+<html lang={HREFLANG[lang]} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline src="/theme.js"></script>
+    <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0f15" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="numflo-build" content={build} />
+    <Seo
+      lang={lang}
+      route={route}
+      title={title}
+      description={description}
+      schema={schema}
+      noindex={noindex}
+    />
+  </head>
+  <body data-lang={lang}>
+    <a
+      href="#main"
+      class="bg-accent text-accent-ink sr-only z-50 rounded-lg px-4 py-2 focus:not-sr-only focus:fixed focus:start-4 focus:top-4"
+    >
+      {d.site.skipToContent}
+    </a>
+    <Header lang={lang} route={route} />
+    <!-- Language suggestion (BRD L-6). Hidden by default; never redirects (L-5). -->
+    <div class="bg-accent-soft no-print hidden" data-lang-banner={otherLang} lang={otherLang}>
+      <div class="container-page flex min-h-12 items-center justify-between gap-3 py-2 text-sm">
+        <a
+          href={otherHref}
+          data-set-lang={otherLang}
+          class="text-accent font-semibold underline-offset-4 hover:underline"
+        >
+          {d.site.suggestBanner}
+        </a>
+        <button
+          type="button"
+          data-lang-banner-close
+          class="hover:bg-surface inline-flex size-11 items-center justify-center rounded-lg"
+          aria-label={d.site.dismiss}
+        >
+          <svg
+            viewBox="0 0 20 20"
+            class="size-4"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="m5 5 10 10M15 5 5 15"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <main id="main" tabindex="-1" class="outline-none">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      import "../scripts/site";
+    </script>
+  </body>
+</html>

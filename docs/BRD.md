@@ -6,7 +6,7 @@
 | Domain | numflo.com |
 | Owner | Vikas Maheshwari |
 | Repository | github.com/numflo-hq/numflo-web (public) |
-| Version | 1.0 |
+| Version | 1.1 |
 | Date | 2026-09-21 |
 | Status | **Approved** by Vikas Maheshwari, 2026-09-21 |
 
@@ -296,8 +296,8 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | Q-20 | **Dependency scanning** on every PR and weekly: build fails on any high or critical known vulnerability; Dependabot opens update PRs automatically. |
 | Q-21 | **Static code analysis (SAST)** for security flaws on every PR (CodeQL). |
 | Q-22 | **Secret scanning** on every PR so passwords, tokens or keys can never be committed. |
-| Q-23 | **Dynamic scan (DAST)**: an OWASP ZAP baseline scan runs against every preview deployment; any medium or higher finding blocks the merge. |
-| Q-24 | **Security headers verified automatically** on the preview: strict Content-Security-Policy, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, and clickjacking protection. Target grade A+ on Mozilla Observatory. |
+| Q-23 | **Dynamic scan (DAST)**: an OWASP ZAP baseline scan runs on every PR against the built site served with the production security headers, and monthly against numflo.com; any medium or higher finding blocks the merge. |
+| Q-24 | **Security headers verified automatically** on every build and in the browser tests: strict Content-Security-Policy, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, and clickjacking protection. Target grade A+ on Mozilla Observatory. |
 | Q-25 | **Input safety**: values read from the URL (shared links) are parsed strictly as numbers and never inserted into the page as HTML; unit tests include malicious inputs (script tags, very long strings, special characters). |
 | Q-26 | **Supply-chain hygiene**: dependency lockfile committed, minimal dependencies, GitHub Actions pinned to exact versions, no third-party scripts except ones explicitly approved (future ad provider) and allow-listed in the CSP. |
 | Q-27 | **Account security**: two-factor login on GitHub and Cloudflare, domain transfer lock on, DNSSEC enabled, HTTPS only. |
@@ -372,3 +372,4 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 0.3 | 2026-09-21 | Launch languages set to English + Spanish (Hindi deferred); calculators renamed to globally understood names; currency defaults by browser region |
 | 0.4 | 2026-09-21 | Translation proofreading by Claude (L-15, L-17); added §10 quality, security and release requirements; added SDLC.md; decision D-6 |
 | 1.0 | 2026-09-21 | Approved. Repository made public (D-6). |
+| 1.1 | 2026-09-21 | Q-23/Q-24 wording aligned with SDLC v1.1 (where security scans run) |

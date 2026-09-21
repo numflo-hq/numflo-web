@@ -1,0 +1,613 @@
+---
+import { t, type Lang } from "../i18n";
+import { calculateLoan } from "../lib/loan";
+import { CURRENCIES } from "../lib/currency";
+import { formatMoney, formatNumber, currencySymbol } from "../lib/format";
+import { LOAN_DEFAULTS } from "../lib/params";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = t(lang).loan;
+// Server-rendered starting values, so crawlers and no-JS visitors see a real result (BRD S-1).
+const cur = "USD" as const;
+const initial = calculateLoan({
+  principal: LOAN_DEFAULTS.amount,
+  annualRatePct: LOAN_DEFAULTS.rate,
+  months: LOAN_DEFAULTS.years * 12,
+});
+const money = (v: number, dec = 0) => formatMoney(v, lang, cur, dec);
+const principalShare = LOAN_DEFAULTS.amount / initial.totalPayment;
+const CIRC = 2 * Math.PI * 42;
+const labels = {
+  copied: d.results.copied,
+  summary: d.results.summary,
+};
+---
+
+<div
+  class="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-6"
+  data-loan-calc
+  data-labels={JSON.stringify(labels)}
+>
+  <!-- Inputs -->
+  <form class="card p-5 sm:p-6" novalidate data-loan-form>
+    <fieldset class="flex min-w-0 flex-col gap-6" aria-labelledby="details-title">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h2 id="details-title" class="text-lg font-semibold">
+          {d.inputs.legend}
+        </h2>
+        <label class="text-muted flex items-center gap-2 text-sm">
+          <span>{d.inputs.currency}</span>
+          <select
+            name="currency"
+            class="bg-surface border-line text-ink min-h-11 rounded-xl border px-3 font-semibold"
+            data-currency
+          >
+            {CURRENCIES.map((c) => (
+              <option value={c} selected={c === cur}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="amount" class="text-sm font-medium">
+          {d.inputs.amount}
+        </label>
+        <div class="relative">
+          <span
+            class="text-muted pointer-events-none absolute inset-y-0 start-4 flex items-center font-semibold"
+            data-symbol
+          >
+            {currencySymbol(lang, cur)}
+          </span>
+          <input
+            id="amount"
+            name="amount"
+            class="field-input ps-10 pe-4"
+            inputmode="decimal"
+            autocomplete="off"
+            enterkeyhint="done"
+            value={formatNumber(LOAN_DEFAULTS.amount, lang, cur)}
+
+            data-field="amount"
+          />
+        </div>
+        <input
+          type="range"
+          min="1000"
+          max="2000000"
+          step="1000"
+          value={LOAN_DEFAULTS.amount}
+          aria-label={d.inputs.amount}
+          data-slider="amount"
+        />
+        <p id="amount-error" class="text-danger hidden text-sm" data-error="amount">
+          {d.errors.amount}
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="rate" class="text-sm font-medium">
+          {d.inputs.rate}
+        </label>
+        <div class="relative">
+          <input
+            id="rate"
+            name="rate"
+            class="field-input ps-4 pe-10"
+            inputmode="decimal"
+            autocomplete="off"
+            enterkeyhint="done"
+            value={formatNumber(LOAN_DEFAULTS.rate, lang, cur, 1)}
+
+            data-field="rate"
+          />
+          <span class="text-muted pointer-events-none absolute inset-y-0 end-4 flex items-center font-semibold">
+            %
+          </span>
+        </div>
+        <input
+          type="range"
+          min="0"
+          max="20"
+          step="0.1"
+          value={LOAN_DEFAULTS.rate}
+          aria-label={d.inputs.rate}
+          data-slider="rate"
+        />
+        <p id="rate-error" class="text-danger hidden text-sm" data-error="rate">
+          {d.errors.rate}
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="years" class="text-sm font-medium">
+          {d.inputs.years}
+        </label>
+        <div class="relative">
+          <input
+            id="years"
+            name="years"
+            class="field-input ps-4 pe-20"
+            inputmode="numeric"
+            autocomplete="off"
+            enterkeyhint="done"
+            value={String(LOAN_DEFAULTS.years)}
+
+            data-field="years"
+          />
+          <span class="text-muted pointer-events-none absolute inset-y-0 end-4 flex items-center font-semibold">
+            {d.inputs.yearsUnit}
+          </span>
+        </div>
+        <input
+          type="range"
+          min="1"
+          max="40"
+          step="1"
+          value={LOAN_DEFAULTS.years}
+          aria-label={d.inputs.years}
+          data-slider="years"
+        />
+        <p id="years-error" class="text-danger hidden text-sm" data-error="years">
+          {d.errors.years}
+        </p>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- Results -->
+  <section class="card p-5 sm:p-6 lg:sticky lg:top-24" aria-labelledby="results-title" data-results>
+    <h2 id="results-title" class="text-lg font-semibold">
+      {d.results.title}
+    </h2>
+    <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+      <p class="text-muted text-sm font-medium">{d.results.monthly}</p>
+      <p
+        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl"
+        aria-live="polite"
+        data-out="monthly"
+      >
+        {money(initial.monthlyPayment, 2)}
+      </p>
+    </div>
+
+    <div class="mt-6 grid grid-cols-[minmax(0,1fr)] items-center gap-5 min-[360px]:grid-cols-[auto_minmax(0,1fr)]">
+      <svg
+        viewBox="0 0 100 100"
+        class="mx-auto size-28 -rotate-90 sm:size-32"
+        role="img"
+        aria-label={d.results.chartLabel}
+      >
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--c-interest)" stroke-width="14"></circle>
+        <circle
+          cx="50"
+          cy="50"
+          r="42"
+          fill="none"
+          stroke="var(--c-accent)"
+          stroke-width="14"
+          stroke-dasharray={`${(principalShare * CIRC).toFixed(2)} ${CIRC.toFixed(2)}`}
+          data-donut
+        ></circle>
+      </svg>
+      <dl class="flex flex-col gap-3 text-sm">
+        <div class="flex items-center justify-between gap-3">
+          <dt class="flex items-center gap-2">
+            <span class="bg-accent size-3 rounded-full" aria-hidden="true"></span>
+            {d.results.principal}
+          </dt>
+          <dd class="font-semibold tabular-nums" data-out="principal">
+            {money(LOAN_DEFAULTS.amount)}
+          </dd>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <dt class="flex items-center gap-2">
+            <span class="bg-interest size-3 rounded-full" aria-hidden="true"></span>
+            {d.results.interest}
+          </dt>
+          <dd class="font-semibold tabular-nums" data-out="interest">
+            {money(initial.totalInterest)}
+          </dd>
+        </div>
+        <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+          <dt class="font-medium">{d.results.total}</dt>
+          <dd class="font-bold tabular-nums" data-out="total">
+            {money(initial.totalPayment)}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="no-print mt-6 flex flex-wrap gap-2">
+      <button type="button" class="btn-ghost" data-copy="link">
+        <svg
+          viewBox="0 0 24 24"
+          class="size-4"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"></path>
+        </svg>
+        <span>{d.results.copyLink}</span>
+      </button>
+      <button type="button" class="btn-ghost" data-copy="result">
+        <svg
+          viewBox="0 0 24 24"
+          class="size-4"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+          <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path>
+        </svg>
+        <span>{d.results.copyResult}</span>
+      </button>
+      <span class="text-accent sr-only self-center text-sm font-medium" role="status" data-copy-status></span>
+    </div>
+  </section>
+</div>
+
+<!-- Sticky mini result on phones while the inputs are in view (BRD §8.1) -->
+<div
+  class="bg-surface/95 border-line no-print fixed inset-x-0 bottom-0 z-30 translate-y-full border-t backdrop-blur-md transition-transform lg:hidden"
+  aria-hidden="true"
+  data-mini-bar
+>
+  <div class="container-page flex items-center justify-between gap-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+    <span class="text-muted text-sm font-medium">{d.results.monthly}</span>
+    <span class="text-accent text-xl font-bold tabular-nums" data-out="monthly-mini">
+      {money(initial.monthlyPayment, 2)}
+    </span>
+  </div>
+</div>
+
+<!-- Schedule -->
+<section class="card mt-5 p-5 sm:p-6" aria-labelledby="schedule-title">
+  <div class="flex items-center justify-between gap-3">
+    <h2 id="schedule-title" class="text-lg font-semibold">
+      {d.schedule.title}
+    </h2>
+    <div class="text-muted flex items-center gap-4 text-xs">
+      <span class="flex items-center gap-1.5">
+        <span class="bg-accent size-2.5 rounded-sm" aria-hidden="true"></span>
+        {d.results.principal}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="bg-interest size-2.5 rounded-sm" aria-hidden="true"></span>
+        {d.results.interest}
+      </span>
+    </div>
+  </div>
+  <svg
+    class="mt-5 h-40 w-full"
+    viewBox="0 0 400 160"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    data-bars
+  ></svg>
+  <div
+    class="border-line mt-5 max-h-[28rem] overflow-auto rounded-xl border"
+    tabindex="0"
+    role="region"
+    aria-labelledby="schedule-title"
+  >
+    <table class="w-full min-w-[32rem] text-right text-sm tabular-nums">
+      <caption class="sr-only">{d.schedule.caption}</caption>
+      <thead class="bg-surface-2 text-muted sticky top-0 text-xs font-semibold tracking-wide uppercase">
+        <tr>
+          <th scope="col" class="px-4 py-3 text-left">
+            {d.schedule.year}
+          </th>
+          <th scope="col" class="px-4 py-3">
+            {d.schedule.principal}
+          </th>
+          <th scope="col" class="px-4 py-3">
+            {d.schedule.interest}
+          </th>
+          <th scope="col" class="px-4 py-3">
+            {d.schedule.balance}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-line divide-y" data-schedule>
+        {initial.schedule.map((y) => (
+          <tr>
+            <th scope="row" class="px-4 py-2.5 text-left font-medium">
+              {y.year}
+            </th>
+            <td class="px-4 py-2.5">{money(y.principalPaid)}</td>
+            <td class="px-4 py-2.5">{money(y.interestPaid)}</td>
+            <td class="px-4 py-2.5">{money(y.closingBalance)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  import { calculateLoan } from "../lib/loan";
+  import { currencyForLocales, isCurrency, type Currency } from "../lib/currency";
+  import { formatMoney, formatNumber, currencySymbol, numberLocale } from "../lib/format";
+  import {
+    LOAN_LIMITS,
+    parseLocalizedNumber,
+    readLoanParams,
+    loanQueryString,
+    type LoanParams,
+  } from "../lib/params";
+  import { fill, type Lang } from "../i18n";
+
+  type Field = keyof LoanParams;
+  const FIELDS: Field[] = ["amount", "rate", "years"];
+  const DECIMALS: Record<Field, number> = { amount: 0, rate: 2, years: 1 };
+
+  const rootEl = document.querySelector<HTMLElement>("[data-loan-calc]");
+  if (rootEl) init(rootEl);
+
+  function init(root: HTMLElement) {
+    const lang = (document.body.dataset.lang as Lang) ?? "en";
+    const labels = JSON.parse(root.dataset.labels ?? "{}") as { copied: string; summary: string };
+    const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel);
+
+    const inputs = Object.fromEntries(
+      FIELDS.map((f) => [f, $<HTMLInputElement>(`[data-field="${f}"]`)!]),
+    ) as Record<Field, HTMLInputElement>;
+    const sliders = Object.fromEntries(
+      FIELDS.map((f) => [f, $<HTMLInputElement>(`[data-slider="${f}"]`)!]),
+    ) as Record<Field, HTMLInputElement>;
+    const errors = Object.fromEntries(
+      FIELDS.map((f) => [f, $<HTMLElement>(`[data-error="${f}"]`)!]),
+    ) as Record<Field, HTMLElement>;
+    const currencySelect = $<HTMLSelectElement>("[data-currency]")!;
+
+    // ---- State: URL > saved preference > browser region (BRD F-5, L-12) ----
+    const url = new URL(location.href);
+    const state: LoanParams = readLoanParams(url.search);
+    let currency: Currency = pickCurrency(url.searchParams.get("cur"));
+
+    function pickCurrency(fromUrl: string | null): Currency {
+      if (isCurrency(fromUrl)) return fromUrl;
+      try {
+        const saved = localStorage.getItem("numflo:currency");
+        if (isCurrency(saved)) return saved;
+      } catch {
+        /* ignore */
+      }
+      return currencyForLocales(navigator.languages ?? [navigator.language]);
+    }
+
+    const decimalSeparator = () =>
+      new Intl.NumberFormat(numberLocale(lang, currency)).formatToParts(1.5).find((p) => p.type === "decimal")
+        ?.value ?? ".";
+
+    const fmtInput = (f: Field, v: number) =>
+      f === "years"
+        ? String(v)
+        : formatNumber(
+            v,
+            lang,
+            currency,
+            f === "rate"
+              ? Number.isInteger(v)
+                ? 0
+                : Math.min(2, (String(v).split(".")[1] ?? "").length)
+              : 0,
+          );
+
+    function setFill(slider: HTMLInputElement) {
+      const min = Number(slider.min);
+      const max = Number(slider.max);
+      const pct = ((Math.min(Math.max(Number(slider.value), min), max) - min) / (max - min)) * 100;
+      slider.style.setProperty("--fill", `${pct}%`);
+    }
+
+    function syncField(f: Field, fromSlider = false) {
+      if (!fromSlider) inputs[f].value = fmtInput(f, state[f]);
+      sliders[f].value = String(state[f]);
+      setFill(sliders[f]);
+    }
+
+    function setError(f: Field, on: boolean) {
+      inputs[f].setAttribute("aria-invalid", String(on));
+      // Only point to the message while it is shown, so screen readers don't read hidden errors.
+      if (on) inputs[f].setAttribute("aria-describedby", `${f}-error`);
+      else inputs[f].removeAttribute("aria-describedby");
+      errors[f].classList.toggle("hidden", !on);
+    }
+
+    // ---- Render results ----
+    const out = (k: string) => $<HTMLElement>(`[data-out="${k}"]`)!;
+    const donut = $<SVGCircleElement>("[data-donut]")!;
+    const bars = $<SVGSVGElement>("[data-bars]")!;
+    const tbody = $<HTMLTableSectionElement>("[data-schedule]")!;
+    const CIRC = 2 * Math.PI * 42;
+    let lastResult = calculateLoan({
+      principal: state.amount,
+      annualRatePct: state.rate,
+      months: Math.round(state.years * 12),
+    });
+
+    function render() {
+      const r = calculateLoan({
+        principal: state.amount,
+        annualRatePct: state.rate,
+        months: Math.round(state.years * 12),
+      });
+      lastResult = r;
+      const money = (v: number, dec = 0) => formatMoney(v, lang, currency, dec);
+      out("monthly").textContent = money(r.monthlyPayment, 2);
+      out("monthly-mini").textContent = money(r.monthlyPayment, 2);
+      out("principal").textContent = money(state.amount);
+      out("interest").textContent = money(r.totalInterest);
+      out("total").textContent = money(r.totalPayment);
+      const share = r.totalPayment > 0 ? state.amount / r.totalPayment : 1;
+      donut.setAttribute("stroke-dasharray", `${(share * CIRC).toFixed(2)} ${CIRC.toFixed(2)}`);
+
+      // Table: built with DOM APIs and textContent only (no HTML strings) - BRD Q-25
+      const rows = r.schedule.map((y) => {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        th.scope = "row";
+        th.className = "px-4 py-2.5 text-left font-medium";
+        th.textContent = String(y.year);
+        tr.append(th);
+        for (const v of [y.principalPaid, y.interestPaid, y.closingBalance]) {
+          const td = document.createElement("td");
+          td.className = "px-4 py-2.5";
+          td.textContent = money(v);
+          tr.append(td);
+        }
+        return tr;
+      });
+      tbody.replaceChildren(...rows);
+
+      // Stacked bars per year
+      const NS = "http://www.w3.org/2000/svg";
+      const W = 400;
+      const H = 160;
+      const n = r.schedule.length || 1;
+      const max = Math.max(...r.schedule.map((y) => y.principalPaid + y.interestPaid), 1);
+      const slot = W / n;
+      const bw = Math.max(1, slot * 0.7);
+      const nodes: SVGElement[] = [];
+      r.schedule.forEach((y, i) => {
+        const x = i * slot + (slot - bw) / 2;
+        const hp = (y.principalPaid / max) * H;
+        const hi = (y.interestPaid / max) * H;
+        for (const [h, yPos, color] of [
+          [hp, H - hp, "var(--c-accent)"],
+          [hi, H - hp - hi, "var(--c-interest)"],
+        ] as const) {
+          const rect = document.createElementNS(NS, "rect");
+          rect.setAttribute("x", x.toFixed(2));
+          rect.setAttribute("y", yPos.toFixed(2));
+          rect.setAttribute("width", bw.toFixed(2));
+          rect.setAttribute("height", Math.max(0, h).toFixed(2));
+          rect.setAttribute("fill", color);
+          rect.setAttribute("rx", "1.5");
+          nodes.push(rect);
+        }
+      });
+      bars.replaceChildren(...nodes);
+    }
+
+    // ---- Keep URL shareable without reloading (canonical stays clean, S-7) ----
+    let urlTimer: number | undefined;
+    function updateUrl() {
+      window.clearTimeout(urlTimer);
+      urlTimer = window.setTimeout(() => {
+        const qs = `${loanQueryString(state)}&cur=${currency}`;
+        history.replaceState(null, "", `${location.pathname}?${qs}`);
+      }, 300);
+    }
+
+    function applyCurrency() {
+      currencySelect.value = currency;
+      $<HTMLElement>("[data-symbol]")!.textContent = currencySymbol(lang, currency);
+      FIELDS.forEach((f) => syncField(f));
+      render();
+    }
+
+    // ---- Events ----
+    FIELDS.forEach((f) => {
+      inputs[f].addEventListener("input", () => {
+        const v = parseLocalizedNumber(inputs[f].value, LOAN_LIMITS[f], decimalSeparator());
+        if (v === null) {
+          setError(f, true);
+          return;
+        }
+        setError(f, false);
+        state[f] = Number(v.toFixed(DECIMALS[f]));
+        syncField(f, true);
+        render();
+        updateUrl();
+      });
+      inputs[f].addEventListener("blur", () => {
+        setError(f, false);
+        syncField(f);
+      });
+      sliders[f].addEventListener("input", () => {
+        state[f] = Number(sliders[f].value);
+        setError(f, false);
+        syncField(f);
+        render();
+        updateUrl();
+      });
+    });
+
+    currencySelect.addEventListener("change", () => {
+      if (!isCurrency(currencySelect.value)) return;
+      currency = currencySelect.value;
+      try {
+        localStorage.setItem("numflo:currency", currency);
+      } catch {
+        /* ignore */
+      }
+      applyCurrency();
+      updateUrl();
+    });
+
+    const status = $<HTMLElement>("[data-copy-status]")!;
+    document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const money = (v: number, dec = 0) => formatMoney(v, lang, currency, dec);
+        const text =
+          btn.dataset.copy === "link"
+            ? location.href
+            : fill(labels.summary, {
+                monthly: money(lastResult.monthlyPayment, 2),
+                years: formatNumber(state.years, lang, currency, Number.isInteger(state.years) ? 0 : 1),
+                interest: money(lastResult.totalInterest),
+                total: money(lastResult.totalPayment),
+              });
+        try {
+          await navigator.clipboard.writeText(text);
+          status.textContent = labels.copied;
+          status.classList.remove("sr-only");
+          window.setTimeout(() => status.classList.add("sr-only"), 2000);
+        } catch {
+          /* clipboard blocked: nothing to do */
+        }
+      });
+    });
+
+    // Mini bar: show on small screens when the results card is out of view.
+    const mini = $<HTMLElement>("[data-mini-bar]")!;
+    const resultsCard = $<HTMLElement>("[data-results]")!;
+    const form = $<HTMLElement>("[data-loan-form]")!;
+    let resultsVisible = true;
+    let formVisible = true;
+    const updateMini = () => mini.classList.toggle("translate-y-full", resultsVisible || !formVisible);
+    new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.target === resultsCard) resultsVisible = e.isIntersecting;
+        if (e.target === form) formVisible = e.isIntersecting;
+      }
+      updateMini();
+    }).observe(resultsCard);
+    new IntersectionObserver((entries) => {
+      formVisible = entries[0]?.isIntersecting ?? false;
+      updateMini();
+    }).observe(form);
+
+    root.closest("form")?.addEventListener("submit", (e) => e.preventDefault());
+    $<HTMLFormElement>("[data-loan-form]")!.addEventListener("submit", (e) => e.preventDefault());
+
+    applyCurrency();
+  }
+</script>

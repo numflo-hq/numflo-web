@@ -1,0 +1,9 @@
+{
+  "name": "Numflo",
+  "short_name": "Numflo",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }],
+  "theme_color": "#0b7a63",
+  "background_color": "#f6f7f9",
+  "display": "browser",
+  "start_url": "/"
+}

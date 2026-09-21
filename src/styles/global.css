@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+/* Self-hosted Inter (SIL OFL), trimmed to Latin + Latin Extended: covers English, Spanish
+   and the currency symbols we support (BRD U-6). */
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../assets/fonts/inter-latin.woff2") format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../assets/fonts/inter-latin-ext.woff2") format("woff2-variations");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Dark mode is driven by data-theme on <html>, set before first paint by /theme.js (BRD U-3). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Design tokens (BRD U-1) ---------- */
+:root {
+  --c-bg: #f6f7f9;
+  --c-surface: #ffffff;
+  --c-surface-2: #f1f4f7;
+  --c-ink: #0b1220;
+  --c-muted: #556070;
+  --c-border: #e2e6ec;
+  --c-accent: #0b7a63;
+  --c-accent-ink: #ffffff;
+  --c-accent-soft: #e3f3ee;
+  --c-interest: #c2610c;
+  --c-interest-soft: #fbeedf;
+  --c-danger: #b42318;
+  --c-focus: #2563eb;
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04), 0 4px 16px rgb(16 24 40 / 0.06);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --c-bg: #0a0f15;
+  --c-surface: #111821;
+  --c-surface-2: #17212c;
+  --c-ink: #e7edf4;
+  --c-muted: #9aa7b6;
+  --c-border: #243140;
+  --c-accent: #3fd1a7;
+  --c-accent-ink: #04221a;
+  --c-accent-soft: #10352c;
+  --c-interest: #f4b25c;
+  --c-interest-soft: #3a2a14;
+  --c-danger: #ff8a80;
+  --c-focus: #7fb0ff;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-border);
+  --color-accent: var(--c-accent);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-interest: var(--c-interest);
+  --color-interest-soft: var(--c-interest-soft);
+  --color-danger: var(--c-danger);
+  --shadow-card: var(--shadow-card);
+  --radius-card: 1.25rem;
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+    line-height: 1.6;
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--c-focus);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+  ::selection {
+    background: var(--c-accent-soft);
+  }
+}
+
+/* ---------- Components (BRD U-1) ---------- */
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: max(1rem, env(safe-area-inset-left));
+}
+@utility card {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+@utility btn {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding-inline: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    background-color 150ms,
+    opacity 150ms,
+    border-color 150ms;
+}
+@utility btn-primary {
+  @apply btn;
+  background-color: var(--c-accent);
+  color: var(--c-accent-ink);
+  &:hover {
+    opacity: 0.9;
+  }
+}
+@utility btn-ghost {
+  @apply btn;
+  border: 1px solid var(--c-border);
+  color: var(--c-ink);
+  &:hover {
+    background-color: var(--c-surface-2);
+  }
+}
+@utility field-input {
+  width: 100%;
+  min-width: 0;
+  border-radius: 0.75rem;
+  border: 1px solid var(--c-border);
+  background-color: var(--c-surface);
+  color: var(--c-ink);
+  padding-block: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  &:focus {
+    border-color: var(--c-accent);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--c-accent-soft);
+  }
+  &[aria-invalid="true"] {
+    border-color: var(--c-danger);
+  }
+}
+.prose-body p + p {
+  margin-top: 0.75rem;
+}
+
+/* ---------- Range slider ---------- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2.75rem; /* 44px touch target (BRD R-2) */
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--c-accent) 0 var(--fill, 50%),
+    var(--c-border) var(--fill, 50%) 100%
+  );
+}
+input[type="range"]::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 999px;
+  background: var(--c-border);
+}
+input[type="range"]::-moz-range-progress {
+  height: 0.375rem;
+  border-radius: 999px;
+  background: var(--c-accent);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -0.5625rem;
+  border-radius: 50%;
+  background: var(--c-surface);
+  border: 3px solid var(--c-accent);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.2);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--c-surface);
+  border: 3px solid var(--c-accent);
+}
+
+/* ---------- Motion (BRD U-5) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Print (BRD R-7) ---------- */
+@media print {
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .card {
+    box-shadow: none;
+    border-color: #ccc;
+  }
+}

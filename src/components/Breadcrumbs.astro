@@ -1,0 +1,26 @@
+---
+import { path, t, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  current: string;
+}
+const { lang, current } = Astro.props;
+const d = t(lang);
+---
+
+<nav aria-label={d.site.breadcrumb} class="text-muted text-sm">
+  <ol class="flex flex-wrap items-center gap-1.5" role="list">
+    <li>
+      <a class="hover:text-ink underline-offset-4 hover:underline" href={path("home", lang)}>
+        {d.site.home}
+      </a>
+    </li>
+    <li aria-hidden="true">/</li>
+    <li>
+      <span aria-current="page" class="text-ink font-medium">
+        {current}
+      </span>
+    </li>
+  </ol>
+</nav>

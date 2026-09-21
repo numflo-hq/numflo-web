@@ -4,7 +4,7 @@
 |---|---|
 | Applies to | Every change to numflo.com, including one-line fixes |
 | Related | `docs/BRD.md` §10 (requirements Q-1 to Q-28) |
-| Version | 1.0 |
+| Version | 1.1 |
 | Date | 2026-09-21 |
 
 ## Roles
@@ -77,9 +77,9 @@ All of these run automatically in GitHub Actions on every PR. **Any failure bloc
 |---|---|---|---|
 | Known-vulnerable dependencies | npm audit + Dependabot | Every PR + weekly | No high or critical |
 | Static analysis (SAST) | CodeQL (public repo) or Semgrep (private) | Every PR | No new findings of medium or above |
-| Secret scanning | Gitleaks (+ GitHub push protection if public) | Every PR | No secrets detected |
-| Dynamic scan (DAST) | OWASP ZAP baseline | Against the PR preview site | No medium or above alerts |
-| Security headers | Custom check + Mozilla Observatory | Against the PR preview site | CSP, HSTS, nosniff, Referrer-Policy, Permissions-Policy, frame-ancestors all present; grade A+ |
+| Secret scanning | Gitleaks (checksum-verified) + GitHub push protection | Every PR, full history | No secrets detected |
+| Dynamic scan (DAST) | OWASP ZAP baseline | Every PR, against the built site served with the production security headers; monthly against numflo.com | No medium or above alerts |
+| Security headers | Post-build check + browser tests; Mozilla Observatory on production | Every PR + after each release | CSP, HSTS, nosniff, Referrer-Policy, Permissions-Policy, frame-ancestors all present; grade A+ |
 | Malicious input | Vitest | Every PR | Script tags, huge numbers, long strings and special characters in URL parameters are rejected safely |
 | Workflow safety | Pinned action versions, least-privilege tokens | Every PR | No unpinned third-party actions |
 
@@ -97,7 +97,7 @@ Visitor feedback from the "Report a translation issue" link is triaged as `conte
 ## 5. Review and user acceptance (UAT)
 
 1. **Code review by Claude:** a separate review pass over the diff for bugs, security, SEO and accessibility; findings are fixed before the owner is asked.
-2. **Preview site:** Cloudflare builds a preview URL for the PR. Previews are locked to the owner with Cloudflare Access (free) and marked `noindex` so Google never indexes them.
+2. **Preview site:** Cloudflare builds a preview URL for the PR. Previews send `X-Robots-Tag: noindex` so Google never indexes them. (The code is public, so previews hold nothing secret.)
 3. **Owner UAT:** Vikas opens the preview on his phone and laptop and works through the PR checklist:
    - [ ] The change does what the issue asked
    - [ ] Looks right on phone and desktop, in light and dark mode
@@ -116,7 +116,7 @@ Visitor feedback from the "Report a translation issue" link is triaged as `conte
 
 | When | Check |
 |---|---|
-| Immediately after deploy | Smoke test on production: home + every calculator in both languages load; one known result per calculator is correct; security headers present |
+| Immediately after deploy | Automatic (Production checks workflow): waits until numflo.com serves the new commit, then smoke-tests it: home + every calculator in both languages load; one known result per calculator is correct; security headers present |
 | Weekly | Dependabot updates reviewed; Search Console coverage and Core Web Vitals; Cloudflare analytics |
 | Monthly | Re-run full Lighthouse and ZAP scans against production; review this SDLC for gaps |
 
@@ -139,3 +139,10 @@ A change is done only when:
 - [ ] Owner UAT passed on preview
 - [ ] Merged, deployed, smoke-tested
 - [ ] CHANGELOG, version tag and docs updated
+
+## Change log
+
+| Version | Date | Change |
+|---|---|---|
+| 1.0 | 2026-09-21 | Approved with BRD v1.0 |
+| 1.1 | 2026-09-21 | DAST and header checks run in CI against the built site with production headers (deterministic), plus monthly production scan; previews protected by noindex instead of Cloudflare Access |

@@ -1,0 +1,70 @@
+---
+import { HREFLANG, LANGS, OG_LOCALE, ROUTES, t, type Lang, type RouteKey } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  route: RouteKey | null;
+  title: string;
+  description: string;
+  /** Extra JSON-LD objects for this page (BRD S-30 to S-33). */
+  schema?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const { lang, route, title, description, schema = [], noindex = false } = Astro.props;
+const site = Astro.site!;
+const abs = (p: string) => new URL(p, site).href.replace(/\/$/, p === "/" ? "/" : "");
+const canonical = route ? abs(ROUTES[route][lang]) : null;
+const ogImage = new URL(`/og/${lang}.png`, site).href;
+
+const baseSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${site.href}#organization`,
+    name: "Numflo",
+    url: site.href,
+    logo: new URL("/favicon.svg", site).href,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.href}#website`,
+    name: "Numflo",
+    url: site.href,
+    inLanguage: LANGS.map((l) => HREFLANG[l]),
+    publisher: { "@id": `${site.href}#organization` },
+  },
+];
+const jsonLd = JSON.stringify([...baseSchema, ...schema]).replace(/</g, "\\u003c");
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex ? (
+  <meta name="robots" content="noindex" />
+) : (
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+)}
+{canonical && <link rel="canonical" href={canonical} />}
+{route && LANGS.map((l) => <link rel="alternate" hreflang={HREFLANG[l]} href={abs(ROUTES[route][l])} />)}
+{route && <link rel="alternate" hreflang="x-default" href={abs(ROUTES[route].en)} />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={t(lang).site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content={OG_LOCALE[lang]} />
+{LANGS.filter((l) => l !== lang).map((l) => (
+  <meta property="og:locale:alternate" content={OG_LOCALE[l]} />
+))}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json" set:html={jsonLd}></script>

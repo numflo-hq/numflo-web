@@ -1,0 +1,32 @@
+name: Feature or change
+description: Plan a new feature, calculator, language or change (SDLC stage 1)
+labels: [feature]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+      description: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Which BRD requirement IDs does this satisfy (e.g. F-10, L-2)?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: A checklist that decides when this is done.
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Design note (SDLC stage 2)
+      description: Screens affected, SEO impact, security impact, mini threat model if relevant.

@@ -1,0 +1,50 @@
+---
+import Logo from "./Logo.astro";
+import { path, t, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = t(lang);
+const year = new Date().getFullYear();
+const issueUrl =
+  "https://github.com/numflo-hq/numflo-web/issues/new?labels=content,translation&title=" +
+  encodeURIComponent(lang === "es" ? "Error de traducción" : "Translation issue");
+---
+
+<footer class="border-line mt-20 border-t">
+  <div class="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
+    <div class="max-w-md">
+      <div class="flex items-center gap-2 font-bold">
+        <Logo class="size-6" /> numflo
+      </div>
+      <p class="text-muted mt-3 text-sm">{d.site.footerNote}</p>
+    </div>
+    <ul class="text-muted flex flex-wrap gap-x-6 gap-y-2 text-sm" role="list">
+      <li>
+        <a class="hover:text-ink underline-offset-4 hover:underline" href={path("loan", lang)}>
+          {d.home.cards.loan.title}
+        </a>
+      </li>
+      <li>
+        <a class="hover:text-ink underline-offset-4 hover:underline" href={path("privacy", lang)}>
+          {d.site.privacy}
+        </a>
+      </li>
+      <li>
+        <a
+          class="hover:text-ink underline-offset-4 hover:underline"
+          href={issueUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {d.site.reportTranslation}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="container-page text-muted pb-8 text-xs">
+    © {year} {d.site.rights}
+  </div>
+</footer>

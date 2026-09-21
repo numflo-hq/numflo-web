@@ -1,0 +1,184 @@
+{
+  "site": {
+    "name": "Numflo",
+    "tagline": "Money math, made clear.",
+    "skipToContent": "Skip to main content",
+    "language": "Language",
+    "theme": "Toggle dark mode",
+    "home": "Home",
+    "calculators": "Calculators",
+    "comingSoon": "Coming soon",
+    "footerNote": "Numflo gives estimates for information only. It is not financial advice.",
+    "privacy": "Privacy",
+    "reportTranslation": "Report a translation issue",
+    "rights": "Numflo",
+    "suggestBanner": "Ver esta página en español",
+    "dismiss": "Dismiss",
+    "breadcrumb": "Breadcrumb"
+  },
+  "meta": {
+    "home": {
+      "title": "Numflo – Free Financial Calculators in Your Language",
+      "description": "Free, fast and private financial calculators. Work out loan payments, interest and more in English or Spanish, in your own currency."
+    },
+    "loan": {
+      "title": "Loan Calculator – Monthly Payment & EMI | Numflo",
+      "description": "Calculate your monthly loan payment (EMI), total interest and full repayment schedule. Free, private and works in any currency."
+    },
+    "privacy": {
+      "title": "Privacy Policy | Numflo",
+      "description": "Numflo does not collect personal data. Calculations run on your device and nothing you type is sent or stored."
+    }
+  },
+  "home": {
+    "heading": "Money math, made clear.",
+    "intro": "Free calculators that give you the number and explain what it means. Private by design: everything runs on your device.",
+    "cta": "Open the loan calculator",
+    "sectionTitle": "Calculators",
+    "cards": {
+      "loan": {
+        "title": "Loan calculator",
+        "text": "Monthly payment, total interest and a year-by-year repayment schedule."
+      },
+      "investment": {
+        "title": "Investment calculator",
+        "text": "See how regular monthly investing can grow over time."
+      },
+      "compound": {
+        "title": "Compound interest calculator",
+        "text": "Understand how interest on interest builds your savings."
+      }
+    },
+    "why": {
+      "title": "Why Numflo",
+      "items": [
+        {
+          "title": "Explained, not just calculated",
+          "text": "Every result comes with a plain-language explanation, the formula and a worked example."
+        },
+        {
+          "title": "Your language, your currency",
+          "text": "Switch language and currency independently, with local number formats."
+        },
+        {
+          "title": "Private by design",
+          "text": "No sign-up and no tracking cookies. What you type never leaves your device."
+        }
+      ]
+    }
+  },
+  "loan": {
+    "heading": "Loan calculator",
+    "lead": "Find your monthly payment (EMI), total interest and repayment schedule.",
+    "inputs": {
+      "legend": "Loan details",
+      "amount": "Loan amount",
+      "rate": "Interest rate (per year)",
+      "years": "Loan term",
+      "yearsUnit": "years",
+      "currency": "Currency"
+    },
+    "errors": {
+      "amount": "Enter an amount between 1 and 1,000,000,000.",
+      "rate": "Enter a rate between 0% and 50%.",
+      "years": "Enter a term between 1 and 40 years."
+    },
+    "results": {
+      "title": "Your results",
+      "monthly": "Monthly payment",
+      "principal": "Principal",
+      "interest": "Total interest",
+      "total": "Total amount paid",
+      "chartLabel": "Share of principal and interest in the total amount paid",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied",
+      "summary": "Monthly payment {monthly} for {years} years. Total interest {interest}. Total paid {total}."
+    },
+    "schedule": {
+      "title": "Repayment schedule",
+      "caption": "Year-by-year breakdown of principal, interest and remaining balance",
+      "year": "Year",
+      "principal": "Principal paid",
+      "interest": "Interest paid",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "A loan calculator shows the fixed monthly payment needed to repay a loan over a set term, and how much of what you pay goes to interest. In many countries this payment is called an EMI (equated monthly instalment).",
+      "sections": [
+        {
+          "title": "How the monthly payment is calculated",
+          "paragraphs": [
+            "Most personal loans, car loans and mortgages are \"amortising\" loans: you pay the same amount every month, and each payment covers that month's interest plus a slice of the amount you borrowed (the principal).",
+            "The standard formula is: payment = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the amount borrowed, r is the monthly interest rate (the annual rate divided by 12) and n is the number of monthly payments."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Borrow 250,000 at 7.5% a year for 20 years. The monthly rate is 7.5 ÷ 12 = 0.625%, and there are 240 payments.",
+            "The monthly payment comes to about 2,013.98. Over 20 years you pay 483,355.92 in total, of which 233,355.92 is interest: almost as much as the original loan.",
+            "In the first month, 1,562.50 of the payment is interest and only 451.48 reduces the balance. That balance shrinks faster every month, so later payments go mostly towards principal."
+          ]
+        },
+        {
+          "title": "Why early payments are mostly interest",
+          "paragraphs": [
+            "Interest is charged on the balance you still owe. At the start the balance is at its highest, so the interest part of each payment is at its highest too. As the balance falls, more of each payment goes to principal. The repayment schedule above shows this shift year by year."
+          ]
+        },
+        {
+          "title": "Ways to pay less interest",
+          "paragraphs": [
+            "Choose a shorter term: the monthly payment rises, but total interest falls sharply.",
+            "Compare interest rates: even half a percentage point makes a large difference over many years.",
+            "Borrow less: a bigger down payment reduces both the payment and the interest.",
+            "Make extra payments when you can: money paid early reduces the balance that interest is charged on. Check first whether your lender charges a fee for prepayment."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What is an EMI?",
+          "a": "EMI stands for equated monthly instalment. It is the fixed amount you pay every month until a loan is repaid, and it includes both interest and principal. It is the same thing as the monthly payment shown by this calculator."
+        },
+        {
+          "q": "Does the result include fees, insurance or taxes?",
+          "a": "No. The calculator covers principal and interest only. Lenders may add processing fees, insurance or taxes, so your actual payment can be higher. Ask your lender for the full cost, often shown as the APR."
+        },
+        {
+          "q": "What if my interest rate is variable?",
+          "a": "The calculator assumes a fixed rate for the whole term. With a variable rate your payment will change when the rate changes. You can enter different rates to see how much your payment could move."
+        },
+        {
+          "q": "Is the information I enter stored anywhere?",
+          "a": "No. All calculations happen in your browser. Nothing you type is sent to Numflo or stored on a server."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Results use the standard amortisation formula with monthly compounding and a fixed interest rate. Values are rounded for display only; calculations use full precision.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Actual loan terms depend on your lender."
+    }
+  },
+  "privacy": {
+    "heading": "Privacy policy",
+    "updated": "Last updated",
+    "paragraphs": [
+      "Numflo is built to be private. We do not ask you to create an account and we do not collect personal data.",
+      "Everything you type into a calculator stays on your device. Calculations run in your browser and are never sent to us or stored on a server.",
+      "To show amounts in your currency, the calculator asks Cloudflare, our hosting provider, which country your visit comes from. Only the country code is used. It is kept in your browser for the current visit only and is not sent anywhere else. If you pick a currency yourself, your choice always wins.",
+      "Your language, theme and currency choices are saved in your own browser (local storage) so the site remembers them next time. You can clear them at any time in your browser settings.",
+      "We measure visits with Cloudflare Web Analytics, which does not use cookies and does not track you across websites. It records anonymous totals such as page views.",
+      "If this policy changes, for example if advertising is added in future, this page will be updated first and will explain what changes."
+    ],
+    "contact": "Questions about privacy? Open an issue on our public GitHub repository."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has moved.",
+    "back": "Go to the home page"
+  }
+}

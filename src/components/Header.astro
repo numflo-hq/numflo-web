@@ -1,0 +1,67 @@
+---
+import Logo from "./Logo.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { path, t, type Lang, type RouteKey } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  route: RouteKey | null;
+}
+const { lang, route } = Astro.props;
+const d = t(lang);
+---
+
+<header class="bg-bg/85 border-line sticky top-0 z-40 border-b backdrop-blur-md">
+  <div class="container-page flex h-16 items-center justify-between gap-3">
+    <a
+      href={path("home", lang)}
+      class="flex items-center gap-2.5 rounded-lg font-bold"
+      aria-label={`${d.site.name} – ${d.site.home}`}
+    >
+      <Logo class="size-8" />
+      <span class="text-lg tracking-tight">numflo</span>
+    </a>
+    <nav aria-label={d.site.calculators} class="flex items-center gap-2">
+      <a
+        href={path("loan", lang)}
+        class="hover:bg-surface-2 hidden min-h-11 items-center rounded-xl px-3 text-sm font-medium sm:inline-flex"
+        aria-current={route === "loan" ? "page" : undefined}
+      >
+        {d.home.cards.loan.title}
+      </a>
+      <LanguageSwitcher lang={lang} route={route} />
+      <button
+        type="button"
+        class="btn-ghost px-3"
+        data-theme-toggle
+        aria-label={d.site.theme}
+        aria-pressed="false"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="size-5 dark:hidden"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path>
+        </svg>
+        <svg
+          viewBox="0 0 24 24"
+          class="hidden size-5 dark:block"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>

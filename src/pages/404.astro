@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { path, t } from "../i18n";
+const en = t("en");
+const es = t("es");
+---
+
+<BaseLayout
+  lang="en"
+  route={null}
+  title={`${en.notFound.title} | Numflo`}
+  description={en.notFound.text}
+  noindex
+>
+  <div class="container-page grid gap-10 py-16 sm:grid-cols-2">
+    <section>
+      <p class="text-accent text-sm font-bold">404</p>
+      <h1 class="mt-2 text-3xl font-bold">{en.notFound.title}</h1>
+      <p class="text-muted mt-3">{en.notFound.text}</p>
+      <a class="btn-primary mt-6" href={path("home", "en")}>
+        {en.notFound.back}
+      </a>
+    </section>
+    <section lang="es">
+      <p class="text-accent text-sm font-bold">404</p>
+      <h2 class="mt-2 text-3xl font-bold">{es.notFound.title}</h2>
+      <p class="text-muted mt-3">{es.notFound.text}</p>
+      <a class="btn-primary mt-6" href={path("home", "es")}>
+        {es.notFound.back}
+      </a>
+    </section>
+  </div>
+</BaseLayout>

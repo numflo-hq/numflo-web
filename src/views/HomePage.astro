@@ -1,0 +1,134 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { path, t, type Lang } from "../i18n";
+import { calculateLoan } from "../lib/loan";
+import { formatMoney } from "../lib/format";
+import { LOAN_DEFAULTS } from "../lib/params";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const d = t(lang);
+const r = calculateLoan({
+  principal: LOAN_DEFAULTS.amount,
+  annualRatePct: LOAN_DEFAULTS.rate,
+  months: LOAN_DEFAULTS.years * 12,
+});
+const cur = lang === "es" ? "EUR" : "USD";
+const sample = {
+  monthly: formatMoney(r.monthlyPayment, lang, cur, 2),
+  principal: formatMoney(LOAN_DEFAULTS.amount, lang, cur),
+  interest: formatMoney(r.totalInterest, lang, cur),
+};
+const cards = [
+  { key: "loan", href: path("loan", lang), ...d.home.cards.loan, icon: "M4 7h16M4 12h10M4 17h7" },
+  { key: "investment", href: null, ...d.home.cards.investment, icon: "M4 18 9 12l4 3 7-9" },
+  { key: "compound", href: null, ...d.home.cards.compound, icon: "M12 4v16M4 12h16" },
+] as const;
+---
+
+<BaseLayout lang={lang} route="home" title={d.meta.home.title} description={d.meta.home.description}>
+  <section class="container-page grid items-center gap-10 pt-12 pb-10 sm:pt-20 sm:pb-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl font-extrabold sm:text-6xl">{d.home.heading}</h1>
+      <p class="text-muted mt-5 max-w-2xl text-lg sm:text-xl">{d.home.intro}</p>
+      <a href={path("loan", lang)} class="btn-primary mt-8 px-6 text-base">
+        {d.home.cta}
+        <svg
+          viewBox="0 0 20 20"
+          class="size-4 rtl:rotate-180"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 10h12M11 5l5 5-5 5"></path>
+        </svg>
+      </a>
+    </div>
+    <!-- Decorative preview of a result (not interactive) -->
+    <div class="card hidden rotate-1 p-6 lg:block" aria-hidden="true">
+      <p class="text-muted text-sm font-medium">{d.loan.results.monthly}</p>
+      <p class="text-accent mt-1 text-4xl font-bold tabular-nums">{sample.monthly}</p>
+      <div class="bg-surface-2 mt-5 flex h-3 overflow-hidden rounded-full">
+        <span class="bg-accent w-[52%]"></span>
+        <span class="bg-interest w-[48%]"></span>
+      </div>
+      <dl class="mt-4 grid grid-cols-2 gap-3 text-sm">
+        <div>
+          <dt class="text-muted">{d.loan.results.principal}</dt>
+          <dd class="font-semibold tabular-nums">{sample.principal}</dd>
+        </div>
+        <div>
+          <dt class="text-muted">{d.loan.results.interest}</dt>
+          <dd class="font-semibold tabular-nums">{sample.interest}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="container-page" aria-labelledby="calcs">
+    <h2 id="calcs" class="text-2xl font-bold">
+      {d.home.sectionTitle}
+    </h2>
+    <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+      {cards.map((c) => (
+        <li
+          class:list={[
+            "card relative flex flex-col gap-3 p-6",
+            c.href ? "hover:border-accent transition-colors" : "bg-surface-2/40",
+          ]}
+        >
+          <span
+            class="bg-accent-soft text-accent inline-flex size-11 items-center justify-center rounded-xl"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="size-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d={c.icon} />
+            </svg>
+          </span>
+          <h3 class="text-lg font-semibold">
+            {c.href ? (
+              <a href={c.href} class="after:absolute after:inset-0 after:rounded-[inherit]">
+                {c.title}
+              </a>
+            ) : (
+              c.title
+            )}
+          </h3>
+          <p class="text-muted text-sm">{c.text}</p>
+          {!c.href && (
+            <span class="bg-surface-2 text-muted w-fit rounded-full px-2.5 py-1 text-xs font-semibold">
+              {d.site.comingSoon}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container-page mt-16" aria-labelledby="why">
+    <h2 id="why" class="text-2xl font-bold">
+      {d.home.why.title}
+    </h2>
+    <ul class="mt-5 grid gap-6 sm:grid-cols-3" role="list">
+      {d.home.why.items.map((item) => (
+        <li>
+          <h3 class="font-semibold">{item.title}</h3>
+          <p class="text-muted mt-1.5 text-sm">{item.text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+import en from "./en.json";
+import es from "./es.json";
+
+export const LANGS = ["en", "es"] as const;
+export type Lang = (typeof LANGS)[number];
+export const DEFAULT_LANG: Lang = "en";
+
+export const LANG_NAMES: Record<Lang, string> = { en: "English", es: "Español" };
+/** Values for <html lang> and hreflang (BRD S-3). */
+export const HREFLANG: Record<Lang, string> = { en: "en", es: "es" };
+/** Open Graph locale. */
+export const OG_LOCALE: Record<Lang, string> = { en: "en_US", es: "es_ES" };
+
+export type Dictionary = typeof en;
+const dictionaries: Record<Lang, Dictionary> = { en, es };
+
+export function t(lang: Lang): Dictionary {
+  return dictionaries[lang];
+}
+
+/** Every page, with its localised path per language (BRD L-9). */
+export const ROUTES = {
+  home: { en: "/", es: "/es" },
+  loan: { en: "/loan-calculator", es: "/es/calculadora-de-prestamos" },
+  privacy: { en: "/privacy", es: "/es/privacidad" },
+} as const satisfies Record<string, Record<Lang, string>>;
+
+export type RouteKey = keyof typeof ROUTES;
+
+export function path(route: RouteKey, lang: Lang): string {
+  return ROUTES[route][lang];
+}
+
+/** Replace {placeholders} in a template string. */
+export function fill(template: string, values: Record<string, string>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key: string) => values[key] ?? `{${key}}`);
+}
+
+/** Date each page's content was last reviewed (BRD S-51). */
+export const LAST_REVIEWED: Record<RouteKey, string> = {
+  home: "2026-09-21",
+  loan: "2026-09-21",
+  privacy: "2026-09-22",
+};

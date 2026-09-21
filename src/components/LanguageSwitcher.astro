@@ -1,0 +1,68 @@
+---
+import { LANG_NAMES, LANGS, ROUTES, t, type Lang, type RouteKey } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  route: RouteKey | null;
+}
+const { lang, route } = Astro.props;
+// Real links to the same page in each language (BRD L-2); fallback to that language's home (L-3).
+const target = (l: Lang) => (route ? ROUTES[route][l] : ROUTES.home[l]);
+---
+
+<details class="lang-switcher relative" data-lang-switcher>
+  <summary
+    class="btn-ghost cursor-pointer list-none px-3 [&::-webkit-details-marker]:hidden"
+    aria-label={`${t(lang).site.language}: ${LANG_NAMES[lang]}`}
+  >
+    <svg
+      viewBox="0 0 24 24"
+      class="size-5"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+    >
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"></path>
+    </svg>
+    <span>{lang.toUpperCase()}</span>
+    <svg viewBox="0 0 20 20" class="size-4 opacity-60" aria-hidden="true" fill="currentColor">
+      <path d="M5.5 7.5 10 12l4.5-4.5"></path>
+    </svg>
+  </summary>
+  <ul class="card absolute end-0 z-30 mt-2 min-w-40 p-1.5" role="list">
+    {LANGS.map((l) => (
+      <li>
+        <a
+          href={target(l)}
+          hreflang={l}
+          lang={l}
+          data-set-lang={l}
+          aria-current={l === lang ? "true" : undefined}
+          class:list={[
+            "flex min-h-11 items-center justify-between gap-3 rounded-lg px-3 text-sm font-medium hover:bg-surface-2",
+            l === lang && "text-accent",
+          ]}
+        >
+          {LANG_NAMES[l]}
+          {l === lang && (
+            <svg
+              viewBox="0 0 20 20"
+              class="size-4"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m4.5 10.5 3.5 3.5 7.5-8" />
+            </svg>
+          )}
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>

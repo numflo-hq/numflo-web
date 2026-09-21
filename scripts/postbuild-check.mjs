@@ -28,13 +28,17 @@ const fileForPath = (p) => {
 
 const attr = (tag, name) => tag.match(new RegExp(`\\s${name}="([^"]*)"`, "i"))?.[1];
 const all = (html, re) => [...html.matchAll(re)].map((m) => m[0]);
-const decode = (s) =>
-  s
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">");
+const ENTITIES = { "&amp;": "&", "&quot;": '"', "&#39;": "'", "&lt;": "<", "&gt;": ">" };
+const decode = (s) => s.replace(/&(?:amp|quot|#39|lt|gt);/g, (m) => ENTITIES[m]);
+/** Path of a URL on our own site, or null if the URL points anywhere else (parsed, not prefix-matched). */
+const ownPath = (href) => {
+  try {
+    const u = new URL(href);
+    return u.origin === SITE ? u.pathname : null;
+  } catch {
+    return null;
+  }
+};
 
 const canonicals = new Map();
 
@@ -79,8 +83,8 @@ for (const file of htmlFiles) {
   // ---- Internal links must resolve (S-60) ----
   for (const tag of all(html, /<(?:a|link)\b[^>]*\shref="[^"]*"[^>]*>/gi)) {
     const href = decode(attr(tag, "href") ?? "");
-    if (href.startsWith(SITE)) {
-      if (!fileForPath(href.slice(SITE.length) || "/")) fail(rel, `broken absolute link: ${href}`);
+    if (/^https?:/i.test(href) && ownPath(href) !== null) {
+      if (!fileForPath(ownPath(href))) fail(rel, `broken absolute link: ${href}`);
     } else if (href.startsWith("/") && !href.startsWith("//")) {
       if (!fileForPath(href)) fail(rel, `broken link: ${href}`);
     }
@@ -88,8 +92,7 @@ for (const file of htmlFiles) {
 
   const og = html.match(/<meta property="og:image" content="([^"]+)"/i)?.[1];
   if (!og) fail(rel, "missing og:image");
-  else if (!og.startsWith(SITE) || !fileForPath(og.slice(SITE.length)))
-    fail(rel, `og:image not found: ${og}`);
+  else if (ownPath(og) === null || !fileForPath(ownPath(og))) fail(rel, `og:image not found: ${og}`);
 
   if (is404) {
     if (!/<meta name="robots" content="noindex"/.test(html)) fail(rel, "404 page must be noindex");
@@ -102,10 +105,11 @@ for (const file of htmlFiles) {
     fail(rel, "missing canonical");
     continue;
   }
-  if (!canonical.startsWith(SITE)) fail(rel, `canonical must be absolute on ${SITE}: ${canonical}`);
+  const canonicalPath = ownPath(canonical);
+  if (canonicalPath === null) fail(rel, `canonical must be absolute on ${SITE}: ${canonical}`);
   if (canonical !== SITE + "/" && canonical.endsWith("/"))
     fail(rel, `canonical has a trailing slash: ${canonical}`);
-  const served = fileForPath(canonical.slice(SITE.length) || "/");
+  const served = canonicalPath === null ? null : fileForPath(canonicalPath);
   if (!served || relative(DIST, served) !== rel)
     fail(rel, `canonical does not point to this page: ${canonical}`);
 
@@ -130,10 +134,13 @@ for (const [canonical, { rel, alternates }] of canonicals) {
 // ---- Sitemap lists every canonical URL (S-4) ----
 const sitemap = existsSync(join(DIST, "sitemap.xml")) ? readFileSync(join(DIST, "sitemap.xml"), "utf8") : "";
 if (!sitemap) fail("sitemap.xml", "missing");
+const sitemapLocs = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
 for (const canonical of canonicals.keys())
-  if (!sitemap.includes(`<loc>${canonical}</loc>`)) fail("sitemap.xml", `missing ${canonical}`);
+  if (!sitemapLocs.has(canonical)) fail("sitemap.xml", `missing ${canonical}`);
 const robots = existsSync(join(DIST, "robots.txt")) ? readFileSync(join(DIST, "robots.txt"), "utf8") : "";
-if (!robots.includes(`Sitemap: ${SITE}/sitemap.xml`)) fail("robots.txt", "must reference the sitemap");
+const robotsSitemaps = [...robots.matchAll(/^Sitemap:\s*(\S+)\s*$/gim)].map((m) => m[1]);
+if (!robotsSitemaps.some((u) => ownPath(u) === "/sitemap.xml"))
+  fail("robots.txt", "must reference the sitemap");
 
 // ---- Security headers file (Q-24) ----
 const headers = existsSync(join(DIST, "_headers")) ? readFileSync(join(DIST, "_headers"), "utf8") : "";

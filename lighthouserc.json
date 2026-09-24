@@ -7,7 +7,9 @@
         "http://localhost:4321/",
         "http://localhost:4321/es",
         "http://localhost:4321/loan-calculator",
-        "http://localhost:4321/es/calculadora-de-prestamos"
+        "http://localhost:4321/es/calculadora-de-prestamos",
+        "http://localhost:4321/investment-calculator",
+        "http://localhost:4321/compound-interest-calculator"
       ],
       "numberOfRuns": 3,
       "settings": {

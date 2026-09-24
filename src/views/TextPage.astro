@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { LAST_REVIEWED, t, type Lang } from "../i18n";
+
+type TextRoute = "about" | "terms" | "disclaimer" | "privacy";
+interface Props {
+  lang: Lang;
+  route: TextRoute;
+}
+const { lang, route } = Astro.props;
+const d = t(lang);
+const page = d[route] as { heading: string; paragraphs: string[]; contact?: string };
+const meta = d.meta[route];
+const updated = new Intl.DateTimeFormat(lang, { dateStyle: "long", timeZone: "UTC" }).format(
+  new Date(LAST_REVIEWED[route]),
+);
+const updatedLabel = d.privacy.updated;
+---
+
+<BaseLayout lang={lang} route={route} title={meta.title} description={meta.description}>
+  <div class="container-page max-w-3xl pt-8">
+    <Breadcrumbs lang={lang} current={page.heading} />
+    <h1 class="mt-4 text-3xl font-bold sm:text-4xl">{page.heading}</h1>
+    <p class="text-muted mt-2 text-sm">
+      {updatedLabel}: <time datetime={LAST_REVIEWED[route]}>{updated}</time>
+    </p>
+    <div class="prose-body mt-6">
+      {page.paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
+      {page.contact && <p>{page.contact}</p>}
+    </div>
+  </div>
+</BaseLayout>

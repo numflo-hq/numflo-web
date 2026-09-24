@@ -1,34 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
-import LoanCalculator from "../components/LoanCalculator.astro";
+import Calculator from "../components/Calculator.astro";
+import RelatedCalculators from "../components/RelatedCalculators.astro";
 import { HREFLANG, LAST_REVIEWED, path, t, type Lang } from "../i18n";
+import type { CalcId } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
+  calc: CalcId;
 }
-const { lang } = Astro.props;
+const { lang, calc } = Astro.props;
 const d = t(lang);
-const c = d.loan.content;
-const url = new URL(path("loan", lang), Astro.site).href;
+const page = d[calc];
+const meta = d.meta[calc];
+const c = page.content;
+const url = new URL(path(calc, lang), Astro.site).href;
 const reviewed = new Intl.DateTimeFormat(lang, { dateStyle: "long", timeZone: "UTC" }).format(
-  new Date(LAST_REVIEWED.loan),
+  new Date(LAST_REVIEWED[calc]),
 );
 
 const schema = [
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: d.loan.heading,
+    name: page.heading,
     url,
-    description: d.meta.loan.description,
+    description: meta.description,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Any",
     browserRequirements: "Requires JavaScript for live updates",
     inLanguage: HREFLANG[lang],
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    dateModified: LAST_REVIEWED.loan,
+    dateModified: LAST_REVIEWED[calc],
     publisher: { "@id": `${Astro.site!.href}#organization` },
   },
   {
@@ -41,7 +46,7 @@ const schema = [
         name: d.site.home,
         item: new URL(path("home", lang), Astro.site).href,
       },
-      { "@type": "ListItem", position: 2, name: d.loan.heading, item: url },
+      { "@type": "ListItem", position: 2, name: page.heading, item: url },
     ],
   },
   {
@@ -57,21 +62,15 @@ const schema = [
 ];
 ---
 
-<BaseLayout
-  lang={lang}
-  route="loan"
-  title={d.meta.loan.title}
-  description={d.meta.loan.description}
-  schema={schema}
->
+<BaseLayout lang={lang} route={calc} title={meta.title} description={meta.description} schema={schema}>
   <div class="container-page pt-6 sm:pt-8">
-    <Breadcrumbs lang={lang} current={d.loan.heading} />
+    <Breadcrumbs lang={lang} current={page.heading} />
     <div class="mt-4 mb-6 max-w-2xl">
-      <h1 class="text-3xl font-bold sm:text-4xl">{d.loan.heading}</h1>
-      <p class="text-muted mt-2 text-lg">{d.loan.lead}</p>
+      <h1 class="text-3xl font-bold sm:text-4xl">{page.heading}</h1>
+      <p class="text-muted mt-2 text-lg">{page.lead}</p>
     </div>
 
-    <LoanCalculator lang={lang} />
+    <Calculator lang={lang} calc={calc} />
 
     <article class="mx-auto mt-14 max-w-3xl">
       <section class="border-accent bg-accent-soft rounded-2xl border-s-4 p-5" aria-labelledby="summary">
@@ -129,9 +128,11 @@ const schema = [
         <p class="text-muted mt-1">{c.methodology}</p>
         <p class="text-muted mt-3">{c.disclaimer}</p>
         <p class="text-muted mt-3">
-          {c.lastReviewed}: <time datetime={LAST_REVIEWED.loan}>{reviewed}</time>
+          {c.lastReviewed}: <time datetime={LAST_REVIEWED[calc]}>{reviewed}</time>
         </p>
       </section>
     </article>
+
+    <RelatedCalculators lang={lang} current={calc} />
   </div>
 </BaseLayout>

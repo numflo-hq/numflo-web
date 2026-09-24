@@ -14,7 +14,12 @@
     "rights": "Numflo",
     "suggestBanner": "Ver esta página en español",
     "dismiss": "Dismiss",
-    "breadcrumb": "Breadcrumb"
+    "breadcrumb": "Breadcrumb",
+    "about": "About",
+    "terms": "Terms of use",
+    "disclaimer": "Disclaimer",
+    "related": "Related calculators",
+    "footerNav": "Site links"
   },
   "meta": {
     "home": {
@@ -28,6 +33,26 @@
     "privacy": {
       "title": "Privacy Policy | Numflo",
       "description": "Numflo does not collect personal data. Calculations run on your device and nothing you type is sent or stored."
+    },
+    "investment": {
+      "title": "Investment Calculator – Monthly SIP Returns | Numflo",
+      "description": "See how much a regular monthly investment (SIP) could grow to, with optional yearly step-up. Free, private and works in any currency."
+    },
+    "compound": {
+      "title": "Compound Interest Calculator | Numflo",
+      "description": "Calculate compound interest with any compounding frequency and optional monthly deposits. See your balance grow year by year, in any currency."
+    },
+    "about": {
+      "title": "About Numflo",
+      "description": "Numflo is an independent project that builds free, private financial calculators with clear explanations, in English and Spanish."
+    },
+    "terms": {
+      "title": "Terms of Use | Numflo",
+      "description": "The terms that apply when you use Numflo's free financial calculators and the information on this website."
+    },
+    "disclaimer": {
+      "title": "Disclaimer | Numflo",
+      "description": "Numflo's calculators give estimates for information only. They are not financial, tax or legal advice. Read what that means for you."
     }
   },
   "home": {
@@ -180,5 +205,245 @@
     "title": "Page not found",
     "text": "The page you are looking for does not exist or has moved.",
     "back": "Go to the home page"
+  },
+  "investment": {
+    "heading": "Investment calculator",
+    "lead": "See how a regular monthly investment (SIP) could grow over time.",
+    "inputs": {
+      "legend": "Investment details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "monthly": "Monthly investment",
+      "rate": "Expected return (per year)",
+      "years": "Investment period",
+      "stepup": "Yearly increase (optional)",
+      "hints": {
+        "stepup": "Raise your monthly amount by this percentage every year."
+      }
+    },
+    "errors": {
+      "monthly": "Enter an amount between 1 and 10,000,000.",
+      "rate": "Enter a return between 0% and 30%.",
+      "years": "Enter a period between 1 and 50 years.",
+      "stepup": "Enter an increase between 0% and 50%."
+    },
+    "results": {
+      "title": "Your results",
+      "value": "Estimated value",
+      "invested": "Amount invested",
+      "gains": "Estimated gains",
+      "chartLabel": "Share of amount invested and estimated gains in the final value",
+      "summary": "Investing {monthly} a month for {years} years could grow to {value}: {invested} invested and {gains} in estimated gains.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year total invested, estimated gains and value",
+      "year": "Year",
+      "invested": "Invested",
+      "gains": "Gains",
+      "value": "Value"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "An investment calculator estimates what regular monthly investing could be worth after a number of years, and how much of that value comes from your own contributions versus investment growth. In India this is called a SIP (systematic investment plan); elsewhere it is often called dollar-cost averaging or a monthly savings plan.",
+      "sections": [
+        {
+          "title": "How the estimate is calculated",
+          "paragraphs": [
+            "Each month you add the same amount, and everything already invested keeps growing at the expected rate. Because growth builds on earlier growth, the value rises faster in later years.",
+            "The calculator uses the standard formula for payments made at the start of each month: value = P × ((1 + i)^n − 1) ÷ i × (1 + i), where P is the monthly amount, i is the monthly return (the annual return divided by 12) and n is the number of months. With a yearly increase, the monthly amount is raised by that percentage every 12 months."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Invest 500 a month for 20 years at an expected 8% a year. You put in 120,000 in total, and the investment could grow to about 296,474, so roughly 176,474 comes from growth rather than from your own money.",
+            "Increase the monthly amount by 10% each year and the result changes dramatically: you invest 343,650 in total and the value could reach about 663,746. Small, regular increases, for example in line with pay rises, make a large difference over long periods."
+          ]
+        },
+        {
+          "title": "Why time matters more than timing",
+          "paragraphs": [
+            "The biggest lever in the formula is the number of months. Starting five years earlier often adds more to the final value than a higher monthly amount started later. Investing a fixed amount every month also means you buy more units when prices are low and fewer when they are high, which smooths out market ups and downs."
+          ]
+        },
+        {
+          "title": "Choosing a realistic expected return",
+          "paragraphs": [
+            "Use a rate that matches what you actually invest in. Long-term averages are very different for savings accounts, bonds and shares, and past returns do not guarantee future ones.",
+            "Remember that fees and inflation reduce real returns. Try a lower rate as well to see a more cautious estimate, and check how sensitive the result is to the rate you choose."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What is a SIP?",
+          "a": "A SIP (systematic investment plan) is a way of investing a fixed amount at regular intervals, usually every month, in a mutual fund or similar product. This calculator works for any regular monthly investing, whatever it is called where you live."
+        },
+        {
+          "q": "Are returns guaranteed?",
+          "a": "No. The expected return is an assumption, not a promise. Real investments go up and down, and the actual value can be higher or lower than this estimate."
+        },
+        {
+          "q": "Does the result include taxes, fees or inflation?",
+          "a": "No. The calculator shows a value before taxes, fund fees and inflation. To get closer to a real-terms figure, lower the expected return by your expected fees and inflation."
+        },
+        {
+          "q": "What does the yearly increase do?",
+          "a": "It raises your monthly amount by a fixed percentage every year. For example, 10% turns 500 a month into 550 in the second year and 605 in the third. Leave it at 0% for a constant amount."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Contributions are made at the start of each month and returns compound monthly at the expected annual rate divided by 12. The optional yearly increase is applied every 12 months. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Investments can lose value; past performance does not guarantee future results."
+    }
+  },
+  "compound": {
+    "heading": "Compound interest calculator",
+    "lead": "See how interest on interest makes your savings grow.",
+    "inputs": {
+      "legend": "Savings details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "principal": "Starting amount",
+      "rate": "Interest rate (per year)",
+      "years": "Time period",
+      "frequency": "Compounding",
+      "contribution": "Monthly deposit (optional)",
+      "options": {
+        "frequency": {
+          "1": "Yearly",
+          "2": "Every 6 months",
+          "4": "Quarterly",
+          "12": "Monthly",
+          "365": "Daily"
+        }
+      },
+      "hints": {
+        "contribution": "Added at the end of every month."
+      }
+    },
+    "errors": {
+      "principal": "Enter a starting amount between 0 and 1,000,000,000, or add a monthly deposit.",
+      "rate": "Enter a rate between 0% and 30%.",
+      "years": "Enter a period between 1 and 50 years.",
+      "contribution": "Enter a deposit between 0 and 10,000,000."
+    },
+    "results": {
+      "title": "Your results",
+      "balance": "Final balance",
+      "deposits": "Total deposits",
+      "interest": "Total interest",
+      "chartLabel": "Share of deposits and interest in the final balance",
+      "summary": "Starting with {principal} and adding {contribution} a month at {rate}% for {years} years gives a final balance of {balance}: {deposits} deposited and {interest} of interest.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year total deposits, interest earned and balance",
+      "year": "Year",
+      "deposits": "Deposits",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "Compound interest means you earn interest not only on the money you deposit but also on the interest it has already earned. This calculator shows how a starting amount, and optional monthly deposits, grow over time at a given interest rate and compounding frequency.",
+      "sections": [
+        {
+          "title": "How compound interest works",
+          "paragraphs": [
+            "With simple interest, 10,000 at 5% earns 500 every year. With compound interest, the first year's 500 is added to the balance, so the second year's interest is calculated on 10,500, and so on. The effect is small at first and grows every year.",
+            "The formula for a single deposit is: balance = P × (1 + r/m)^(m × t), where P is the starting amount, r is the annual rate, m is how many times a year interest is added and t is the number of years."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Put 10,000 in an account paying 5% a year for 10 years. Compounded once a year, it grows to 16,288.95. Compounded monthly, it grows to 16,470.09, and compounded daily to 16,486.65. More frequent compounding helps, but much less than a higher rate or a longer period.",
+            "Add a deposit of 200 every month at 6% compounded monthly for 20 years, and a starting 10,000 grows to about 125,510. You deposit 58,000 in total; the other 67,510 is interest."
+          ]
+        },
+        {
+          "title": "The rule of 72",
+          "paragraphs": [
+            "A quick way to estimate how long money takes to double: divide 72 by the annual interest rate. At 6%, money doubles in about 12 years; at 9%, in about 8 years. The calculator gives the exact figure, but the rule is useful for comparing options in your head."
+          ]
+        },
+        {
+          "title": "How to make compounding work for you",
+          "paragraphs": [
+            "Start early: time is the most powerful part of the formula.",
+            "Keep adding: regular deposits, even small ones, compound as well.",
+            "Compare the effective annual rate (often shown as APY or AER): it already includes the compounding frequency, so it is the fairest way to compare accounts.",
+            "Watch out for fees and inflation, which reduce what your money can really buy."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What is the difference between simple and compound interest?",
+          "a": "Simple interest is paid only on the original amount. Compound interest is paid on the original amount plus the interest already earned, so the balance grows faster over time."
+        },
+        {
+          "q": "Which compounding frequency should I choose?",
+          "a": "Use the frequency your bank or product states: savings accounts often compound daily or monthly, some deposits yearly. If you are unsure, monthly is a reasonable default."
+        },
+        {
+          "q": "How are monthly deposits handled?",
+          "a": "Each deposit is added at the end of the month and then earns interest from the following month, using the monthly equivalent of the chosen compounding frequency."
+        },
+        {
+          "q": "Does the result include tax or inflation?",
+          "a": "No. Interest may be taxable where you live, and inflation reduces what the final balance can buy. Treat the result as a before-tax, nominal estimate."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Interest compounds at the chosen frequency. To combine that frequency with monthly deposits, the equivalent monthly rate (1 + r/m)^(m/12) − 1 is applied each month, which gives exactly P × (1 + r/m)^(m × t) when there are no deposits. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Actual interest depends on your bank's terms, fees and taxes."
+    }
+  },
+  "about": {
+    "heading": "About Numflo",
+    "paragraphs": [
+      "Numflo is an independent project that builds free financial calculators people can trust. Every calculator gives you the number and explains what it means, in plain language, in English and Spanish.",
+      "It started from a simple observation: most calculator websites are English-only, cluttered with ads, and give a bare number with no explanation. Numflo aims to be the opposite: fast, clean, private and genuinely useful.",
+      "How the calculators are built: every formula is written from standard financial mathematics and checked by automated tests against independently calculated reference values before each release. Each page shows the formula it uses, a worked example and when it was last reviewed.",
+      "How your privacy is protected: there are no accounts and no tracking cookies, and everything you type stays on your device. The code is open source and publicly auditable on GitHub.",
+      "Numflo is not a bank, lender or financial adviser, and does not sell financial products. The calculators are tools to help you understand your options; for decisions about your own money, speak to a qualified professional.",
+      "Found a mistake, a confusing explanation or a translation error? Please tell us by opening an issue on our public GitHub repository. Every report is read."
+    ]
+  },
+  "terms": {
+    "heading": "Terms of use",
+    "paragraphs": [
+      "By using numflo.com you agree to these terms. If you do not agree, please do not use the site.",
+      "Numflo is provided free of charge, as is and as available. We work hard to keep the calculators accurate, but we do not guarantee that the site will always be available, error-free or suitable for your particular purpose.",
+      "The results are estimates based on the information you enter and the assumptions explained on each page. They are not an offer, a quote or a recommendation, and they are not financial, tax or legal advice. You are responsible for decisions you make using them.",
+      "To the extent permitted by law, Numflo is not liable for any loss or damage arising from the use of, or reliance on, the site or its results.",
+      "You may use the calculators for personal and commercial purposes and share links to results. Please do not misuse the site, for example by attempting to disrupt it, overload it or access it in ways it was not designed for.",
+      "The Numflo name, logo, text and design are protected. The source code is published on GitHub under the terms stated in the repository.",
+      "Links to other websites are provided for convenience; we are not responsible for their content.",
+      "We may update these terms. Changes take effect when they are published on this page, and the date above shows the latest version."
+    ]
+  },
+  "disclaimer": {
+    "heading": "Disclaimer",
+    "paragraphs": [
+      "The calculators and information on Numflo are for general information and education only.",
+      "Nothing on this site is financial, investment, tax or legal advice, and nothing is a recommendation to buy, sell or hold any financial product. Numflo does not know your personal circumstances.",
+      "Results are estimates. They depend on the values you enter and on simplifying assumptions, such as a fixed interest rate or a constant rate of return, which rarely hold exactly in real life. Actual loan payments, interest and investment returns will differ, and investments can lose value.",
+      "Fees, taxes, insurance and inflation are not included unless a page says so. Currency selection only changes how amounts are displayed; no currency conversion is performed.",
+      "Before making financial decisions, check the exact terms with your bank, lender or product provider, and consider speaking to a qualified, independent adviser."
+    ]
   }
 }

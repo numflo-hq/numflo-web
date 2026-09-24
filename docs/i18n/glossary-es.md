@@ -24,6 +24,12 @@ Variant: neutral international Spanish, understood in Spain and Latin America.
 | fee | comisión | |
 | APR | costo total (TAE en España, CAT en México) | |
 | investment | inversión | |
+| balance (savings account) | saldo | "saldo pendiente" is only for a debt |
+| APY / AER (effective annual rate) | tasa efectiva anual (TAE en España, GAT en México) | |
+| qualified (professional) | calificado | Avoid Spain-only "cualificado" |
+| issue (GitHub) | reporte (issue) | Avoid Spain-only "incidencia" |
+| disclaimer | descargo de responsabilidad | "Aviso legal" means a different legal page in Spain |
+| quote (price) | cotización | Avoid Spain-only "presupuesto" |
 | compound interest | interés compuesto | |
 | currency | moneda | |
 | privacy policy | política de privacidad | |

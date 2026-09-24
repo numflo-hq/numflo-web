@@ -2,6 +2,7 @@
 import Logo from "./Logo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { path, t, type Lang, type RouteKey } from "../i18n";
+import { CALC_IDS } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -22,13 +23,30 @@ const d = t(lang);
       <span class="text-lg tracking-tight">numflo</span>
     </a>
     <nav aria-label={d.site.calculators} class="flex items-center gap-2">
-      <a
-        href={path("loan", lang)}
-        class="hover:bg-surface-2 hidden min-h-11 items-center rounded-xl px-3 text-sm font-medium sm:inline-flex"
-        aria-current={route === "loan" ? "page" : undefined}
-      >
-        {d.home.cards.loan.title}
-      </a>
+      <details class="relative hidden sm:block" data-menu>
+        <summary class="hover:bg-surface-2 inline-flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded-xl px-3 text-sm font-medium [&::-webkit-details-marker]:hidden">
+          {d.site.calculators}
+          <svg viewBox="0 0 20 20" class="size-4 opacity-60" aria-hidden="true" fill="currentColor">
+            <path d="M5.5 7.5 10 12l4.5-4.5"></path>
+          </svg>
+        </summary>
+        <ul class="card absolute end-0 z-30 mt-2 min-w-64 p-1.5" role="list">
+          {CALC_IDS.map((c) => (
+            <li>
+              <a
+                href={path(c, lang)}
+                aria-current={route === c ? "page" : undefined}
+                class:list={[
+                  "hover:bg-surface-2 flex min-h-11 items-center rounded-lg px-3 text-sm font-medium",
+                  route === c && "text-accent",
+                ]}
+              >
+                {d.home.cards[c].title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
       <LanguageSwitcher lang={lang} route={route} />
       <button
         type="button"

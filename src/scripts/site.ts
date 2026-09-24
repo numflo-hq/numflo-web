@@ -34,16 +34,22 @@ document.querySelectorAll<HTMLAnchorElement>("[data-set-lang]").forEach((link) =
   link.addEventListener("click", () => store.set("numflo:lang", link.dataset.setLang ?? ""));
 });
 
-// Close the language menu when clicking elsewhere or pressing Escape.
-const switcher = document.querySelector<HTMLDetailsElement>("[data-lang-switcher]");
+// Close dropdown menus (language, calculators) when clicking elsewhere or pressing Escape.
+const menus = [...document.querySelectorAll<HTMLDetailsElement>("[data-lang-switcher], [data-menu]")];
 document.addEventListener("click", (e) => {
-  if (switcher?.open && !switcher.contains(e.target as Node)) switcher.open = false;
+  for (const m of menus) if (m.open && !m.contains(e.target as Node)) m.open = false;
 });
+for (const m of menus)
+  m.addEventListener("focusout", (e) => {
+    if (m.open && !m.contains(e.relatedTarget as Node | null)) m.open = false;
+  });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && switcher?.open) {
-    switcher.open = false;
-    switcher.querySelector("summary")?.focus();
-  }
+  if (e.key !== "Escape") return;
+  for (const m of menus)
+    if (m.open) {
+      m.open = false;
+      m.querySelector("summary")?.focus();
+    }
 });
 
 // ---- Language suggestion banner (BRD L-5, L-6): suggest, never redirect ----

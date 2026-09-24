@@ -22,6 +22,11 @@ export function t(lang: Lang): Dictionary {
 export const ROUTES = {
   home: { en: "/", es: "/es" },
   loan: { en: "/loan-calculator", es: "/es/calculadora-de-prestamos" },
+  investment: { en: "/investment-calculator", es: "/es/calculadora-de-inversion" },
+  compound: { en: "/compound-interest-calculator", es: "/es/calculadora-de-interes-compuesto" },
+  about: { en: "/about", es: "/es/acerca-de" },
+  terms: { en: "/terms", es: "/es/terminos" },
+  disclaimer: { en: "/disclaimer", es: "/es/descargo-de-responsabilidad" },
   privacy: { en: "/privacy", es: "/es/privacidad" },
 } as const satisfies Record<string, Record<Lang, string>>;
 
@@ -40,5 +45,10 @@ export function fill(template: string, values: Record<string, string>): string {
 export const LAST_REVIEWED: Record<RouteKey, string> = {
   home: "2026-09-21",
   loan: "2026-09-21",
+  investment: "2026-09-22",
+  compound: "2026-09-22",
+  about: "2026-09-22",
+  terms: "2026-09-22",
+  disclaimer: "2026-09-22",
   privacy: "2026-09-22",
 };

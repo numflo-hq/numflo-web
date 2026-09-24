@@ -1,0 +1,50 @@
+---
+import { path, t, type Lang } from "../i18n";
+import { CALC_IDS, type CalcId } from "../lib/calculators";
+import { CALC_ICONS } from "./icons";
+
+interface Props {
+  lang: Lang;
+  current: CalcId;
+}
+const { lang, current } = Astro.props;
+const d = t(lang);
+// Internal links between calculators (BRD S-25).
+const others = CALC_IDS.filter((c) => c !== current);
+---
+
+<section class="mx-auto mt-16 max-w-3xl" aria-labelledby="related">
+  <h2 id="related" class="text-2xl font-bold">
+    {d.site.related}
+  </h2>
+  <ul class="mt-4 grid gap-4 sm:grid-cols-2" role="list">
+    {others.map((c) => (
+      <li class="card hover:border-accent relative flex items-start gap-4 p-5 transition-colors">
+        <span
+          class="bg-accent-soft text-accent inline-flex size-11 shrink-0 items-center justify-center rounded-xl"
+          aria-hidden="true"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="size-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d={CALC_ICONS[c]} />
+          </svg>
+        </span>
+        <div>
+          <h3 class="font-semibold">
+            <a href={path(c, lang)} class="after:absolute after:inset-0 after:rounded-[inherit]">
+              {d.home.cards[c].title}
+            </a>
+          </h3>
+          <p class="text-muted mt-1 text-sm">{d.home.cards[c].text}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

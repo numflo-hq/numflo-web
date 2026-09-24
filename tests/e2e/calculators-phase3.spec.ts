@@ -97,15 +97,29 @@ test.describe("compound interest calculator", () => {
 });
 
 test.describe("navigation between calculators (S-25)", () => {
-  test("each calculator links to the other two", async ({ page }) => {
+  test("each calculator links to four related calculators", async ({ page }) => {
     for (const [path, links] of [
-      ["/loan-calculator", ["/investment-calculator", "/compound-interest-calculator"]],
+      [
+        "/loan-calculator",
+        [
+          "/mortgage-calculator",
+          "/home-affordability-calculator",
+          "/credit-card-payoff-calculator",
+          "/simple-interest-calculator",
+        ],
+      ],
       [
         "/es/calculadora-de-inversion",
-        ["/es/calculadora-de-prestamos", "/es/calculadora-de-interes-compuesto"],
+        [
+          "/es/calculadora-de-interes-compuesto",
+          "/es/calculadora-de-jubilacion",
+          "/es/calculadora-de-cagr",
+          "/es/calculadora-de-deposito-recurrente",
+        ],
       ],
     ] as const) {
       await page.goto(path);
+      await expect(page.locator("#related ~ ul a")).toHaveCount(4);
       for (const l of links) await expect(page.locator(`#related ~ ul a[href="${l}"]`)).toHaveCount(1);
     }
   });
@@ -114,7 +128,7 @@ test.describe("navigation between calculators (S-25)", () => {
     test.skip(isMobile, "menu is shown from the sm breakpoint");
     await page.goto("/");
     await page.locator("[data-menu] summary").click();
-    await expect(page.locator("[data-menu] a")).toHaveCount(3);
+    await expect(page.locator("[data-menu] a")).toHaveCount(13);
     await page.keyboard.press("Escape");
     await expect(page.locator("[data-menu]")).not.toHaveAttribute("open", "");
   });

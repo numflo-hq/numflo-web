@@ -2,7 +2,7 @@
 import { t, type Lang } from "../i18n";
 import { CALCULATORS, defaults, type CalcId, type FieldDef } from "../lib/calculators";
 import { CURRENCIES } from "../lib/currency";
-import { formatMoney, formatNumber, currencySymbol } from "../lib/format";
+import { formatMoney, formatNumber, formatOutput, currencySymbol } from "../lib/format";
 
 interface Props {
   lang: Lang;
@@ -42,7 +42,10 @@ const inputValue = (f: FieldDef) =>
         cur,
         Number.isInteger(f.default) ? 0 : Math.min(2, (String(f.default).split(".")[1] ?? "").length),
       );
-const labels = { copied: d.results.copied, summary: d.results.summary };
+const units = t(lang).site.duration;
+const out = (key: string, decimals = 0, format?: "money" | "percent" | "months") =>
+  formatOutput(initial.outputs[key]!, format, decimals, lang, cur, units);
+const labels = { copied: d.results.copied, summary: d.results.summary, units };
 ---
 
 <div
@@ -146,6 +149,11 @@ const labels = { copied: d.results.copied, summary: d.results.summary };
               {d.errors[f.key]}
             </p>
           )}
+          {d.errors[`${f.key}Rule`] && (
+            <p id={`${f.key}-rule`} class="text-danger hidden text-sm" data-error-rule={f.key}>
+              {d.errors[`${f.key}Rule`]}
+            </p>
+          )}
         </div>
       ))}
     </fieldset>
@@ -159,11 +167,11 @@ const labels = { copied: d.results.copied, summary: d.results.summary };
     <div class="bg-accent-soft mt-4 rounded-2xl p-5">
       <p class="text-muted text-sm font-medium">{d.results[def.headline.key]}</p>
       <p
-        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl"
+        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums [overflow-wrap:anywhere] sm:text-5xl"
         aria-live="polite"
         data-out={def.headline.key}
       >
-        {money(initial.outputs[def.headline.key]!, def.headline.decimals)}
+        {out(def.headline.key, def.headline.decimals, def.headline.format)}
       </p>
     </div>
 
@@ -196,19 +204,29 @@ const labels = { copied: d.results.copied, summary: d.results.summary };
               />
               {d.results[p.key]}
             </dt>
-            <dd class="font-semibold tabular-nums" data-out={p.key}>
-              {money(initial.outputs[p.key]!)}
+            <dd class="min-w-0 text-end font-semibold tabular-nums [overflow-wrap:anywhere]" data-out={p.key}>
+              {money(initial.outputs[p.key]!, p.decimals ?? 0)}
             </dd>
           </div>
         ))}
         {def.total && (
           <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
             <dt class="font-medium">{d.results[def.total]}</dt>
-            <dd class="font-bold tabular-nums" data-out={def.total}>
+            <dd class="min-w-0 text-end font-bold tabular-nums [overflow-wrap:anywhere]" data-out={def.total}>
               {money(initial.outputs[def.total]!)}
             </dd>
           </div>
         )}
+        {def.extras?.map((x, i) => (
+          <div
+            class:list={["flex items-center justify-between gap-3", i === 0 && "border-line border-t pt-3"]}
+          >
+            <dt class="text-muted">{d.results[x.key]}</dt>
+            <dd class="min-w-0 text-end font-semibold tabular-nums [overflow-wrap:anywhere]" data-out={x.key}>
+              {out(x.key, x.decimals ?? 0, x.format)}
+            </dd>
+          </div>
+        ))}
       </dl>
     </div>
 
@@ -257,8 +275,11 @@ const labels = { copied: d.results.copied, summary: d.results.summary };
 >
   <div class="container-page flex items-center justify-between gap-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
     <span class="text-muted text-sm font-medium">{d.results[def.headline.key]}</span>
-    <span class="text-accent text-xl font-bold tabular-nums" data-out="headline-mini">
-      {money(initial.outputs[def.headline.key]!, def.headline.decimals)}
+    <span
+      class="text-accent min-w-0 text-end text-xl font-bold tabular-nums [overflow-wrap:anywhere]"
+      data-out="headline-mini"
+    >
+      {out(def.headline.key, def.headline.decimals, def.headline.format)}
     </span>
   </div>
 </div>

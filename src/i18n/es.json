@@ -7,7 +7,6 @@
     "theme": "Activar o desactivar el modo oscuro",
     "home": "Inicio",
     "calculators": "Calculadoras",
-    "comingSoon": "Próximamente",
     "footerNote": "Numflo ofrece estimaciones solo con fines informativos. No es asesoramiento financiero.",
     "privacy": "Privacidad",
     "reportTranslation": "Informar de un error de traducción",
@@ -19,7 +18,24 @@
     "terms": "Términos de uso",
     "disclaimer": "Descargo de responsabilidad",
     "related": "Calculadoras relacionadas",
-    "footerNav": "Enlaces del sitio"
+    "footerNav": "Enlaces del sitio",
+    "categories": {
+      "borrow": "Préstamos y deudas",
+      "grow": "Ahorro e inversión",
+      "plan": "Planificación"
+    },
+    "duration": {
+      "year": {
+        "one": "{n} año",
+        "other": "{n} años"
+      },
+      "month": {
+        "one": "{n} mes",
+        "other": "{n} meses"
+      },
+      "join": "{y} y {m}",
+      "never": "Nunca"
+    }
   },
   "meta": {
     "home": {
@@ -53,6 +69,46 @@
     "disclaimer": {
       "title": "Descargo de responsabilidad | Numflo",
       "description": "Las calculadoras de Numflo ofrecen estimaciones solo con fines informativos. No son asesoramiento financiero, fiscal ni legal."
+    },
+    "mortgage": {
+      "title": "Calculadora de hipoteca: cuota con impuestos | Numflo",
+      "description": "Calcula tu cuota mensual de hipoteca con impuesto sobre la propiedad y seguro, los intereses totales y el calendario de pagos anual."
+    },
+    "affordability": {
+      "title": "Calculadora de capacidad hipotecaria | Numflo",
+      "description": "Descubre qué precio de vivienda puedes pagar según tus ingresos, tus deudas, tu pago inicial y la tasa, con la regla de deuda sobre ingresos."
+    },
+    "creditCard": {
+      "title": "Calculadora de pago de tarjeta de crédito | Numflo",
+      "description": "Descubre cuánto tardas en liquidar tu tarjeta de crédito y cuántos intereses pagarás, y el pago para liquidarla en 3 años."
+    },
+    "fd": {
+      "title": "Calculadora de plazo fijo: intereses y vencimiento | Numflo",
+      "description": "Calcula el valor al vencimiento y los intereses de un depósito a plazo fijo con capitalización trimestral, mensual o anual. Gratis y privado."
+    },
+    "rd": {
+      "title": "Calculadora de depósito recurrente | Numflo",
+      "description": "Calcula el valor al vencimiento y los intereses de un depósito recurrente con aportes mensuales y capitalización trimestral. Gratis y privado."
+    },
+    "simple": {
+      "title": "Calculadora de interés simple | Numflo",
+      "description": "Calcula el interés simple y el monto total para cualquier capital, tasa y plazo, y compáralo con el interés compuesto. Gratis y privado."
+    },
+    "cagr": {
+      "title": "Calculadora de CAGR: crecimiento anual compuesto | Numflo",
+      "description": "Calcula la tasa de crecimiento anual compuesta (CAGR) entre dos valores en cualquier plazo, con el rendimiento total y el crecimiento por año."
+    },
+    "retirement": {
+      "title": "Calculadora de jubilación: ¿cuánto tendré? | Numflo",
+      "description": "Estima tus ahorros para la jubilación, su valor en dinero de hoy y el ingreso mensual que te podrían dar. Gratis, privado y en tu moneda."
+    },
+    "savings": {
+      "title": "Calculadora de meta de ahorro | Numflo",
+      "description": "Calcula cuánto ahorrar cada mes para llegar a tu meta de ahorro a tiempo, con los intereses y lo que ya tienes ahorrado. Gratis y privado."
+    },
+    "inflation": {
+      "title": "Calculadora de inflación: costo y poder adquisitivo | Numflo",
+      "description": "Descubre cuánto costarán las cosas en el futuro y cómo la inflación reduce lo que puedes comprar con tu dinero, año por año."
     }
   },
   "home": {
@@ -72,6 +128,46 @@
       "compound": {
         "title": "Calculadora de interés compuesto",
         "text": "Entiende cómo el interés sobre el interés hace crecer tus ahorros."
+      },
+      "mortgage": {
+        "title": "Calculadora de hipoteca",
+        "text": "Cuota mensual con impuestos y seguro, e intereses totales."
+      },
+      "affordability": {
+        "title": "Calculadora de capacidad hipotecaria",
+        "text": "Qué precio de vivienda puedes pagar según tus ingresos y deudas."
+      },
+      "creditCard": {
+        "title": "Calculadora de pago de tarjeta de crédito",
+        "text": "Cuánto tardas en liquidar tu tarjeta y cuánto te cuesta."
+      },
+      "fd": {
+        "title": "Calculadora de plazo fijo",
+        "text": "Valor al vencimiento e intereses de un depósito único."
+      },
+      "rd": {
+        "title": "Calculadora de depósito recurrente",
+        "text": "Cuánto suma un depósito mensual fijo."
+      },
+      "simple": {
+        "title": "Calculadora de interés simple",
+        "text": "Intereses solo sobre el capital, comparados con el interés compuesto."
+      },
+      "cagr": {
+        "title": "Calculadora de CAGR",
+        "text": "La tasa de crecimiento anual entre dos valores."
+      },
+      "retirement": {
+        "title": "Calculadora de jubilación",
+        "text": "Tus ahorros al jubilarte y el ingreso que te podrían dar."
+      },
+      "savings": {
+        "title": "Calculadora de meta de ahorro",
+        "text": "Cuánto ahorrar cada mes para lograr una meta."
+      },
+      "inflation": {
+        "title": "Calculadora de inflación",
+        "text": "Precios futuros y lo que podrá comprar tu dinero."
       }
     },
     "why": {
@@ -445,5 +541,941 @@
       "Las comisiones, los impuestos, los seguros y la inflación no están incluidos salvo que la página lo indique. La moneda elegida solo cambia cómo se muestran los montos; no se realiza ninguna conversión de moneda.",
       "Antes de tomar decisiones financieras, comprueba las condiciones exactas con tu banco, prestamista o proveedor, y considera consultar a un asesor independiente y calificado."
     ]
+  },
+  "mortgage": {
+    "heading": "Calculadora de hipoteca",
+    "lead": "Calcula tu cuota mensual de hipoteca, con impuestos sobre la propiedad y seguro incluidos.",
+    "inputs": {
+      "legend": "Datos de la vivienda y del préstamo",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "price": "Precio de la vivienda",
+      "down": "Pago inicial",
+      "rate": "Tasa de interés (anual)",
+      "years": "Plazo del préstamo",
+      "tax": "Impuesto sobre la propiedad (anual)",
+      "insurance": "Seguro de hogar (anual)"
+    },
+    "errors": {
+      "price": "Escribe un precio entre 1 y 1 000 000 000.",
+      "down": "Escribe un pago inicial entre 0 % y 100 %.",
+      "rate": "Escribe una tasa entre 0 % y 30 %.",
+      "years": "Escribe un plazo entre 1 y 40 años.",
+      "tax": "Escribe un porcentaje de impuesto entre 0 % y 10 %.",
+      "insurance": "Escribe un monto entre 0 y 1 000 000."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "monthly": "Cuota mensual",
+      "pi": "Capital e intereses",
+      "costs": "Impuestos y seguro",
+      "loanAmount": "Monto del préstamo",
+      "downPayment": "Pago inicial",
+      "totalInterest": "Intereses totales del préstamo",
+      "chartLabel": "Proporción del pago del préstamo y de los gastos de la vivienda en la cuota mensual",
+      "summary": "Una vivienda de {price}, con un pago inicial del {down} %, una tasa del {rate} % y un plazo de {years} años, cuesta {monthly} al mes: {pi} de capital e intereses más {costs} de impuestos y seguro. Monto del préstamo: {loanAmount}; intereses totales: {totalInterest}.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Pagos por año",
+      "caption": "Desglose anual del capital pagado, los intereses pagados y el saldo pendiente",
+      "year": "Año",
+      "principal": "Capital",
+      "interest": "Intereses",
+      "balance": "Saldo pendiente"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "La cuota de una hipoteca es más que el pago del préstamo. Esta calculadora suma el impuesto sobre la propiedad y el seguro de hogar al capital y los intereses, para que veas el total que sale de tu cuenta cada mes y el saldo del préstamo año por año.",
+      "sections": [
+        {
+          "title": "Qué incluye la cuota de una hipoteca",
+          "paragraphs": [
+            "El capital y los intereses devuelven el préstamo. En una hipoteca a tasa fija la cuota no cambia, pero sí su reparto: al principio casi todo son intereses y al final casi todo es capital.",
+            "El impuesto sobre la propiedad (predial en México, IBI en España) y el seguro de hogar suelen cobrarse junto con la cuota y guardarse en una cuenta de garantía (escrow). Aunque los pagues aparte, forman parte de lo que te cuesta la vivienda cada mes."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Una vivienda de 400 000 con un pago inicial del 20 % (80 000) deja un préstamo de 320 000. Al 6,5 % a 30 años, el capital y los intereses suman 2022,62 al mes. Un impuesto del 1,1 % anual añade 366,67 y un seguro de 1500 al año añade 125,00, para un total de 2514,28 al mes.",
+            "En 30 años pagas 408 142 de intereses, más que el propio préstamo. El mismo préstamo a 15 años cuesta 2787,54 al mes de capital e intereses, pero solo 181 758 de intereses."
+          ]
+        },
+        {
+          "title": "Cómo bajar la cuota",
+          "paragraphs": [
+            "Un pago inicial mayor reduce el préstamo. Con un 10 % en lugar de un 20 %, el capital y los intereses del ejemplo suben de 2022,62 a 2275,44 al mes, y algunos bancos añaden un seguro hipotecario.",
+            "Una tasa más baja pesa mucho en plazos largos, así que compara ofertas de varios bancos. Un plazo más largo baja la cuota, pero aumenta los intereses totales."
+          ]
+        },
+        {
+          "title": "Gastos que no incluye",
+          "paragraphs": [
+            "No incluye el seguro hipotecario, las cuotas de la comunidad o del condominio, el mantenimiento ni los gastos de compra. Súmalos aparte a tu presupuesto, o incluye las cuotas fijas en el campo del seguro como un monto anual."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Cómo se calcula la cuota mensual?",
+          "a": "El pago del préstamo usa la fórmula de amortización habitual: cuota = L × r × (1 + r)^n / ((1 + r)^n − 1), donde L es el préstamo, r la tasa mensual y n el número de meses. El impuesto y el seguro se dividen entre 12 y se suman."
+        },
+        {
+          "q": "¿Qué pago inicial debería dar?",
+          "a": "Un 20 % es una meta habitual, porque muchos bancos entonces no exigen seguro hipotecario, pero muchos préstamos aceptan menos. Guarda dinero para los gastos de compra y un fondo de emergencia."
+        },
+        {
+          "q": "¿Sirve para hipotecas de tasa variable?",
+          "a": "Muestra la cuota con la tasa que escribas. Con una tasa variable la cuota cambia cuando se revisa la tasa, así que prueba con tasas más altas para ver a qué te podrías enfrentar."
+        },
+        {
+          "q": "¿Dónde encuentro el impuesto sobre la propiedad?",
+          "a": "La oficina de impuestos de tu municipio o un anuncio reciente de la vivienda suelen indicar el impuesto anual. Divídelo entre el precio de la vivienda y multiplica por 100 para obtener el porcentaje."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "El capital y los intereses siguen la fórmula de amortización a tasa fija con pagos mensuales, r = tasa anual / 12. El impuesto es el porcentaje anual del precio de la vivienda dividido entre 12; el seguro es el monto anual dividido entre 12. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. La oferta de tu banco, los impuestos y el seguro serán distintos."
+    }
+  },
+  "affordability": {
+    "heading": "Calculadora de capacidad hipotecaria",
+    "lead": "Descubre qué precio de vivienda puedes pagar según tus ingresos, deudas y pago inicial.",
+    "inputs": {
+      "legend": "Tus finanzas",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "income": "Ingresos brutos (anuales)",
+      "debts": "Otras deudas (pago mensual)",
+      "down": "Pago inicial",
+      "rate": "Tasa de la hipoteca (anual)",
+      "years": "Plazo del préstamo",
+      "costs": "Impuestos, seguro y cuotas (mensuales)",
+      "dti": "Límite de deuda sobre ingresos"
+    },
+    "errors": {
+      "income": "Escribe unos ingresos entre 1 y 1 000 000 000.",
+      "debts": "Escribe un monto entre 0 y 100 000 000.",
+      "debtsRule": "Tus deudas y los gastos de la vivienda ya agotan el límite de tus ingresos, así que no cabe ninguna hipoteca. Redúcelos o sube el límite.",
+      "down": "Escribe un monto entre 0 y 1 000 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 30 %.",
+      "years": "Escribe un plazo entre 1 y 40 años.",
+      "costs": "Escribe un monto entre 0 y 10 000 000.",
+      "dti": "Escribe un límite entre 10 % y 60 %."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "price": "Precio de vivienda que puedes pagar",
+      "down": "Pago inicial",
+      "loan": "Monto de la hipoteca",
+      "payment": "Capital e intereses al mes",
+      "housing": "Gasto mensual en vivienda",
+      "chartLabel": "Proporción del pago inicial y de la hipoteca en el precio de la vivienda",
+      "summary": "Con ingresos de {income} al año, {debts} de otras deudas al mes y un límite de deuda del {dti} %, puedes pagar una vivienda de unos {price}: una hipoteca de {loan} al {rate} % a {years} años más un pago inicial de {down}. Capital e intereses al mes: {payment}.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Pagos por año",
+      "caption": "Desglose anual del capital pagado, los intereses pagados y el saldo pendiente de la hipoteca",
+      "year": "Año",
+      "principal": "Capital",
+      "interest": "Intereses",
+      "balance": "Saldo pendiente"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Los bancos miran qué parte de tus ingresos se va en deudas. Esta calculadora toma el porcentaje de tus ingresos brutos que permites para todas tus deudas, resta las deudas que ya tienes y los gastos de la vivienda, y calcula la hipoteca más alta que puedes pagar con lo que queda. Súmale el pago inicial y tendrás el precio que te puedes permitir.",
+      "sections": [
+        {
+          "title": "La regla de deuda sobre ingresos",
+          "paragraphs": [
+            "La relación deuda-ingresos es el total de tus pagos mensuales de deudas dividido entre tus ingresos brutos mensuales. En Estados Unidos muchos bancos la quieren en un 36 % o menos, y algunos aceptan hasta un 43 % o más. Otros países usan otras medidas, como un múltiplo de los ingresos o un porcentaje de los ingresos netos, así que consulta lo que usan los bancos de tu país. Un límite más bajo te deja margen para ahorrar y para imprevistos.",
+            "Una regla práctica habitual, la regla 28/36, dice además que la vivienda por sí sola no debería superar el 28 % de los ingresos brutos. La calculadora aplica un solo límite a la vez: para comprobar los dos, prueba también con un 28 % y tus otras deudas en 0, y quédate con el precio más bajo."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Con unos ingresos de 90 000 al año, un límite del 36 % permite 2700 al mes para todas las deudas. Si restas 400 de pagos del auto y la tarjeta y 450 de impuestos y seguro, quedan 1850 para la hipoteca.",
+            "Al 6,5 % a 30 años, 1850 al mes pagan un préstamo de unos 292 690. Con un pago inicial de 60 000, puedes pagar una vivienda de unos 352 690."
+          ]
+        },
+        {
+          "title": "Cómo aumentar lo que puedes pagar",
+          "paragraphs": [
+            "Liquidar un préstamo del auto o una tarjeta es lo que más margen libera: cada 100 al mes menos en deudas añade unos 15 800 al préstamo al 6,5 % a 30 años. Un pago inicial mayor y una tasa más baja también ayudan.",
+            "Que te presten una cantidad no significa que te resulte cómodo pagarla. Compara el gasto mensual en vivienda con tu presupuesto real."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Es lo que me prestará el banco?",
+          "a": "Es una estimación con una regla sencilla. Los bancos también miran tu historial de crédito, tu empleo, tus ahorros y sus propios límites, que cambian según el país y el tipo de préstamo."
+        },
+        {
+          "q": "¿Uso ingresos brutos o netos?",
+          "a": "En Estados Unidos, los bancos fijan los límites de deuda sobre los ingresos brutos, antes de impuestos, y esta calculadora sigue esa convención. Algunos países usan los ingresos netos. En cualquier caso, tu presupuesto depende de lo que cobras de verdad."
+        },
+        {
+          "q": "¿Qué cuenta como otras deudas?",
+          "a": "Los pagos mínimos de tarjetas de crédito, préstamos del auto, préstamos estudiantiles, préstamos personales y cualquier otra deuda periódica. No se incluyen gastos del día a día como la comida o los servicios."
+        },
+        {
+          "q": "¿Por qué el resultado baja hasta el pago inicial?",
+          "a": "Si tus deudas y los gastos de la vivienda ya ocupan todo el límite, no queda nada para la hipoteca. La calculadora marca entonces tus deudas para que las ajustes o cambies el límite."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Pago permitido = ingresos brutos mensuales × límite − otras deudas − gastos de la vivienda. La hipoteca es el valor actual de ese pago: L = P × (1 − (1 + r)^−n) / r, con r la tasa mensual y n el número de meses. Precio de la vivienda = hipoteca + pago inicial.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Los bancos deciden según sus propios criterios."
+    }
+  },
+  "creditCard": {
+    "heading": "Calculadora de pago de tarjeta de crédito",
+    "lead": "Descubre cuánto tardas en liquidar tu tarjeta de crédito y cuántos intereses pagas.",
+    "inputs": {
+      "legend": "Datos de la tarjeta",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "balance": "Saldo de la tarjeta",
+      "apr": "Tasa de interés anual",
+      "payment": "Pago mensual"
+    },
+    "errors": {
+      "balance": "Escribe un saldo entre 1 y 100 000 000.",
+      "apr": "Escribe una tasa entre 0 % y 60 %.",
+      "payment": "Escribe un pago entre 1 y 10 000 000.",
+      "paymentRule": "Este pago es demasiado bajo: debe superar los intereses del mes y liquidar el saldo en menos de 50 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "time": "Tiempo para liquidarla",
+      "principal": "Saldo pagado",
+      "interest": "Intereses totales",
+      "total": "Total pagado",
+      "firstInterest": "Intereses del primer mes",
+      "payment36": "Pago para liquidarla en 3 años",
+      "chartLabel": "Proporción del saldo y de los intereses en el total que pagas",
+      "summary": "Si pagas {payment} al mes de un saldo de {balance} con una tasa anual del {apr} %, lo liquidas en {time}. Intereses totales: {interest}; total pagado: {total}.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Pagos por año",
+      "caption": "Desglose anual del saldo pagado, los intereses cobrados y el saldo pendiente",
+      "year": "Año",
+      "principal": "Capital",
+      "interest": "Intereses",
+      "balance": "Saldo pendiente"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "La tarjeta de crédito cobra intereses cada mes sobre lo que todavía debes, así que el tamaño de tu pago decide cuánto tiempo sigues endeudado y cuántos intereses pagas. Escribe tu saldo, la tasa anual y un pago mensual fijo para ver cuándo terminas de pagar y cuánto te cuesta.",
+      "sections": [
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Un saldo de 5000 con una tasa anual del 22 % genera 91,67 de intereses el primer mes. Si pagas 200 al mes, lo liquidas en 34 meses (2 años y 10 meses), con 1749,88 de intereses.",
+            "Si pagas 100 al mes, tardas 137 meses, más de 11 años, y pagas 8678,06 de intereses. Si pagas 300 al mes, tardas 21 meses y pagas 1021,60 de intereses."
+          ]
+        },
+        {
+          "title": "Por qué el pago mínimo sale tan caro",
+          "paragraphs": [
+            "El pago mínimo es bajo a propósito, a menudo un pequeño porcentaje del saldo más los intereses. La mayor parte de cada pago se va en intereses y el saldo baja muy despacio. Un pago fijo por encima del mínimo es lo que más cambia el resultado."
+          ]
+        },
+        {
+          "title": "Cómo pagar más rápido",
+          "paragraphs": [
+            "Paga primero la tarjeta con la tasa más alta mientras pagas el mínimo en las demás (método avalancha), o liquida primero el saldo más pequeño para ganar impulso (método bola de nieve).",
+            "Pasar el saldo a una tarjeta al 0 % puede ayudar si lo liquidas antes de que termine la oferta y la comisión es menor que los intereses que ahorras. Deja de usar la tarjeta mientras la pagas."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Cómo se calculan los intereses de la tarjeta?",
+          "a": "Cada mes la tarjeta cobra la tasa anual ÷ 12 sobre el saldo. Esta calculadora usa esa tasa mensual; muchas tarjetas calculan los intereses a diario, lo que da un resultado muy parecido."
+        },
+        {
+          "q": "¿Qué pasa si mi pago es demasiado bajo?",
+          "a": "Si el pago no supera los intereses del mes, el saldo nunca baja. La calculadora marca el pago y muestra los intereses que debes superar, además del pago que liquidaría el saldo en 3 años."
+        },
+        {
+          "q": "¿Incluye compras nuevas o comisiones?",
+          "a": "No. Supone que dejas de usar la tarjeta y pagas lo mismo cada mes. Las compras nuevas, los recargos por retraso o un cambio de tasa harán que tardes más."
+        },
+        {
+          "q": "¿Pago primero la tarjeta o ahorro?",
+          "a": "Ten un pequeño fondo de emergencia para que un gasto imprevisto no vuelva a la tarjeta y luego destina el dinero extra a la deuda con la tasa más alta. Los intereses de una tarjeta suelen ser mucho más altos que los que te da una cuenta de ahorro."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Cada mes se suman al saldo intereses de la tasa anual ÷ 12 y luego se descuenta el pago; el último pago es solo lo que queda. Si liquidar el saldo llevara más de 50 años, se considera que nunca se liquida. El pago a 3 años usa la fórmula de amortización habitual.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Se aplican las condiciones, comisiones y el método de cálculo de tu banco."
+    }
+  },
+  "fd": {
+    "heading": "Calculadora de plazo fijo",
+    "lead": "Calcula el valor al vencimiento y los intereses de un depósito a plazo fijo.",
+    "inputs": {
+      "legend": "Datos del depósito",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "principal": "Monto del depósito",
+      "rate": "Tasa de interés (anual)",
+      "years": "Plazo",
+      "frequency": "Capitalización",
+      "options": {
+        "frequency": {
+          "1": "Anual",
+          "2": "Semestral",
+          "4": "Trimestral",
+          "12": "Mensual"
+        }
+      }
+    },
+    "errors": {
+      "principal": "Escribe un monto entre 1 y 1 000 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 20 %.",
+      "years": "Escribe un plazo entre 0,25 y 20 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "maturity": "Valor al vencimiento",
+      "principal": "Monto depositado",
+      "interest": "Intereses ganados",
+      "apy": "Tasa efectiva anual",
+      "chartLabel": "Proporción del depósito y de los intereses en el valor al vencimiento",
+      "summary": "Un depósito a plazo fijo de {principal} al {rate} % durante {years} años llega a {maturity} y genera {interest} de intereses (tasa efectiva anual del {apy}).",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Crecimiento por año",
+      "caption": "Desglose anual del depósito, los intereses ganados y el saldo",
+      "year": "Año",
+      "deposits": "Depositado",
+      "interest": "Intereses",
+      "balance": "Saldo"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Un depósito a plazo fijo (también llamado depósito a plazo o certificado de depósito) inmoviliza una suma durante un plazo determinado a una tasa fija. Esta calculadora muestra cuánto vale al vencimiento y cuántos intereses genera, según la frecuencia de capitalización de tu banco.",
+      "sections": [
+        {
+          "title": "Cómo funcionan los intereses de un plazo fijo",
+          "paragraphs": [
+            "Muchos bancos suman los intereses cada trimestre, y esos intereses también generan intereses. El valor al vencimiento es: A = P × (1 + r/m)^(m × t), donde P es el depósito, r la tasa anual, m las veces al año que se suman los intereses y t el plazo en años."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Depositas 10 000 al 7 % durante 5 años con capitalización trimestral. Llega a 14 147,78, así que ganas 4147,78 de intereses. Con capitalización anual llegaría a 14 025,52, y con capitalización mensual a 14 176,25.",
+            "La tasa efectiva anual de un 7 % con capitalización trimestral es del 7,19 %: la tasa que necesitarías con capitalización anual para obtener lo mismo."
+          ]
+        },
+        {
+          "title": "Antes de inmovilizar tu dinero",
+          "paragraphs": [
+            "Cancelar un depósito antes de tiempo suele tener una penalización, a menudo una tasa más baja sobre todo el monto. Guarda un fondo de emergencia en otro sitio o reparte tu dinero en depósitos que venzan en fechas distintas (una escalera de depósitos).",
+            "Los intereses pueden estar sujetos a impuestos según tu país, y algunos bancos retienen el impuesto directamente. Compara los depósitos por su rendimiento después de impuestos y frente a la inflación."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué frecuencia de capitalización elijo?",
+          "a": "La que indique tu banco. La trimestral es habitual en los plazos fijos de la India; en otros países es habitual la anual o la mensual. Para una cuenta con capitalización diaria, la mensual da un resultado muy parecido. Si los intereses se te pagan en lugar de sumarse al depósito, usa el interés simple."
+        },
+        {
+          "q": "¿Qué es la tasa efectiva anual?",
+          "a": "La tasa efectiva anual (TAE en España, GAT en México) convierte cualquier frecuencia de capitalización en una sola cifra anual, para comparar depósitos de forma justa."
+        },
+        {
+          "q": "¿Puedo escribir el plazo en meses?",
+          "a": "Sí, como fracción de año: 6 meses son 0,5 y 18 meses son 1,5 años. El plazo se cuenta en meses completos."
+        },
+        {
+          "q": "¿El resultado incluye impuestos?",
+          "a": "No. Son los intereses antes de impuestos. Si el banco retiene impuestos, lo que recibes es menor."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Valor al vencimiento A = P × (1 + r/m)^(m × t). Para la tabla anual se aplica cada mes la tasa mensual equivalente (1 + r/m)^(m/12) − 1, que da el mismo resultado al vencimiento. Tasa efectiva anual = (1 + r/m)^m − 1.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Se aplican la tasa, las condiciones y los impuestos de tu banco."
+    }
+  },
+  "rd": {
+    "heading": "Calculadora de depósito recurrente",
+    "lead": "Descubre cuánto suma un depósito mensual fijo al final del plazo.",
+    "inputs": {
+      "legend": "Datos del depósito",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "monthly": "Depósito mensual",
+      "rate": "Tasa de interés (anual)",
+      "years": "Plazo",
+      "frequency": "Capitalización",
+      "options": {
+        "frequency": {
+          "1": "Anual",
+          "2": "Semestral",
+          "4": "Trimestral",
+          "12": "Mensual"
+        }
+      }
+    },
+    "errors": {
+      "monthly": "Escribe un depósito entre 1 y 10 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 20 %.",
+      "years": "Escribe un plazo entre 0,5 y 20 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "maturity": "Valor al vencimiento",
+      "deposits": "Total depositado",
+      "interest": "Intereses ganados",
+      "chartLabel": "Proporción de los depósitos y de los intereses en el valor al vencimiento",
+      "summary": "Si depositas {monthly} al mes al {rate} % durante {years} años, llegas a {maturity}: {deposits} depositados y {interest} de intereses.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Crecimiento por año",
+      "caption": "Desglose anual del total depositado, los intereses ganados y el saldo",
+      "year": "Año",
+      "deposits": "Depositado",
+      "interest": "Intereses",
+      "balance": "Saldo"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Un depósito recurrente (o ahorro programado) te permite ahorrar la misma cantidad cada mes a una tasa fija y te lo devuelve todo con intereses al final del plazo. Esta calculadora muestra el valor al vencimiento y cómo crece el saldo cada año.",
+      "sections": [
+        {
+          "title": "Cómo funcionan los intereses de un depósito recurrente",
+          "paragraphs": [
+            "Cada depósito mensual genera intereses desde el mes en que lo haces hasta el final del plazo, con la capitalización del banco, normalmente trimestral. El primer depósito es el que más intereses genera y el último, el que menos.",
+            "Con capitalización trimestral, los bancos usan: M = R × ((1 + i)^n − 1) / (1 − (1 + i)^(−1/3)), donde R es el depósito mensual, i la tasa trimestral (tasa anual ÷ 4) y n el número de trimestres."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Ahorras 500 al mes al 7 % durante 5 años. Depositas 30 000 en total y recibes 35 966,40 al vencimiento: 5966,40 de intereses.",
+            "En rupias, 5000 al mes al 7 % durante 5 años llegan a 359 663,95 rupias al vencimiento (₹3,59,663.95 en la notación india)."
+          ]
+        },
+        {
+          "title": "¿Depósito recurrente o inversión mensual?",
+          "paragraphs": [
+            "Un depósito recurrente da un rendimiento fijo y garantizado. Invertir cada mes en fondos puede rendir más a largo plazo, pero su valor sube y baja. Usa la calculadora de inversión para comparar las dos opciones."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Cuándo se hace cada depósito?",
+          "a": "Al principio de cada mes, como en la mayoría de los bancos, así que cada depósito genera intereses durante todo el mes en que lo haces."
+        },
+        {
+          "q": "¿Qué pasa si me salto un pago?",
+          "a": "Los bancos suelen cobrar una pequeña penalización y algunos cierran la cuenta tras varios pagos no realizados. La calculadora supone que haces todos los pagos a tiempo."
+        },
+        {
+          "q": "¿Puedo escribir el plazo en meses?",
+          "a": "Sí, como fracción de año: 6 meses son 0,5 y 18 meses son 1,5 años. El plazo se cuenta en meses completos."
+        },
+        {
+          "q": "¿Los intereses de un depósito recurrente pagan impuestos?",
+          "a": "En muchos países sí, como otros intereses. La calculadora muestra los intereses antes de impuestos."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Los depósitos se hacen al principio de cada mes y cada mes se aplica la tasa mensual equivalente (1 + r/m)^(m/12) − 1. Con capitalización trimestral esto reproduce la fórmula publicada M = R × ((1 + i)^n − 1) / (1 − (1 + i)^(−1/3)). Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Se aplican la tasa, las condiciones y los impuestos de tu banco."
+    }
+  },
+  "simple": {
+    "heading": "Calculadora de interés simple",
+    "lead": "Calcula el interés simple y el monto total para cualquier tasa y plazo.",
+    "inputs": {
+      "legend": "Datos del interés",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "principal": "Capital",
+      "rate": "Tasa de interés (anual)",
+      "years": "Plazo"
+    },
+    "errors": {
+      "principal": "Escribe un monto entre 1 y 1 000 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 50 %.",
+      "years": "Escribe un plazo entre 0,25 y 50 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "total": "Monto total",
+      "principal": "Capital",
+      "interest": "Interés simple",
+      "compoundTotal": "Con interés compuesto anual",
+      "chartLabel": "Proporción del capital y de los intereses en el monto total",
+      "summary": "{principal} al {rate} % de interés simple durante {years} años generan {interest}, para un total de {total}. Con capitalización anual serían {compoundTotal}.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Intereses por año",
+      "caption": "Desglose anual del capital, los intereses acumulados y el monto total",
+      "year": "Año",
+      "principal": "Capital",
+      "interest": "Intereses",
+      "total": "Monto total"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "El interés simple se calcula solo sobre el capital original, nunca sobre los intereses ya ganados. Se usa en algunos préstamos cortos, en bonos que pagan los intereses y en muchos ejercicios de clase. Esta calculadora da los intereses y el total, y los compara con el interés compuesto.",
+      "sections": [
+        {
+          "title": "La fórmula del interés simple",
+          "paragraphs": [
+            "Intereses = P × r × t, donde P es el capital, r la tasa anual en forma decimal y t el tiempo en años. El monto total es P + intereses.",
+            "Los intereses son los mismos cada año, así que el saldo crece en línea recta."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Prestas 10 000 al 5 % de interés simple durante 3 años. Los intereses son 10 000 × 0,05 × 3 = 1500, así que recibes 11 500.",
+            "Con interés compuesto anual, el mismo depósito llegaría a 11 576,25. La diferencia crece con plazos más largos y tasas más altas."
+          ]
+        },
+        {
+          "title": "Dónde se usa el interés simple",
+          "paragraphs": [
+            "En préstamos de auto y personales de algunos países, en depósitos que te pagan los intereses en lugar de reinvertirlos y en préstamos cortos entre personas. La mayoría de las cuentas de ahorro y de las hipotecas usan interés compuesto."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué diferencia hay entre interés simple y compuesto?",
+          "a": "El interés simple se calcula solo sobre el capital. El compuesto también se calcula sobre los intereses ya sumados, así que crece más rápido."
+        },
+        {
+          "q": "¿Cómo escribo meses o días?",
+          "a": "Como fracción de año: 6 meses son 0,5 y 9 meses son 0,75. Para días, divide entre 365."
+        },
+        {
+          "q": "¿Cómo calculo la tasa o el plazo?",
+          "a": "Despeja la fórmula: tasa = intereses ÷ (P × t) y plazo = intereses ÷ (P × r)."
+        },
+        {
+          "q": "¿Un préstamo con interés simple es más barato?",
+          "a": "Con la misma tasa y plazo, sí, cuando los intereses se acumulan sin pagar hasta el final. Si pagas los intereses sobre la marcha, los dos cuestan lo mismo. Cuidado con los préstamos de tasa plana, que cobran intereses sobre el monto original aunque lo vayas devolviendo: cuestan más de lo que sugiere su tasa. Compara siempre el costo total y las comisiones."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Intereses = P × r × t, con r la tasa anual en forma decimal y t en años; total = P + intereses. La comparación usa P × (1 + r)^t. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero."
+    }
+  },
+  "cagr": {
+    "heading": "Calculadora de CAGR",
+    "lead": "Calcula la tasa de crecimiento anual compuesta entre un valor inicial y uno final.",
+    "inputs": {
+      "legend": "Datos del crecimiento",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "start": "Valor inicial",
+      "end": "Valor final",
+      "years": "Número de años"
+    },
+    "errors": {
+      "start": "Escribe un valor inicial entre 1 y 1 000 000 000 000.",
+      "end": "Escribe un valor final entre 0 y 1 000 000 000 000.",
+      "years": "Escribe un plazo entre 0,25 y 100 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "cagr": "Tasa de crecimiento anual compuesta",
+      "start": "Valor inicial",
+      "gain": "Ganancia total",
+      "totalReturn": "Rendimiento total",
+      "chartLabel": "Proporción del valor inicial y de la ganancia en el valor final",
+      "summary": "Pasar de {start} a {end} en {years} años equivale a una tasa de crecimiento anual compuesta del {cagr} (rendimiento total del {totalReturn}).",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Valor por año a esta tasa",
+      "caption": "Desglose anual del valor inicial, la ganancia acumulada y el valor con un crecimiento constante",
+      "year": "Año",
+      "start": "Inicial",
+      "gain": "Ganancia",
+      "value": "Valor"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "La CAGR (tasa de crecimiento anual compuesta, también llamada TCAC) es la tasa anual constante que llevaría un valor inicial hasta un valor final en un periodo. Suaviza las subidas y bajadas, por eso es la forma habitual de comparar el crecimiento de inversiones, empresas o precios en periodos distintos.",
+      "sections": [
+        {
+          "title": "La fórmula de la CAGR",
+          "paragraphs": [
+            "CAGR = (valor final ÷ valor inicial)^(1 ÷ años) − 1. El resultado es un porcentaje anual, aunque el valor real haya subido y bajado por el camino."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Una inversión pasa de 10 000 a 20 000 en 5 años. CAGR = (20 000 ÷ 10 000)^(1/5) − 1 = 14,87 % al año. El rendimiento total es del 100 %.",
+            "Una caída de 50 000 a 42 000 en 3 años es una CAGR del −5,65 % al año."
+          ]
+        },
+        {
+          "title": "CAGR frente a rendimiento medio",
+          "paragraphs": [
+            "El promedio simple de los rendimientos anuales puede engañar. Si ganas un 50 % un año y pierdes un 50 % el siguiente, el promedio es 0 %, pero has perdido una cuarta parte de tu dinero: la CAGR es del −13,4 %. La CAGR muestra lo que de verdad pasó con el valor."
+          ]
+        },
+        {
+          "title": "Lo que la CAGR no muestra",
+          "paragraphs": [
+            "No refleja lo accidentado del camino y supone que no se añadió ni se retiró dinero. Si inviertes cada mes, usa la calculadora de inversión."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿La CAGR puede ser negativa?",
+          "a": "Sí. Si el valor final es menor que el inicial, la CAGR es negativa. Si baja a cero, la CAGR es del −100 %."
+        },
+        {
+          "q": "¿Puedo usar fracciones de año?",
+          "a": "Sí. Escribe los meses como fracción de año, por ejemplo 2,5 para dos años y medio."
+        },
+        {
+          "q": "¿Qué es una buena CAGR?",
+          "a": "Depende de lo que midas y del riesgo que asumas. Compárala con la inflación y con otras opciones en el mismo periodo."
+        },
+        {
+          "q": "¿La tabla muestra valores reales del pasado?",
+          "a": "No. Muestra el camino suave con una CAGR constante, que termina en tu valor final real."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "CAGR = (final ÷ inicial)^(1/t) − 1, con t en años. Rendimiento total = final ÷ inicial − 1. La tabla aplica la CAGR cada año desde el valor inicial. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. El crecimiento pasado no garantiza resultados futuros."
+    }
+  },
+  "retirement": {
+    "heading": "Calculadora de jubilación",
+    "lead": "Estima tus ahorros para la jubilación y los ingresos que te podrían dar.",
+    "inputs": {
+      "legend": "Tu plan",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "age": "Edad actual",
+      "retireAge": "Edad de jubilación",
+      "savings": "Ahorros actuales",
+      "monthly": "Aporte mensual",
+      "rate": "Rendimiento esperado (anual)",
+      "inflation": "Inflación (anual)",
+      "withdrawal": "Tasa de retiro anual"
+    },
+    "errors": {
+      "age": "Escribe una edad entre 15 y 80.",
+      "retireAge": "Escribe una edad entre 30 y 90.",
+      "retireAgeRule": "La edad de jubilación debe ser mayor que tu edad actual.",
+      "savings": "Escribe un monto entre 0 y 1 000 000 000.",
+      "savingsRule": "Añade tus ahorros actuales o un aporte mensual.",
+      "monthly": "Escribe un monto entre 0 y 10 000 000.",
+      "rate": "Escribe un rendimiento entre 0 % y 20 %.",
+      "inflation": "Escribe una inflación entre 0 % y 20 %.",
+      "withdrawal": "Escribe una tasa entre 1 % y 10 %."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "pot": "Ahorros al jubilarte",
+      "deposits": "Total aportado",
+      "growth": "Rendimiento de la inversión",
+      "realPot": "En dinero de hoy",
+      "income": "Ingreso mensual al jubilarte",
+      "realIncome": "Ingreso mensual en dinero de hoy",
+      "chartLabel": "Proporción de los aportes y del rendimiento en tus ahorros para la jubilación",
+      "summary": "Si ahorras {monthly} al mes desde los {age} hasta los {retireAge} años, con {savings} ya ahorrados y un rendimiento del {rate} %, reúnes {pot} ({realPot} en dinero de hoy). Con una tasa de retiro del {withdrawal} % son {income} al mes.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Crecimiento por año",
+      "caption": "Desglose anual de los aportes, el rendimiento de la inversión y los ahorros",
+      "year": "Año",
+      "deposits": "Aportado",
+      "interest": "Intereses",
+      "balance": "Saldo"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Esta calculadora proyecta cómo podrían crecer tus ahorros hasta que te jubiles, y muestra cuánto valen en dinero de hoy y el ingreso mensual que te podrían dar. Cambia el aporte, el rendimiento o la edad de jubilación para ver qué influye más.",
+      "sections": [
+        {
+          "title": "Cómo funciona la proyección",
+          "paragraphs": [
+            "Tus ahorros actuales y tus aportes mensuales crecen al rendimiento esperado hasta la jubilación. Como los precios suben, el resultado también se muestra en dinero de hoy, ajustado por la inflación.",
+            "La tasa de retiro convierte los ahorros en ingresos. Un 4 % es un punto de partida habitual: retiras el 4 % del total el primer año y luego lo ajustas por la inflación."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "A los 30 años, con 20 000 ahorrados y 500 al mes a un rendimiento del 7 %, podrías tener unos 1 130 650 a los 65. Aportarías 230 000, incluidos los 20 000 que ya tienes; los otros 900 650 son rendimiento.",
+            "Con una inflación del 3 %, son unos 401 814 en dinero de hoy. Un retiro del 4 % da 3769 al mes, o unos 1339 en dinero de hoy."
+          ]
+        },
+        {
+          "title": "Empieza pronto",
+          "paragraphs": [
+            "El tiempo hace casi todo el trabajo. Si empiezas el mismo plan a los 40 en lugar de a los 30, tendrías unos 519 544 a los 65, menos de la mitad, aunque solo aportarías 60 000 menos."
+          ]
+        },
+        {
+          "title": "Mantén una estimación realista",
+          "paragraphs": [
+            "El rendimiento cambia de un año a otro, y las comisiones y los impuestos lo reducen. Usa un rendimiento prudente, revisa tu plan cada año y suma aparte la pensión o las prestaciones públicas que esperes."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué rendimiento debo usar?",
+          "a": "Uno prudente para tu combinación de inversiones, después de comisiones y antes de la inflación (la inflación se escribe aparte). Muchos planes usan entre un 5 % y un 7 % anual para una cartera con muchas acciones, y menos para bonos o efectivo. Prueba varias tasas para ver el rango."
+        },
+        {
+          "q": "¿Qué es la regla del 4 %?",
+          "a": "Una regla práctica basada en estudios del mercado de Estados Unidos: retirar un 4 % el primer año y después subirlo con la inflación duró al menos 30 años en casi todos los periodos estudiados. En los mercados de otros países los resultados fueron peores. Es una guía, no una garantía."
+        },
+        {
+          "q": "¿Por qué mostrarlo en dinero de hoy?",
+          "a": "Un millón dentro de 35 años comprará mucho menos que un millón hoy. Descontar la inflación muestra cuánto valdrían esos ahorros ahora."
+        },
+        {
+          "q": "¿Incluye pensiones públicas?",
+          "a": "No. Suma al ingreso mensual que ves cualquier ingreso garantizado que esperes."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Los ahorros y los aportes (hechos al final de cada mes) crecen al rendimiento esperado con capitalización mensual (r/12). Dinero de hoy = valor futuro ÷ (1 + inflación)^años. Ingreso mensual = ahorros × tasa de retiro ÷ 12. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. El rendimiento de las inversiones no está garantizado y puede ser negativo."
+    }
+  },
+  "savings": {
+    "heading": "Calculadora de meta de ahorro",
+    "lead": "Calcula cuánto ahorrar cada mes para llegar a tu meta a tiempo.",
+    "inputs": {
+      "legend": "Tu meta",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "goal": "Meta de ahorro",
+      "years": "Tiempo para lograrla",
+      "savings": "Ya ahorrado",
+      "rate": "Tasa de interés (anual)"
+    },
+    "errors": {
+      "goal": "Escribe una meta entre 1 y 1 000 000 000.",
+      "years": "Escribe un plazo entre 0,5 y 50 años.",
+      "savings": "Escribe un monto entre 0 y 1 000 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 20 %."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "monthly": "Ahorra cada mes",
+      "deposits": "Total que aportas",
+      "interest": "Intereses ganados",
+      "balance": "Saldo al final",
+      "chartLabel": "Proporción de tus aportes y de los intereses en la meta",
+      "summary": "Para llegar a {goal} en {years} años con {savings} ya ahorrados al {rate} %, ahorra {monthly} al mes. Aportas {deposits} y ganas {interest} de intereses.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Crecimiento por año",
+      "caption": "Desglose anual de los aportes, los intereses ganados y el saldo",
+      "year": "Año",
+      "deposits": "Aportado",
+      "interest": "Intereses",
+      "balance": "Saldo"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Ya sea el pago inicial de una vivienda, un auto o un fondo de emergencia, una meta es más fácil de alcanzar con un número claro. Esta calculadora te dice cuánto ahorrar cada mes, teniendo en cuenta lo que ya tienes y los intereses que generan tus ahorros.",
+      "sections": [
+        {
+          "title": "Cómo funciona",
+          "paragraphs": [
+            "Tus ahorros actuales crecen con intereses hasta la fecha límite. El aporte mensual cubre el resto: es el depósito que, sumado al final de cada mes y generando intereses, llega exactamente a tu meta."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Para ahorrar 50 000 en 5 años con 5000 ya ahorrados al 4 % anual, necesitas ahorrar 662,08 al mes. En total aportas 44 725, incluidos los 5000 que ya tienes, y los intereses ponen los otros 5275.",
+            "Sin ningún interés necesitarías 750 al mes."
+          ]
+        },
+        {
+          "title": "Consejos para lograr tu meta",
+          "paragraphs": [
+            "Programa una transferencia automática el día de cobro para que ahorrar sea lo primero. Guarda las metas a corto plazo en una cuenta segura, no en inversiones que puedan bajar justo cuando necesites el dinero.",
+            "Si el aporte mensual es demasiado alto, amplía el plazo o baja la meta: pequeños cambios en cualquiera de los dos marcan una gran diferencia."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Y si ya tengo suficiente?",
+          "a": "Si tus ahorros actuales, con los intereses, van a superar la meta por sí solos, la calculadora muestra 0 al mes y el saldo al que llegarías."
+        },
+        {
+          "q": "¿Qué tasa de interés uso?",
+          "a": "La de la cuenta donde guardas el dinero. Para metas a largo plazo invertidas en fondos, usa un rendimiento esperado prudente."
+        },
+        {
+          "q": "¿Incluye la inflación?",
+          "a": "No. Si tu meta está a varios años, súbela primero por la inflación esperada: la calculadora de inflación te dice cuánto."
+        },
+        {
+          "q": "¿Cuándo se hacen los aportes mensuales?",
+          "a": "Al final de cada mes, a partir del mes que viene."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Aporte mensual = (meta − S × (1 + j)^n) × j / ((1 + j)^n − 1), donde S es lo que ya tienes ahorrado, j la tasa mensual (tasa anual ÷ 12) y n el número de meses; con una tasa del 0 % es (meta − S) ÷ n. El plazo se cuenta en meses completos. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Las tasas de interés pueden cambiar."
+    }
+  },
+  "inflation": {
+    "heading": "Calculadora de inflación",
+    "lead": "Descubre cuánto costarán las cosas en el futuro y cómo la inflación reduce el valor del dinero.",
+    "inputs": {
+      "legend": "Datos de la inflación",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "amount": "Monto hoy",
+      "rate": "Tasa de inflación (anual)",
+      "years": "Número de años"
+    },
+    "errors": {
+      "amount": "Escribe un monto entre 1 y 1 000 000 000.",
+      "rate": "Escribe una tasa entre 0 % y 50 %.",
+      "years": "Escribe un plazo entre 1 y 100 años."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "future": "Costo futuro",
+      "today": "Costo hoy",
+      "increase": "Aumento de precio",
+      "power": "Lo que comprará el monto de hoy",
+      "chartLabel": "Proporción del costo de hoy y del aumento de precio en el costo futuro",
+      "summary": "Con una inflación del {rate} %, algo que hoy cuesta {amount} costará {future} dentro de {years} años. Para entonces, los {amount} de hoy solo comprarán lo que hoy compran {power}.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Costo por año",
+      "caption": "Desglose anual del costo futuro, el aumento de precio y el poder adquisitivo del monto de hoy",
+      "year": "Año",
+      "cost": "Costo",
+      "increase": "Aumento",
+      "power": "Poder adquisitivo"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "La inflación es la subida de los precios con el tiempo. Esta calculadora muestra sus dos caras: cuánto costará en el futuro algo que hoy cuesta un monto determinado, y cuánto menos comprará la misma cantidad de dinero.",
+      "sections": [
+        {
+          "title": "Cómo se acumula la inflación",
+          "paragraphs": [
+            "Los precios suben sobre las subidas del año anterior. Costo futuro = monto × (1 + inflación)^años. El poder adquisitivo funciona al revés: monto ÷ (1 + inflación)^años."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Con un 3 % anual, algo que hoy cuesta 1000 costará 1343,92 dentro de 10 años. Dicho de otro modo, 1000 guardados en efectivo solo comprarán lo que hoy compran 744,09.",
+            "Con una inflación del 6 %, lo mismo costaría 1790,85 dentro de 10 años."
+          ]
+        },
+        {
+          "title": "La regla del 70",
+          "paragraphs": [
+            "Divide 70 entre la tasa de inflación para estimar en cuántos años se duplican los precios. Con un 3 %, los precios se duplican en unos 23 años; con un 7 %, en unos 10 años."
+          ]
+        },
+        {
+          "title": "Cómo proteger tu dinero",
+          "paragraphs": [
+            "El dinero en una cuenta que paga menos que la inflación pierde valor cada año. Compara las tasas de interés de tus ahorros y el rendimiento de tus inversiones con la inflación, y sube tus metas a largo plazo, como la jubilación, según la inflación que esperes."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué tasa de inflación uso?",
+          "a": "La inflación reciente de los precios al consumidor de tu país es un buen punto de partida; muchos bancos centrales apuntan a cerca del 2 %. Para periodos largos, prueba varias tasas para ver el rango."
+        },
+        {
+          "q": "¿Todos los precios suben al mismo ritmo?",
+          "a": "No. Algunos gastos, como la educación o la salud, suelen subir más que el promedio, y otros bajan. Usa una tasa que se ajuste a lo que planeas."
+        },
+        {
+          "q": "¿Puedo ver la inflación pasada?",
+          "a": "Esta calculadora usa una tasa constante que tú eliges. Para los precios reales del pasado, consulta los datos de inflación de la oficina de estadística de tu país."
+        },
+        {
+          "q": "¿Qué significa poder adquisitivo?",
+          "a": "Es lo que puedes comprar con una cantidad de dinero. Si los precios se duplican, el mismo dinero compra la mitad."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Costo futuro = monto × (1 + i)^t y poder adquisitivo = monto ÷ (1 + i)^t, donde i es la tasa de inflación anual y t el número de años. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. La inflación real cambia con el tiempo."
+    }
   }
 }

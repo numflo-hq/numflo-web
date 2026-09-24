@@ -7,7 +7,6 @@
     "theme": "Toggle dark mode",
     "home": "Home",
     "calculators": "Calculators",
-    "comingSoon": "Coming soon",
     "footerNote": "Numflo gives estimates for information only. It is not financial advice.",
     "privacy": "Privacy",
     "reportTranslation": "Report a translation issue",
@@ -19,7 +18,24 @@
     "terms": "Terms of use",
     "disclaimer": "Disclaimer",
     "related": "Related calculators",
-    "footerNav": "Site links"
+    "footerNav": "Site links",
+    "categories": {
+      "borrow": "Borrowing",
+      "grow": "Saving and investing",
+      "plan": "Planning"
+    },
+    "duration": {
+      "year": {
+        "one": "{n} year",
+        "other": "{n} years"
+      },
+      "month": {
+        "one": "{n} month",
+        "other": "{n} months"
+      },
+      "join": "{y} {m}",
+      "never": "Never"
+    }
   },
   "meta": {
     "home": {
@@ -53,6 +69,46 @@
     "disclaimer": {
       "title": "Disclaimer | Numflo",
       "description": "Numflo's calculators give estimates for information only. They are not financial, tax or legal advice. Read what that means for you."
+    },
+    "mortgage": {
+      "title": "Mortgage Calculator – Monthly Payment with Taxes | Numflo",
+      "description": "Calculate your monthly mortgage payment with property tax and insurance, total interest and a yearly repayment schedule. Free and private."
+    },
+    "affordability": {
+      "title": "Home Affordability Calculator – How Much House? | Numflo",
+      "description": "Find out how much house you can afford from your income, debts, down payment and mortgage rate, using the debt-to-income rule."
+    },
+    "creditCard": {
+      "title": "Credit Card Payoff Calculator | Numflo",
+      "description": "See how long it takes to pay off your credit card and how much interest you'll pay, plus the payment to be debt-free in 3 years."
+    },
+    "fd": {
+      "title": "Fixed Deposit Calculator – FD Maturity & Interest | Numflo",
+      "description": "Calculate fixed deposit maturity value and interest with quarterly, monthly or yearly compounding. Free, private, any currency."
+    },
+    "rd": {
+      "title": "Recurring Deposit Calculator – RD Maturity | Numflo",
+      "description": "Calculate the maturity value and interest of a recurring deposit (RD) with monthly deposits and quarterly compounding. Free and private."
+    },
+    "simple": {
+      "title": "Simple Interest Calculator | Numflo",
+      "description": "Calculate simple interest and total amount for any principal, rate and time, and compare it with compound interest. Free and private."
+    },
+    "cagr": {
+      "title": "CAGR Calculator – Compound Annual Growth Rate | Numflo",
+      "description": "Calculate the compound annual growth rate (CAGR) between two values over any period, with total return and a yearly growth path."
+    },
+    "retirement": {
+      "title": "Retirement Calculator – How Much Will I Have? | Numflo",
+      "description": "Estimate your retirement savings, their value in today's money and the monthly income they could give. Free, private, any currency."
+    },
+    "savings": {
+      "title": "Savings Goal Calculator – Monthly Savings Needed | Numflo",
+      "description": "Work out how much to save each month to reach a savings goal on time, including interest and what you have already saved."
+    },
+    "inflation": {
+      "title": "Inflation Calculator – Future Cost & Buying Power | Numflo",
+      "description": "See what things will cost in the future and how inflation reduces what your money can buy, year by year. Free and private."
     }
   },
   "home": {
@@ -72,6 +128,46 @@
       "compound": {
         "title": "Compound interest calculator",
         "text": "Understand how interest on interest builds your savings."
+      },
+      "mortgage": {
+        "title": "Mortgage calculator",
+        "text": "Monthly payment with property tax and insurance, and total interest."
+      },
+      "affordability": {
+        "title": "Home affordability calculator",
+        "text": "How much house you can afford from your income and debts."
+      },
+      "creditCard": {
+        "title": "Credit card payoff calculator",
+        "text": "How long it takes to clear your card and what it costs."
+      },
+      "fd": {
+        "title": "Fixed deposit calculator",
+        "text": "Maturity value and interest on a lump-sum deposit."
+      },
+      "rd": {
+        "title": "Recurring deposit calculator",
+        "text": "What a fixed monthly deposit grows to."
+      },
+      "simple": {
+        "title": "Simple interest calculator",
+        "text": "Interest on the principal only, compared with compound interest."
+      },
+      "cagr": {
+        "title": "CAGR calculator",
+        "text": "The yearly growth rate between two values."
+      },
+      "retirement": {
+        "title": "Retirement calculator",
+        "text": "Your savings at retirement and the income they could give."
+      },
+      "savings": {
+        "title": "Savings goal calculator",
+        "text": "How much to save each month to reach a goal."
+      },
+      "inflation": {
+        "title": "Inflation calculator",
+        "text": "Future prices and what your money will buy."
       }
     },
     "why": {
@@ -445,5 +541,941 @@
       "Fees, taxes, insurance and inflation are not included unless a page says so. Currency selection only changes how amounts are displayed; no currency conversion is performed.",
       "Before making financial decisions, check the exact terms with your bank, lender or product provider, and consider speaking to a qualified, independent adviser."
     ]
+  },
+  "mortgage": {
+    "heading": "Mortgage calculator",
+    "lead": "Work out your monthly mortgage payment, including property tax and insurance.",
+    "inputs": {
+      "legend": "Home and loan details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "price": "Home price",
+      "down": "Down payment",
+      "rate": "Interest rate (per year)",
+      "years": "Loan term",
+      "tax": "Property tax (per year)",
+      "insurance": "Home insurance (per year)"
+    },
+    "errors": {
+      "price": "Enter a price between 1 and 1,000,000,000.",
+      "down": "Enter a down payment between 0% and 100%.",
+      "rate": "Enter a rate between 0% and 30%.",
+      "years": "Enter a term between 1 and 40 years.",
+      "tax": "Enter a property tax rate between 0% and 10%.",
+      "insurance": "Enter an amount between 0 and 1,000,000."
+    },
+    "results": {
+      "title": "Your results",
+      "monthly": "Monthly payment",
+      "pi": "Principal and interest",
+      "costs": "Property tax and insurance",
+      "loanAmount": "Loan amount",
+      "downPayment": "Down payment",
+      "totalInterest": "Total interest over the loan",
+      "chartLabel": "Share of loan repayment and property costs in the monthly payment",
+      "summary": "A {price} home with {down}% down at {rate}% over {years} years costs {monthly} a month: {pi} principal and interest plus {costs} property tax and insurance. Loan amount {loanAmount}; total interest {totalInterest}.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Repayment by year",
+      "caption": "Year-by-year principal repaid, interest paid and loan balance",
+      "year": "Year",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "A mortgage payment is more than the loan repayment. This calculator adds property tax and home insurance to the principal and interest, so you see the full amount leaving your account each month, plus the loan balance year by year.",
+      "sections": [
+        {
+          "title": "What makes up a mortgage payment",
+          "paragraphs": [
+            "Principal and interest repay the loan itself. The payment stays the same for a fixed-rate loan, but the split changes: early payments are mostly interest, later ones mostly principal.",
+            "Property tax and home insurance are often collected with the payment and held in an escrow account. Even when you pay them separately, they are part of what the home costs you each month."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "A 400,000 home with 20% down (80,000) leaves a 320,000 loan. At 6.5% over 30 years the principal and interest come to 2,022.62 a month. Property tax of 1.1% a year adds 366.67 and insurance of 1,500 a year adds 125.00, for a total of 2,514.28 a month.",
+            "Over 30 years you pay 408,142 in interest, more than the loan itself. The same loan over 15 years costs 2,787.54 a month in principal and interest, but only 181,758 in interest."
+          ]
+        },
+        {
+          "title": "How to lower your payment",
+          "paragraphs": [
+            "A bigger down payment shrinks the loan. With 10% down instead of 20%, the example's principal and interest rise from 2,022.62 to 2,275.44 a month, and some lenders add mortgage insurance on top.",
+            "A lower rate matters most over long terms, so compare offers from several lenders. A longer term lowers the payment but raises the total interest."
+          ]
+        },
+        {
+          "title": "Costs this calculator leaves out",
+          "paragraphs": [
+            "Mortgage insurance (PMI), homeowners' association fees, maintenance and closing costs are not included. Add them to your budget separately, or include regular fees in the insurance field as a yearly amount."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "How is the monthly payment calculated?",
+          "a": "The loan repayment uses the standard amortisation formula: payment = L × r × (1 + r)^n / ((1 + r)^n − 1), where L is the loan, r the monthly rate and n the number of months. Property tax and insurance are divided by 12 and added."
+        },
+        {
+          "q": "What down payment should I make?",
+          "a": "20% is a common target because many lenders then waive mortgage insurance, but many loans allow less. Keep enough cash for closing costs and an emergency fund."
+        },
+        {
+          "q": "Does this work for adjustable-rate mortgages?",
+          "a": "It shows the payment at the rate you enter. With an adjustable rate the payment changes when the rate resets, so try a few higher rates to see what you could face."
+        },
+        {
+          "q": "Where do I find the property tax rate?",
+          "a": "Your local tax office or a recent property listing usually shows the yearly tax. Divide it by the home price and multiply by 100 to get the percentage."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Principal and interest follow the standard fixed-rate amortisation formula with monthly payments, r = annual rate / 12. Property tax is the percentage of the home price per year, divided by 12; insurance is the yearly amount divided by 12. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Your lender's offer, taxes and insurance costs will differ."
+    }
+  },
+  "affordability": {
+    "heading": "Home affordability calculator",
+    "lead": "Find out how much house you can afford from your income, debts and down payment.",
+    "inputs": {
+      "legend": "Your finances",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "income": "Gross income (per year)",
+      "debts": "Other debt payments (per month)",
+      "down": "Down payment",
+      "rate": "Mortgage rate (per year)",
+      "years": "Loan term",
+      "costs": "Property tax, insurance and fees (per month)",
+      "dti": "Debt-to-income limit"
+    },
+    "errors": {
+      "income": "Enter an income between 1 and 1,000,000,000.",
+      "debts": "Enter an amount between 0 and 100,000,000.",
+      "debtsRule": "Your debts and property costs already use up the income limit, so no mortgage fits. Lower them or raise the limit.",
+      "down": "Enter an amount between 0 and 1,000,000,000.",
+      "rate": "Enter a rate between 0% and 30%.",
+      "years": "Enter a term between 1 and 40 years.",
+      "costs": "Enter an amount between 0 and 10,000,000.",
+      "dti": "Enter a limit between 10% and 60%."
+    },
+    "results": {
+      "title": "Your results",
+      "price": "Home price you can afford",
+      "down": "Down payment",
+      "loan": "Mortgage amount",
+      "payment": "Monthly principal and interest",
+      "housing": "Monthly housing cost",
+      "chartLabel": "Share of down payment and mortgage in the home price",
+      "summary": "With {income} a year, {debts} of other debts a month and a {dti}% debt-to-income limit, you can afford a home of about {price}: a {loan} mortgage at {rate}% over {years} years plus a {down} down payment. Monthly principal and interest: {payment}.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Repayment by year",
+      "caption": "Year-by-year principal repaid, interest paid and mortgage balance",
+      "year": "Year",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "Lenders look at how much of your income goes on debt. This calculator takes the share of gross income you allow for all debt payments, subtracts your existing debts and property costs, and works out the largest mortgage the rest can repay. Add your down payment and you have the price you can afford.",
+      "sections": [
+        {
+          "title": "The debt-to-income rule",
+          "paragraphs": [
+            "Debt-to-income (DTI) is your total monthly debt payments divided by your gross monthly income. In the US many lenders want it at or below 36%, and some accept up to about 43% or more. Other countries use different measures, such as income multiples in the UK or a share of net income in India, so check what lenders near you use. A lower limit leaves more room for saving and surprises.",
+            "A common rule of thumb, the 28/36 rule, also says housing alone should stay under 28% of gross income. The calculator applies one limit at a time: to check both, also run it at 28% with other debts set to 0, and take the lower price."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "On an income of 90,000 a year, a 36% limit allows 2,700 a month for all debts. Take away 400 of car and card payments and 450 of property tax and insurance, and 1,850 is left for the mortgage.",
+            "At 6.5% over 30 years, 1,850 a month repays a loan of about 292,690. With a 60,000 down payment, you can afford a home of about 352,690."
+          ]
+        },
+        {
+          "title": "How to afford more",
+          "paragraphs": [
+            "Paying off a car loan or credit card frees up the most room: every 100 a month less in debt adds roughly 15,800 to the loan at 6.5% over 30 years. A bigger down payment and a lower rate help too.",
+            "Being able to borrow an amount is not the same as being comfortable repaying it. Check the monthly housing cost against your real budget."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "Is this what a bank will lend me?",
+          "a": "It is an estimate using a simple rule. Lenders also look at your credit history, job, savings and their own limits, which differ between countries and loan types."
+        },
+        {
+          "q": "Should I use gross or net income?",
+          "a": "In the US, lenders set debt-to-income limits on gross income, before tax, and this calculator follows that convention. Some countries use net income instead. Either way, your budget depends on what you actually take home."
+        },
+        {
+          "q": "What counts as other debt payments?",
+          "a": "Minimum payments on credit cards, car loans, student loans, personal loans and any other regular debt. Everyday bills such as food and utilities are not included."
+        },
+        {
+          "q": "Why does the result drop to the down payment?",
+          "a": "If your debts and property costs already take up the whole limit, nothing is left for a mortgage. The calculator then flags your debts so you can adjust them or the limit."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Allowed payment = gross monthly income × limit − other debts − property costs. The mortgage is the present value of that payment: L = P × (1 − (1 + r)^−n) / r, with r the monthly rate and n the number of months. Home price = mortgage + down payment.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Lenders decide using their own criteria."
+    }
+  },
+  "creditCard": {
+    "heading": "Credit card payoff calculator",
+    "lead": "See how long it takes to clear a credit card balance and how much interest you pay.",
+    "inputs": {
+      "legend": "Card details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "balance": "Card balance",
+      "apr": "Interest rate (APR)",
+      "payment": "Monthly payment"
+    },
+    "errors": {
+      "balance": "Enter a balance between 1 and 100,000,000.",
+      "apr": "Enter an APR between 0% and 60%.",
+      "payment": "Enter a payment between 1 and 10,000,000.",
+      "paymentRule": "This payment is too small: it must be more than the monthly interest and clear the balance within 50 years."
+    },
+    "results": {
+      "title": "Your results",
+      "time": "Time to pay off",
+      "principal": "Balance repaid",
+      "interest": "Total interest",
+      "total": "Total paid",
+      "firstInterest": "Interest in the first month",
+      "payment36": "Payment to be debt-free in 3 years",
+      "chartLabel": "Share of balance and interest in the total you pay",
+      "summary": "Paying {payment} a month on a {balance} balance at {apr}% APR clears it in {time}. Total interest: {interest}; total paid: {total}.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Payoff by year",
+      "caption": "Year-by-year balance repaid, interest charged and remaining balance",
+      "year": "Year",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "Credit card interest is charged every month on what you still owe, so the size of your payment decides both how long you are in debt and how much interest you pay. Enter your balance, APR and a fixed monthly payment to see your payoff date and total cost.",
+      "sections": [
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "A 5,000 balance at 22% APR costs 91.67 in interest in the first month. Paying 200 a month clears it in 34 months (2 years 10 months), with 1,749.88 in interest.",
+            "Pay 100 a month and it takes 137 months, over 11 years, and 8,678.06 in interest. Pay 300 a month and it takes 21 months and 1,021.60 in interest."
+          ]
+        },
+        {
+          "title": "Why minimum payments cost so much",
+          "paragraphs": [
+            "Minimum payments are set low, often a small percentage of the balance plus interest. Most of each payment then goes on interest, and the balance falls very slowly. A fixed payment above the minimum makes the biggest difference."
+          ]
+        },
+        {
+          "title": "Ways to pay off faster",
+          "paragraphs": [
+            "Pay the card with the highest APR first while paying the minimum on others (the avalanche method), or clear the smallest balance first for a quick win (the snowball method).",
+            "A balance transfer to a 0% card can help if you clear it before the offer ends and the fee is lower than the interest you save. Stop adding new spending to the card while you pay it off."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "How is credit card interest calculated?",
+          "a": "Each month the card charges APR ÷ 12 on the balance. This calculator uses that monthly rate; many cards calculate interest daily, which gives a very similar result."
+        },
+        {
+          "q": "What if my payment is too small?",
+          "a": "If the payment is not more than the monthly interest, the balance never goes down. The calculator flags the payment and shows the interest to beat, plus the payment that would clear the balance in 3 years."
+        },
+        {
+          "q": "Does it include new purchases or fees?",
+          "a": "No. It assumes you stop using the card and pay the same amount every month. New spending, late fees or a rate change will make it take longer."
+        },
+        {
+          "q": "Should I pay off my card or save first?",
+          "a": "Keep a small emergency fund so a surprise bill does not go back on the card, then put extra money towards the highest-rate debt. Card interest is usually far higher than savings interest."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Each month, interest of APR ÷ 12 is added to the balance and then the payment is taken; the last payment is only what remains. Payoffs that would take longer than 50 years are treated as never. The 3-year payment uses the standard amortisation formula.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Your card issuer's terms, fees and interest method apply."
+    }
+  },
+  "fd": {
+    "heading": "Fixed deposit calculator",
+    "lead": "Calculate the maturity value and interest on a fixed deposit or term deposit.",
+    "inputs": {
+      "legend": "Deposit details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "principal": "Deposit amount",
+      "rate": "Interest rate (per year)",
+      "years": "Term",
+      "frequency": "Compounding",
+      "options": {
+        "frequency": {
+          "1": "Yearly",
+          "2": "Every 6 months",
+          "4": "Quarterly",
+          "12": "Monthly"
+        }
+      }
+    },
+    "errors": {
+      "principal": "Enter an amount between 1 and 1,000,000,000.",
+      "rate": "Enter a rate between 0% and 20%.",
+      "years": "Enter a term between 0.25 and 20 years."
+    },
+    "results": {
+      "title": "Your results",
+      "maturity": "Maturity value",
+      "principal": "Amount deposited",
+      "interest": "Interest earned",
+      "apy": "Effective annual yield",
+      "chartLabel": "Share of deposit and interest in the maturity value",
+      "summary": "A {principal} fixed deposit at {rate}% for {years} years grows to {maturity}, earning {interest} of interest (effective yield {apy}).",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year deposit, interest earned and balance",
+      "year": "Year",
+      "deposits": "Deposit",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "A fixed deposit (also called a term deposit or certificate of deposit) locks a lump sum away for a set term at a fixed rate. This calculator shows what it is worth at maturity and how much interest it earns, for the compounding frequency your bank uses.",
+      "sections": [
+        {
+          "title": "How fixed deposit interest works",
+          "paragraphs": [
+            "Many banks add interest every quarter, and the interest then earns interest too. The maturity value is: A = P × (1 + r/m)^(m × t), where P is the deposit, r the annual rate, m the number of times interest is added each year and t the term in years."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Deposit 10,000 at 7% for 5 years with quarterly compounding. It grows to 14,147.78, so you earn 4,147.78 of interest. With yearly compounding it would reach 14,025.52, and with monthly compounding 14,176.25.",
+            "The effective annual yield of 7% compounded quarterly is 7.19%: the rate you would need with yearly compounding to end up with the same amount."
+          ]
+        },
+        {
+          "title": "Before you lock money away",
+          "paragraphs": [
+            "Breaking a deposit early usually costs a penalty, often a lower rate on the whole amount. Keep an emergency fund elsewhere, or split your money across deposits that mature at different times (a deposit ladder).",
+            "Interest may be taxed where you live, and some banks deduct tax at source. Compare deposits on their after-tax return and against inflation."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "Which compounding frequency should I choose?",
+          "a": "Use the one your bank states. Quarterly is common for fixed deposits in India; elsewhere yearly or monthly is common. For a daily-compounding account, monthly gives a very close result. If interest is paid out rather than added, use simple interest instead."
+        },
+        {
+          "q": "What is the effective annual yield?",
+          "a": "The yield (APY or AER) turns any compounding frequency into one yearly figure, so you can compare deposits fairly."
+        },
+        {
+          "q": "Can I enter a term in months?",
+          "a": "Yes, as a fraction of a year: 6 months is 0.5 and 18 months is 1.5 years. Terms are counted in whole months."
+        },
+        {
+          "q": "Does the result include tax?",
+          "a": "No. It is the interest before tax. Where tax is deducted at source, the amount you receive is lower."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Maturity value A = P × (1 + r/m)^(m × t). For the yearly table the equivalent monthly rate (1 + r/m)^(m/12) − 1 is applied each month, which gives the same result at maturity. Effective annual yield = (1 + r/m)^m − 1.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Your bank's rate, terms and taxes apply."
+    }
+  },
+  "rd": {
+    "heading": "Recurring deposit calculator",
+    "lead": "See what a fixed monthly deposit grows to by the end of the term.",
+    "inputs": {
+      "legend": "Deposit details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "monthly": "Monthly deposit",
+      "rate": "Interest rate (per year)",
+      "years": "Term",
+      "frequency": "Compounding",
+      "options": {
+        "frequency": {
+          "1": "Yearly",
+          "2": "Every 6 months",
+          "4": "Quarterly",
+          "12": "Monthly"
+        }
+      }
+    },
+    "errors": {
+      "monthly": "Enter a deposit between 1 and 10,000,000.",
+      "rate": "Enter a rate between 0% and 20%.",
+      "years": "Enter a term between 0.5 and 20 years."
+    },
+    "results": {
+      "title": "Your results",
+      "maturity": "Maturity value",
+      "deposits": "Total deposited",
+      "interest": "Interest earned",
+      "chartLabel": "Share of deposits and interest in the maturity value",
+      "summary": "Depositing {monthly} a month at {rate}% for {years} years grows to {maturity}: {deposits} deposited and {interest} of interest.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year total deposits, interest earned and balance",
+      "year": "Year",
+      "deposits": "Deposits",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "A recurring deposit (RD) lets you save the same amount every month at a fixed rate, and pays it all back with interest at the end of the term. This calculator shows the maturity value and how the balance builds up each year.",
+      "sections": [
+        {
+          "title": "How recurring deposit interest works",
+          "paragraphs": [
+            "Each monthly deposit earns interest from the month it is paid until the end of the term, compounded at the bank's frequency, usually quarterly. The first deposit earns the most interest and the last one the least.",
+            "For quarterly compounding banks use: M = R × ((1 + i)^n − 1) / (1 − (1 + i)^(−1/3)), where R is the monthly deposit, i the quarterly rate (annual rate ÷ 4) and n the number of quarters."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Save 500 a month at 7% for 5 years. You deposit 30,000 in total and receive 35,966.40 at maturity: 5,966.40 of interest.",
+            "In rupees, 5,000 a month at 7% for 5 years matures at ₹3,59,663.95."
+          ]
+        },
+        {
+          "title": "RD or SIP?",
+          "paragraphs": [
+            "A recurring deposit gives a guaranteed, fixed return. A monthly investment in funds (a SIP) can earn more over long periods but its value goes up and down. Use the investment calculator to compare the two."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "When is each deposit made?",
+          "a": "At the start of each month, as with most bank RDs, so each deposit earns interest for the whole month it is paid in."
+        },
+        {
+          "q": "What happens if I miss a payment?",
+          "a": "Banks usually charge a small penalty and some close the account after several missed payments. The calculator assumes every payment is made on time."
+        },
+        {
+          "q": "Can I enter a term in months?",
+          "a": "Yes, as a fraction of a year: 6 months is 0.5 and 18 months is 1.5 years. Terms are counted in whole months."
+        },
+        {
+          "q": "Is RD interest taxed?",
+          "a": "In many countries, yes, like other interest. The calculator shows interest before tax."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Deposits are made at the start of every month and the equivalent monthly rate (1 + r/m)^(m/12) − 1 is applied each month. For quarterly compounding this reproduces the published formula M = R × ((1 + i)^n − 1) / (1 − (1 + i)^(−1/3)). Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Your bank's rate, terms and taxes apply."
+    }
+  },
+  "simple": {
+    "heading": "Simple interest calculator",
+    "lead": "Calculate simple interest and the total amount for any rate and period.",
+    "inputs": {
+      "legend": "Interest details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "principal": "Principal",
+      "rate": "Interest rate (per year)",
+      "years": "Time period"
+    },
+    "errors": {
+      "principal": "Enter an amount between 1 and 1,000,000,000.",
+      "rate": "Enter a rate between 0% and 50%.",
+      "years": "Enter a period between 0.25 and 50 years."
+    },
+    "results": {
+      "title": "Your results",
+      "total": "Total amount",
+      "principal": "Principal",
+      "interest": "Simple interest",
+      "compoundTotal": "With yearly compound interest",
+      "chartLabel": "Share of principal and interest in the total amount",
+      "summary": "{principal} at {rate}% simple interest for {years} years earns {interest}, for a total of {total}. With yearly compounding it would be {compoundTotal}.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Interest by year",
+      "caption": "Year-by-year principal, interest so far and total amount",
+      "year": "Year",
+      "principal": "Principal",
+      "interest": "Interest",
+      "total": "Total"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "Simple interest is paid only on the original amount, never on interest already earned. It is used for some short loans, bonds that pay out interest, and many classroom problems. This calculator gives the interest and total, and compares them with compound interest.",
+      "sections": [
+        {
+          "title": "The simple interest formula",
+          "paragraphs": [
+            "Interest = P × r × t, where P is the principal, r the annual rate as a decimal and t the time in years. The total amount is P + interest.",
+            "The interest is the same every year, so the balance grows in a straight line."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Lend 10,000 at 5% simple interest for 3 years. The interest is 10,000 × 0.05 × 3 = 1,500, so you get back 11,500.",
+            "With interest compounded yearly, the same deposit would grow to 11,576.25. The gap widens over longer periods and at higher rates."
+          ]
+        },
+        {
+          "title": "Where simple interest is used",
+          "paragraphs": [
+            "Car loans and personal loans in some countries, interest paid out on a deposit rather than reinvested, and short-term lending between people. Most savings accounts and mortgages use compound interest instead."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What is the difference between simple and compound interest?",
+          "a": "Simple interest is calculated on the principal only. Compound interest is also calculated on interest already added, so it grows faster."
+        },
+        {
+          "q": "How do I enter months or days?",
+          "a": "As a fraction of a year: 6 months is 0.5 and 9 months is 0.75. For days, divide by 365."
+        },
+        {
+          "q": "How do I find the rate or time instead?",
+          "a": "Rearrange the formula: rate = interest ÷ (P × t) and time = interest ÷ (P × r)."
+        },
+        {
+          "q": "Is a loan with simple interest cheaper?",
+          "a": "At the same rate and term, yes, when interest builds up unpaid until the end. If you pay the interest as you go, the two cost the same. Watch out for flat-rate loans that charge interest on the original amount even as you repay it: they cost more than their headline rate suggests. Always compare the total cost and any fees."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Interest = P × r × t with r the annual rate as a decimal and t in years; total = P + interest. The comparison uses P × (1 + r)^t. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice."
+    }
+  },
+  "cagr": {
+    "heading": "CAGR calculator",
+    "lead": "Find the compound annual growth rate between a starting and an ending value.",
+    "inputs": {
+      "legend": "Growth details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "start": "Starting value",
+      "end": "Ending value",
+      "years": "Number of years"
+    },
+    "errors": {
+      "start": "Enter a starting value between 1 and 1,000,000,000,000.",
+      "end": "Enter an ending value between 0 and 1,000,000,000,000.",
+      "years": "Enter a period between 0.25 and 100 years."
+    },
+    "results": {
+      "title": "Your results",
+      "cagr": "Compound annual growth rate",
+      "start": "Starting value",
+      "gain": "Total gain",
+      "totalReturn": "Total return",
+      "chartLabel": "Share of starting value and gain in the ending value",
+      "summary": "Growing from {start} to {end} in {years} years is a compound annual growth rate of {cagr} (total return {totalReturn}).",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Value by year at this rate",
+      "caption": "Year-by-year starting value, gain so far and value at a steady growth rate",
+      "year": "Year",
+      "start": "Start",
+      "gain": "Gain",
+      "value": "Value"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "CAGR is the steady yearly rate that would take a starting value to an ending value over a period. It smooths out ups and downs, which makes it the standard way to compare the growth of investments, businesses or prices over different periods.",
+      "sections": [
+        {
+          "title": "The CAGR formula",
+          "paragraphs": [
+            "CAGR = (ending value ÷ starting value)^(1 ÷ years) − 1. The result is a yearly percentage, even if the real value rose and fell along the way."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "An investment grows from 10,000 to 20,000 in 5 years. CAGR = (20,000 ÷ 10,000)^(1/5) − 1 = 14.87% a year. The total return is 100%.",
+            "A fall from 50,000 to 42,000 over 3 years is a CAGR of −5.65% a year."
+          ]
+        },
+        {
+          "title": "CAGR versus average return",
+          "paragraphs": [
+            "The simple average of yearly returns can mislead. Gain 50% one year and lose 50% the next and the average is 0%, but you have lost a quarter of your money: the CAGR is −13.4%. CAGR shows what actually happened to the value."
+          ]
+        },
+        {
+          "title": "What CAGR does not show",
+          "paragraphs": [
+            "It ignores how bumpy the ride was and assumes no money was added or taken out. For regular monthly investing, use the investment calculator instead."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "Can CAGR be negative?",
+          "a": "Yes. If the ending value is lower than the starting value, the CAGR is negative. If it drops to zero, the CAGR is −100%."
+        },
+        {
+          "q": "Can I use part years?",
+          "a": "Yes. Enter months as a fraction of a year, for example 2.5 for two and a half years."
+        },
+        {
+          "q": "What is a good CAGR?",
+          "a": "It depends on what you are measuring and the risk involved. Compare it with inflation and with alternatives over the same period."
+        },
+        {
+          "q": "Does the table show real past values?",
+          "a": "No. It shows the smooth path at a constant CAGR, which ends at your real ending value."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "CAGR = (end ÷ start)^(1/t) − 1, with t in years. Total return = end ÷ start − 1. The table applies the CAGR each year from the starting value. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Past growth does not guarantee future results."
+    }
+  },
+  "retirement": {
+    "heading": "Retirement calculator",
+    "lead": "Estimate your retirement savings and the income they could give you.",
+    "inputs": {
+      "legend": "Your plan",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "age": "Current age",
+      "retireAge": "Retirement age",
+      "savings": "Savings so far",
+      "monthly": "Monthly contribution",
+      "rate": "Expected return (per year)",
+      "inflation": "Inflation (per year)",
+      "withdrawal": "Yearly withdrawal rate"
+    },
+    "errors": {
+      "age": "Enter an age between 15 and 80.",
+      "retireAge": "Enter an age between 30 and 90.",
+      "retireAgeRule": "Your retirement age must be later than your current age.",
+      "savings": "Enter an amount between 0 and 1,000,000,000.",
+      "savingsRule": "Add your savings so far or a monthly contribution.",
+      "monthly": "Enter an amount between 0 and 10,000,000.",
+      "rate": "Enter a return between 0% and 20%.",
+      "inflation": "Enter inflation between 0% and 20%.",
+      "withdrawal": "Enter a rate between 1% and 10%."
+    },
+    "results": {
+      "title": "Your results",
+      "pot": "Savings at retirement",
+      "deposits": "Total contributions",
+      "growth": "Investment growth",
+      "realPot": "In today's money",
+      "income": "Monthly income at retirement",
+      "realIncome": "Monthly income in today's money",
+      "chartLabel": "Share of contributions and growth in your retirement savings",
+      "summary": "Saving {monthly} a month from age {age} to {retireAge}, with {savings} already saved and a {rate}% return, builds {pot} ({realPot} in today's money). At a {withdrawal}% withdrawal rate that is {income} a month.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year contributions, investment growth and savings",
+      "year": "Year",
+      "deposits": "Contributions",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "This calculator projects how your savings could grow until you retire, then shows what they are worth in today's money and the monthly income they could pay. Change the contribution, return or retirement age to see what makes the biggest difference.",
+      "sections": [
+        {
+          "title": "How the projection works",
+          "paragraphs": [
+            "Your current savings and monthly contributions grow at the expected return until retirement. Because prices rise, the result is also shown in today's money, adjusted for inflation.",
+            "The withdrawal rate turns savings into income. A 4% rate is a common starting point: take 4% of the pot in the first year, then adjust for inflation."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "At 30, with 20,000 saved and 500 a month at a 7% return, you could have about 1,130,650 at 65. You would put in 230,000, including the 20,000 you already have; the other 900,650 is growth.",
+            "With 3% inflation that is about 401,814 in today's money. A 4% withdrawal gives 3,769 a month, or about 1,339 in today's money."
+          ]
+        },
+        {
+          "title": "Start early",
+          "paragraphs": [
+            "Time does most of the work. Start the same plan at 40 instead of 30 and you would have about 519,544 at 65, less than half, even though you only contribute 60,000 less."
+          ]
+        },
+        {
+          "title": "Keep the estimate realistic",
+          "paragraphs": [
+            "Returns vary from year to year, and fees and taxes reduce them. Use a cautious return, review your plan every year, and include any pension or state benefits you expect on top."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What return should I use?",
+          "a": "Something cautious for your mix of investments, after fees and before inflation (inflation is entered separately). Many plans use 5–7% a year for a stock-heavy portfolio and less for bonds or cash. Try a few rates to see the range."
+        },
+        {
+          "q": "What is the 4% rule?",
+          "a": "A rule of thumb from studies of US market history: withdrawing 4% in the first year, then raising it with inflation, lasted at least 30 years in almost every period studied. Results in other countries' markets were weaker. It is a guide, not a guarantee."
+        },
+        {
+          "q": "Why show today's money?",
+          "a": "A million in 35 years will buy much less than a million today. Deflating by inflation shows what the pot would feel like now."
+        },
+        {
+          "q": "Does it include pensions or social security?",
+          "a": "No. Add any guaranteed income you expect to the monthly income shown."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Savings and contributions (made at the end of each month) grow at the expected return, compounded monthly (r/12). Today's money = future value ÷ (1 + inflation)^years. Monthly income = savings × withdrawal rate ÷ 12. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Investment returns are not guaranteed and can be negative."
+    }
+  },
+  "savings": {
+    "heading": "Savings goal calculator",
+    "lead": "Work out how much to save each month to reach your goal on time.",
+    "inputs": {
+      "legend": "Your goal",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "goal": "Savings goal",
+      "years": "Time to reach it",
+      "savings": "Already saved",
+      "rate": "Interest rate (per year)"
+    },
+    "errors": {
+      "goal": "Enter a goal between 1 and 1,000,000,000.",
+      "years": "Enter a period between 0.5 and 50 years.",
+      "savings": "Enter an amount between 0 and 1,000,000,000.",
+      "rate": "Enter a rate between 0% and 20%."
+    },
+    "results": {
+      "title": "Your results",
+      "monthly": "Save each month",
+      "deposits": "Total you put in",
+      "interest": "Interest earned",
+      "balance": "Balance at the end",
+      "chartLabel": "Share of your deposits and interest in the goal",
+      "summary": "To reach {goal} in {years} years with {savings} already saved at {rate}%, save {monthly} a month. You put in {deposits} and earn {interest} of interest.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year deposits, interest earned and balance",
+      "year": "Year",
+      "deposits": "Deposits",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "Whether it is a house deposit, a car or an emergency fund, a goal is easier to reach with a number to aim for. This calculator works out the monthly amount to save, taking into account what you already have and the interest your savings earn.",
+      "sections": [
+        {
+          "title": "How it works",
+          "paragraphs": [
+            "Your current savings grow with interest until the deadline. The monthly amount covers the rest: it is the deposit that, added at the end of each month and earning interest, lands exactly on your goal."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "To save 50,000 in 5 years with 5,000 already saved at 4% a year, you need to save 662.08 a month. You put in 44,725 in total, including the 5,000 you already have, and interest adds the other 5,275.",
+            "Without any interest you would need 750 a month."
+          ]
+        },
+        {
+          "title": "Tips for reaching your goal",
+          "paragraphs": [
+            "Automate a transfer on payday so saving happens first. Keep short-term goals in a safe account rather than investments that can fall just when you need the money.",
+            "If the monthly amount is too high, extend the deadline or lower the goal; small changes to either make a big difference."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What if I already have enough?",
+          "a": "If your current savings will grow past the goal on their own, the calculator shows 0 a month and the balance you would reach."
+        },
+        {
+          "q": "Which interest rate should I use?",
+          "a": "The rate on the account where you keep the money. For long-term goals invested in funds, use a cautious expected return."
+        },
+        {
+          "q": "Does it include inflation?",
+          "a": "No. If your goal is years away, raise it by expected inflation first: the inflation calculator shows by how much."
+        },
+        {
+          "q": "When are the monthly deposits made?",
+          "a": "At the end of each month, starting next month."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Monthly deposit = (goal − S × (1 + j)^n) × j / ((1 + j)^n − 1), where S is what you have saved, j the monthly rate (annual rate ÷ 12) and n the number of months; with a 0% rate it is (goal − S) ÷ n. The period is counted in whole months. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Interest rates can change."
+    }
+  },
+  "inflation": {
+    "heading": "Inflation calculator",
+    "lead": "See what things will cost in the future and how inflation erodes the value of money.",
+    "inputs": {
+      "legend": "Inflation details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "amount": "Amount today",
+      "rate": "Inflation rate (per year)",
+      "years": "Number of years"
+    },
+    "errors": {
+      "amount": "Enter an amount between 1 and 1,000,000,000.",
+      "rate": "Enter a rate between 0% and 50%.",
+      "years": "Enter a period between 1 and 100 years."
+    },
+    "results": {
+      "title": "Your results",
+      "future": "Future cost",
+      "today": "Cost today",
+      "increase": "Price increase",
+      "power": "What today's amount will buy",
+      "chartLabel": "Share of today's cost and the price increase in the future cost",
+      "summary": "At {rate}% inflation, something that costs {amount} today will cost {future} in {years} years. Today's {amount} will then buy only {power} of today's goods.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Cost by year",
+      "caption": "Year-by-year future cost, price increase and purchasing power of today's amount",
+      "year": "Year",
+      "cost": "Cost",
+      "increase": "Increase",
+      "power": "Buying power"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "Inflation is the rise in prices over time. This calculator shows two sides of it: how much something that costs a given amount today will cost in future, and how much less the same amount of money will buy.",
+      "sections": [
+        {
+          "title": "How inflation compounds",
+          "paragraphs": [
+            "Prices rise on top of last year's rises. Future cost = amount × (1 + inflation)^years. Purchasing power works the other way: amount ÷ (1 + inflation)^years."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "At 3% a year, something that costs 1,000 today will cost 1,343.92 in 10 years. Put the other way, 1,000 kept in cash will buy only what 744.09 buys today.",
+            "At 6% inflation the same item would cost 1,790.85 in 10 years."
+          ]
+        },
+        {
+          "title": "The rule of 70",
+          "paragraphs": [
+            "Divide 70 by the inflation rate to estimate how many years prices take to double. At 3%, prices double in about 23 years; at 7%, in about 10 years."
+          ]
+        },
+        {
+          "title": "Protecting your money",
+          "paragraphs": [
+            "Money in an account paying less than inflation loses value every year. Compare savings rates and investment returns with inflation, and raise long-term goals such as retirement by the inflation you expect."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What inflation rate should I use?",
+          "a": "Your country's recent consumer price inflation is a good start; many central banks aim for about 2%. For long periods, try a few rates to see the range."
+        },
+        {
+          "q": "Does every price rise at the same rate?",
+          "a": "No. Some costs, such as education or health care, often rise faster than average, while others fall. Use a rate that fits what you are planning for."
+        },
+        {
+          "q": "Can I see past inflation?",
+          "a": "This calculator uses a steady rate you choose. For actual past prices, use your national statistics office's inflation data."
+        },
+        {
+          "q": "What does purchasing power mean?",
+          "a": "It is what an amount of money can buy. If prices double, the same money buys half as much."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Future cost = amount × (1 + i)^t and purchasing power = amount ÷ (1 + i)^t, where i is the yearly inflation rate and t the number of years. Values are rounded for display only.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. Actual inflation varies over time."
+    }
   }
 }

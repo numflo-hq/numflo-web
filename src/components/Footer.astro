@@ -1,7 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import { path, t, type Lang } from "../i18n";
-import { CALC_IDS } from "../lib/calculators";
+import { CATEGORIES, type Category } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -15,55 +15,70 @@ const issueUrl =
 ---
 
 <footer class="border-line mt-20 border-t">
-  <div class="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
-    <div class="max-w-md">
+  <div class="container-page flex flex-col gap-8 py-10 xl:flex-row xl:items-start xl:justify-between">
+    <div class="max-w-sm">
       <div class="flex items-center gap-2 font-bold">
         <Logo class="size-6" /> numflo
       </div>
       <p class="text-muted mt-3 text-sm">{d.site.footerNote}</p>
     </div>
-    <nav aria-label={d.site.footerNav} class="text-muted grid grid-cols-2 gap-x-10 gap-y-2 text-sm">
-      <ul class="flex flex-col gap-2" role="list">
-        {CALC_IDS.map((c) => (
+    <nav
+      aria-label={d.site.footerNav}
+      class="text-muted grid grid-cols-2 gap-x-10 gap-y-6 text-sm lg:grid-cols-4"
+    >
+      {(Object.keys(CATEGORIES) as Category[]).map((cat) => (
+        <div>
+          <p class="text-ink mb-2 font-semibold" id={`footer-${cat}`}>
+            {d.site.categories[cat]}
+          </p>
+          <ul class="flex flex-col gap-2" role="list" aria-labelledby={`footer-${cat}`}>
+            {CATEGORIES[cat].map((c) => (
+              <li>
+                <a class="hover:text-ink underline-offset-4 hover:underline" href={path(c, lang)}>
+                  {d.home.cards[c].title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <div>
+        <p class="text-ink mb-2 font-semibold" id="footer-info">
+          {d.site.name}
+        </p>
+        <ul class="flex flex-col gap-2" role="list" aria-labelledby="footer-info">
           <li>
-            <a class="hover:text-ink underline-offset-4 hover:underline" href={path(c, lang)}>
-              {d.home.cards[c].title}
+            <a class="hover:text-ink underline-offset-4 hover:underline" href={path("about", lang)}>
+              {d.site.about}
             </a>
           </li>
-        ))}
-      </ul>
-      <ul class="flex flex-col gap-2" role="list">
-        <li>
-          <a class="hover:text-ink underline-offset-4 hover:underline" href={path("about", lang)}>
-            {d.site.about}
-          </a>
-        </li>
-        <li>
-          <a class="hover:text-ink underline-offset-4 hover:underline" href={path("terms", lang)}>
-            {d.site.terms}
-          </a>
-        </li>
-        <li>
-          <a class="hover:text-ink underline-offset-4 hover:underline" href={path("disclaimer", lang)}>
-            {d.site.disclaimer}
-          </a>
-        </li>
-        <li>
-          <a class="hover:text-ink underline-offset-4 hover:underline" href={path("privacy", lang)}>
-            {d.site.privacy}
-          </a>
-        </li>
-        <li>
-          <a
-            class="hover:text-ink underline-offset-4 hover:underline"
-            href={issueUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {d.site.reportTranslation}
-          </a>
-        </li>
-      </ul>
+          <li>
+            <a class="hover:text-ink underline-offset-4 hover:underline" href={path("terms", lang)}>
+              {d.site.terms}
+            </a>
+          </li>
+          <li>
+            <a class="hover:text-ink underline-offset-4 hover:underline" href={path("disclaimer", lang)}>
+              {d.site.disclaimer}
+            </a>
+          </li>
+          <li>
+            <a class="hover:text-ink underline-offset-4 hover:underline" href={path("privacy", lang)}>
+              {d.site.privacy}
+            </a>
+          </li>
+          <li>
+            <a
+              class="hover:text-ink underline-offset-4 hover:underline"
+              href={issueUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {d.site.reportTranslation}
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </div>
   <div class="container-page text-muted pb-8 text-xs">

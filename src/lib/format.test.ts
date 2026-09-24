@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { currencySymbol, formatMoney, formatNumber, numberLocale } from "./format";
+import {
+  currencySymbol,
+  formatMoney,
+  formatMonths,
+  formatNumber,
+  formatPercent,
+  numberLocale,
+} from "./format";
 import { currencyForLocales, isCurrency } from "./currency";
 
 // Intl may use narrow/no-break spaces; normalise for comparison.
@@ -54,5 +61,39 @@ describe("formatNumber", () => {
     expect(formatNumber(2500, "es", "EUR")).toBe("2.500");
     expect(formatNumber(7.5, "es", "EUR", 1)).toBe("7,5");
     expect(formatNumber(Number.POSITIVE_INFINITY, "en", "USD")).toBe("0");
+  });
+});
+
+describe("formatPercent and formatMonths (BRD F-37, F-38)", () => {
+  const units = {
+    en: {
+      year: { one: "{n} year", other: "{n} years" },
+      month: { one: "{n} month", other: "{n} months" },
+      join: "{y} {m}",
+      never: "Never",
+    },
+    es: {
+      year: { one: "{n} año", other: "{n} años" },
+      month: { one: "{n} mes", other: "{n} meses" },
+      join: "{y} y {m}",
+      never: "Nunca",
+    },
+  };
+  it("percent follows the locale", () => {
+    expect(formatPercent(14.8698, "en", "USD")).toBe("14.87%");
+    expect(formatPercent(14.8698, "es", "EUR")).toMatch(/^14,87\s%$/);
+    expect(formatPercent(-5.65, "en", "USD", 2)).toBe("-5.65%");
+    expect(formatPercent(Number.NaN, "en", "USD")).toBe("0.00%");
+  });
+  it("months read as years and months, with plurals", () => {
+    expect(formatMonths(34, "en", units.en)).toBe("2 years 10 months");
+    expect(formatMonths(13, "en", units.en)).toBe("1 year 1 month");
+    expect(formatMonths(12, "en", units.en)).toBe("1 year");
+    expect(formatMonths(1, "en", units.en)).toBe("1 month");
+    expect(formatMonths(34, "es", units.es)).toBe("2 años y 10 meses");
+    expect(formatMonths(1, "es", units.es)).toBe("1 mes");
+  });
+  it("zero, tiny, negative and non-finite read as never", () => {
+    for (const m of [0, 0.3, -5, Number.NaN, Infinity]) expect(formatMonths(m, "en", units.en)).toBe("Never");
   });
 });

@@ -3,24 +3,53 @@
  * by data-calc, wires inputs and sliders, keeps the URL shareable, detects the
  * currency and renders results with DOM APIs only (never HTML strings, BRD Q-25).
  */
-import { CALCULATORS, readParams, toQuery, validField, type CalcDef, type CalcId } from "../lib/calculators";
+import { readParams, toQuery, validField, type CalcDef, type CalcId } from "../lib/engine";
 import { isCurrency, type Currency } from "../lib/currency";
 import { currencyForCountry, detectCountry, offlineCurrencyGuess } from "../lib/geo";
-import { formatMoney, formatNumber, currencySymbol, numberLocale } from "../lib/format";
+import {
+  formatMoney,
+  formatNumber,
+  formatOutput,
+  currencySymbol,
+  numberLocale,
+  type DurationUnits,
+} from "../lib/format";
 import { parseLocalizedNumber } from "../lib/params";
 import { fill, type Lang } from "../i18n";
 
+/** Each page downloads only its own definition (a small separate chunk). */
+const LOADERS: Record<CalcId, () => Promise<{ default: CalcDef }>> = {
+  loan: () => import("../lib/defs/loan"),
+  mortgage: () => import("../lib/defs/mortgage"),
+  affordability: () => import("../lib/defs/affordability"),
+  creditCard: () => import("../lib/defs/creditCard"),
+  investment: () => import("../lib/defs/investment"),
+  compound: () => import("../lib/defs/compound"),
+  fd: () => import("../lib/defs/fd"),
+  rd: () => import("../lib/defs/rd"),
+  simple: () => import("../lib/defs/simple"),
+  cagr: () => import("../lib/defs/cagr"),
+  retirement: () => import("../lib/defs/retirement"),
+  savings: () => import("../lib/defs/savings"),
+  inflation: () => import("../lib/defs/inflation"),
+};
+
 const root = document.querySelector<HTMLElement>("[data-calc]");
 const id = root?.dataset.calc as CalcId | undefined;
-if (root && id && id in CALCULATORS) init(root, CALCULATORS[id]);
+if (root && id && Object.hasOwn(LOADERS, id)) void LOADERS[id]().then((m) => init(root, m.default));
 
 function init(root: HTMLElement, def: CalcDef) {
   const lang = (document.body.dataset.lang as Lang) ?? "en";
-  const labels = JSON.parse(root.dataset.labels ?? "{}") as { copied: string; summary: string };
+  const labels = JSON.parse(root.dataset.labels ?? "{}") as {
+    copied: string;
+    summary: string;
+    units: DurationUnits;
+  };
   const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel);
   const fieldEl = (k: string) => $<HTMLInputElement | HTMLSelectElement>(`[data-field="${k}"]`)!;
   const sliderEl = (k: string) => $<HTMLInputElement>(`[data-slider="${k}"]`);
   const errorEl = (k: string) => $<HTMLElement>(`[data-error="${k}"]`);
+  const ruleEl = (k: string) => $<HTMLElement>(`[data-error-rule="${k}"]`);
   const currencySelect = $<HTMLSelectElement>("[data-currency]")!;
 
   // ---- State. Currency priority (BRD L-12):
@@ -60,30 +89,43 @@ function init(root: HTMLElement, def: CalcDef) {
     const min = Number(slider.min);
     const max = Number(slider.max);
     const pct = ((Math.min(Math.max(Number(slider.value), min), max) - min) / (max - min)) * 100;
-    slider.style.setProperty("--fill", `${pct}%`);
+    const fill = `${pct}%`;
+    if (slider.style.getPropertyValue("--fill") !== fill) slider.style.setProperty("--fill", fill);
   }
 
   function syncField(k: string, fromSlider = false) {
     const el = fieldEl(k);
-    if (el instanceof HTMLSelectElement) el.value = String(state[k]);
-    else if (!fromSlider) el.value = fmtField(k, state[k]!);
+    const text = el instanceof HTMLSelectElement ? String(state[k]) : fmtField(k, state[k]!);
+    if ((el instanceof HTMLSelectElement || !fromSlider) && el.value !== text) el.value = text;
     const s = sliderEl(k);
     if (s) {
-      s.value = String(state[k]);
+      if (s.value !== String(state[k])) s.value = String(state[k]);
       setFill(s);
     }
   }
 
-  function setError(k: string, on: boolean) {
+  /** Show or hide a field's error. `rule` picks the cross-field message when the field has one. */
+  function setError(k: string, on: boolean, rule = false) {
     const el = fieldEl(k);
+    const useRule = rule && ruleEl(k) !== null;
     el.setAttribute("aria-invalid", String(on));
-    errorEl(k)?.classList.toggle("hidden", !on);
+    errorEl(k)?.classList.toggle("hidden", !on || useRule);
+    ruleEl(k)?.classList.toggle("hidden", !on || !useRule);
     // Only reference the message while it is shown (plus any permanent hint).
     const hint = document.getElementById(`${k}-hint`) ? `${k}-hint` : "";
-    const ids = [hint, on ? `${k}-error` : ""].filter(Boolean).join(" ");
+    const shown = on ? (useRule ? `${k}-rule` : `${k}-error`) : "";
+    const ids = [hint, shown].filter(Boolean).join(" ");
     if (ids) el.setAttribute("aria-describedby", ids);
     else el.removeAttribute("aria-describedby");
   }
+
+  /** Format an output by its declared format (money by default). */
+  const output = (
+    outputs: Record<string, number>,
+    key: string,
+    decimals: number,
+    format?: "money" | "percent" | "months",
+  ) => formatOutput(outputs[key]!, format, decimals, lang, currency, labels.units);
 
   // ---- Rendering ----
   const donut = $<SVGCircleElement>("[data-donut]")!;
@@ -92,38 +134,51 @@ function init(root: HTMLElement, def: CalcDef) {
   const CIRC = 2 * Math.PI * 42;
   let last = def.compute(state);
 
+  /** Write text only when it changed, so re-renders do not dirty the layout needlessly. */
+  const setText = (el: Element, text: string) => {
+    if (el.textContent !== text) el.textContent = text;
+  };
+
   function render() {
     const r = def.compute(state);
     last = r;
     const money = (v: number, dec = 0) => formatMoney(v, lang, currency, dec);
-    const headline = money(r.outputs[def.headline.key]!, def.headline.decimals);
-    $<HTMLElement>(`[data-out="${def.headline.key}"]`)!.textContent = headline;
-    $<HTMLElement>('[data-out="headline-mini"]')!.textContent = headline;
-    for (const p of def.parts)
-      $<HTMLElement>(`[data-out="${p.key}"]`)!.textContent = money(r.outputs[p.key]!);
-    if (def.total) $<HTMLElement>(`[data-out="${def.total}"]`)!.textContent = money(r.outputs[def.total]!);
+    const headline = output(r.outputs, def.headline.key, def.headline.decimals, def.headline.format);
+    const outEl = (k: string) => $<HTMLElement>(`[data-out="${k}"]`)!;
+    setText(outEl(def.headline.key), headline);
+    setText(outEl("headline-mini"), headline);
+    for (const p of def.parts) setText(outEl(p.key), money(r.outputs[p.key]!, p.decimals ?? 0));
+    if (def.total) setText(outEl(def.total), money(r.outputs[def.total]!));
+    for (const x of def.extras ?? [])
+      setText(outEl(x.key), output(r.outputs, x.key, x.decimals ?? 0, x.format));
 
     const sum = r.share[0] + r.share[1];
     const share = sum > 0 ? r.share[0] / sum : 1;
-    donut.setAttribute("stroke-dasharray", `${(share * CIRC).toFixed(2)} ${CIRC.toFixed(2)}`);
+    const dash = `${(share * CIRC).toFixed(2)} ${CIRC.toFixed(2)}`;
+    if (donut.getAttribute("stroke-dasharray") !== dash) donut.setAttribute("stroke-dasharray", dash);
 
-    tbody.replaceChildren(
-      ...r.rows.map((row) => {
-        const tr = document.createElement("tr");
+    // Update the table in place: the server already rendered the default rows, and
+    // untouched cells cost no style or layout work (BRD Q-3 performance budget).
+    const trs = tbody.rows;
+    r.rows.forEach((row, i) => {
+      let tr = trs[i];
+      if (!tr) {
+        tr = document.createElement("tr");
         const th = document.createElement("th");
         th.scope = "row";
         th.className = "px-4 py-2.5 text-left font-medium";
-        th.textContent = String(row.year);
         tr.append(th);
-        for (const v of row.cols) {
+        for (let c = 0; c < row.cols.length; c++) {
           const td = document.createElement("td");
           td.className = "px-4 py-2.5";
-          td.textContent = money(v);
           tr.append(td);
         }
-        return tr;
-      }),
-    );
+        tbody.append(tr);
+      }
+      setText(tr.cells[0]!, String(row.year));
+      row.cols.forEach((v, c) => setText(tr.cells[c + 1]!, money(v)));
+    });
+    while (trs.length > r.rows.length) tbody.lastElementChild!.remove();
 
     const NS = "http://www.w3.org/2000/svg";
     const W = 400;
@@ -172,14 +227,18 @@ function init(root: HTMLElement, def: CalcDef) {
     render();
   }
 
-  /** Cross-field rule (e.g. compound: something must be saved). Returns false if it fails. */
+  /**
+   * Cross-field rule (e.g. retirement age after current age). Only toggles messages: the
+   * results always show what the valid values give, which every definition handles safely.
+   * A field whose own text is out of range keeps that message instead.
+   */
+  const rangeErrors = new Set<string>();
   let flagged: string | null = null;
-  function checkAll(): boolean {
+  function checkAll() {
     const bad = def.check?.(state) ?? null;
-    if (flagged && flagged !== bad) setError(flagged, false);
-    if (bad) setError(bad, true);
+    if (flagged && flagged !== bad && !rangeErrors.has(flagged)) setError(flagged, false);
+    if (bad && !rangeErrors.has(bad)) setError(bad, true, true);
     flagged = bad;
-    return bad === null;
   }
 
   // ---- Events ----
@@ -194,6 +253,7 @@ function init(root: HTMLElement, def: CalcDef) {
         const v = validField(f, Number(el.value));
         if (v === null) return;
         state[f.key] = v;
+        checkAll();
         render();
         updateUrl();
       });
@@ -202,17 +262,20 @@ function init(root: HTMLElement, def: CalcDef) {
     el.addEventListener("input", () => {
       const v = parseLocalizedNumber(el.value, f.range, decimalSeparator());
       if (v === null) {
+        rangeErrors.add(f.key);
         setError(f.key, true);
         return;
       }
+      rangeErrors.delete(f.key);
       setError(f.key, false);
       state[f.key] = Number(v.toFixed(f.decimals));
       syncField(f.key, true);
-      if (!checkAll()) return;
+      checkAll();
       render();
       updateUrl();
     });
     el.addEventListener("blur", () => {
+      rangeErrors.delete(f.key);
       setError(f.key, false);
       syncField(f.key);
       checkAll();
@@ -220,9 +283,10 @@ function init(root: HTMLElement, def: CalcDef) {
     const s = sliderEl(f.key);
     s?.addEventListener("input", () => {
       state[f.key] = Number(s.value);
+      rangeErrors.delete(f.key);
       setError(f.key, false);
       syncField(f.key);
-      if (!checkAll()) return;
+      checkAll();
       render();
       updateUrl();
     });
@@ -247,8 +311,16 @@ function init(root: HTMLElement, def: CalcDef) {
   document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const values: Record<string, string> = {};
-      for (const [k, v] of Object.entries(last.outputs))
-        values[k] = formatMoney(v, lang, currency, k === def.headline.key ? def.headline.decimals : 0);
+      const specs = [def.headline, ...def.parts, ...(def.extras ?? [])];
+      for (const k of Object.keys(last.outputs)) {
+        const spec = specs.find((x) => x.key === k);
+        values[k] = output(
+          last.outputs,
+          k,
+          spec?.decimals ?? 0,
+          spec && "format" in spec ? spec.format : undefined,
+        );
+      }
       for (const f of def.fields)
         if (!(f.key in values))
           values[f.key] =
@@ -283,6 +355,8 @@ function init(root: HTMLElement, def: CalcDef) {
   form.addEventListener("submit", (e) => e.preventDefault());
 
   applyCurrency();
+  // A shared link can hold values that break a cross-field rule: say so straight away.
+  checkAll();
 
   // Refine the currency from the visitor's country; never overrides a shared link, a saved
   // choice, or anything once the visitor starts interacting (issue #3).

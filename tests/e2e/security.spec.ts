@@ -31,7 +31,15 @@ for (const p of PAGES) {
     }
     expect(headers["content-security-policy"]).not.toMatch(/unsafe-inline|unsafe-eval/);
     // Exercise the interactive parts, then confirm the CSP blocked nothing we rely on.
-    if (p.path.includes("calcul")) await page.locator('[data-slider="years"]').fill("25");
+    if (p.path.includes("calcul")) {
+      const slider = page.locator("[data-slider]").first();
+      // A mid-range value on the slider's own step grid (range inputs reject off-step values).
+      const mid = await slider.evaluate((el: HTMLInputElement) => {
+        const [min, max, step] = [Number(el.min), Number(el.max), Number(el.step)];
+        return String(min + Math.round((max - min) / 2 / step) * step);
+      });
+      await slider.fill(mid);
+    }
     await page.locator("[data-theme-toggle]").click();
     await page.waitForTimeout(300);
     expect(violations).toEqual([]);

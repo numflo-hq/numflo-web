@@ -1,6 +1,6 @@
 ---
 import { path, t, type Lang } from "../i18n";
-import { CALC_IDS, type CalcId } from "../lib/calculators";
+import { RELATED, type CalcId } from "../lib/calculators";
 import { CALC_ICONS } from "./icons";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const { lang, current } = Astro.props;
 const d = t(lang);
 // Internal links between calculators (BRD S-25).
-const others = CALC_IDS.filter((c) => c !== current);
+const others = RELATED[current];
 ---
 
 <section class="mx-auto mt-16 max-w-3xl" aria-labelledby="related">

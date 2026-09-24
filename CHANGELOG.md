@@ -2,6 +2,28 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.2.0] - Unreleased
+
+### Added
+
+- Investment (monthly SIP) calculator with an optional yearly step-up (#8).
+- Compound interest calculator with a choice of compounding frequency and optional monthly deposits (#8).
+- About, Terms of use and Disclaimer pages in English and Spanish, linked from a new footer.
+- "Related calculators" links on every calculator page, and a Calculators menu in the header.
+
+### Changed
+
+- All calculators now share one config-driven engine (`src/lib/calculators.ts` and
+  `src/scripts/calculator.ts`). Adding a calculator means writing a definition and its translations.
+  The loan calculator's behaviour is unchanged.
+- Dependabot ignores major versions of TypeScript, Astro and eslint-plugin-astro, and does not update
+  Playwright, which is pinned and upgraded by hand.
+
+### Security
+
+- Email spoofing protection for numflo.com: SPF `-all` and DMARC `p=reject` DNS records (numflo.com sends
+  no email).
+
 ## [0.1.0] - 2026-09-22
 
 ### Added

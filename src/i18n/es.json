@@ -14,7 +14,12 @@
     "rights": "Numflo",
     "suggestBanner": "View this page in English",
     "dismiss": "Cerrar",
-    "breadcrumb": "Ruta de navegación"
+    "breadcrumb": "Ruta de navegación",
+    "about": "Acerca de",
+    "terms": "Términos de uso",
+    "disclaimer": "Descargo de responsabilidad",
+    "related": "Calculadoras relacionadas",
+    "footerNav": "Enlaces del sitio"
   },
   "meta": {
     "home": {
@@ -28,6 +33,26 @@
     "privacy": {
       "title": "Política de privacidad | Numflo",
       "description": "Numflo no recopila datos personales. Los cálculos se hacen en tu dispositivo y nada de lo que escribes se envía ni se guarda."
+    },
+    "investment": {
+      "title": "Calculadora de inversión mensual | Numflo",
+      "description": "Descubre cuánto puede crecer una inversión mensual periódica, con aumento anual opcional. Gratis, privada y en cualquier moneda."
+    },
+    "compound": {
+      "title": "Calculadora de interés compuesto | Numflo",
+      "description": "Calcula el interés compuesto con cualquier frecuencia de capitalización y aportes mensuales opcionales. Mira crecer tu saldo año por año."
+    },
+    "about": {
+      "title": "Acerca de Numflo",
+      "description": "Numflo es un proyecto independiente que crea calculadoras financieras gratuitas y privadas, con explicaciones claras, en español e inglés."
+    },
+    "terms": {
+      "title": "Términos de uso | Numflo",
+      "description": "Las condiciones que se aplican cuando usas las calculadoras financieras gratuitas de Numflo y la información de este sitio web."
+    },
+    "disclaimer": {
+      "title": "Descargo de responsabilidad | Numflo",
+      "description": "Las calculadoras de Numflo ofrecen estimaciones solo con fines informativos. No son asesoramiento financiero, fiscal ni legal."
     }
   },
   "home": {
@@ -174,11 +199,251 @@
       "Medimos las visitas con Cloudflare Web Analytics, que no usa cookies y no te sigue por otros sitios web. Registra totales anónimos, como el número de páginas vistas.",
       "Si esta política cambia, por ejemplo si en el futuro se añade publicidad, primero actualizaremos esta página y explicaremos qué cambia."
     ],
-    "contact": "¿Tienes preguntas sobre privacidad? Abre una incidencia en nuestro repositorio público de GitHub."
+    "contact": "¿Tienes preguntas sobre privacidad? Abre un reporte (issue) en nuestro repositorio público de GitHub."
   },
   "notFound": {
     "title": "Página no encontrada",
     "text": "La página que buscas no existe o se ha movido.",
     "back": "Ir a la página de inicio"
+  },
+  "investment": {
+    "heading": "Calculadora de inversión",
+    "lead": "Descubre cuánto puede crecer una inversión mensual periódica con el tiempo.",
+    "inputs": {
+      "legend": "Datos de la inversión",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "monthly": "Inversión mensual",
+      "rate": "Rentabilidad esperada (anual)",
+      "years": "Plazo de inversión",
+      "stepup": "Aumento anual (opcional)",
+      "hints": {
+        "stepup": "Aumenta tu aporte mensual en este porcentaje cada año."
+      }
+    },
+    "errors": {
+      "monthly": "Escribe un monto entre 1 y 10 000 000.",
+      "rate": "Escribe una rentabilidad entre 0 % y 30 %.",
+      "years": "Escribe un plazo entre 1 y 50 años.",
+      "stepup": "Escribe un aumento entre 0 % y 50 %."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "value": "Valor estimado",
+      "invested": "Monto invertido",
+      "gains": "Ganancia estimada",
+      "chartLabel": "Proporción del monto invertido y de la ganancia estimada en el valor final",
+      "summary": "Si inviertes {monthly} al mes durante {years} años, podrías llegar a {value}: {invested} invertidos y {gains} de ganancia estimada.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Crecimiento por año",
+      "caption": "Desglose anual del total invertido, la ganancia estimada y el valor",
+      "year": "Año",
+      "invested": "Invertido",
+      "gains": "Ganancia",
+      "value": "Valor"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "Una calculadora de inversión estima cuánto podría valer invertir una cantidad fija cada mes durante varios años, y qué parte de ese valor viene de tus aportes y cuál del crecimiento de la inversión. En la India se conoce como SIP (plan de inversión sistemático); en otros países se habla de aportes periódicos o de promediar el costo.",
+      "sections": [
+        {
+          "title": "Cómo se calcula la estimación",
+          "paragraphs": [
+            "Cada mes añades la misma cantidad, y todo lo que ya está invertido sigue creciendo a la rentabilidad esperada. Como el crecimiento se suma sobre el crecimiento anterior, el valor sube cada vez más rápido en los últimos años.",
+            "La calculadora usa la fórmula estándar para aportes hechos al inicio de cada mes: valor = P × ((1 + i)^n − 1) ÷ i × (1 + i), donde P es el aporte mensual, i es la rentabilidad mensual (la anual dividida entre 12) y n es el número de meses. Con un aumento anual, el aporte mensual sube ese porcentaje cada 12 meses."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Inviertes 500 al mes durante 20 años con una rentabilidad esperada del 8 % anual. En total aportas 120 000, y la inversión podría llegar a unos 296 474, así que unos 176 474 vienen del crecimiento y no de tu propio dinero.",
+            "Si aumentas el aporte mensual un 10 % cada año, el resultado cambia mucho: inviertes 343 650 en total y el valor podría llegar a unos 663 746. Aumentos pequeños y regulares, por ejemplo al ritmo de tu salario, marcan una gran diferencia a largo plazo."
+          ]
+        },
+        {
+          "title": "Por qué importa más el tiempo que el momento",
+          "paragraphs": [
+            "La palanca más importante de la fórmula es el número de meses. Empezar cinco años antes suele aportar más al valor final que un aporte mensual mayor empezado más tarde. Además, invertir una cantidad fija cada mes significa comprar más unidades (participaciones) cuando los precios bajan y menos cuando suben, lo que suaviza los altibajos del mercado."
+          ]
+        },
+        {
+          "title": "Cómo elegir una rentabilidad realista",
+          "paragraphs": [
+            "Usa una tasa acorde con aquello en lo que realmente inviertes. Los promedios a largo plazo son muy distintos para cuentas de ahorro, bonos y acciones, y las rentabilidades pasadas no garantizan las futuras.",
+            "Recuerda que las comisiones y la inflación reducen la rentabilidad real. Prueba también con una tasa más baja para ver una estimación prudente y comprueba cuánto cambia el resultado."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué es un SIP?",
+          "a": "Un SIP (plan de inversión sistemático) es una forma de invertir una cantidad fija a intervalos regulares, normalmente cada mes, en un fondo de inversión o un producto similar. Esta calculadora sirve para cualquier inversión mensual periódica, se llame como se llame en tu país."
+        },
+        {
+          "q": "¿La rentabilidad está garantizada?",
+          "a": "No. La rentabilidad esperada es una suposición, no una promesa. Las inversiones reales suben y bajan, y el valor real puede ser mayor o menor que esta estimación."
+        },
+        {
+          "q": "¿El resultado incluye impuestos, comisiones o inflación?",
+          "a": "No. La calculadora muestra un valor antes de impuestos, comisiones e inflación. Para acercarte a un valor real, reduce la rentabilidad esperada según las comisiones y la inflación que esperes."
+        },
+        {
+          "q": "¿Para qué sirve el aumento anual?",
+          "a": "Aumenta tu aporte mensual un porcentaje fijo cada año. Por ejemplo, con un 10 %, 500 al mes pasan a 550 el segundo año y a 605 el tercero. Déjalo en 0 % si quieres un aporte constante."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Los aportes se hacen al inicio de cada mes y la rentabilidad se capitaliza mensualmente a la tasa anual esperada dividida entre 12. El aumento anual opcional se aplica cada 12 meses. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Las inversiones pueden perder valor; las rentabilidades pasadas no garantizan las futuras."
+    }
+  },
+  "compound": {
+    "heading": "Calculadora de interés compuesto",
+    "lead": "Descubre cómo el interés sobre el interés hace crecer tus ahorros.",
+    "inputs": {
+      "legend": "Datos del ahorro",
+      "currency": "Moneda",
+      "yearsUnit": "años",
+      "principal": "Monto inicial",
+      "rate": "Tasa de interés (anual)",
+      "years": "Plazo",
+      "frequency": "Capitalización",
+      "contribution": "Aporte mensual (opcional)",
+      "options": {
+        "frequency": {
+          "1": "Anual",
+          "2": "Semestral",
+          "4": "Trimestral",
+          "12": "Mensual",
+          "365": "Diaria"
+        }
+      },
+      "hints": {
+        "contribution": "Se añade al final de cada mes."
+      }
+    },
+    "errors": {
+      "principal": "Escribe un monto inicial entre 0 y 1 000 000 000, o añade un aporte mensual.",
+      "rate": "Escribe una tasa entre 0 % y 30 %.",
+      "years": "Escribe un plazo entre 1 y 50 años.",
+      "contribution": "Escribe un aporte entre 0 y 10 000 000."
+    },
+    "results": {
+      "title": "Tus resultados",
+      "balance": "Saldo final",
+      "deposits": "Total aportado",
+      "interest": "Intereses totales",
+      "chartLabel": "Proporción de aportes e intereses en el saldo final",
+      "summary": "Con un monto inicial de {principal} y aportes de {contribution} al mes al {rate} % durante {years} años, el saldo final es de {balance}: {deposits} aportados y {interest} de intereses.",
+      "copyLink": "Copiar enlace",
+      "copyResult": "Copiar resultado",
+      "copied": "Copiado"
+    },
+    "schedule": {
+      "title": "Crecimiento por año",
+      "caption": "Desglose anual del total aportado, los intereses ganados y el saldo",
+      "year": "Año",
+      "deposits": "Aportado",
+      "interest": "Intereses",
+      "balance": "Saldo"
+    },
+    "content": {
+      "summaryTitle": "En resumen",
+      "summary": "El interés compuesto significa que ganas intereses no solo sobre el dinero que depositas, sino también sobre los intereses que ya ha generado. Esta calculadora muestra cómo crecen con el tiempo un monto inicial y, si quieres, aportes mensuales, con una tasa y una frecuencia de capitalización determinadas.",
+      "sections": [
+        {
+          "title": "Cómo funciona el interés compuesto",
+          "paragraphs": [
+            "Con interés simple, 10 000 al 5 % generan 500 cada año. Con interés compuesto, los 500 del primer año se suman al saldo, así que los intereses del segundo año se calculan sobre 10 500, y así sucesivamente. El efecto es pequeño al principio y crece cada año.",
+            "La fórmula para un único depósito es: saldo = P × (1 + r/m)^(m × t), donde P es el monto inicial, r es la tasa anual, m es cuántas veces al año se suman los intereses y t es el número de años."
+          ]
+        },
+        {
+          "title": "Ejemplo resuelto",
+          "paragraphs": [
+            "Depositas 10 000 en una cuenta que paga un 5 % anual durante 10 años. Con capitalización anual, llega a 16 288,95. Con capitalización mensual, a 16 470,09, y con capitalización diaria, a 16 486,65. Capitalizar con más frecuencia ayuda, pero mucho menos que una tasa más alta o un plazo más largo.",
+            "Si además aportas 200 cada mes al 6 % con capitalización mensual durante 20 años, un monto inicial de 10 000 llega a unos 125 510. En total aportas 58 000; los otros 67 510 son intereses."
+          ]
+        },
+        {
+          "title": "La regla del 72",
+          "paragraphs": [
+            "Una forma rápida de estimar cuánto tarda el dinero en duplicarse: divide 72 entre la tasa de interés anual. Al 6 %, el dinero se duplica en unos 12 años; al 9 %, en unos 8 años. La calculadora da la cifra exacta, pero la regla sirve para comparar opciones mentalmente."
+          ]
+        },
+        {
+          "title": "Cómo aprovechar el interés compuesto",
+          "paragraphs": [
+            "Empieza cuanto antes: el tiempo es la parte más poderosa de la fórmula.",
+            "Sigue aportando: los aportes regulares, aunque sean pequeños, también generan interés compuesto.",
+            "Compara la tasa efectiva anual (por ejemplo, la TAE en España o la GAT en México): ya incluye la frecuencia de capitalización y es la forma más justa de comparar cuentas.",
+            "Ten en cuenta las comisiones y la inflación, que reducen lo que tu dinero puede comprar de verdad."
+          ]
+        }
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué diferencia hay entre interés simple e interés compuesto?",
+          "a": "El interés simple se paga solo sobre el monto original. El interés compuesto se paga sobre el monto original más los intereses ya ganados, así que el saldo crece más rápido con el tiempo."
+        },
+        {
+          "q": "¿Qué frecuencia de capitalización debo elegir?",
+          "a": "Usa la frecuencia que indique tu banco o producto: las cuentas de ahorro suelen capitalizar a diario o cada mes, y algunos depósitos, cada año. Si no estás seguro, la mensual es una opción razonable."
+        },
+        {
+          "q": "¿Cómo se tratan los aportes mensuales?",
+          "a": "Cada aporte se añade al final del mes y empieza a generar intereses el mes siguiente, con el equivalente mensual de la frecuencia de capitalización elegida."
+        },
+        {
+          "q": "¿El resultado incluye impuestos o inflación?",
+          "a": "No. Los intereses pueden tributar en tu país y la inflación reduce lo que puedes comprar con el saldo final. Considera el resultado una estimación nominal antes de impuestos."
+        }
+      ],
+      "methodologyTitle": "Metodología",
+      "methodology": "Los intereses se capitalizan con la frecuencia elegida. Para combinar esa frecuencia con aportes mensuales, cada mes se aplica la tasa mensual equivalente (1 + r/m)^(m/12) − 1, que da exactamente P × (1 + r/m)^(m × t) cuando no hay aportes. Los valores se redondean solo al mostrarlos.",
+      "lastReviewed": "Última revisión",
+      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. Los intereses reales dependen de las condiciones, comisiones e impuestos de tu entidad financiera."
+    }
+  },
+  "about": {
+    "heading": "Acerca de Numflo",
+    "paragraphs": [
+      "Numflo es un proyecto independiente que crea calculadoras financieras gratuitas en las que puedes confiar. Cada calculadora te da el resultado y te explica qué significa, con un lenguaje sencillo, en español e inglés.",
+      "Nació de una observación simple: la mayoría de los sitios de calculadoras están solo en inglés, llenos de anuncios y dan un número sin ninguna explicación. Numflo quiere ser lo contrario: rápido, claro, privado y realmente útil.",
+      "Cómo se crean las calculadoras: cada fórmula se basa en matemáticas financieras estándar y se comprueba con pruebas automáticas frente a valores de referencia calculados de forma independiente antes de cada publicación. Cada página muestra la fórmula que usa, un ejemplo resuelto y la fecha de su última revisión.",
+      "Cómo se protege tu privacidad: no hay cuentas ni cookies de seguimiento, y todo lo que escribes se queda en tu dispositivo. El código es abierto y cualquiera puede revisarlo en GitHub.",
+      "Numflo no es un banco, un prestamista ni un asesor financiero, y no vende productos financieros. Las calculadoras son herramientas para ayudarte a entender tus opciones; para decisiones sobre tu propio dinero, consulta a un profesional calificado.",
+      "¿Has encontrado un error, una explicación confusa o un fallo de traducción? Cuéntanoslo abriendo un reporte (issue) en nuestro repositorio público de GitHub. Leemos todos los avisos."
+    ]
+  },
+  "terms": {
+    "heading": "Términos de uso",
+    "paragraphs": [
+      "Al usar numflo.com aceptas estos términos. Si no estás de acuerdo, no uses el sitio.",
+      "Numflo se ofrece de forma gratuita, tal cual y según disponibilidad. Nos esforzamos por mantener las calculadoras precisas, pero no garantizamos que el sitio esté siempre disponible, libre de errores o sea adecuado para tu propósito concreto.",
+      "Los resultados son estimaciones basadas en los datos que introduces y en los supuestos explicados en cada página. No son una oferta, una cotización ni una recomendación, y no constituyen asesoramiento financiero, fiscal ni legal. Tú eres responsable de las decisiones que tomes con ellos.",
+      "En la medida en que lo permita la ley, Numflo no se hace responsable de ninguna pérdida o daño derivados del uso del sitio o de sus resultados, ni de la confianza depositada en ellos.",
+      "Puedes usar las calculadoras con fines personales y comerciales, y compartir enlaces a los resultados. No hagas un uso indebido del sitio, por ejemplo intentando interrumpirlo, sobrecargarlo o acceder a él de formas para las que no fue diseñado.",
+      "El nombre, el logotipo, los textos y el diseño de Numflo están protegidos. El código fuente se publica en GitHub con las condiciones indicadas en el repositorio.",
+      "Los enlaces a otros sitios web se ofrecen por comodidad; no somos responsables de su contenido.",
+      "Podemos actualizar estos términos. Los cambios entran en vigor cuando se publican en esta página, y la fecha de arriba indica la versión más reciente."
+    ]
+  },
+  "disclaimer": {
+    "heading": "Descargo de responsabilidad",
+    "paragraphs": [
+      "Las calculadoras y la información de Numflo tienen fines informativos y educativos generales.",
+      "Nada de lo que aparece en este sitio es asesoramiento financiero, de inversión, fiscal ni legal, ni una recomendación para comprar, vender o mantener ningún producto financiero. Numflo no conoce tu situación personal.",
+      "Los resultados son estimaciones. Dependen de los valores que introduces y de supuestos simplificadores, como una tasa de interés fija o una rentabilidad constante, que rara vez se cumplen exactamente en la vida real. Las cuotas, los intereses y las rentabilidades reales serán distintos, y las inversiones pueden perder valor.",
+      "Las comisiones, los impuestos, los seguros y la inflación no están incluidos salvo que la página lo indique. La moneda elegida solo cambia cómo se muestran los montos; no se realiza ninguna conversión de moneda.",
+      "Antes de tomar decisiones financieras, comprueba las condiciones exactas con tu banco, prestamista o proveedor, y considera consultar a un asesor independiente y calificado."
+    ]
   }
 }

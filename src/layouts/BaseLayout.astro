@@ -53,8 +53,13 @@ const otherHref = route ? ROUTES[route][otherLang] : ROUTES.home[otherLang];
     </a>
     <Header lang={lang} route={route} />
     <!-- Language suggestion (BRD L-6). Hidden by default; never redirects (L-5). -->
-    <div class="bg-accent-soft no-print hidden" data-lang-banner={otherLang} lang={otherLang}>
-      <div class="container-page flex min-h-12 items-center justify-between gap-3 py-2 text-sm">
+    <!-- Floating, so showing it never shifts the page layout (Core Web Vitals CLS, BRD S-8). -->
+    <div
+      class="card no-print fixed inset-x-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-40 hidden sm:inset-x-auto sm:end-6 sm:bottom-6 sm:max-w-sm"
+      data-lang-banner={otherLang}
+      lang={otherLang}
+    >
+      <div class="flex min-h-12 items-center justify-between gap-3 py-1.5 ps-4 pe-1.5 text-sm">
         <a
           href={otherHref}
           data-set-lang={otherLang}

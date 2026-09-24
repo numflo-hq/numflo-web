@@ -1,0 +1,328 @@
+---
+import { t, type Lang } from "../i18n";
+import { CALCULATORS, defaults, type CalcId, type FieldDef } from "../lib/calculators";
+import { CURRENCIES } from "../lib/currency";
+import { formatMoney, formatNumber, currencySymbol } from "../lib/format";
+
+interface Props {
+  lang: Lang;
+  calc: CalcId;
+}
+const { lang, calc } = Astro.props;
+const def = CALCULATORS[calc];
+// Translations for this calculator. The shape is shared by every calculator.
+const d = t(lang)[calc] as unknown as {
+  inputs: Record<string, unknown> & {
+    legend: string;
+    currency: string;
+    yearsUnit: string;
+    hints?: Record<string, string>;
+    options?: Record<string, Record<string, string>>;
+  };
+  errors: Record<string, string>;
+  results: Record<string, string>;
+  schedule: Record<string, string>;
+};
+const label = (key: string) => d.inputs[key] as string;
+
+// Server-rendered starting values, so crawlers and no-JS visitors see a real result (BRD S-1).
+const cur = "USD" as const;
+const values = defaults(def);
+const initial = def.compute(values);
+const money = (v: number, dec = 0) => formatMoney(v, lang, cur, dec);
+const CIRC = 2 * Math.PI * 42;
+const shareTotal = initial.share[0] + initial.share[1];
+const share = shareTotal > 0 ? initial.share[0] / shareTotal : 1;
+const inputValue = (f: FieldDef) =>
+  f.kind === "money"
+    ? formatNumber(f.default, lang, cur)
+    : formatNumber(
+        f.default,
+        lang,
+        cur,
+        Number.isInteger(f.default) ? 0 : Math.min(2, (String(f.default).split(".")[1] ?? "").length),
+      );
+const labels = { copied: d.results.copied, summary: d.results.summary };
+---
+
+<div
+  class="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-6"
+  data-calc={calc}
+  data-labels={JSON.stringify(labels)}
+>
+  <!-- Inputs -->
+  <form class="card p-5 sm:p-6" novalidate data-calc-form>
+    <fieldset class="flex min-w-0 flex-col gap-6" aria-labelledby="details-title">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h2 id="details-title" class="text-lg font-semibold">
+          {d.inputs.legend}
+        </h2>
+        <label class="text-muted flex items-center gap-2 text-sm">
+          <span>{d.inputs.currency}</span>
+          <select
+            name="currency"
+            class="bg-surface border-line text-ink min-h-11 rounded-xl border px-3 font-semibold"
+            data-currency
+          >
+            {CURRENCIES.map((c) => (
+              <option value={c} selected={c === cur}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      {def.fields.map((f) => (
+        <div class="flex flex-col gap-1.5">
+          <label for={f.key} class="text-sm font-medium">
+            {label(f.key)}
+          </label>
+          {f.kind === "select" ? (
+            <select id={f.key} name={f.key} class="field-input px-4" data-field={f.key} data-kind="select">
+              {f.options!.map((o) => (
+                <option value={o} selected={o === f.default}>
+                  {d.inputs.options?.[f.key]?.[String(o)] ?? o}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <>
+              <div class="relative">
+                {f.kind === "money" && (
+                  <span
+                    class="text-muted pointer-events-none absolute inset-y-0 start-4 flex items-center font-semibold"
+                    data-symbol
+                  >
+                    {currencySymbol(lang, cur)}
+                  </span>
+                )}
+                <input
+                  id={f.key}
+                  name={f.key}
+                  class:list={[
+                    "field-input",
+                    f.kind === "money" ? "ps-10 pe-4" : f.kind === "years" ? "ps-4 pe-20" : "ps-4 pe-10",
+                  ]}
+                  inputmode={f.kind === "years" ? "numeric" : "decimal"}
+                  autocomplete="off"
+                  enterkeyhint="done"
+                  value={inputValue(f)}
+                  data-field={f.key}
+                  data-kind={f.kind}
+                  aria-describedby={d.inputs.hints?.[f.key] ? `${f.key}-hint` : undefined}
+                />
+                {f.kind === "percent" && (
+                  <span class="text-muted pointer-events-none absolute inset-y-0 end-4 flex items-center font-semibold">
+                    %
+                  </span>
+                )}
+                {f.kind === "years" && (
+                  <span class="text-muted pointer-events-none absolute inset-y-0 end-4 flex items-center font-semibold">
+                    {d.inputs.yearsUnit}
+                  </span>
+                )}
+              </div>
+              {f.slider && (
+                <input
+                  type="range"
+                  min={f.slider.min}
+                  max={f.slider.max}
+                  step={f.slider.step}
+                  value={f.default}
+                  aria-label={label(f.key)}
+                  data-slider={f.key}
+                />
+              )}
+            </>
+          )}
+          {d.inputs.hints?.[f.key] && (
+            <p id={`${f.key}-hint`} class="text-muted text-xs">
+              {d.inputs.hints[f.key]}
+            </p>
+          )}
+          {d.errors[f.key] && (
+            <p id={`${f.key}-error`} class="text-danger hidden text-sm" data-error={f.key}>
+              {d.errors[f.key]}
+            </p>
+          )}
+        </div>
+      ))}
+    </fieldset>
+  </form>
+
+  <!-- Results -->
+  <section class="card p-5 sm:p-6 lg:sticky lg:top-24" aria-labelledby="results-title" data-results>
+    <h2 id="results-title" class="text-lg font-semibold">
+      {d.results.title}
+    </h2>
+    <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+      <p class="text-muted text-sm font-medium">{d.results[def.headline.key]}</p>
+      <p
+        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl"
+        aria-live="polite"
+        data-out={def.headline.key}
+      >
+        {money(initial.outputs[def.headline.key]!, def.headline.decimals)}
+      </p>
+    </div>
+
+    <div class="mt-6 grid grid-cols-[minmax(0,1fr)] items-center gap-5 min-[360px]:grid-cols-[auto_minmax(0,1fr)]">
+      <svg
+        viewBox="0 0 100 100"
+        class="mx-auto size-28 -rotate-90 sm:size-32"
+        role="img"
+        aria-label={d.results.chartLabel}
+      >
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--c-interest)" stroke-width="14"></circle>
+        <circle
+          cx="50"
+          cy="50"
+          r="42"
+          fill="none"
+          stroke="var(--c-accent)"
+          stroke-width="14"
+          stroke-dasharray={`${(share * CIRC).toFixed(2)} ${CIRC.toFixed(2)}`}
+          data-donut
+        ></circle>
+      </svg>
+      <dl class="flex flex-col gap-3 text-sm">
+        {def.parts.map((p) => (
+          <div class="flex items-center justify-between gap-3">
+            <dt class="flex items-center gap-2">
+              <span
+                class:list={["size-3 rounded-full", p.tone === "accent" ? "bg-accent" : "bg-interest"]}
+                aria-hidden="true"
+              />
+              {d.results[p.key]}
+            </dt>
+            <dd class="font-semibold tabular-nums" data-out={p.key}>
+              {money(initial.outputs[p.key]!)}
+            </dd>
+          </div>
+        ))}
+        {def.total && (
+          <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+            <dt class="font-medium">{d.results[def.total]}</dt>
+            <dd class="font-bold tabular-nums" data-out={def.total}>
+              {money(initial.outputs[def.total]!)}
+            </dd>
+          </div>
+        )}
+      </dl>
+    </div>
+
+    <div class="no-print mt-6 flex flex-wrap gap-2">
+      <button type="button" class="btn-ghost" data-copy="link">
+        <svg
+          viewBox="0 0 24 24"
+          class="size-4"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"></path>
+        </svg>
+        <span>{d.results.copyLink}</span>
+      </button>
+      <button type="button" class="btn-ghost" data-copy="result">
+        <svg
+          viewBox="0 0 24 24"
+          class="size-4"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+          <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path>
+        </svg>
+        <span>{d.results.copyResult}</span>
+      </button>
+      <span class="text-accent sr-only self-center text-sm font-medium" role="status" data-copy-status></span>
+    </div>
+  </section>
+</div>
+
+<!-- Sticky mini result on phones while the inputs are in view (BRD §8.1) -->
+<div
+  class="bg-surface/95 border-line no-print fixed inset-x-0 bottom-0 z-30 translate-y-full border-t backdrop-blur-md transition-transform lg:hidden"
+  aria-hidden="true"
+  data-mini-bar
+>
+  <div class="container-page flex items-center justify-between gap-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+    <span class="text-muted text-sm font-medium">{d.results[def.headline.key]}</span>
+    <span class="text-accent text-xl font-bold tabular-nums" data-out="headline-mini">
+      {money(initial.outputs[def.headline.key]!, def.headline.decimals)}
+    </span>
+  </div>
+</div>
+
+<!-- Year-by-year -->
+<section class="card mt-5 p-5 sm:p-6" aria-labelledby="schedule-title">
+  <div class="flex items-center justify-between gap-3">
+    <h2 id="schedule-title" class="text-lg font-semibold">
+      {d.schedule.title}
+    </h2>
+    <div class="text-muted flex items-center gap-4 text-xs">
+      <span class="flex items-center gap-1.5">
+        <span class="bg-accent size-2.5 rounded-sm" aria-hidden="true"></span>
+        {d.results[def.parts[0]!.key]}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="bg-interest size-2.5 rounded-sm" aria-hidden="true"></span>
+        {d.results[def.parts[1]!.key]}
+      </span>
+    </div>
+  </div>
+  <svg
+    class="mt-5 h-40 w-full"
+    viewBox="0 0 400 160"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    data-bars
+  ></svg>
+  <div
+    class="border-line mt-5 max-h-[28rem] overflow-auto rounded-xl border"
+    tabindex="0"
+    role="region"
+    aria-labelledby="schedule-title"
+  >
+    <table class="w-full min-w-[32rem] text-right text-sm tabular-nums">
+      <caption class="sr-only">{d.schedule.caption}</caption>
+      <thead class="bg-surface-2 text-muted sticky top-0 text-xs font-semibold tracking-wide uppercase">
+        <tr>
+          <th scope="col" class="px-4 py-3 text-left">
+            {d.schedule.year}
+          </th>
+          {def.columns.map((c) => (
+            <th scope="col" class="px-4 py-3">
+              {d.schedule[c]}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody class="divide-line divide-y" data-schedule>
+        {initial.rows.map((row) => (
+          <tr>
+            <th scope="row" class="px-4 py-2.5 text-left font-medium">
+              {row.year}
+            </th>
+            {row.cols.map((v) => (
+              <td class="px-4 py-2.5">{money(v)}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  import "../scripts/calculator";
+</script>

@@ -2,6 +2,7 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+<<<<<<< HEAD
 ## [0.3.0] - Unreleased
 
 ### Added
@@ -19,6 +20,8 @@ All notable changes to numflo.com. Versions follow [semantic versioning](https:/
   fields. Rule messages now also appear when the values come from a shared link.
 - End-to-end tests cover every page in the route table; a unit test fails if the list drifts.
 
+=======
+>>>>>>> e8722b057645484f7e8f2ef82ca0c6dac4c1537d
 ## [0.2.0] - 2026-09-24
 
 ### Added

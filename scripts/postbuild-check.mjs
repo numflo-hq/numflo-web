@@ -161,6 +161,8 @@ const keyFiles = readdirSync(DIST).filter((f) => /^[0-9a-f]{32}\.txt$/.test(f));
 if (keyFiles.length !== 1) fail("indexnow", `expected one key file, found ${keyFiles.length}`);
 else if (readFileSync(join(DIST, keyFiles[0]), "utf8").trim() !== keyFiles[0].slice(0, 32))
   fail("indexnow", "key file content must equal its name");
+else if (!readFileSync("scripts/indexnow.mjs", "utf8").includes(`const KEY = "${keyFiles[0].slice(0, 32)}"`))
+  fail("indexnow", "scripts/indexnow.mjs KEY must match the key file");
 
 // ---- Security headers file (Q-24) ----
 const headers = existsSync(join(DIST, "_headers")) ? readFileSync(join(DIST, "_headers"), "utf8") : "";

@@ -2,6 +2,18 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.3.1] - Unreleased
+
+### Added
+
+- `/llms.txt`: an index of every calculator in English and Spanish for AI assistants (BRD S-70).
+- IndexNow: every release tells Bing and other IndexNow engines about all pages (BRD S-71).
+
+### Changed
+
+- robots.txt explicitly welcomes search and AI crawlers (ChatGPT, Claude, Perplexity, Google, Apple,
+  Bing, DuckDuckGo). The post-build check fails if anything is ever blocked.
+
 ## [0.3.0] - 2026-09-25
 
 ### Added

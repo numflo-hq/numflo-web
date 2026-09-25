@@ -91,3 +91,23 @@ test("no console errors on any page", async ({ page }) => {
   for (const p of PAGES) await page.goto(p.path);
   expect(errors).toEqual([]);
 });
+
+test.describe("search and AI crawler files (S-70, S-71)", () => {
+  test("robots.txt blocks nothing and names AI search crawlers", async ({ request }) => {
+    const res = await request.get("/robots.txt");
+    expect(res.status()).toBe(200);
+    const body = await res.text();
+    expect(body).not.toMatch(/^Disallow:\s*\S/im);
+    for (const bot of ["OAI-SearchBot", "Claude-SearchBot", "PerplexityBot", "Google-Extended", "Bingbot"])
+      expect(body).toContain(`User-agent: ${bot}`);
+    expect(body).toContain("Sitemap: https://numflo.com/sitemap.xml");
+  });
+
+  test("llms.txt is plain text and links every calculator page", async ({ request }) => {
+    const res = await request.get("/llms.txt");
+    expect(res.status()).toBe(200);
+    expect(res.headers()["content-type"]).toMatch(/^text\/plain/);
+    const body = await res.text();
+    for (const p of PAGES.filter((x) => x.calc)) expect(body).toContain(`(https://numflo.com${p.path})`);
+  });
+});

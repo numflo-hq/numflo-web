@@ -266,6 +266,13 @@ Goal: every page passes Google's technical checks, scores 100 in Lighthouse SEO,
 | S-52 | Clear About page (who runs Numflo and why), Contact, Privacy Policy, Terms and a financial Disclaimer in every language. |
 | S-53 | No aggressive ads, pop-ups or interstitials that cover content. |
 
+### 9.5a AI search and answer engines
+
+| ID | Requirement |
+|---|---|
+| S-70 | Pages can appear and be cited in AI answers (ChatGPT search, Copilot, Perplexity, Claude, Google AI Overviews): robots.txt allows search and AI crawlers explicitly and blocks nothing; /llms.txt lists every calculator in every language with a one-line description; the CDN's AI-crawler settings allow search and AI-input crawling; each page answers its question in the first paragraph ("In short") and carries FAQPage and WebApplication structured data. |
+| S-71 | Every release notifies IndexNow search engines (Bing, Yandex and others) of all sitemap URLs; new pages are also submitted in Google Search Console and Bing Webmaster Tools. |
+
 ### 9.6 Quality gate
 
 | ID | Requirement |
@@ -387,3 +394,4 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 1.1 | 2026-09-21 | Q-23/Q-24 wording aligned with SDLC v1.1 (where security scans run) |
 | 1.2 | 2026-09-22 | L-12: default currency from the visitor's country (issue #3, requested by owner during UAT of PR #2) |
 | 1.3 | 2026-09-24 | Added F-30 to F-39 (ten more calculators) and phase P3b, requested by the owner to reach AdSense-ready depth before adding a third language |
+| 1.4 | 2026-09-25 | Added §9.5a (S-70, S-71): visibility and citations in AI answers, IndexNow on every release, requested by the owner |

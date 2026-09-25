@@ -34,6 +34,9 @@ jobs:
           done
           echo "numflo.com did not serve commit ${SHA} within 10 minutes" && exit 1
       - run: node scripts/smoke.mjs https://numflo.com
+      - name: Notify IndexNow search engines about every page
+        if: github.event_name == 'push'
+        run: node scripts/indexnow.mjs https://numflo.com
 
   zap:
     name: Monthly ZAP scan of production

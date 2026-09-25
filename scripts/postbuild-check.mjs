@@ -141,6 +141,26 @@ const robots = existsSync(join(DIST, "robots.txt")) ? readFileSync(join(DIST, "r
 const robotsSitemaps = [...robots.matchAll(/^Sitemap:\s*(\S+)\s*$/gim)].map((m) => m[1]);
 if (!robotsSitemaps.some((u) => ownPath(u) === "/sitemap.xml"))
   fail("robots.txt", "must reference the sitemap");
+// Nothing may be blocked for search or AI crawlers (S-70): only "Allow" rules, known directives.
+for (const line of robots
+  .split("\n")
+  .map((l) => l.trim())
+  .filter((l) => l && !l.startsWith("#"))) {
+  if (/^disallow:\s*\S/i.test(line)) fail("robots.txt", `must not block crawlers: ${line}`);
+  if (!/^(user-agent|allow|disallow|sitemap):/i.test(line)) fail("robots.txt", `unknown directive: ${line}`);
+}
+
+// ---- llms.txt for AI assistants lists every canonical URL (S-70) ----
+const llms = existsSync(join(DIST, "llms.txt")) ? readFileSync(join(DIST, "llms.txt"), "utf8") : "";
+if (!llms.startsWith("# Numflo")) fail("llms.txt", "missing or malformed");
+for (const canonical of canonicals.keys())
+  if (/calcul/.test(canonical) && !llms.includes(`(${canonical})`)) fail("llms.txt", `missing ${canonical}`);
+
+// ---- IndexNow key file (S-71): exactly one, containing its own name ----
+const keyFiles = readdirSync(DIST).filter((f) => /^[0-9a-f]{32}\.txt$/.test(f));
+if (keyFiles.length !== 1) fail("indexnow", `expected one key file, found ${keyFiles.length}`);
+else if (readFileSync(join(DIST, keyFiles[0]), "utf8").trim() !== keyFiles[0].slice(0, 32))
+  fail("indexnow", "key file content must equal its name");
 
 // ---- Security headers file (Q-24) ----
 const headers = existsSync(join(DIST, "_headers")) ? readFileSync(join(DIST, "_headers"), "utf8") : "";

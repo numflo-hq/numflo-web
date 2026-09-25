@@ -1,4 +1,24 @@
+# Numflo welcomes search engines and AI assistants (BRD S-70).
+# Our content may appear in search results, be quoted and cited in AI answers, and be used
+# to train models. A summary for AI assistants is at https://numflo.com/llms.txt
+
 User-agent: *
+Allow: /
+
+# AI search and answer engines, listed explicitly so no default block applies to them.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: DuckAssistBot
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://numflo.com/sitemap.xml

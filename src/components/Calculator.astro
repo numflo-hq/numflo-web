@@ -286,11 +286,11 @@ const labels = { copied: d.results.copied, summary: d.results.summary, units };
 
 <!-- Year-by-year -->
 <section class="card mt-5 p-5 sm:p-6" aria-labelledby="schedule-title">
-  <div class="flex items-center justify-between gap-3">
+  <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
     <h2 id="schedule-title" class="text-lg font-semibold">
       {d.schedule.title}
     </h2>
-    <div class="text-muted flex items-center gap-4 text-xs">
+    <div class="text-muted flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
       <span class="flex items-center gap-1.5">
         <span class="bg-accent size-2.5 rounded-sm" aria-hidden="true"></span>
         {d.results[def.parts[0]!.key]}

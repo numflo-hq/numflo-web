@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { CALC_PAGES } from "./pages";
+import { CALC_PAGES, PAGES } from "./pages";
 
 // Ten more calculators (BRD F-30 to F-39). Expected values come from independent
 // closed-form calculations (see the unit tests in src/lib).
@@ -244,6 +244,28 @@ test.describe("layout at the edges (R-1)", () => {
       expect(box.x + box.width, `${width}px right`).toBeLessThanOrEqual(width);
       expect(box.y + box.height, `${width}px bottom`).toBeLessThanOrEqual(700);
       await page.keyboard.press("Escape");
+    }
+  });
+
+  test("nothing pokes past the 16px side gutter at 320px, on any page", async ({ page, isMobile }) => {
+    // Stricter than the page-level scroll check: catches content a few pixels too wide even
+    // when fonts render slightly differently (the schedule legend once did this in CI).
+    test.skip(isMobile, "viewport is set explicitly");
+    await page.setViewportSize({ width: 320, height: 640 });
+    for (const p of PAGES) {
+      await page.goto(p.path);
+      const bad = await page.evaluate(() => {
+        const limit = window.innerWidth - 16 + 0.5;
+        return [...document.querySelectorAll("main *, footer *")]
+          .filter((e) => !e.closest('[role="region"]') && getComputedStyle(e).position !== "fixed")
+          .filter((e) => !e.matches("main, footer, .container-page, main > div, footer > div"))
+          .filter((e) => {
+            const r = e.getBoundingClientRect();
+            return r.width > 0 && r.right > limit;
+          })
+          .map((e) => `${e.tagName} ${(e.textContent ?? "").trim().slice(0, 30)}`);
+      });
+      expect(bad, p.path).toEqual([]);
     }
   });
 

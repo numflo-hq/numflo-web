@@ -2,7 +2,7 @@
 import Logo from "./Logo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { path, t, type Lang, type RouteKey } from "../i18n";
-import { CALC_IDS } from "../lib/calculators";
+import { CATEGORIES, type Category } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -23,29 +23,41 @@ const d = t(lang);
       <span class="text-lg tracking-tight">numflo</span>
     </a>
     <nav aria-label={d.site.calculators} class="flex items-center gap-2">
-      <details class="relative hidden sm:block" data-menu>
+      <details class="hidden sm:block" data-menu>
         <summary class="hover:bg-surface-2 inline-flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded-xl px-3 text-sm font-medium [&::-webkit-details-marker]:hidden">
           {d.site.calculators}
           <svg viewBox="0 0 20 20" class="size-4 opacity-60" aria-hidden="true" fill="currentColor">
             <path d="M5.5 7.5 10 12l4.5-4.5"></path>
           </svg>
         </summary>
-        <ul class="card absolute end-0 z-30 mt-2 min-w-64 p-1.5" role="list">
-          {CALC_IDS.map((c) => (
-            <li>
-              <a
-                href={path(c, lang)}
-                aria-current={route === c ? "page" : undefined}
-                class:list={[
-                  "hover:bg-surface-2 flex min-h-11 items-center rounded-lg px-3 text-sm font-medium",
-                  route === c && "text-accent",
-                ]}
+        <div class="card absolute end-4 top-full z-30 mt-1 grid max-h-[calc(100dvh-5rem)] w-[min(44rem,calc(100vw-2rem))] gap-1 overflow-y-auto p-2 sm:grid-cols-2 md:grid-cols-3">
+          {(Object.keys(CATEGORIES) as Category[]).map((cat) => (
+            <div>
+              <p
+                class="text-muted px-3 pt-2 pb-1 text-xs font-semibold tracking-wide uppercase"
+                id={`menu-${cat}`}
               >
-                {d.home.cards[c].title}
-              </a>
-            </li>
+                {d.site.categories[cat]}
+              </p>
+              <ul role="list" aria-labelledby={`menu-${cat}`}>
+                {CATEGORIES[cat].map((c) => (
+                  <li>
+                    <a
+                      href={path(c, lang)}
+                      aria-current={route === c ? "page" : undefined}
+                      class:list={[
+                        "hover:bg-surface-2 flex min-h-11 items-center rounded-lg px-3 text-sm font-medium",
+                        route === c && "text-accent",
+                      ]}
+                    >
+                      {d.home.cards[c].title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </details>
       <LanguageSwitcher lang={lang} route={route} />
       <button

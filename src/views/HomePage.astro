@@ -5,6 +5,7 @@ import { calculateLoan } from "../lib/loan";
 import { formatMoney } from "../lib/format";
 import { LOAN_DEFAULTS } from "../lib/params";
 import { CALC_ICONS } from "../components/icons";
+import { CATEGORIES, type Category } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -22,16 +23,16 @@ const sample = {
   principal: formatMoney(LOAN_DEFAULTS.amount, lang, cur),
   interest: formatMoney(r.totalInterest, lang, cur),
 };
-const cards: { key: string; href: string | null; title: string; text: string; icon: string }[] = [
-  { key: "loan", href: path("loan", lang), ...d.home.cards.loan, icon: CALC_ICONS.loan },
-  {
-    key: "investment",
-    href: path("investment", lang),
-    ...d.home.cards.investment,
-    icon: CALC_ICONS.investment,
-  },
-  { key: "compound", href: path("compound", lang), ...d.home.cards.compound, icon: CALC_ICONS.compound },
-];
+const groups = (Object.keys(CATEGORIES) as Category[]).map((cat) => ({
+  cat,
+  title: d.site.categories[cat],
+  cards: CATEGORIES[cat].map((c) => ({
+    key: c,
+    href: path(c, lang),
+    ...d.home.cards[c],
+    icon: CALC_ICONS[c],
+  })),
+}));
 ---
 
 <BaseLayout lang={lang} route="home" title={d.meta.home.title} description={d.meta.home.description}>
@@ -80,48 +81,45 @@ const cards: { key: string; href: string | null; title: string; text: string; ic
     <h2 id="calcs" class="text-2xl font-bold">
       {d.home.sectionTitle}
     </h2>
-    <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
-      {cards.map((c) => (
-        <li
-          class:list={[
-            "card relative flex flex-col gap-3 p-6",
-            c.href ? "hover:border-accent transition-colors" : "bg-surface-2/40",
-          ]}
+    {groups.map((g) => (
+      <div class="mt-6">
+        <h3 class="text-muted text-sm font-semibold tracking-wide uppercase" id={`cat-${g.cat}`}>
+          {g.title}
+        </h3>
+        <ul
+          class="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          role="list"
+          aria-labelledby={`cat-${g.cat}`}
         >
-          <span
-            class="bg-accent-soft text-accent inline-flex size-11 items-center justify-center rounded-xl"
-            aria-hidden="true"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              class="size-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d={c.icon} />
-            </svg>
-          </span>
-          <h3 class="text-lg font-semibold">
-            {c.href ? (
-              <a href={c.href} class="after:absolute after:inset-0 after:rounded-[inherit]">
-                {c.title}
-              </a>
-            ) : (
-              c.title
-            )}
-          </h3>
-          <p class="text-muted text-sm">{c.text}</p>
-          {!c.href && (
-            <span class="bg-surface-2 text-muted w-fit rounded-full px-2.5 py-1 text-xs font-semibold">
-              {d.site.comingSoon}
-            </span>
-          )}
-        </li>
-      ))}
-    </ul>
+          {g.cards.map((c) => (
+            <li class="card hover:border-accent relative flex flex-col gap-3 p-6 transition-colors">
+              <span
+                class="bg-accent-soft text-accent inline-flex size-11 items-center justify-center rounded-xl"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="size-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d={c.icon} />
+                </svg>
+              </span>
+              <h4 class="text-lg font-semibold">
+                <a href={c.href} class="after:absolute after:inset-0 after:rounded-[inherit]">
+                  {c.title}
+                </a>
+              </h4>
+              <p class="text-muted text-sm">{c.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </section>
 
   <section class="container-page mt-16" aria-labelledby="why">

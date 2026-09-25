@@ -22,7 +22,8 @@ Variant: neutral international Spanish, understood in Spain and Latin America.
 | down payment | pago inicial | Avoid "enganche" (MX) and "entrada" (ES) |
 | prepayment | pago anticipado | |
 | fee | comisión | |
-| APR | costo total (TAE en España, CAT en México) | |
+| APR (all-in cost of a loan) | costo total (TAE en España, CAT en México) | When fees are included |
+| APR (card interest rate) | tasa de interés anual | Credit cards: the rate divided by 12 each month |
 | investment | inversión | |
 | balance (savings account) | saldo | "saldo pendiente" is only for a debt |
 | APY / AER (effective annual rate) | tasa efectiva anual (TAE en España, GAT en México) | |
@@ -33,3 +34,27 @@ Variant: neutral international Spanish, understood in Spain and Latin America.
 | compound interest | interés compuesto | |
 | currency | moneda | |
 | privacy policy | política de privacidad | |
+| mortgage | hipoteca | "crédito hipotecario" is fine in running text |
+| property tax | impuesto sobre la propiedad | Explain once: predial (MX), IBI (ES) |
+| home insurance | seguro de hogar | |
+| home affordability | capacidad hipotecaria | Page title; "¿cuánta casa puedo comprar?" in text |
+| debt-to-income (DTI) | relación deuda-ingresos / límite de deuda sobre ingresos | |
+| gross income | ingresos brutos | |
+| credit card | tarjeta de crédito | |
+| pay off (a debt) | liquidar | |
+| fixed deposit | depósito a plazo fijo / plazo fijo | |
+| recurring deposit | depósito recurrente | "ahorro programado" as an alternative name |
+| maturity value | valor al vencimiento | |
+| compounding (frequency) | capitalización | |
+| simple interest | interés simple | |
+| CAGR | CAGR (tasa de crecimiento anual compuesta) | Also TCAC; explain on first use |
+| total return | rendimiento total | |
+| retirement | jubilación | "retiro" (MX) is understood; use "jubilación" |
+| withdrawal rate | tasa de retiro | |
+| in today's money | en dinero de hoy | |
+| savings goal | meta de ahorro | Avoid "objetivo" in headings |
+| inflation | inflación | |
+| purchasing power | poder adquisitivo | |
+| car | auto | Neutral; avoid "coche" (ES) and "carro" |
+| average (noun) | promedio | Avoid Spain-leaning "media" |
+| student loan | préstamo estudiantil | |

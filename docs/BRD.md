@@ -130,6 +130,18 @@ This is the core of the product, so it is specified in detail.
 | F-10 | Loan (EMI) | Loan amount, interest rate (p.a.), tenure (years/months) | Monthly payment, total interest, total payment, amortisation schedule |
 | F-11 | Investment (SIP) | Monthly investment, expected return (p.a.), duration | Maturity value, invested amount, estimated gains, growth chart |
 | F-12 | Compound interest | Principal, rate, years, compounding frequency, optional regular contribution | Final amount, total interest, growth chart |
+| F-30 | Mortgage | Home price, down payment (%), rate, term, property tax (% a year), home insurance (a year) | Monthly payment (principal + interest + tax + insurance), loan amount, total interest, schedule |
+| F-31 | Home affordability | Gross yearly income, other monthly debts, down payment, rate, term, monthly property costs, debt-to-income limit | Affordable home price, mortgage amount, monthly principal + interest and housing cost, schedule |
+| F-32 | Fixed deposit | Deposit, rate, term (part years allowed), compounding (yearly, half-yearly, quarterly, monthly) | Maturity value, interest, effective annual yield, growth table |
+| F-33 | Recurring deposit | Monthly deposit (start of month), rate, term, compounding | Maturity value, total deposited, interest; matches the published bank formula for quarterly compounding |
+| F-34 | Retirement | Current age, retirement age, savings, monthly contribution, expected return, inflation, withdrawal rate | Savings at retirement, in today's money, monthly income from the withdrawal rate (future and today's money) |
+| F-35 | Inflation | Amount today, inflation rate, years | Future cost, price increase, purchasing power, yearly table |
+| F-36 | Savings goal | Goal, time, amount already saved, rate | Monthly saving needed, deposits, interest, balance |
+| F-37 | Credit card payoff | Balance, APR, fixed monthly payment | Time to pay off (as a duration), total interest and paid, first month's interest, payment to be debt-free in 3 years; flags a payment that never clears the balance (≤ interest or > 50 years) |
+| F-38 | CAGR | Starting value, ending value, years | CAGR (%), total return (%), gain, smoothed yearly path; losses give a negative rate |
+| F-39 | Simple interest | Principal, rate, time | Interest, total, comparison with yearly compound interest |
+
+Rules shared by F-30 to F-39: inputs that break a rule across fields (for example a retirement age before the current age) show a specific message on the field concerned, including when they arrive in a shared link; percentages and durations are formatted in the page's language; every calculator links to four related calculators (S-25).
 
 ### 6.3 Site-level
 
@@ -336,7 +348,7 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 |---|---|---|
 | P1 — Foundation | Project setup, design system, responsive layout, SEO foundation (sitemap, canonical, schema, quality gate), English home page + loan calculator | Runs locally; live on numflo.com |
 | P2 — Multilingual | Spanish, language switcher, hreflang, currency handling | Both languages live and indexed |
-| P3 — Depth | Investment + compound interest calculators, explainers, FAQs, legal pages | ≥ 25 pages; Search Console clean |
+| P3 — Depth | Investment + compound interest calculators, explainers, FAQs, legal pages; then (P3b) ten more calculators, F-30 to F-39 | ≥ 25 pages (36 after P3b); Search Console clean |
 | P4 — Monetise | AdSense application, consent banner, affiliate links | Approved and earning |
 | P5 — Scale | More calculators; next languages (Portuguese, Hindi, others) chosen from Search Console and keyword data | Repeatable, < 1 day per language |
 
@@ -374,3 +386,4 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 1.0 | 2026-09-21 | Approved. Repository made public (D-6). |
 | 1.1 | 2026-09-21 | Q-23/Q-24 wording aligned with SDLC v1.1 (where security scans run) |
 | 1.2 | 2026-09-22 | L-12: default currency from the visitor's country (issue #3, requested by owner during UAT of PR #2) |
+| 1.3 | 2026-09-24 | Added F-30 to F-39 (ten more calculators) and phase P3b, requested by the owner to reach AdSense-ready depth before adding a third language |

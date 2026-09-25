@@ -2,6 +2,23 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.3.0] - Unreleased
+
+### Added
+
+- Ten more calculators in English and Spanish (BRD F-30 to F-39): mortgage (with property tax and
+  insurance), home affordability, credit card payoff, fixed deposit, recurring deposit, simple interest,
+  CAGR, retirement, savings goal and inflation. Each has an explainer, worked example, FAQs and methodology.
+- Calculators are grouped into Borrowing, Saving and investing, and Planning on the home page, in the
+  header menu and in the footer. Each calculator links to four hand-picked related calculators.
+
+### Changed
+
+- The calculator engine can show percentages and durations (e.g. "2 years 10 months") as well as money,
+  list extra figures under the breakdown, and show a specific message when inputs break a rule across
+  fields. Rule messages now also appear when the values come from a shared link.
+- End-to-end tests cover every page in the route table; a unit test fails if the list drifts.
+
 ## [0.2.0] - 2026-09-24
 
 ### Added

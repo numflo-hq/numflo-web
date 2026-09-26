@@ -17,7 +17,7 @@ const r = calculateLoan({
   annualRatePct: LOAN_DEFAULTS.rate,
   months: LOAN_DEFAULTS.years * 12,
 });
-const cur = lang === "es" ? "EUR" : "USD";
+const cur = lang === "en" ? "USD" : "EUR";
 const sample = {
   monthly: formatMoney(r.monthlyPayment, lang, cur, 2),
   principal: formatMoney(LOAN_DEFAULTS.amount, lang, cur),

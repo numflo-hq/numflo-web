@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { path, t } from "../i18n";
 const en = t("en");
-const es = t("es");
+const others = (["es", "de"] as const).map((l) => ({ l, d: t(l) }));
 ---
 
 <BaseLayout
@@ -12,7 +12,7 @@ const es = t("es");
   description={en.notFound.text}
   noindex
 >
-  <div class="container-page grid gap-10 py-16 sm:grid-cols-2">
+  <div class="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-3">
     <section>
       <p class="text-accent text-sm font-bold">404</p>
       <h1 class="mt-2 text-3xl font-bold">{en.notFound.title}</h1>
@@ -21,13 +21,15 @@ const es = t("es");
         {en.notFound.back}
       </a>
     </section>
-    <section lang="es">
-      <p class="text-accent text-sm font-bold">404</p>
-      <h2 class="mt-2 text-3xl font-bold">{es.notFound.title}</h2>
-      <p class="text-muted mt-3">{es.notFound.text}</p>
-      <a class="btn-primary mt-6" href={path("home", "es")}>
-        {es.notFound.back}
-      </a>
-    </section>
+    {others.map(({ l, d }) => (
+      <section lang={l}>
+        <p class="text-accent text-sm font-bold">404</p>
+        <h2 class="mt-2 text-3xl font-bold">{d.notFound.title}</h2>
+        <p class="text-muted mt-3">{d.notFound.text}</p>
+        <a class="btn-primary mt-6" href={path("home", l)}>
+          {d.notFound.back}
+        </a>
+      </section>
+    ))}
   </div>
 </BaseLayout>

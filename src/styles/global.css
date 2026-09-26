@@ -94,6 +94,18 @@
     line-height: 1.6;
     min-height: 100dvh;
     overflow-x: clip;
+    /* Long compound words (German) break onto the next line instead of overflowing (BRD R-1). */
+    overflow-wrap: break-word;
+  }
+  :lang(de) {
+    hyphens: auto;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    /* Also lets grid and flex items shrink below a long word's width. */
+    overflow-wrap: anywhere;
   }
   h1,
   h2,

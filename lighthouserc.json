@@ -12,7 +12,9 @@
         "http://localhost:4321/compound-interest-calculator",
         "http://localhost:4321/mortgage-calculator",
         "http://localhost:4321/es/calculadora-de-jubilacion",
-        "http://localhost:4321/credit-card-payoff-calculator"
+        "http://localhost:4321/credit-card-payoff-calculator",
+        "http://localhost:4321/de",
+        "http://localhost:4321/de/baufinanzierungsrechner"
       ],
       "numberOfRuns": 3,
       "settings": {

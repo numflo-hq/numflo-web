@@ -11,7 +11,7 @@ const d = t(lang);
 const year = new Date().getFullYear();
 const issueUrl =
   "https://github.com/numflo-hq/numflo-web/issues/new?labels=content,translation&title=" +
-  encodeURIComponent(lang === "es" ? "Error de traducción" : "Translation issue");
+  encodeURIComponent({ en: "Translation issue", es: "Error de traducción", de: "Übersetzungsfehler" }[lang]);
 ---
 
 <footer class="border-line mt-20 border-t">
@@ -24,7 +24,7 @@ const issueUrl =
     </div>
     <nav
       aria-label={d.site.footerNav}
-      class="text-muted grid grid-cols-2 gap-x-10 gap-y-6 text-sm lg:grid-cols-4"
+      class="text-muted grid grid-cols-2 gap-x-6 gap-y-6 text-sm hyphens-auto [overflow-wrap:anywhere] sm:gap-x-10 lg:grid-cols-4"
     >
       {(Object.keys(CATEGORIES) as Category[]).map((cat) => (
         <div>

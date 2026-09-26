@@ -13,7 +13,7 @@ export function buildLlmsTxt(site: URL): string {
     "",
     `> ${en.meta.home.description}`,
     "",
-    "Numflo is an independent website of free financial calculators in English and Spanish. " +
+    "Numflo is an independent website of free financial calculators in English, Spanish and German. " +
       "Every calculator runs in the browser, supports several currencies with local number formats, " +
       "and explains its formula, a worked example, frequently asked questions and its methodology. " +
       "Results are estimates for information only, not financial advice. Calculator inputs can be " +

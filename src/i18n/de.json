@@ -1,0 +1,1481 @@
+{
+  "site": {
+    "name": "Numflo",
+    "tagline": "Finanzmathe, einfach erklärt.",
+    "skipToContent": "Zum Hauptinhalt springen",
+    "language": "Sprache",
+    "theme": "Dunkelmodus umschalten",
+    "home": "Startseite",
+    "calculators": "Rechner",
+    "footerNote": "Numflo liefert Schätzungen, die nur der Information dienen. Sie sind keine Finanzberatung.",
+    "privacy": "Datenschutz",
+    "reportTranslation": "Übersetzungsfehler melden",
+    "rights": "Numflo",
+    "viewInLanguage": "Diese Seite auf Deutsch ansehen",
+    "dismiss": "Schließen",
+    "breadcrumb": "Brotkrümelnavigation",
+    "about": "Über uns",
+    "terms": "Nutzungsbedingungen",
+    "disclaimer": "Haftungsausschluss",
+    "related": "Ähnliche Rechner",
+    "footerNav": "Links zur Website",
+    "categories": {
+      "borrow": "Kredite",
+      "grow": "Sparen und Geldanlage",
+      "plan": "Planung"
+    },
+    "duration": {
+      "year": {
+        "one": "{n} Jahr",
+        "other": "{n} Jahre"
+      },
+      "month": {
+        "one": "{n} Monat",
+        "other": "{n} Monate"
+      },
+      "join": "{y} und {m}",
+      "never": "Nie"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "Numflo – Kostenlose Finanzrechner in deiner Sprache",
+      "description": "Kostenlose, schnelle und private Finanzrechner. Berechne Kreditraten, Zinsen und mehr auf Deutsch, Englisch oder Spanisch, in deiner Währung."
+    },
+    "loan": {
+      "title": "Kreditrechner – monatliche Rate & EMI | Numflo",
+      "description": "Berechne deine monatliche Kreditrate (EMI), die Zinsen gesamt und den vollständigen Tilgungsplan. Kostenlos, privat und in jeder Währung."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung | Numflo",
+      "description": "Numflo erhebt keine personenbezogenen Daten. Die Berechnungen laufen auf deinem Gerät, deine Eingaben werden weder gesendet noch gespeichert."
+    },
+    "investment": {
+      "title": "Sparplanrechner – Rendite deines Sparplans | Numflo",
+      "description": "Sieh, wie stark ein monatlicher Sparplan wachsen kann – auf Wunsch mit jährlicher Dynamik. Kostenlos, privat und in jeder Währung."
+    },
+    "compound": {
+      "title": "Zinseszinsrechner | Numflo",
+      "description": "Berechne den Zinseszins mit beliebiger Zinsgutschrift und optionalen monatlichen Einzahlungen. Sieh dein Guthaben Jahr für Jahr wachsen."
+    },
+    "about": {
+      "title": "Über Numflo",
+      "description": "Numflo ist ein unabhängiges Projekt für kostenlose, private Finanzrechner mit klaren Erklärungen – auf Deutsch, Englisch und Spanisch."
+    },
+    "terms": {
+      "title": "Nutzungsbedingungen | Numflo",
+      "description": "Die Bedingungen, die gelten, wenn du die kostenlosen Finanzrechner von Numflo und die Informationen auf dieser Website nutzt."
+    },
+    "disclaimer": {
+      "title": "Haftungsausschluss | Numflo",
+      "description": "Die Rechner von Numflo liefern nur Schätzungen zur Information – keine Finanz-, Steuer- oder Rechtsberatung. Was das für dich bedeutet."
+    },
+    "mortgage": {
+      "title": "Baufinanzierungsrechner – Rate mit Grundsteuer | Numflo",
+      "description": "Berechne deine monatliche Rate für die Baufinanzierung inklusive Grundsteuer und Versicherung, Zinsen gesamt und Tilgungsplan. Kostenlos."
+    },
+    "affordability": {
+      "title": "Immobilienbudget-Rechner – Wie viel Haus? | Numflo",
+      "description": "Finde heraus, wie viel Haus du dir leisten kannst – anhand von Einkommen, Schulden, Eigenkapital, Zinssatz und Schuldenquote."
+    },
+    "creditCard": {
+      "title": "Kreditkarten-Tilgungsrechner | Numflo",
+      "description": "Sieh, wie lange du brauchst, um deine Kreditkarte abzubezahlen, was dich das an Zinsen kostet und welche Rate dich in 3 Jahren schuldenfrei macht."
+    },
+    "fd": {
+      "title": "Festgeldrechner – Zinsen und Endbetrag | Numflo",
+      "description": "Berechne Endbetrag und Zinsen deines Festgelds bei vierteljährlicher, monatlicher oder jährlicher Zinsgutschrift. Kostenlos und privat."
+    },
+    "rd": {
+      "title": "Ratensparrechner – Endbetrag berechnen | Numflo",
+      "description": "Berechne Endbetrag und Zinsen eines Ratensparvertrags mit monatlichen Einzahlungen und vierteljährlicher Zinsgutschrift. Kostenlos und privat."
+    },
+    "simple": {
+      "title": "Zinsrechner (einfache Zinsen) | Numflo",
+      "description": "Berechne einfache Zinsen und den Endbetrag für jeden Betrag, Zinssatz und Zeitraum – im Vergleich zum Zinseszins. Kostenlos und privat."
+    },
+    "cagr": {
+      "title": "CAGR-Rechner – durchschnittliches Wachstum | Numflo",
+      "description": "Berechne die durchschnittliche jährliche Wachstumsrate (CAGR) zwischen zwei Werten, mit Gesamtrendite und Wachstum Jahr für Jahr."
+    },
+    "retirement": {
+      "title": "Altersvorsorge-Rechner – Wie viel habe ich? | Numflo",
+      "description": "Schätze dein Vorsorgevermögen, seinen Wert in heutiger Kaufkraft und das monatliche Einkommen daraus. Kostenlos, privat, jede Währung."
+    },
+    "savings": {
+      "title": "Sparzielrechner – nötige Sparrate pro Monat | Numflo",
+      "description": "Berechne, wie viel du jeden Monat sparen musst, um dein Sparziel rechtzeitig zu erreichen – inklusive Zinsen und bereits Gespartem."
+    },
+    "inflation": {
+      "title": "Inflationsrechner – künftige Preise & Kaufkraft | Numflo",
+      "description": "Sieh, was Dinge in Zukunft kosten und wie die Inflation Jahr für Jahr die Kaufkraft deines Geldes senkt. Kostenlos und privat."
+    }
+  },
+  "home": {
+    "heading": "Finanzmathe, einfach erklärt.",
+    "intro": "Kostenlose Rechner, die dir das Ergebnis liefern und erklären, was es bedeutet. Privat von Grund auf: Alles läuft auf deinem Gerät.",
+    "cta": "Zum Kreditrechner",
+    "sectionTitle": "Rechner",
+    "cards": {
+      "loan": {
+        "title": "Kreditrechner",
+        "text": "Monatliche Rate, Zinsen gesamt und ein Tilgungsplan Jahr für Jahr."
+      },
+      "investment": {
+        "title": "Sparplanrechner",
+        "text": "Sieh, wie eine regelmäßige monatliche Geldanlage mit der Zeit wachsen kann."
+      },
+      "compound": {
+        "title": "Zinseszinsrechner",
+        "text": "Verstehe, wie Zinsen auf Zinsen dein Erspartes vermehren."
+      },
+      "mortgage": {
+        "title": "Baufinanzierungsrechner",
+        "text": "Monatliche Rate mit Grundsteuer und Versicherung sowie Zinsen gesamt."
+      },
+      "affordability": {
+        "title": "Immobilienbudget-Rechner",
+        "text": "Wie viel Haus du dir mit deinem Einkommen und deinen Schulden leisten kannst."
+      },
+      "creditCard": {
+        "title": "Kreditkarten-Tilgungsrechner",
+        "text": "Wie lange es dauert, deine Karte abzubezahlen, und was es kostet."
+      },
+      "fd": {
+        "title": "Festgeldrechner",
+        "text": "Endbetrag und Zinsen für eine einmalige Anlage."
+      },
+      "rd": {
+        "title": "Ratensparrechner",
+        "text": "Worauf eine feste monatliche Sparrate anwächst."
+      },
+      "simple": {
+        "title": "Zinsrechner (einfache Zinsen)",
+        "text": "Zinsen nur auf den Anfangsbetrag – im Vergleich zum Zinseszins."
+      },
+      "cagr": {
+        "title": "CAGR-Rechner",
+        "text": "Die jährliche Wachstumsrate zwischen zwei Werten."
+      },
+      "retirement": {
+        "title": "Altersvorsorge-Rechner",
+        "text": "Dein Vermögen zum Ruhestand und das Einkommen, das es dir bringen kann."
+      },
+      "savings": {
+        "title": "Sparzielrechner",
+        "text": "Wie viel du jeden Monat sparen musst, um dein Ziel zu erreichen."
+      },
+      "inflation": {
+        "title": "Inflationsrechner",
+        "text": "Künftige Preise und was du dir für dein Geld leisten kannst."
+      }
+    },
+    "why": {
+      "title": "Warum Numflo",
+      "items": [
+        {
+          "title": "Erklärt, nicht nur berechnet",
+          "text": "Zu jedem Ergebnis gibt es eine verständliche Erklärung, die Formel und ein Rechenbeispiel."
+        },
+        {
+          "title": "Deine Sprache, deine Währung",
+          "text": "Wechsle Sprache und Währung unabhängig voneinander – mit lokalen Zahlenformaten."
+        },
+        {
+          "title": "Privat von Grund auf",
+          "text": "Keine Anmeldung und keine Tracking-Cookies. Deine Eingaben verlassen nie dein Gerät."
+        }
+      ]
+    }
+  },
+  "loan": {
+    "heading": "Kreditrechner",
+    "lead": "Berechne deine monatliche Rate (EMI), die Zinsen gesamt und deinen Tilgungsplan.",
+    "inputs": {
+      "legend": "Angaben zum Kredit",
+      "amount": "Kreditbetrag",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Laufzeit",
+      "yearsUnit": "Jahre",
+      "currency": "Währung"
+    },
+    "errors": {
+      "amount": "Gib einen Betrag zwischen 1 und 1.000.000.000 ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 50 % ein.",
+      "years": "Gib eine Laufzeit zwischen 1 und 40 Jahren ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "monthly": "Monatliche Rate",
+      "principal": "Kreditbetrag",
+      "interest": "Zinsen gesamt",
+      "total": "Gesamtbetrag",
+      "chartLabel": "Anteil von Kreditbetrag und Zinsen am Gesamtbetrag",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert",
+      "summary": "Monatliche Rate {monthly} über {years} Jahre. Zinsen gesamt {interest}. Gesamtbetrag {total}."
+    },
+    "schedule": {
+      "title": "Tilgungsplan",
+      "caption": "Tilgung, Zinsen und Restschuld im Überblick nach Jahren",
+      "year": "Jahr",
+      "principal": "Tilgung",
+      "interest": "Gezahlte Zinsen",
+      "balance": "Restschuld"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Ein Kreditrechner zeigt dir die gleichbleibende monatliche Rate, mit der du einen Kredit über eine feste Laufzeit zurückzahlst, und wie viel davon auf Zinsen entfällt. In vielen Ländern heißt diese Rate EMI (Equated Monthly Instalment, also gleichbleibende Monatsrate).",
+      "sections": [
+        {
+          "title": "So wird die monatliche Rate berechnet",
+          "paragraphs": [
+            "Die meisten Ratenkredite, Autokredite und Immobilienkredite sind Annuitätendarlehen: Du zahlst jeden Monat denselben Betrag, und jede Rate deckt die Zinsen des Monats plus einen Teil des geliehenen Betrags (die Tilgung).",
+            "Die übliche Formel lautet: Rate = P × r × (1 + r)^n ÷ ((1 + r)^n − 1). Dabei ist P der Kreditbetrag, r der monatliche Zinssatz (Jahreszins geteilt durch 12) und n die Anzahl der Monatsraten."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du leihst dir 250.000 zu 7,5 % pro Jahr für 20 Jahre. Der monatliche Zinssatz beträgt 7,5 ÷ 12 = 0,625 %, und es fallen 240 Raten an.",
+            "Die monatliche Rate liegt bei rund 2.013,98. Über 20 Jahre zahlst du insgesamt 483.355,92, davon 233.355,92 Zinsen – fast so viel wie der ursprüngliche Kredit.",
+            "Im ersten Monat entfallen 1.562,50 der Rate auf Zinsen und nur 451,48 auf die Tilgung. Die Restschuld sinkt jeden Monat schneller, sodass spätere Raten überwiegend in die Tilgung fließen."
+          ]
+        },
+        {
+          "title": "Warum die ersten Raten vor allem Zinsen sind",
+          "paragraphs": [
+            "Zinsen werden auf die Restschuld berechnet. Zu Beginn ist sie am höchsten, also ist auch der Zinsanteil jeder Rate am höchsten. Sinkt die Restschuld, fließt mehr von jeder Rate in die Tilgung. Der Tilgungsplan oben zeigt diese Verschiebung Jahr für Jahr."
+          ]
+        },
+        {
+          "title": "So zahlst du weniger Zinsen",
+          "paragraphs": [
+            "Wähle eine kürzere Laufzeit: Die monatliche Rate steigt, aber die Zinsen gesamt sinken deutlich.",
+            "Vergleiche Zinssätze: Schon ein halber Prozentpunkt macht über viele Jahre viel aus.",
+            "Leih dir weniger: Mehr Eigenkapital senkt sowohl die Rate als auch die Zinsen.",
+            "Leiste Sondertilgungen, wenn du kannst: Früh gezahltes Geld senkt die Restschuld, auf die Zinsen anfallen. Prüfe vorher, ob deine Bank dafür eine Vorfälligkeitsentschädigung oder Gebühr verlangt."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Was ist eine EMI?",
+          "a": "EMI steht für „Equated Monthly Instalment“, also eine gleichbleibende Monatsrate. Das ist der feste Betrag, den du jeden Monat zahlst, bis der Kredit getilgt ist. Er enthält Zinsen und Tilgung und entspricht der monatlichen Rate, die dieser Rechner anzeigt."
+        },
+        {
+          "q": "Sind Gebühren, Versicherungen oder Steuern im Ergebnis enthalten?",
+          "a": "Nein. Der Rechner berücksichtigt nur Tilgung und Zinsen. Banken können Bearbeitungsgebühren, Versicherungen oder Steuern hinzufügen, sodass deine tatsächliche Rate höher ausfallen kann. Frag deine Bank nach den Gesamtkosten, die oft als effektiver Jahreszins angegeben werden."
+        },
+        {
+          "q": "Was ist, wenn mein Zinssatz variabel ist?",
+          "a": "Der Rechner geht von einem festen Zinssatz über die gesamte Laufzeit aus. Bei einem variablen Zinssatz ändert sich deine Rate, sobald sich der Zins ändert. Gib verschiedene Zinssätze ein, um zu sehen, wie stark sich deine Rate verändern könnte."
+        },
+        {
+          "q": "Werden meine Eingaben irgendwo gespeichert?",
+          "a": "Nein. Alle Berechnungen laufen in deinem Browser. Nichts, was du eingibst, wird an Numflo gesendet oder auf einem Server gespeichert."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Die Ergebnisse beruhen auf der üblichen Annuitätenformel mit monatlicher Verzinsung und festem Zinssatz. Die Werte werden nur für die Anzeige gerundet; gerechnet wird mit voller Genauigkeit.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Die tatsächlichen Kreditkonditionen hängen von deiner Bank ab."
+    }
+  },
+  "privacy": {
+    "heading": "Datenschutzerklärung",
+    "updated": "Zuletzt aktualisiert",
+    "paragraphs": [
+      "Numflo ist auf Privatsphäre ausgelegt. Wir verlangen kein Benutzerkonto und erheben keine personenbezogenen Daten.",
+      "Alles, was du in einen Rechner eingibst, bleibt auf deinem Gerät. Die Berechnungen laufen in deinem Browser und werden niemals an uns gesendet oder auf einem Server gespeichert.",
+      "Um Beträge in deiner Währung anzuzeigen, fragt der Rechner bei Cloudflare, unserem Hosting-Anbieter, ab, aus welchem Land dein Besuch kommt. Verwendet wird nur der Ländercode. Er wird nur für den aktuellen Besuch in deinem Browser gespeichert und nirgendwohin weitergegeben. Wenn du selbst eine Währung auswählst, hat deine Wahl immer Vorrang.",
+      "Deine Einstellungen für Sprache, Design und Währung werden in deinem eigenen Browser (Local Storage) gespeichert, damit die Website sie beim nächsten Mal kennt. Du kannst sie jederzeit in deinen Browsereinstellungen löschen.",
+      "Wir messen Besuche mit Cloudflare Web Analytics. Der Dienst verwendet keine Cookies und verfolgt dich nicht über andere Websites hinweg. Er erfasst anonyme Gesamtwerte wie Seitenaufrufe.",
+      "Wenn sich diese Erklärung ändert, etwa weil künftig Werbung hinzukommt, wird zuerst diese Seite aktualisiert und erklärt, was sich ändert."
+    ],
+    "contact": "Fragen zum Datenschutz? Eröffne ein Issue in unserem öffentlichen GitHub-Repository."
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "back": "Zur Startseite"
+  },
+  "investment": {
+    "heading": "Sparplanrechner",
+    "lead": "Sieh dir an, wie ein monatlicher Sparplan (SIP) über die Jahre wachsen könnte.",
+    "inputs": {
+      "legend": "Angaben zur Geldanlage",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "monthly": "Monatliche Sparrate",
+      "rate": "Erwartete Rendite (pro Jahr)",
+      "years": "Anlagedauer",
+      "stepup": "Jährliche Dynamik (optional)",
+      "hints": {
+        "stepup": "Erhöhe deine monatliche Sparrate jedes Jahr um diesen Prozentsatz."
+      }
+    },
+    "errors": {
+      "monthly": "Gib einen Betrag zwischen 1 und 10.000.000 ein.",
+      "rate": "Gib eine Rendite zwischen 0 % und 30 % ein.",
+      "years": "Gib eine Anlagedauer zwischen 1 und 50 Jahren ein.",
+      "stepup": "Gib eine Dynamik zwischen 0 % und 50 % ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "value": "Geschätzter Endwert",
+      "invested": "Eingezahlter Betrag",
+      "gains": "Geschätzte Erträge",
+      "chartLabel": "Anteil von eingezahltem Betrag und geschätzten Erträgen am Endwert",
+      "summary": "Wenn du {years} Jahre lang {monthly} im Monat anlegst, könnten daraus {value} werden: {invested} eingezahlt und {gains} geschätzte Erträge.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Eingezahlter Betrag, geschätzte Erträge und Wert im Überblick nach Jahren",
+      "year": "Jahr",
+      "invested": "Eingezahlt",
+      "gains": "Erträge",
+      "value": "Wert"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Ein Sparplanrechner schätzt, was regelmäßiges monatliches Anlegen nach einigen Jahren wert sein könnte und wie viel davon aus deinen eigenen Einzahlungen und wie viel aus Wertzuwachs stammt. In Indien heißt das SIP (Systematic Investment Plan); anderswo spricht man oft von Durchschnittskosteneffekt (Cost-Average-Effekt) oder einfach von einem monatlichen Sparplan.",
+      "sections": [
+        {
+          "title": "So wird die Schätzung berechnet",
+          "paragraphs": [
+            "Jeden Monat zahlst du denselben Betrag ein, und alles bereits Angelegte wächst mit der erwarteten Rendite weiter. Weil Erträge auf früheren Erträgen aufbauen, steigt der Wert in späteren Jahren schneller.",
+            "Der Rechner nutzt die übliche Formel für Einzahlungen jeweils zu Monatsbeginn: Wert = P × ((1 + i)^n − 1) ÷ i × (1 + i). Dabei ist P die monatliche Sparrate, i die monatliche Rendite (Jahresrendite geteilt durch 12) und n die Anzahl der Monate. Mit jährlicher Dynamik steigt die monatliche Sparrate alle 12 Monate um diesen Prozentsatz."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du legst 20 Jahre lang 500 im Monat an, bei erwarteten 8 % pro Jahr. Insgesamt zahlst du 120.000 ein, und die Geldanlage könnte auf rund 296.474 wachsen – etwa 176.474 stammen also aus Wertzuwachs statt aus deinem eigenen Geld.",
+            "Erhöhst du die monatliche Sparrate jedes Jahr um 10 %, ändert sich das Ergebnis deutlich: Du zahlst insgesamt 343.650 ein, und der Wert könnte rund 663.746 erreichen. Kleine, regelmäßige Erhöhungen, zum Beispiel passend zu Gehaltserhöhungen, machen über lange Zeiträume viel aus."
+          ]
+        },
+        {
+          "title": "Warum Zeit wichtiger ist als der richtige Zeitpunkt",
+          "paragraphs": [
+            "Der größte Hebel in der Formel ist die Anzahl der Monate. Fünf Jahre früher zu starten bringt oft mehr als eine höhere Sparrate, mit der du später beginnst. Wenn du jeden Monat einen festen Betrag anlegst, kaufst du außerdem bei niedrigen Kursen mehr Anteile und bei hohen weniger – das glättet die Schwankungen am Markt."
+          ]
+        },
+        {
+          "title": "Eine realistische Rendite wählen",
+          "paragraphs": [
+            "Nimm einen Wert, der zu deiner tatsächlichen Anlage passt. Die langfristigen Durchschnitte unterscheiden sich stark zwischen Sparkonten, Anleihen und Aktien, und vergangene Renditen garantieren keine künftigen.",
+            "Denk daran, dass Gebühren und Inflation die reale Rendite schmälern. Probier auch eine niedrigere Rendite aus, um eine vorsichtigere Schätzung zu sehen, und prüfe, wie stark das Ergebnis vom gewählten Wert abhängt."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Was ist ein SIP?",
+          "a": "Ein SIP (Systematic Investment Plan) ist ein Sparplan: Du legst in regelmäßigen Abständen, meist monatlich, einen festen Betrag in einen Investmentfonds oder ein ähnliches Produkt an. Dieser Rechner funktioniert für jede regelmäßige monatliche Geldanlage, egal wie sie bei dir heißt."
+        },
+        {
+          "q": "Sind die Renditen garantiert?",
+          "a": "Nein. Die erwartete Rendite ist eine Annahme, kein Versprechen. Echte Geldanlagen schwanken, und der tatsächliche Wert kann höher oder niedriger als diese Schätzung ausfallen."
+        },
+        {
+          "q": "Sind Steuern, Gebühren oder Inflation im Ergebnis enthalten?",
+          "a": "Nein. Der Rechner zeigt einen Wert vor Steuern, Fondsgebühren und Inflation. Um näher an einen realen Wert zu kommen, zieh deine erwarteten Gebühren und die Inflation von der erwarteten Rendite ab."
+        },
+        {
+          "q": "Was bewirkt die jährliche Dynamik?",
+          "a": "Sie erhöht deine monatliche Sparrate jedes Jahr um einen festen Prozentsatz. Mit 10 % werden zum Beispiel aus 500 im Monat im zweiten Jahr 550 und im dritten 605. Lass sie bei 0 %, wenn der Betrag gleich bleiben soll."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Die Einzahlungen erfolgen jeweils zu Monatsbeginn, und die Erträge werden monatlich mit der erwarteten Jahresrendite geteilt durch 12 verzinst. Die optionale jährliche Dynamik wird alle 12 Monate angewendet. Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Geldanlagen können an Wert verlieren; vergangene Wertentwicklungen sind keine Garantie für künftige Ergebnisse."
+    }
+  },
+  "compound": {
+    "heading": "Zinseszinsrechner",
+    "lead": "Sieh dir an, wie Zinsen auf Zinsen dein Erspartes wachsen lassen.",
+    "inputs": {
+      "legend": "Angaben zum Sparen",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "principal": "Startbetrag",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Anlagedauer",
+      "frequency": "Zinsgutschrift",
+      "contribution": "Monatliche Einzahlung (optional)",
+      "options": {
+        "frequency": {
+          "1": "Jährlich",
+          "2": "Halbjährlich",
+          "4": "Vierteljährlich",
+          "12": "Monatlich",
+          "365": "Täglich"
+        }
+      },
+      "hints": {
+        "contribution": "Wird am Ende jedes Monats eingezahlt."
+      }
+    },
+    "errors": {
+      "principal": "Gib einen Startbetrag zwischen 0 und 1.000.000.000 ein oder füge eine monatliche Einzahlung hinzu.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 30 % ein.",
+      "years": "Gib eine Anlagedauer zwischen 1 und 50 Jahren ein.",
+      "contribution": "Gib eine Einzahlung zwischen 0 und 10.000.000 ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "balance": "Endguthaben",
+      "deposits": "Einzahlungen gesamt",
+      "interest": "Zinsen gesamt",
+      "chartLabel": "Anteil von Einzahlungen und Zinsen am Endguthaben",
+      "summary": "Mit {principal} Startbetrag und {contribution} Einzahlung pro Monat zu {rate} % über {years} Jahre erreichst du ein Endguthaben von {balance}: {deposits} eingezahlt und {interest} Zinsen.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Einzahlungen, erhaltene Zinsen und Guthaben im Überblick nach Jahren",
+      "year": "Jahr",
+      "deposits": "Einzahlungen",
+      "interest": "Zinsen",
+      "balance": "Guthaben"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Zinseszins bedeutet, dass du nicht nur auf dein eingezahltes Geld Zinsen bekommst, sondern auch auf die bereits erhaltenen Zinsen. Dieser Rechner zeigt, wie ein Startbetrag und optionale monatliche Einzahlungen bei einem bestimmten Zinssatz und einer bestimmten Zinsgutschrift über die Zeit wachsen.",
+      "sections": [
+        {
+          "title": "Wie Zinseszinsen funktionieren",
+          "paragraphs": [
+            "Mit einfachen Zinsen bringen 10.000 zu 5 % jedes Jahr 500. Mit Zinseszins werden die 500 aus dem ersten Jahr dem Guthaben gutgeschrieben, sodass die Zinsen im zweiten Jahr auf 10.500 berechnet werden, und so weiter. Der Effekt ist anfangs klein und wächst jedes Jahr.",
+            "Die Formel für eine einmalige Einzahlung lautet: Guthaben = P × (1 + r/m)^(m × t). Dabei ist P der Startbetrag, r der Jahreszinssatz, m die Anzahl der Zinsgutschriften pro Jahr und t die Anzahl der Jahre."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du legst 10.000 für 10 Jahre auf ein Konto mit 5 % pro Jahr. Bei jährlicher Zinsgutschrift wächst der Betrag auf 16.288,95, bei monatlicher auf 16.470,09 und bei täglicher auf 16.486,65. Häufigere Zinsgutschriften helfen, aber viel weniger als ein höherer Zinssatz oder eine längere Anlagedauer.",
+            "Zahlst du zusätzlich jeden Monat 200 ein, bei 6 % mit monatlicher Zinsgutschrift über 20 Jahre, wachsen 10.000 Startbetrag auf rund 125.510. Du zahlst insgesamt 58.000 ein; die übrigen 67.510 sind Zinsen."
+          ]
+        },
+        {
+          "title": "Die 72er-Regel",
+          "paragraphs": [
+            "Eine schnelle Faustregel, wie lange es dauert, bis sich Geld verdoppelt: Teile 72 durch den jährlichen Zinssatz. Bei 6 % verdoppelt sich Geld in etwa 12 Jahren, bei 9 % in etwa 8 Jahren. Der Rechner liefert den genauen Wert, aber die Regel hilft, Angebote im Kopf zu vergleichen."
+          ]
+        },
+        {
+          "title": "So lässt du den Zinseszins für dich arbeiten",
+          "paragraphs": [
+            "Fang früh an: Zeit ist der stärkste Faktor in der Formel.",
+            "Zahl regelmäßig ein: Auch kleine Einzahlungen profitieren vom Zinseszins.",
+            "Vergleiche den effektiven Jahreszins (oft als APY oder AER angegeben): Er berücksichtigt die Häufigkeit der Zinsgutschrift bereits und ist daher der fairste Weg, Konten zu vergleichen.",
+            "Achte auf Gebühren und Inflation – sie verringern, was du dir von deinem Geld tatsächlich leisten kannst."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Was ist der Unterschied zwischen einfachen Zinsen und Zinseszins?",
+          "a": "Einfache Zinsen werden nur auf den ursprünglichen Betrag gezahlt. Zinseszins wird auf den ursprünglichen Betrag plus die bereits erhaltenen Zinsen gezahlt, sodass das Guthaben mit der Zeit schneller wächst."
+        },
+        {
+          "q": "Welche Zinsgutschrift soll ich wählen?",
+          "a": "Nimm die Häufigkeit, die deine Bank oder dein Produkt angibt: Sparkonten schreiben Zinsen oft täglich oder monatlich gut, manche Festgelder jährlich. Wenn du unsicher bist, ist monatlich eine sinnvolle Voreinstellung."
+        },
+        {
+          "q": "Wie werden monatliche Einzahlungen berücksichtigt?",
+          "a": "Jede Einzahlung wird am Monatsende gutgeschrieben und ab dem Folgemonat verzinst – mit dem entsprechenden Monatszins der gewählten Zinsgutschrift."
+        },
+        {
+          "q": "Sind Steuern oder Inflation im Ergebnis enthalten?",
+          "a": "Nein. Zinsen können in deinem Land steuerpflichtig sein, und die Inflation verringert, was du dir vom Endguthaben leisten kannst. Betrachte das Ergebnis als nominale Schätzung vor Steuern."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Die Zinsen werden mit der gewählten Häufigkeit gutgeschrieben. Um diese Häufigkeit mit monatlichen Einzahlungen zu kombinieren, wird jeden Monat der entsprechende Monatszins (1 + r/m)^(m/12) − 1 angewendet. Ohne Einzahlungen ergibt das genau P × (1 + r/m)^(m × t). Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Die tatsächlichen Zinsen hängen von den Konditionen und Gebühren deiner Bank sowie von Steuern ab."
+    }
+  },
+  "about": {
+    "heading": "Über Numflo",
+    "paragraphs": [
+      "Numflo ist ein unabhängiges Projekt, das kostenlose Finanzrechner entwickelt, denen man vertrauen kann. Jeder Rechner liefert dir das Ergebnis und erklärt in verständlicher Sprache, was es bedeutet – auf Deutsch, Englisch und Spanisch.",
+      "Am Anfang stand eine einfache Beobachtung: Die meisten Rechner-Websites gibt es nur auf Englisch, sie sind mit Werbung überladen und liefern eine nackte Zahl ohne Erklärung. Numflo will das Gegenteil sein: schnell, übersichtlich, privat und wirklich nützlich.",
+      "So entstehen die Rechner: Jede Formel basiert auf der üblichen Finanzmathematik und wird vor jeder Veröffentlichung durch automatisierte Tests mit unabhängig berechneten Referenzwerten abgeglichen. Jede Seite zeigt die verwendete Formel, ein Rechenbeispiel und wann sie zuletzt geprüft wurde.",
+      "So wird deine Privatsphäre geschützt: Es gibt keine Konten und keine Tracking-Cookies, und alles, was du eingibst, bleibt auf deinem Gerät. Der Code ist Open Source und kann auf GitHub öffentlich geprüft werden.",
+      "Numflo ist weder Bank noch Kreditgeber oder Finanzberater und verkauft keine Finanzprodukte. Die Rechner sind Werkzeuge, die dir helfen, deine Möglichkeiten zu verstehen. Für Entscheidungen über dein eigenes Geld wende dich an eine qualifizierte Fachperson.",
+      "Du hast einen Fehler, eine unklare Erklärung oder einen Übersetzungsfehler entdeckt? Sag uns bitte Bescheid, indem du ein Issue in unserem öffentlichen GitHub-Repository eröffnest. Wir lesen jede Meldung."
+    ]
+  },
+  "terms": {
+    "heading": "Nutzungsbedingungen",
+    "paragraphs": [
+      "Mit der Nutzung von numflo.com stimmst du diesen Bedingungen zu. Wenn du nicht einverstanden bist, nutze die Website bitte nicht.",
+      "Numflo wird kostenlos, im vorliegenden Zustand und nach Verfügbarkeit bereitgestellt. Wir geben uns große Mühe, die Rechner genau zu halten, garantieren aber nicht, dass die Website jederzeit verfügbar, fehlerfrei oder für deinen konkreten Zweck geeignet ist.",
+      "Die Ergebnisse sind Schätzungen auf Grundlage deiner Eingaben und der auf jeder Seite erläuterten Annahmen. Sie sind weder ein Angebot noch eine verbindliche Konditionsauskunft oder eine Empfehlung und stellen keine Finanz-, Steuer- oder Rechtsberatung dar. Für Entscheidungen, die du auf ihrer Grundlage triffst, bist du selbst verantwortlich.",
+      "Soweit gesetzlich zulässig, haftet Numflo nicht für Verluste oder Schäden, die aus der Nutzung der Website oder ihrer Ergebnisse oder aus dem Vertrauen darauf entstehen.",
+      "Du darfst die Rechner für private und gewerbliche Zwecke nutzen und Links zu Ergebnissen teilen. Bitte missbrauche die Website nicht, zum Beispiel indem du versuchst, sie zu stören, zu überlasten oder auf eine Weise darauf zuzugreifen, für die sie nicht vorgesehen ist.",
+      "Der Name Numflo, das Logo, die Texte und das Design sind geschützt. Der Quellcode ist auf GitHub zu den im Repository genannten Bedingungen veröffentlicht.",
+      "Links zu anderen Websites dienen nur der Bequemlichkeit; für deren Inhalte sind wir nicht verantwortlich.",
+      "Wir können diese Bedingungen aktualisieren. Änderungen treten mit ihrer Veröffentlichung auf dieser Seite in Kraft; das Datum oben zeigt die aktuelle Fassung."
+    ]
+  },
+  "disclaimer": {
+    "heading": "Haftungsausschluss",
+    "paragraphs": [
+      "Die Rechner und Informationen auf Numflo dienen ausschließlich der allgemeinen Information und Bildung.",
+      "Nichts auf dieser Website ist eine Finanz-, Anlage-, Steuer- oder Rechtsberatung, und nichts ist eine Empfehlung, ein Finanzprodukt zu kaufen, zu verkaufen oder zu halten. Numflo kennt deine persönlichen Umstände nicht.",
+      "Die Ergebnisse sind Schätzungen. Sie hängen von deinen Eingaben und von vereinfachenden Annahmen ab, etwa einem festen Zinssatz oder einer gleichbleibenden Rendite, die in der Realität selten genau zutreffen. Tatsächliche Kreditraten, Zinsen und Anlagerenditen werden abweichen, und Geldanlagen können an Wert verlieren.",
+      "Gebühren, Steuern, Versicherungen und Inflation sind nicht berücksichtigt, sofern eine Seite nichts anderes angibt. Die Auswahl der Währung ändert nur die Anzeige der Beträge; eine Währungsumrechnung findet nicht statt.",
+      "Prüfe vor finanziellen Entscheidungen die genauen Konditionen bei deiner Bank, deinem Kreditgeber oder Produktanbieter und ziehe in Betracht, dich von einer qualifizierten, unabhängigen Fachperson beraten zu lassen."
+    ]
+  },
+  "mortgage": {
+    "heading": "Baufinanzierungsrechner",
+    "lead": "Berechne deine monatliche Rate für die Baufinanzierung – inklusive Grundsteuer und Wohngebäudeversicherung.",
+    "inputs": {
+      "legend": "Angaben zu Immobilie und Kredit",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "price": "Kaufpreis",
+      "down": "Eigenkapital",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Laufzeit",
+      "tax": "Grundsteuer (pro Jahr)",
+      "insurance": "Wohngebäudeversicherung (pro Jahr)"
+    },
+    "errors": {
+      "price": "Gib einen Kaufpreis zwischen 1 und 1.000.000.000 ein.",
+      "down": "Gib ein Eigenkapital zwischen 0 % und 100 % ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 30 % ein.",
+      "years": "Gib eine Laufzeit zwischen 1 und 40 Jahren ein.",
+      "tax": "Gib einen Grundsteuersatz zwischen 0 % und 10 % ein.",
+      "insurance": "Gib einen Betrag zwischen 0 und 1.000.000 ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "monthly": "Monatliche Rate",
+      "pi": "Zins und Tilgung",
+      "costs": "Grundsteuer und Versicherung",
+      "loanAmount": "Kreditbetrag",
+      "downPayment": "Eigenkapital",
+      "totalInterest": "Zinsen gesamt über die Laufzeit",
+      "chartLabel": "Anteil von Kreditrate und Immobilienkosten an der monatlichen Rate",
+      "summary": "Eine Immobilie für {price} mit {down} % Eigenkapital zu {rate} % über {years} Jahre kostet {monthly} im Monat: {pi} Zins und Tilgung plus {costs} Grundsteuer und Versicherung. Kreditbetrag {loanAmount}; Zinsen gesamt {totalInterest}.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Tilgung nach Jahren",
+      "caption": "Tilgung, gezahlte Zinsen und Restschuld im Überblick nach Jahren",
+      "year": "Jahr",
+      "principal": "Tilgung",
+      "interest": "Zinsen",
+      "balance": "Restschuld"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Die monatlichen Kosten einer Baufinanzierung bestehen aus mehr als der Kreditrate. Dieser Rechner addiert Grundsteuer und Wohngebäudeversicherung zu Zins und Tilgung, sodass du den vollen Betrag siehst, der jeden Monat von deinem Konto abgeht – dazu die Restschuld Jahr für Jahr.",
+      "sections": [
+        {
+          "title": "Woraus sich die monatliche Rate zusammensetzt",
+          "paragraphs": [
+            "Zins und Tilgung zahlen den Kredit selbst zurück. Bei einem festen Zinssatz bleibt die Rate gleich, aber die Aufteilung ändert sich: Die ersten Raten sind überwiegend Zinsen, spätere überwiegend Tilgung.",
+            "Grundsteuer und Wohngebäudeversicherung werden in manchen Ländern, etwa in den USA, oft zusammen mit der Rate eingezogen und auf einem Treuhandkonto verwahrt. Auch wenn du sie getrennt bezahlst, gehören sie zu dem, was dich die Immobilie jeden Monat kostet."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Bei einer Immobilie für 400.000 mit 20 % Eigenkapital (80.000) bleibt ein Kredit von 320.000. Bei 6,5 % über 30 Jahre betragen Zins und Tilgung 2.022,62 im Monat. Eine Grundsteuer von 1,1 % pro Jahr kommt mit 366,67 hinzu und eine Versicherung von 1.500 pro Jahr mit 125,00 – insgesamt 2.514,28 im Monat.",
+            "Über 30 Jahre zahlst du 408.142 Zinsen, mehr als der Kredit selbst. Derselbe Kredit über 15 Jahre kostet 2.787,54 im Monat für Zins und Tilgung, aber nur 181.758 Zinsen."
+          ]
+        },
+        {
+          "title": "So senkst du deine Rate",
+          "paragraphs": [
+            "Mehr Eigenkapital verkleinert den Kredit. Mit 10 % statt 20 % Eigenkapital steigen Zins und Tilgung im Beispiel von 2.022,62 auf 2.275,44 im Monat, und manche Banken verlangen zusätzlich eine Kreditausfallversicherung.",
+            "Ein niedrigerer Zinssatz wirkt sich vor allem bei langen Laufzeiten aus, also vergleiche Angebote mehrerer Banken. Eine längere Laufzeit senkt die Rate, erhöht aber die Zinsen gesamt."
+          ]
+        },
+        {
+          "title": "Kosten, die dieser Rechner nicht berücksichtigt",
+          "paragraphs": [
+            "Eine Kreditausfallversicherung (in den USA: PMI), Hausgeld an die Eigentümergemeinschaft, Instandhaltung und Kaufnebenkosten sind nicht enthalten. Plane sie separat in dein Budget ein oder trag regelmäßige Gebühren als Jahresbetrag im Feld für die Versicherung ein."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Wie wird die monatliche Rate berechnet?",
+          "a": "Die Kreditrate folgt der üblichen Annuitätenformel: Rate = L × r × (1 + r)^n / ((1 + r)^n − 1). Dabei ist L der Kreditbetrag, r der monatliche Zinssatz und n die Anzahl der Monate. Grundsteuer und Versicherung werden durch 12 geteilt und addiert."
+        },
+        {
+          "q": "Wie viel Eigenkapital sollte ich einbringen?",
+          "a": "20 % sind ein gängiges Ziel, weil viele Banken dann auf eine Kreditausfallversicherung verzichten, aber viele Kredite sind auch mit weniger möglich. Behalte genug Geld für die Kaufnebenkosten und einen Notgroschen."
+        },
+        {
+          "q": "Funktioniert das auch bei variablem Zinssatz?",
+          "a": "Der Rechner zeigt die Rate für den eingegebenen Zinssatz. Bei einem variablen Zinssatz ändert sich die Rate, sobald der Zins angepasst wird. Probier deshalb einige höhere Zinssätze aus, um zu sehen, was auf dich zukommen könnte."
+        },
+        {
+          "q": "Wo finde ich den Grundsteuersatz?",
+          "a": "Dein Grundsteuerbescheid, das zuständige Finanz- oder Steueramt oder ein aktuelles Immobilienangebot zeigt meist die jährliche Grundsteuer. Teile sie durch den Kaufpreis und multipliziere mit 100, um den Prozentsatz zu erhalten."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Zins und Tilgung folgen der üblichen Annuitätenformel mit festem Zinssatz und monatlichen Raten, r = Jahreszins / 12. Die Grundsteuer ist der Prozentsatz des Kaufpreises pro Jahr, geteilt durch 12; die Versicherung ist der Jahresbetrag geteilt durch 12. Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Das Angebot deiner Bank, die Steuern und die Versicherungskosten werden abweichen."
+    }
+  },
+  "affordability": {
+    "heading": "Immobilienbudget-Rechner",
+    "lead": "Finde heraus, wie viel Haus du dir mit deinem Einkommen, deinen Schulden und deinem Eigenkapital leisten kannst.",
+    "inputs": {
+      "legend": "Deine Finanzen",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "income": "Bruttoeinkommen (pro Jahr)",
+      "debts": "Andere Kreditraten (pro Monat)",
+      "down": "Eigenkapital",
+      "rate": "Zinssatz Baufinanzierung (pro Jahr)",
+      "years": "Laufzeit",
+      "costs": "Grundsteuer, Versicherung und Gebühren (pro Monat)",
+      "dti": "Obergrenze Schuldenquote"
+    },
+    "errors": {
+      "income": "Gib ein Einkommen zwischen 1 und 1.000.000.000 ein.",
+      "debts": "Gib einen Betrag zwischen 0 und 100.000.000 ein.",
+      "debtsRule": "Deine Schulden und Immobilienkosten schöpfen die Einkommensgrenze bereits aus, deshalb ist kein Immobilienkredit möglich. Senke sie oder erhöhe die Obergrenze.",
+      "down": "Gib einen Betrag zwischen 0 und 1.000.000.000 ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 30 % ein.",
+      "years": "Gib eine Laufzeit zwischen 1 und 40 Jahren ein.",
+      "costs": "Gib einen Betrag zwischen 0 und 10.000.000 ein.",
+      "dti": "Gib eine Obergrenze zwischen 10 % und 60 % ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "price": "Kaufpreis, den du dir leisten kannst",
+      "down": "Eigenkapital",
+      "loan": "Kreditbetrag",
+      "payment": "Monatliche Rate für Zins und Tilgung",
+      "housing": "Monatliche Wohnkosten",
+      "chartLabel": "Anteil von Eigenkapital und Kredit am Kaufpreis",
+      "summary": "Mit einem Bruttoeinkommen von {income} pro Jahr, {debts} anderen Kreditraten pro Monat und einer Schuldenquote von höchstens {dti} % kannst du dir eine Immobilie für rund {price} leisten: ein Kredit von {loan} zu {rate} % mit {years} Jahren Laufzeit plus {down} Eigenkapital. Monatliche Rate für Zins und Tilgung: {payment}.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Tilgung nach Jahren",
+      "caption": "Tilgung, gezahlte Zinsen und Restschuld des Kredits im Überblick nach Jahren",
+      "year": "Jahr",
+      "principal": "Tilgung",
+      "interest": "Zinsen",
+      "balance": "Restschuld"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Banken schauen darauf, wie viel deines Einkommens für Schulden draufgeht. Dieser Rechner nimmt den Anteil deines Bruttoeinkommens, den du für alle Kreditraten zulässt, zieht deine bestehenden Schulden und Immobilienkosten ab und ermittelt den höchsten Immobilienkredit, den der Rest zurückzahlen kann. Plus dein Eigenkapital ergibt das den Kaufpreis, den du dir leisten kannst.",
+      "sections": [
+        {
+          "title": "Die Schuldenquote",
+          "paragraphs": [
+            "Die Schuldenquote (englisch: Debt-to-Income, DTI) ist die Summe deiner monatlichen Kreditraten geteilt durch dein monatliches Bruttoeinkommen. In den USA wollen viele Banken höchstens 36 % sehen, manche akzeptieren bis etwa 43 % oder mehr. Andere Länder nutzen andere Maßstäbe, etwa ein Vielfaches des Einkommens in Großbritannien oder einen Anteil am Nettoeinkommen in Indien; deutsche Banken prüfen meist eine Haushaltsrechnung. Informiere dich also, wie Banken bei dir rechnen. Eine niedrigere Obergrenze lässt mehr Spielraum zum Sparen und für Unvorhergesehenes.",
+            "Eine verbreitete Faustregel aus den USA, die 28/36-Regel, besagt außerdem, dass die Wohnkosten allein unter 28 % des Bruttoeinkommens bleiben sollten. Der Rechner wendet jeweils nur eine Obergrenze an: Um beide zu prüfen, rechne zusätzlich mit 28 % und anderen Kreditraten von 0 und nimm den niedrigeren Kaufpreis."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Bei einem Einkommen von 90.000 pro Jahr erlaubt eine Obergrenze von 36 % insgesamt 2.700 im Monat für alle Kreditraten. Zieh 400 für Auto- und Kreditkartenraten und 450 für Grundsteuer und Versicherung ab, dann bleiben 1.850 für die Baufinanzierung.",
+            "Bei 6,5 % über 30 Jahre tilgen 1.850 im Monat einen Kredit von rund 292.690. Mit 60.000 Eigenkapital kannst du dir eine Immobilie für rund 352.690 leisten."
+          ]
+        },
+        {
+          "title": "So kannst du dir mehr leisten",
+          "paragraphs": [
+            "Einen Autokredit oder Kreditkartenschulden abzubezahlen schafft den meisten Spielraum: Pro 100 im Monat weniger an Kreditraten steigt der mögliche Kredit bei 6,5 % über 30 Jahre um rund 15.800. Mehr Eigenkapital und ein niedrigerer Zinssatz helfen ebenfalls.",
+            "Einen Betrag leihen zu können heißt nicht, ihn auch bequem zurückzahlen zu können. Prüfe die monatlichen Wohnkosten anhand deines tatsächlichen Budgets."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Leiht mir eine Bank genau diesen Betrag?",
+          "a": "Es ist eine Schätzung nach einer einfachen Regel. Banken berücksichtigen auch deine Bonität, deinen Job, deine Ersparnisse und eigene Grenzen, die sich je nach Land und Kreditart unterscheiden."
+        },
+        {
+          "q": "Soll ich das Brutto- oder das Nettoeinkommen verwenden?",
+          "a": "In den USA legen Banken die Schuldenquote auf Basis des Bruttoeinkommens fest, also vor Steuern, und dieser Rechner folgt dieser Konvention. Manche Länder nutzen stattdessen das Nettoeinkommen. So oder so hängt dein Budget davon ab, was tatsächlich bei dir ankommt."
+        },
+        {
+          "q": "Was zählt zu den anderen Kreditraten?",
+          "a": "Mindestraten für Kreditkarten, Autokredite, Studienkredite, Ratenkredite und alle anderen regelmäßigen Schulden. Alltägliche Ausgaben wie Lebensmittel und Nebenkosten zählen nicht dazu."
+        },
+        {
+          "q": "Warum fällt das Ergebnis auf das Eigenkapital zurück?",
+          "a": "Wenn deine Schulden und Immobilienkosten die Obergrenze bereits ausschöpfen, bleibt nichts für einen Immobilienkredit übrig. Der Rechner markiert dann deine Schulden, damit du sie oder die Obergrenze anpassen kannst."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Zulässige Rate = monatliches Bruttoeinkommen × Obergrenze − andere Kreditraten − Immobilienkosten. Der Kredit ist der Barwert dieser Rate: L = P × (1 − (1 + r)^−n) / r, mit r als monatlichem Zinssatz und n als Anzahl der Monate. Kaufpreis = Kredit + Eigenkapital.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Banken entscheiden nach ihren eigenen Kriterien."
+    }
+  },
+  "creditCard": {
+    "heading": "Kreditkarten-Tilgungsrechner",
+    "lead": "Finde heraus, wie lange es dauert, deine Kreditkartenschulden abzubezahlen, und wie viel Zinsen du dafür zahlst.",
+    "inputs": {
+      "legend": "Angaben zur Karte",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "balance": "Offener Kartensaldo",
+      "apr": "Zinssatz (effektiver Jahreszins)",
+      "payment": "Monatliche Rate"
+    },
+    "errors": {
+      "balance": "Gib einen Saldo zwischen 1 und 100.000.000 ein.",
+      "apr": "Gib einen effektiven Jahreszins zwischen 0 % und 60 % ein.",
+      "payment": "Gib eine Rate zwischen 1 und 10.000.000 ein.",
+      "paymentRule": "Diese Rate ist zu niedrig: Sie muss höher sein als die monatlichen Zinsen und die Schulden innerhalb von 50 Jahren tilgen."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "time": "Dauer bis zur Tilgung",
+      "principal": "Getilgter Betrag",
+      "interest": "Zinsen gesamt",
+      "total": "Gesamtbetrag",
+      "firstInterest": "Zinsen im ersten Monat",
+      "payment36": "Rate, um in 3 Jahren schuldenfrei zu sein",
+      "chartLabel": "Anteil von Tilgung und Zinsen am Gesamtbetrag, den du zahlst",
+      "summary": "Mit {payment} pro Monat brauchst du {time}, um einen Saldo von {balance} bei {apr} % effektivem Jahreszins abzubezahlen. Zinsen gesamt: {interest}; Gesamtbetrag: {total}.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Tilgung nach Jahren",
+      "caption": "Getilgter Betrag, berechnete Zinsen und Restschuld im Überblick nach Jahren",
+      "year": "Jahr",
+      "principal": "Tilgung",
+      "interest": "Zinsen",
+      "balance": "Restschuld"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Kreditkartenzinsen werden jeden Monat auf den noch offenen Betrag berechnet. Die Höhe deiner Rate entscheidet deshalb, wie lange du Schulden hast und wie viel Zinsen du zahlst. Gib deinen Saldo, den effektiven Jahreszins und eine feste monatliche Rate ein, um zu sehen, wann du schuldenfrei bist und was es insgesamt kostet.",
+      "sections": [
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Bei einem Saldo von 5.000 und 22 % effektivem Jahreszins fallen im ersten Monat 91,67 Zinsen an. Mit 200 pro Monat ist die Karte nach 34 Monaten (2 Jahre und 10 Monate) abbezahlt, bei 1.749,88 Zinsen.",
+            "Zahlst du 100 pro Monat, dauert es 137 Monate – über 11 Jahre – und kostet 8.678,06 Zinsen. Mit 300 pro Monat sind es nur 21 Monate und 1.021,60 Zinsen."
+          ]
+        },
+        {
+          "title": "Warum Mindestzahlungen so teuer sind",
+          "paragraphs": [
+            "Mindestzahlungen sind bewusst niedrig angesetzt, oft ein kleiner Prozentsatz des Saldos plus Zinsen. Der Großteil jeder Zahlung fließt dann in die Zinsen, und die Schulden sinken nur sehr langsam. Eine feste Rate über dem Minimum bringt am meisten."
+          ]
+        },
+        {
+          "title": "So wirst du schneller schuldenfrei",
+          "paragraphs": [
+            "Zahle zuerst die Karte mit dem höchsten effektiven Jahreszins ab und leiste bei den anderen nur die Mindestzahlung (Lawinen-Methode). Oder tilge zuerst den kleinsten Saldo, um schnell einen Erfolg zu sehen (Schneeball-Methode).",
+            "Eine Saldoübertragung auf eine Karte mit 0 % kann sich lohnen, wenn du den Betrag vor Ablauf des Angebots tilgst und die Gebühr niedriger ist als die gesparten Zinsen. Nutze die Karte nicht für neue Einkäufe, solange du sie abbezahlst."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Wie werden Kreditkartenzinsen berechnet?",
+          "a": "Jeden Monat werden auf den Saldo Zinsen in Höhe von effektivem Jahreszins ÷ 12 berechnet. Dieser Rechner verwendet diesen Monatszins. Viele Karten berechnen die Zinsen täglich, was zu einem sehr ähnlichen Ergebnis führt."
+        },
+        {
+          "q": "Was passiert, wenn meine Rate zu niedrig ist?",
+          "a": "Ist die Rate nicht höher als die monatlichen Zinsen, sinkt der Saldo nie. Der Rechner weist dich darauf hin und zeigt die Zinsen, die du mindestens übertreffen musst, sowie die Rate, mit der du die Schulden in 3 Jahren tilgst."
+        },
+        {
+          "q": "Sind neue Einkäufe oder Gebühren berücksichtigt?",
+          "a": "Nein. Der Rechner geht davon aus, dass du die Karte nicht mehr nutzt und jeden Monat denselben Betrag zahlst. Neue Ausgaben, Mahngebühren oder eine Zinsänderung verlängern die Laufzeit."
+        },
+        {
+          "q": "Sollte ich zuerst die Karte abbezahlen oder sparen?",
+          "a": "Lege eine kleine Notfallreserve an, damit eine unerwartete Rechnung nicht wieder auf der Karte landet. Steck zusätzliches Geld danach in die Schulden mit dem höchsten Zinssatz. Kreditkartenzinsen sind meist weit höher als Sparzinsen."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Jeden Monat werden Zinsen in Höhe von effektivem Jahreszins ÷ 12 auf den Saldo aufgeschlagen, danach wird die Rate abgezogen; die letzte Rate entspricht nur dem Restbetrag. Eine Tilgung, die länger als 50 Jahre dauern würde, gilt als nie erreicht. Die Rate für 3 Jahre wird mit der üblichen Annuitätenformel berechnet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Maßgeblich sind die Bedingungen, Gebühren und die Zinsberechnung deines Kartenanbieters."
+    }
+  },
+  "fd": {
+    "heading": "Festgeldrechner",
+    "lead": "Berechne den Endbetrag und die Zinsen für dein Festgeld.",
+    "inputs": {
+      "legend": "Angaben zur Anlage",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "principal": "Anlagebetrag",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Laufzeit",
+      "frequency": "Zinsgutschrift",
+      "options": {
+        "frequency": {
+          "1": "Jährlich",
+          "2": "Halbjährlich",
+          "4": "Vierteljährlich",
+          "12": "Monatlich"
+        }
+      }
+    },
+    "errors": {
+      "principal": "Gib einen Betrag zwischen 1 und 1.000.000.000 ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 20 % ein.",
+      "years": "Gib eine Laufzeit zwischen 0,25 und 20 Jahren ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "maturity": "Endbetrag (bei Fälligkeit)",
+      "principal": "Angelegter Betrag",
+      "interest": "Erhaltene Zinsen",
+      "apy": "Effektiver Jahreszins",
+      "chartLabel": "Anteil von Anlagebetrag und Zinsen am Endbetrag",
+      "summary": "Ein Festgeld von {principal} zu {rate} % wächst in {years} Jahren auf {maturity} an. Du erhältst {interest} Zinsen (effektiver Jahreszins {apy}).",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Anlagebetrag, erhaltene Zinsen und Guthaben im Überblick nach Jahren",
+      "year": "Jahr",
+      "deposits": "Anlage",
+      "interest": "Zinsen",
+      "balance": "Guthaben"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Beim Festgeld (auch Termingeld) legst du einen Einmalbetrag für eine feste Laufzeit zu einem festen Zinssatz an. Dieser Rechner zeigt dir, was die Anlage bei Fälligkeit wert ist und wie viel Zinsen sie bringt – passend zur Zinsgutschrift deiner Bank.",
+      "sections": [
+        {
+          "title": "So funktionieren Festgeldzinsen",
+          "paragraphs": [
+            "Viele Banken schreiben die Zinsen vierteljährlich gut, und diese Zinsen werden dann ebenfalls verzinst. Der Endbetrag ist: A = P × (1 + r/m)^(m × t). Dabei ist P der Anlagebetrag, r der Jahreszins, m die Zahl der Zinsgutschriften pro Jahr und t die Laufzeit in Jahren."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du legst 10.000 zu 7 % für 5 Jahre mit vierteljährlicher Zinsgutschrift an. Das Guthaben wächst auf 14.147,78, du erhältst also 4.147,78 Zinsen. Bei jährlicher Zinsgutschrift wären es 14.025,52, bei monatlicher 14.176,25.",
+            "Der effektive Jahreszins von 7 % bei vierteljährlicher Zinsgutschrift beträgt 7,19 %: Diesen Zinssatz bräuchtest du bei jährlicher Zinsgutschrift, um auf denselben Betrag zu kommen."
+          ]
+        },
+        {
+          "title": "Bevor du Geld fest anlegst",
+          "paragraphs": [
+            "Wer ein Festgeld vorzeitig auflöst, zahlt meist eine Strafe, oft in Form eines niedrigeren Zinssatzes auf den gesamten Betrag. Halte eine Notfallreserve an anderer Stelle bereit oder verteile dein Geld auf mehrere Festgelder mit unterschiedlichen Fälligkeiten (Festgeld-Leiter).",
+            "Zinsen können je nach Wohnsitz steuerpflichtig sein, und manche Banken führen die Steuer direkt ab. Vergleiche Festgelder nach ihrer Rendite nach Steuern und mit der Inflation."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Welche Zinsgutschrift soll ich wählen?",
+          "a": "Wähle die, die deine Bank angibt. In Indien ist bei Festgeld die vierteljährliche Zinsgutschrift üblich, anderswo meist die jährliche oder monatliche. Bei täglicher Verzinsung liefert „Monatlich“ ein sehr ähnliches Ergebnis. Werden die Zinsen ausgezahlt statt gutgeschrieben, nutze stattdessen den Rechner für einfache Zinsen."
+        },
+        {
+          "q": "Was ist der effektive Jahreszins?",
+          "a": "Der effektive Jahreszins (Rendite p. a.) rechnet jede Zinsgutschrift in einen einzigen Jahreswert um. So kannst du Festgelder fair vergleichen."
+        },
+        {
+          "q": "Kann ich die Laufzeit in Monaten eingeben?",
+          "a": "Ja, als Bruchteil eines Jahres: 6 Monate sind 0,5 und 18 Monate 1,5 Jahre. Gerechnet wird in ganzen Monaten."
+        },
+        {
+          "q": "Sind Steuern im Ergebnis berücksichtigt?",
+          "a": "Nein. Angezeigt werden die Zinsen vor Steuern. Wird die Steuer direkt abgeführt, erhältst du weniger."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Endbetrag A = P × (1 + r/m)^(m × t). Für die Übersicht nach Jahren wird jeden Monat der gleichwertige Monatszins (1 + r/m)^(m/12) − 1 angewendet; das ergibt bei Fälligkeit dasselbe Ergebnis. Effektiver Jahreszins = (1 + r/m)^m − 1.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Maßgeblich sind Zinssatz und Bedingungen deiner Bank sowie die Steuern."
+    }
+  },
+  "rd": {
+    "heading": "Ratensparrechner",
+    "lead": "Sieh dir an, auf welchen Betrag eine feste monatliche Sparrate bis zum Ende der Laufzeit anwächst.",
+    "inputs": {
+      "legend": "Angaben zum Sparvertrag",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "monthly": "Monatliche Sparrate",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Laufzeit",
+      "frequency": "Zinsgutschrift",
+      "options": {
+        "frequency": {
+          "1": "Jährlich",
+          "2": "Halbjährlich",
+          "4": "Vierteljährlich",
+          "12": "Monatlich"
+        }
+      }
+    },
+    "errors": {
+      "monthly": "Gib eine Sparrate zwischen 1 und 10.000.000 ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 20 % ein.",
+      "years": "Gib eine Laufzeit zwischen 0,5 und 20 Jahren ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "maturity": "Endbetrag (bei Fälligkeit)",
+      "deposits": "Eingezahlt gesamt",
+      "interest": "Erhaltene Zinsen",
+      "chartLabel": "Anteil von Einzahlungen und Zinsen am Endbetrag",
+      "summary": "Wenn du {years} Jahre lang {monthly} pro Monat zu {rate} % sparst, wächst dein Guthaben auf {maturity}: {deposits} Einzahlungen und {interest} Zinsen.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Einzahlungen gesamt, erhaltene Zinsen und Guthaben im Überblick nach Jahren",
+      "year": "Jahr",
+      "deposits": "Einzahlungen",
+      "interest": "Zinsen",
+      "balance": "Guthaben"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Mit einem Ratensparvertrag sparst du jeden Monat denselben Betrag zu einem festen Zinssatz und bekommst am Ende der Laufzeit alles samt Zinsen ausgezahlt. Dieser Rechner zeigt dir den Endbetrag und wie sich dein Guthaben Jahr für Jahr aufbaut.",
+      "sections": [
+        {
+          "title": "So funktionieren die Zinsen beim Ratensparen",
+          "paragraphs": [
+            "Jede monatliche Einzahlung wird ab dem Monat, in dem du sie leistest, bis zum Ende der Laufzeit verzinst – mit der Zinsgutschrift deiner Bank, meist vierteljährlich. Die erste Einzahlung bringt die meisten Zinsen, die letzte die wenigsten.",
+            "Bei vierteljährlicher Zinsgutschrift rechnen Banken so: M = R × ((1 + i)^n − 1) / (1 − (1 + i)^(−1/3)). Dabei ist R die monatliche Sparrate, i der Quartalszins (Jahreszins ÷ 4) und n die Zahl der Quartale."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du sparst 5 Jahre lang 500 pro Monat zu 7 %. Insgesamt zahlst du 30.000 ein und erhältst bei Fälligkeit 35.966,40 – also 5.966,40 Zinsen.",
+            "In Rupien: 5.000 pro Monat zu 7 % über 5 Jahre ergeben bei Fälligkeit 359.663,95 Rupien (₹3,59,663.95 in indischer Schreibweise)."
+          ]
+        },
+        {
+          "title": "Ratensparvertrag oder Sparplan?",
+          "paragraphs": [
+            "Ein Ratensparvertrag bietet eine garantierte, feste Rendite. Ein Sparplan in Fonds kann über lange Zeiträume mehr einbringen, sein Wert schwankt aber. Mit dem Sparplanrechner kannst du beides vergleichen."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Wann wird eingezahlt?",
+          "a": "Zu Beginn jedes Monats, wie bei den meisten Ratensparverträgen der Banken. So wird jede Einzahlung für den ganzen Monat verzinst, in dem sie erfolgt."
+        },
+        {
+          "q": "Was passiert, wenn ich eine Rate auslasse?",
+          "a": "Banken verlangen meist eine kleine Strafgebühr, und manche kündigen den Vertrag nach mehreren ausgelassenen Raten. Der Rechner geht davon aus, dass jede Rate pünktlich gezahlt wird."
+        },
+        {
+          "q": "Kann ich die Laufzeit in Monaten eingeben?",
+          "a": "Ja, als Bruchteil eines Jahres: 6 Monate sind 0,5 und 18 Monate 1,5 Jahre. Gerechnet wird in ganzen Monaten."
+        },
+        {
+          "q": "Muss ich die Zinsen versteuern?",
+          "a": "In vielen Ländern ja, wie andere Zinsen auch. Der Rechner zeigt die Zinsen vor Steuern."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Eingezahlt wird zu Beginn jedes Monats, und jeden Monat wird der gleichwertige Monatszins (1 + r/m)^(m/12) − 1 angewendet. Bei vierteljährlicher Zinsgutschrift ergibt das genau die veröffentlichte Formel M = R × ((1 + i)^n − 1) / (1 − (1 + i)^(−1/3)). Gerundet wird nur für die Anzeige.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Maßgeblich sind Zinssatz und Bedingungen deiner Bank sowie die Steuern."
+    }
+  },
+  "simple": {
+    "heading": "Zinsrechner (einfache Zinsen)",
+    "lead": "Berechne einfache Zinsen und den Gesamtbetrag für jeden Zinssatz und jeden Zeitraum.",
+    "inputs": {
+      "legend": "Angaben zur Verzinsung",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "principal": "Anfangsbetrag",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Zeitraum"
+    },
+    "errors": {
+      "principal": "Gib einen Betrag zwischen 1 und 1.000.000.000 ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 50 % ein.",
+      "years": "Gib einen Zeitraum zwischen 0,25 und 50 Jahren ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "total": "Gesamtbetrag",
+      "principal": "Anfangsbetrag",
+      "interest": "Einfache Zinsen",
+      "compoundTotal": "Mit jährlichem Zinseszins",
+      "chartLabel": "Anteil von Anfangsbetrag und Zinsen am Gesamtbetrag",
+      "summary": "{principal} bringen bei {rate} % einfachen Zinsen in {years} Jahren {interest} Zinsen, insgesamt also {total}. Mit jährlicher Zinsgutschrift wären es {compoundTotal}.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Zinsen nach Jahren",
+      "caption": "Anfangsbetrag, bisherige Zinsen und Gesamtbetrag im Überblick nach Jahren",
+      "year": "Jahr",
+      "principal": "Anfangsbetrag",
+      "interest": "Zinsen",
+      "total": "Gesamt"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Einfache Zinsen werden nur auf den ursprünglichen Betrag gezahlt, nie auf bereits erhaltene Zinsen. Sie gelten bei manchen kurzen Krediten, bei Anleihen mit Zinsausschüttung und in vielen Schulaufgaben. Dieser Rechner ermittelt Zinsen und Gesamtbetrag und vergleicht sie mit dem Zinseszins.",
+      "sections": [
+        {
+          "title": "Die Formel für einfache Zinsen",
+          "paragraphs": [
+            "Zinsen = P × r × t. Dabei ist P der Anfangsbetrag, r der Jahreszins als Dezimalzahl und t die Zeit in Jahren. Der Gesamtbetrag ist P + Zinsen.",
+            "Die Zinsen sind jedes Jahr gleich hoch, deshalb wächst das Guthaben linear."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du verleihst 10.000 zu 5 % einfachen Zinsen für 3 Jahre. Die Zinsen betragen 10.000 × 0,05 × 3 = 1.500, du bekommst also 11.500 zurück.",
+            "Mit jährlichem Zinseszins würde derselbe Betrag auf 11.576,25 anwachsen. Der Unterschied wird mit längerer Laufzeit und höherem Zinssatz größer."
+          ]
+        },
+        {
+          "title": "Wo einfache Zinsen verwendet werden",
+          "paragraphs": [
+            "Bei Auto- und Ratenkrediten in manchen Ländern, bei Zinsen auf eine Geldanlage, die ausgezahlt statt wieder angelegt werden, und bei kurzfristigen Privatdarlehen. Die meisten Sparkonten und Baufinanzierungen rechnen dagegen mit Zinseszins."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Was ist der Unterschied zwischen einfachen Zinsen und Zinseszins?",
+          "a": "Einfache Zinsen werden nur auf den Anfangsbetrag berechnet. Beim Zinseszins werden auch bereits gutgeschriebene Zinsen verzinst, deshalb wächst das Guthaben schneller."
+        },
+        {
+          "q": "Wie gebe ich Monate oder Tage ein?",
+          "a": "Als Bruchteil eines Jahres: 6 Monate sind 0,5 und 9 Monate 0,75. Tage teilst du durch 365."
+        },
+        {
+          "q": "Wie berechne ich stattdessen den Zinssatz oder die Zeit?",
+          "a": "Stelle die Formel um: Zinssatz = Zinsen ÷ (P × t) und Zeit = Zinsen ÷ (P × r)."
+        },
+        {
+          "q": "Ist ein Kredit mit einfachen Zinsen günstiger?",
+          "a": "Bei gleichem Zinssatz und gleicher Laufzeit ja – wenn die Zinsen bis zum Ende unbezahlt auflaufen. Zahlst du die Zinsen laufend, kosten beide gleich viel. Vorsicht bei Krediten mit Pauschalzins, die Zinsen auf den ursprünglichen Betrag berechnen, obwohl du ihn bereits tilgst: Sie kosten mehr, als der angegebene Zinssatz vermuten lässt. Vergleiche immer die Gesamtkosten und alle Gebühren."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Zinsen = P × r × t, mit r als Jahreszins in Dezimalform und t in Jahren; Gesamtbetrag = P + Zinsen. Für den Vergleich wird P × (1 + r)^t verwendet. Gerundet wird nur für die Anzeige.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung."
+    }
+  },
+  "cagr": {
+    "heading": "CAGR-Rechner",
+    "lead": "Berechne die durchschnittliche jährliche Wachstumsrate (CAGR) zwischen einem Anfangs- und einem Endwert.",
+    "inputs": {
+      "legend": "Angaben zum Wachstum",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "start": "Anfangswert",
+      "end": "Endwert",
+      "years": "Anzahl der Jahre"
+    },
+    "errors": {
+      "start": "Gib einen Anfangswert zwischen 1 und 1.000.000.000.000 ein.",
+      "end": "Gib einen Endwert zwischen 0 und 1.000.000.000.000 ein.",
+      "years": "Gib einen Zeitraum zwischen 0,25 und 100 Jahren ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "cagr": "Durchschnittliche jährliche Wachstumsrate",
+      "start": "Anfangswert",
+      "gain": "Wertzuwachs gesamt",
+      "totalReturn": "Gesamtrendite",
+      "chartLabel": "Anteil von Anfangswert und Wertzuwachs am Endwert",
+      "summary": "Ein Anstieg von {start} auf {end} in {years} Jahren entspricht einer durchschnittlichen jährlichen Wachstumsrate von {cagr} (Gesamtrendite {totalReturn}).",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wert pro Jahr bei dieser Wachstumsrate",
+      "caption": "Anfangswert, bisheriger Wertzuwachs und Wert pro Jahr bei gleichmäßigem Wachstum",
+      "year": "Jahr",
+      "start": "Anfang",
+      "gain": "Zuwachs",
+      "value": "Wert"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Die CAGR (durchschnittliche jährliche Wachstumsrate) ist die gleichbleibende jährliche Rate, mit der ein Anfangswert in einem bestimmten Zeitraum auf den Endwert wächst. Sie glättet Schwankungen und ist deshalb der übliche Maßstab, um das Wachstum von Geldanlagen, Unternehmen oder Preisen über unterschiedliche Zeiträume zu vergleichen.",
+      "sections": [
+        {
+          "title": "Die CAGR-Formel",
+          "paragraphs": [
+            "CAGR = (Endwert ÷ Anfangswert)^(1 ÷ Jahre) − 1. Das Ergebnis ist ein jährlicher Prozentsatz – auch wenn der tatsächliche Wert zwischendurch gestiegen und gefallen ist."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Eine Geldanlage wächst in 5 Jahren von 10.000 auf 20.000. CAGR = (20.000 ÷ 10.000)^(1/5) − 1 = 14,87 % pro Jahr. Die Gesamtrendite beträgt 100 %.",
+            "Ein Rückgang von 50.000 auf 42.000 in 3 Jahren entspricht einer CAGR von −5,65 % pro Jahr."
+          ]
+        },
+        {
+          "title": "CAGR oder durchschnittliche Rendite?",
+          "paragraphs": [
+            "Der einfache Durchschnitt der Jahresrenditen kann täuschen. Gewinnst du in einem Jahr 50 % und verlierst im nächsten 50 %, liegt der Durchschnitt bei 0 % – du hast aber ein Viertel deines Geldes verloren: Die CAGR beträgt −13,4 %. Die CAGR zeigt, was tatsächlich mit dem Wert passiert ist."
+          ]
+        },
+        {
+          "title": "Was die CAGR nicht zeigt",
+          "paragraphs": [
+            "Sie berücksichtigt nicht, wie stark der Wert unterwegs geschwankt hat, und geht davon aus, dass kein Geld eingezahlt oder entnommen wurde. Wenn du regelmäßig monatlich anlegst, nutze stattdessen den Sparplanrechner."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Kann die CAGR negativ sein?",
+          "a": "Ja. Liegt der Endwert unter dem Anfangswert, ist die CAGR negativ. Fällt der Wert auf null, beträgt die CAGR −100 %."
+        },
+        {
+          "q": "Kann ich auch angebrochene Jahre eingeben?",
+          "a": "Ja. Gib Monate als Bruchteil eines Jahres ein, zum Beispiel 2,5 für zweieinhalb Jahre."
+        },
+        {
+          "q": "Was ist eine gute CAGR?",
+          "a": "Das hängt davon ab, was du misst und welches Risiko damit verbunden ist. Vergleiche sie mit der Inflation und mit Alternativen im selben Zeitraum."
+        },
+        {
+          "q": "Zeigt die Tabelle echte historische Werte?",
+          "a": "Nein. Sie zeigt den gleichmäßigen Verlauf bei konstanter CAGR, der bei deinem tatsächlichen Endwert endet."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "CAGR = (Ende ÷ Anfang)^(1/t) − 1, mit t in Jahren. Gesamtrendite = Ende ÷ Anfang − 1. Die Tabelle wendet die CAGR ab dem Anfangswert auf jedes Jahr an. Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Vergangenes Wachstum ist keine Garantie für künftige Ergebnisse."
+    }
+  },
+  "retirement": {
+    "heading": "Altersvorsorge-Rechner",
+    "lead": "Schätze, wie viel du bis zum Ruhestand ansparst und welches Einkommen dir das bringen könnte.",
+    "inputs": {
+      "legend": "Dein Plan",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "age": "Aktuelles Alter",
+      "retireAge": "Alter bei Ruhestandsbeginn",
+      "savings": "Bisher gespart",
+      "monthly": "Monatlicher Sparbetrag",
+      "rate": "Erwartete Rendite (pro Jahr)",
+      "inflation": "Inflation (pro Jahr)",
+      "withdrawal": "Jährliche Entnahmerate"
+    },
+    "errors": {
+      "age": "Gib ein Alter zwischen 15 und 80 ein.",
+      "retireAge": "Gib ein Alter zwischen 30 und 90 ein.",
+      "retireAgeRule": "Dein Alter bei Ruhestandsbeginn muss über deinem aktuellen Alter liegen.",
+      "savings": "Gib einen Betrag zwischen 0 und 1.000.000.000 ein.",
+      "savingsRule": "Gib dein bisher Erspartes oder einen monatlichen Sparbetrag ein.",
+      "monthly": "Gib einen Betrag zwischen 0 und 10.000.000 ein.",
+      "rate": "Gib eine Rendite zwischen 0 % und 20 % ein.",
+      "inflation": "Gib eine Inflation zwischen 0 % und 20 % ein.",
+      "withdrawal": "Gib eine Entnahmerate zwischen 1 % und 10 % ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "pot": "Vermögen bei Ruhestandsbeginn",
+      "deposits": "Einzahlungen gesamt",
+      "growth": "Wertzuwachs",
+      "realPot": "In heutiger Kaufkraft",
+      "income": "Monatliches Einkommen im Ruhestand",
+      "realIncome": "Monatliches Einkommen in heutiger Kaufkraft",
+      "chartLabel": "Anteil von Einzahlungen und Wertzuwachs an deinem Vermögen für den Ruhestand",
+      "summary": "Wenn du ab {age} Jahren bis zum Alter von {retireAge} monatlich {monthly} sparst, bereits {savings} gespart hast und {rate} % Rendite erzielst, kommst du auf {pot} ({realPot} in heutiger Kaufkraft). Bei einer Entnahmerate von {withdrawal} % sind das {income} im Monat.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Einzahlungen, Wertzuwachs und Guthaben im Überblick nach Jahren",
+      "year": "Jahr",
+      "deposits": "Einzahlungen",
+      "interest": "Erträge",
+      "balance": "Guthaben"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Dieser Rechner schätzt, wie dein Erspartes bis zum Ruhestand wachsen könnte. Anschließend zeigt er, was es in heutiger Kaufkraft wert ist und welches monatliche Einkommen es dir bringen könnte. Ändere Sparbetrag, Rendite oder Ruhestandsalter, um zu sehen, was den größten Unterschied macht.",
+      "sections": [
+        {
+          "title": "So funktioniert die Prognose",
+          "paragraphs": [
+            "Dein bisheriges Guthaben und deine monatlichen Einzahlungen wachsen bis zum Ruhestand mit der erwarteten Rendite. Weil die Preise steigen, wird das Ergebnis auch in heutiger Kaufkraft angezeigt, also inflationsbereinigt.",
+            "Die Entnahmerate macht aus deinem Vermögen ein Einkommen. Ein üblicher Ausgangspunkt sind 4 %: Du entnimmst im ersten Jahr 4 % des Vermögens und passt den Betrag danach an die Inflation an."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Mit 30 Jahren, 20.000 Erspartem und 500 im Monat bei 7 % Rendite könntest du mit 65 etwa 1.130.650 haben. Du zahlst 230.000 ein, einschließlich der 20.000, die du schon hast; die übrigen 900.650 sind Wertzuwachs.",
+            "Bei 3 % Inflation sind das etwa 401.814 in heutiger Kaufkraft. Eine Entnahme von 4 % ergibt 3.769 im Monat, in heutiger Kaufkraft etwa 1.339."
+          ]
+        },
+        {
+          "title": "Früh anfangen",
+          "paragraphs": [
+            "Die meiste Arbeit erledigt die Zeit. Beginnst du denselben Plan mit 40 statt mit 30, hättest du mit 65 nur etwa 519.544 – weniger als die Hälfte, obwohl du nur 60.000 weniger einzahlst."
+          ]
+        },
+        {
+          "title": "Realistisch bleiben",
+          "paragraphs": [
+            "Renditen schwanken von Jahr zu Jahr, und Gebühren und Steuern schmälern sie. Rechne mit einer vorsichtigen Rendite, überprüfe deinen Plan jedes Jahr und plane gesetzliche oder betriebliche Renten, die du erwartest, zusätzlich ein."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Mit welcher Rendite sollte ich rechnen?",
+          "a": "Mit einem vorsichtigen Wert für deine Anlagemischung – nach Gebühren und vor Inflation (die Inflation gibst du separat ein). Viele rechnen bei einem aktienlastigen Portfolio mit 5–7 % pro Jahr, bei Anleihen oder Tagesgeld mit weniger. Probiere mehrere Werte aus, um die Bandbreite zu sehen."
+        },
+        {
+          "q": "Was ist die 4-%-Regel?",
+          "a": "Eine Faustregel aus Studien zur Geschichte des US-Aktienmarkts: Wer im ersten Jahr 4 % entnahm und den Betrag danach mit der Inflation erhöhte, kam in fast allen untersuchten Zeiträumen mindestens 30 Jahre aus. An den Märkten anderer Länder fielen die Ergebnisse schwächer aus. Die Regel ist eine Orientierung, keine Garantie."
+        },
+        {
+          "q": "Warum wird die heutige Kaufkraft angezeigt?",
+          "a": "Mit einer Million kannst du in 35 Jahren viel weniger kaufen als heute. Die Inflationsbereinigung zeigt, was dein Vermögen nach heutigem Empfinden wert wäre."
+        },
+        {
+          "q": "Sind gesetzliche oder betriebliche Renten berücksichtigt?",
+          "a": "Nein. Rechne garantierte Einkünfte, die du erwartest, zum angezeigten monatlichen Einkommen hinzu."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Guthaben und Einzahlungen (jeweils am Monatsende) wachsen mit der erwarteten Rendite bei monatlicher Verzinsung (r/12). Heutige Kaufkraft = künftiger Wert ÷ (1 + Inflation)^Jahre. Monatliches Einkommen = Guthaben × Entnahmerate ÷ 12. Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Anlagerenditen sind nicht garantiert und können negativ sein."
+    }
+  },
+  "savings": {
+    "heading": "Sparzielrechner",
+    "lead": "Berechne, wie viel du jeden Monat sparen musst, um dein Ziel rechtzeitig zu erreichen.",
+    "inputs": {
+      "legend": "Dein Ziel",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "goal": "Sparziel",
+      "years": "Zeit bis zum Ziel",
+      "savings": "Bereits gespart",
+      "rate": "Zinssatz (pro Jahr)"
+    },
+    "errors": {
+      "goal": "Gib ein Ziel zwischen 1 und 1.000.000.000 ein.",
+      "years": "Gib einen Zeitraum zwischen 0,5 und 50 Jahren ein.",
+      "savings": "Gib einen Betrag zwischen 0 und 1.000.000.000 ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 20 % ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "monthly": "Monatliche Sparrate",
+      "deposits": "Deine Einzahlungen gesamt",
+      "interest": "Zinserträge",
+      "balance": "Guthaben am Ende",
+      "chartLabel": "Anteil deiner Einzahlungen und Zinsen am Sparziel",
+      "summary": "Um mit {savings} Startguthaben und {rate} % Zinsen in {years} Jahren {goal} zu erreichen, musst du {monthly} im Monat sparen. Du zahlst {deposits} ein und erhältst {interest} Zinsen.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Einzahlungen, Zinserträge und Guthaben im Überblick nach Jahren",
+      "year": "Jahr",
+      "deposits": "Einzahlungen",
+      "interest": "Zinsen",
+      "balance": "Guthaben"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Ob Eigenkapital fürs Eigenheim, ein Auto oder ein Notgroschen: Ein Ziel erreichst du leichter, wenn du eine konkrete Zahl vor Augen hast. Dieser Rechner ermittelt deine monatliche Sparrate und berücksichtigt dabei, was du schon hast und welche Zinsen dein Erspartes bringt.",
+      "sections": [
+        {
+          "title": "So funktioniert es",
+          "paragraphs": [
+            "Dein bisheriges Guthaben wächst bis zum Stichtag mit Zinsen. Die monatliche Sparrate deckt den Rest ab: Sie ist die Einzahlung, die – jeweils am Monatsende eingezahlt und verzinst – genau dein Ziel erreicht."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Um in 5 Jahren 50.000 zu sparen, wenn du bereits 5.000 hast und 4 % Zinsen pro Jahr bekommst, musst du 662,08 im Monat sparen. Insgesamt zahlst du 44.725 ein, einschließlich der 5.000, die du schon hast; die übrigen 5.275 kommen durch Zinsen hinzu.",
+            "Ohne Zinsen bräuchtest du 750 im Monat."
+          ]
+        },
+        {
+          "title": "Tipps, um dein Ziel zu erreichen",
+          "paragraphs": [
+            "Richte zum Zahltag einen Dauerauftrag ein, damit das Sparen zuerst erledigt ist. Leg Geld für kurzfristige Ziele sicher an, etwa auf einem Tagesgeldkonto, statt in Anlagen, die genau dann fallen können, wenn du das Geld brauchst.",
+            "Ist die monatliche Sparrate zu hoch, verlängere die Frist oder senke das Ziel – schon kleine Änderungen machen einen großen Unterschied."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Was, wenn ich schon genug habe?",
+          "a": "Wächst dein bisheriges Guthaben von allein über das Ziel hinaus, zeigt der Rechner 0 pro Monat und das Guthaben, das du erreichen würdest."
+        },
+        {
+          "q": "Welchen Zinssatz sollte ich verwenden?",
+          "a": "Den Zinssatz des Kontos, auf dem du das Geld anlegst. Für langfristige Ziele, die in Fonds investiert sind, nimm eine vorsichtig geschätzte Rendite."
+        },
+        {
+          "q": "Ist die Inflation berücksichtigt?",
+          "a": "Nein. Liegt dein Ziel noch Jahre entfernt, erhöhe es zuerst um die erwartete Inflation – der Inflationsrechner zeigt dir, um wie viel."
+        },
+        {
+          "q": "Wann werden die monatlichen Einzahlungen geleistet?",
+          "a": "Jeweils am Monatsende, beginnend im nächsten Monat."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Monatliche Einzahlung = (Ziel − S × (1 + j)^n) × j / ((1 + j)^n − 1), wobei S dein bisheriges Guthaben ist, j der Monatszins (Jahreszins ÷ 12) und n die Anzahl der Monate; bei 0 % Zinsen gilt (Ziel − S) ÷ n. Der Zeitraum wird in ganzen Monaten gezählt. Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Zinssätze können sich ändern."
+    }
+  },
+  "inflation": {
+    "heading": "Inflationsrechner",
+    "lead": "Sieh, was Dinge in Zukunft kosten und wie die Inflation den Wert deines Geldes schmälert.",
+    "inputs": {
+      "legend": "Angaben zur Inflation",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "amount": "Betrag heute",
+      "rate": "Inflationsrate (pro Jahr)",
+      "years": "Anzahl der Jahre"
+    },
+    "errors": {
+      "amount": "Gib einen Betrag zwischen 1 und 1.000.000.000 ein.",
+      "rate": "Gib eine Inflationsrate zwischen 0 % und 50 % ein.",
+      "years": "Gib einen Zeitraum zwischen 1 und 100 Jahren ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "future": "Künftige Kosten",
+      "today": "Kosten heute",
+      "increase": "Preisanstieg",
+      "power": "Kaufkraft des heutigen Betrags",
+      "chartLabel": "Anteil der heutigen Kosten und des Preisanstiegs an den künftigen Kosten",
+      "summary": "Bei {rate} % Inflation kostet etwas, das heute {amount} kostet, in {years} Jahren {future}. Für die heutigen {amount} bekommst du dann nur noch so viel, wie du heute für {power} bekommst.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Kosten pro Jahr",
+      "caption": "Künftige Kosten, Preisanstieg und Kaufkraft des heutigen Betrags im Überblick nach Jahren",
+      "year": "Jahr",
+      "cost": "Kosten",
+      "increase": "Anstieg",
+      "power": "Kaufkraft"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Inflation ist der Anstieg der Preise im Lauf der Zeit. Dieser Rechner zeigt beide Seiten: wie viel etwas, das heute einen bestimmten Betrag kostet, künftig kosten wird – und wie viel weniger du mit demselben Geldbetrag kaufen kannst.",
+      "sections": [
+        {
+          "title": "Wie sich Inflation aufschaukelt",
+          "paragraphs": [
+            "Preise steigen jedes Jahr auf das bereits erhöhte Niveau des Vorjahres. Künftige Kosten = Betrag × (1 + Inflation)^Jahre. Bei der Kaufkraft ist es umgekehrt: Betrag ÷ (1 + Inflation)^Jahre."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Bei 3 % pro Jahr kostet etwas, das heute 1.000 kostet, in 10 Jahren 1.343,92. Umgekehrt betrachtet: Für 1.000, die du als Bargeld aufbewahrst, bekommst du dann nur noch so viel wie heute für 744,09.",
+            "Bei 6 % Inflation würde derselbe Artikel in 10 Jahren 1.790,85 kosten."
+          ]
+        },
+        {
+          "title": "Die 70er-Regel",
+          "paragraphs": [
+            "Teile 70 durch die Inflationsrate, um abzuschätzen, in wie vielen Jahren sich die Preise verdoppeln. Bei 3 % verdoppeln sich die Preise in etwa 23 Jahren, bei 7 % in etwa 10 Jahren."
+          ]
+        },
+        {
+          "title": "So schützt du dein Geld",
+          "paragraphs": [
+            "Geld auf einem Konto, dessen Zinsen unter der Inflation liegen, verliert jedes Jahr an Wert. Vergleiche Sparzinsen und Anlagerenditen mit der Inflation und erhöhe langfristige Ziele wie die Altersvorsorge um die erwartete Inflation."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Welche Inflationsrate sollte ich verwenden?",
+          "a": "Die aktuelle Verbraucherpreisinflation in deinem Land ist ein guter Ausgangspunkt; viele Zentralbanken streben etwa 2 % an. Für lange Zeiträume probierst du am besten mehrere Werte aus, um die Bandbreite zu sehen."
+        },
+        {
+          "q": "Steigen alle Preise gleich schnell?",
+          "a": "Nein. Manche Kosten, etwa für Bildung oder Gesundheit, steigen oft schneller als der Durchschnitt, andere sinken sogar. Wähle eine Rate, die zu deinem Vorhaben passt."
+        },
+        {
+          "q": "Kann ich die Inflation vergangener Jahre sehen?",
+          "a": "Dieser Rechner verwendet eine gleichbleibende Rate, die du selbst wählst. Für tatsächliche historische Preise nutze die Inflationsdaten deines nationalen Statistikamts."
+        },
+        {
+          "q": "Was bedeutet Kaufkraft?",
+          "a": "Kaufkraft ist das, was du für einen Geldbetrag kaufen kannst. Verdoppeln sich die Preise, bekommst du für dasselbe Geld nur noch halb so viel."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Künftige Kosten = Betrag × (1 + i)^t und Kaufkraft = Betrag ÷ (1 + i)^t, wobei i die jährliche Inflationsrate und t die Anzahl der Jahre ist. Die Werte werden nur für die Anzeige gerundet.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Die tatsächliche Inflation schwankt im Lauf der Zeit."
+    }
+  }
+}

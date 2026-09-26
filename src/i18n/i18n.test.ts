@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import en from "./en.json";
 import es from "./es.json";
+import de from "./de.json";
 import { LANGS, ROUTES, fill } from "./index";
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
@@ -18,30 +19,36 @@ function flatten(obj: Json, prefix = ""): Record<string, string> {
 
 const EN = flatten(en as Json);
 const ES = flatten(es as Json);
+const DE = flatten(de as Json);
+const OTHERS = { es: ES, de: DE };
 // Strings that are legitimately identical in both languages.
 const SAME_ALLOWED = new Set(["site.name", "site.rights"]);
 
 describe("translations (BRD Q-15)", () => {
-  it("Spanish has exactly the same keys as English", () => {
-    expect(Object.keys(ES).sort()).toEqual(Object.keys(EN).sort());
+  it.each(Object.entries(OTHERS))("%s has exactly the same keys as English", (_, X) => {
+    expect(Object.keys(X).sort()).toEqual(Object.keys(EN).sort());
   });
 
   it("no string is empty", () => {
-    for (const [k, v] of [...Object.entries(EN), ...Object.entries(ES)]) expect(v.trim(), k).not.toBe("");
+    for (const [k, v] of [...Object.entries(EN), ...Object.entries(ES), ...Object.entries(DE)])
+      expect(v.trim(), k).not.toBe("");
   });
 
-  it("no Spanish string is left in English", () => {
-    const untranslated = Object.keys(EN).filter((k) => !SAME_ALLOWED.has(k) && EN[k] === ES[k]);
+  it.each(Object.entries(OTHERS))("no %s string is left in English", (_, X) => {
+    const untranslated = Object.keys(EN).filter((k) => !SAME_ALLOWED.has(k) && EN[k] === X[k]);
     expect(untranslated).toEqual([]);
   });
 
   it("placeholders match between languages", () => {
     const ph = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort();
-    for (const k of Object.keys(EN)) expect(ph(ES[k]!), k).toEqual(ph(EN[k]!));
+    for (const k of Object.keys(EN)) {
+      expect(ph(ES[k]!), k).toEqual(ph(EN[k]!));
+      expect(ph(DE[k]!), k).toEqual(ph(EN[k]!));
+    }
   });
 
   it("titles are at most 60 characters and descriptions at most 155 (BRD S-20)", () => {
-    for (const dict of [en, es]) {
+    for (const dict of [en, es, de]) {
       for (const [page, m] of Object.entries(dict.meta)) {
         expect(m.title.length, `${page} title`).toBeLessThanOrEqual(60);
         expect(m.description.length, `${page} description`).toBeLessThanOrEqual(155);

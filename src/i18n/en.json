@@ -11,7 +11,7 @@
     "privacy": "Privacy",
     "reportTranslation": "Report a translation issue",
     "rights": "Numflo",
-    "suggestBanner": "Ver esta página en español",
+    "viewInLanguage": "View this page in English",
     "dismiss": "Dismiss",
     "breadcrumb": "Breadcrumb",
     "about": "About",
@@ -40,7 +40,7 @@
   "meta": {
     "home": {
       "title": "Numflo – Free Financial Calculators in Your Language",
-      "description": "Free, fast and private financial calculators. Work out loan payments, interest and more in English or Spanish, in your own currency."
+      "description": "Free, fast and private financial calculators. Work out loan payments, interest and more in English, Spanish or German, in your own currency."
     },
     "loan": {
       "title": "Loan Calculator – Monthly Payment & EMI | Numflo",
@@ -60,7 +60,7 @@
     },
     "about": {
       "title": "About Numflo",
-      "description": "Numflo is an independent project that builds free, private financial calculators with clear explanations, in English and Spanish."
+      "description": "Numflo is an independent project that builds free, private financial calculators with clear explanations, in English, Spanish and German."
     },
     "terms": {
       "title": "Terms of Use | Numflo",
@@ -511,7 +511,7 @@
   "about": {
     "heading": "About Numflo",
     "paragraphs": [
-      "Numflo is an independent project that builds free financial calculators people can trust. Every calculator gives you the number and explains what it means, in plain language, in English and Spanish.",
+      "Numflo is an independent project that builds free financial calculators people can trust. Every calculator gives you the number and explains what it means, in plain language, in English, Spanish and German.",
       "It started from a simple observation: most calculator websites are English-only, cluttered with ads, and give a bare number with no explanation. Numflo aims to be the opposite: fast, clean, private and genuinely useful.",
       "How the calculators are built: every formula is written from standard financial mathematics and checked by automated tests against independently calculated reference values before each release. Each page shows the formula it uses, a worked example and when it was last reviewed.",
       "How your privacy is protected: there are no accounts and no tracking cookies, and everything you type stays on your device. The code is open source and publicly auditable on GitHub.",

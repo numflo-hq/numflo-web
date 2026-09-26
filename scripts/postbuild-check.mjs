@@ -5,7 +5,7 @@ import { join, relative } from "node:path";
 
 const DIST = "dist";
 const SITE = "https://numflo.com";
-const LANGS = ["en", "es"];
+const LANGS = ["en", "es", "de"];
 const errors = [];
 const fail = (file, msg) => errors.push(`${file}: ${msg}`);
 
@@ -118,16 +118,15 @@ for (const file of htmlFiles) {
   );
   for (const l of [...LANGS, "x-default"]) if (!alternates[l]) fail(rel, `missing hreflang="${l}"`);
   if (alternates[lang] !== canonical) fail(rel, `hreflang for its own language must equal the canonical`);
-  canonicals.set(canonical, { rel, alternates });
+  canonicals.set(canonical, { rel, lang, alternates });
 }
 
 // ---- hreflang must be reciprocal (L-7) ----
-for (const [canonical, { rel, alternates }] of canonicals) {
+for (const [canonical, { rel, lang, alternates }] of canonicals) {
   for (const l of LANGS) {
     const other = canonicals.get(alternates[l]);
     if (!other) fail(rel, `hreflang ${l} points to a page that does not exist: ${alternates[l]}`);
-    else if (other.alternates[LANGS.find((x) => alternates[x] === canonical)] !== canonical)
-      fail(rel, `hreflang not reciprocal with ${alternates[l]}`);
+    else if (other.alternates[lang] !== canonical) fail(rel, `hreflang not reciprocal with ${alternates[l]}`);
   }
 }
 

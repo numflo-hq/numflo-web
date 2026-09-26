@@ -49,7 +49,7 @@ willing to sign up for anything.
 
 - Home page listing all calculators
 - 3 calculators: **Loan (monthly payment / EMI)**, **Investment (monthly contribution / SIP)**, **Compound interest**
-- 2 languages at launch: **English (default)** and **Spanish**. Further languages (e.g. Hindi, Portuguese) are added in Phase 5 using the same system.
+- 2 languages at launch: **English (default)** and **Spanish**; **German** added in v0.4 (Phase 5). Further languages (e.g. Portuguese, Hindi) use the same system.
 - Per-calculator explainer content (what the number means, formula, worked example, FAQ)
 - Multi-currency support, independent of language
 - Results chart and year-by-year breakdown table
@@ -104,8 +104,9 @@ This is the core of the product, so it is specified in detail.
 
 | ID | Requirement |
 |---|---|
-| L-15 | Translations are produced **and proofread by AI (Claude)**; no paid human review in v1. Every Spanish page passes the translation QA process in `docs/SDLC.md` §4.4: glossary check, style-guide check, an independent review pass with back-translation to English, and automated checks for missing text and number formats. |
-| L-16 | Financial terms follow local usage rather than literal translation (e.g. Spanish uses "cuota mensual" and "préstamo"). v1 uses neutral international Spanish understood in both Spain and Latin America. |
+| L-15 | Translations are produced **and proofread by AI (Claude)**; no paid human review in v1. Every Spanish and German page passes the translation QA process in `docs/SDLC.md` §4.4: glossary check, style-guide check, an independent review pass with back-translation to English, and automated checks for missing text and number formats. |
+| L-16 | Financial terms follow local usage rather than literal translation (e.g. Spanish uses "cuota mensual" and "préstamo"; German uses "Tilgung" and "Sparplan"). Spanish is neutral international Spanish; German is standard German for Germany, Austria and Switzerland, addressing the reader as "du" (`docs/i18n/style-de.md`, `glossary-de.md`). |
+| L-17a | German pages live under `/de/` with German slugs; numbers use German format (1.234,56); Swiss francs (CHF) are offered and chosen automatically for Switzerland and Liechtenstein. |
 | L-17 | Every page has a small "Report a translation issue" link so native-speaking visitors can flag errors for free. |
 
 ## 6. Functional requirements
@@ -305,7 +306,7 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | Q-12 | **Responsive tests** at the 7 screen sizes in §8.1, with screenshot comparison to catch unintended visual changes. |
 | Q-13 | **Accessibility tests** (automated WCAG checks) on every page. |
 | Q-14 | **SEO and performance gate** per §9.6 (Lighthouse, broken links, titles, canonicals, hreflang, structured data). |
-| Q-15 | **Translation completeness**: the build fails if any Spanish text or URL slug is missing or left in English. |
+| Q-15 | **Translation completeness**: the build fails if any Spanish or German text or URL slug is missing or left in English. |
 | Q-16 | **Code quality**: formatting, linting and type checks pass with zero errors. |
 
 ### 10.3 Security testing (automated, zero cost)
@@ -375,7 +376,7 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 
 | # | Question | Default if undecided |
 |---|---|---|
-| D-1 | Launch languages | **Decided:** English + Spanish |
+| D-1 | Launch languages | **Decided:** English + Spanish; German added 2026-09-26 (owner decision, highest ad value per visitor of the candidates) |
 | D-5 | Who reviews the Spanish translation? | **Decided:** Claude, using the QA process in SDLC §4.4 |
 | D-6 | Make the GitHub repository public? GitHub's free plan only offers enforced branch protection, CodeQL and built-in secret scanning on public repos. The code holds no secrets (no backend, no keys). | **Decided:** public |
 | D-2 | Launch calculators: 3 as listed, or start with EMI only? | All 3 |
@@ -395,3 +396,4 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 1.2 | 2026-09-22 | L-12: default currency from the visitor's country (issue #3, requested by owner during UAT of PR #2) |
 | 1.3 | 2026-09-24 | Added F-30 to F-39 (ten more calculators) and phase P3b, requested by the owner to reach AdSense-ready depth before adding a third language |
 | 1.4 | 2026-09-25 | Added §9.5a (S-70, S-71): visibility and citations in AI answers, IndexNow on every release, requested by the owner |
+| 1.5 | 2026-09-26 | German added (L-1, L-15, L-16, L-17a, Q-15, D-1); CHF currency |

@@ -6,9 +6,11 @@ import { resolve } from "node:path";
 
 const en = JSON.parse(readFileSync("src/i18n/en.json", "utf8"));
 const es = JSON.parse(readFileSync("src/i18n/es.json", "utf8"));
+const de = JSON.parse(readFileSync("src/i18n/de.json", "utf8"));
 const images = [
   { file: "en", title: en.home.heading, sub: "Free loan and interest calculators, in your language." },
   { file: "es", title: es.home.heading, sub: "Calculadoras gratis de préstamos e intereses, en tu idioma." },
+  { file: "de", title: de.home.heading, sub: "Kostenlose Kredit- und Zinsrechner, in deiner Sprache." },
 ];
 
 const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH || undefined });

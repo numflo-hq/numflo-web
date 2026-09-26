@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Numflo - free multilingual financial calculators (numflo.com)",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.22.3"
   },
   "scripts": {
     "dev": "astro dev",
@@ -23,25 +23,26 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.3",
+    "astro": "7.3.5",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
-    "@playwright/test": "1.56.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "^22.20.4",
     "@vitest/coverage-v8": "^5.0.1",
     "eslint": "^10.11.0",
-    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-astro": "^3.2.1",
     "globals": "^17.12.0",
     "prettier": "^3.9.8",
     "prettier-plugin-astro": "^1.0.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0",
     "vitest": "^5.0.1"
   },
   "overrides": {
-    "playwright-core": "1.56.1"
+    "playwright-core": "1.63.0"
   }
 }

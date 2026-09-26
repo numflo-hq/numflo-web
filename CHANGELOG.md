@@ -2,6 +2,15 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.4.1] - Unreleased
+
+### Changed
+
+- Maintenance upgrades: eslint-plugin-astro 3.2 (replaces Dependabot PR #5; needs Node ≥ 22.22.3, now the
+  minimum in `engines`), Playwright 1.63, TypeScript 6.0, Astro 7.3.5, and all other dependencies to their
+  latest compatible versions. No vulnerabilities (`npm audit`).
+- TypeScript 7 is not adopted yet: `@astrojs/check` and `typescript-eslint` do not support it.
+
 ## [0.4.0] - 2026-09-26
 
 ### Added

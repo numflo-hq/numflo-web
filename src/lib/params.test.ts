@@ -119,3 +119,10 @@ describe("readLoanParams", () => {
     expect(readLoanParams(`?${loanQueryString(p)}`)).toEqual(p);
   });
 });
+
+describe("Swiss grouping (CHF)", () => {
+  it("accepts apostrophe and right-quote thousands separators", () => {
+    expect(parseLocalizedNumber("141'477.82", { min: 0, max: 1e9 }, ".")).toBe(141477.82);
+    expect(parseLocalizedNumber("141’477.82", { min: 0, max: 1e9 }, ".")).toBe(141477.82);
+  });
+});

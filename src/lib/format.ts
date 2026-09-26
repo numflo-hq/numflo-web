@@ -4,10 +4,13 @@ import type { Lang } from "../i18n";
 /**
  * Locale used for number formatting (BRD L-13). Language and currency together pick
  * separators: Spanish + EUR uses 1.234,56 (Spain); Spanish + other currencies uses
- * 1,234.56 (Mexico/US). INR switches to Indian digit grouping (12,34,567).
+ * 1,234.56 (Mexico/US). German uses 1.234,56 (de-DE), Swiss francs use Swiss grouping, and
+ * INR switches to Indian digit grouping (12,34,567).
  */
 export function numberLocale(lang: Lang, currency: Currency): string {
   if (currency === "INR") return "en-IN"; // Indian grouping 12,34,567 in every language
+  if (currency === "CHF") return lang === "en" ? "en-CH" : lang === "es" ? "es-ES" : "de-CH";
+  if (lang === "de") return "de-DE"; // 1.234,56 in every other currency
   if (lang === "es") return currency === "EUR" ? "es-ES" : "es-MX";
   if (currency === "GBP") return "en-GB";
   if (currency === "EUR") return "en-IE";

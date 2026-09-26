@@ -1,5 +1,5 @@
 /** Supported currencies (BRD L-12). Formatting only: no conversion (L-14). */
-export const CURRENCIES = ["USD", "EUR", "GBP", "MXN", "INR"] as const;
+export const CURRENCIES = ["USD", "EUR", "GBP", "CHF", "MXN", "INR"] as const;
 export type Currency = (typeof CURRENCIES)[number];
 
 export function isCurrency(value: unknown): value is Currency {
@@ -12,6 +12,8 @@ const REGION_CURRENCY: Record<string, Currency> = {
   GB: "GBP",
   IN: "INR",
   MX: "MXN",
+  CH: "CHF",
+  LI: "CHF",
   // Eurozone
   ES: "EUR",
   DE: "EUR",

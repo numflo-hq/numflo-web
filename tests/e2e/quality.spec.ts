@@ -33,7 +33,7 @@ for (const p of PAGES) {
     expect(title.length).toBeGreaterThan(10);
     expect(title.length).toBeLessThanOrEqual(60);
     await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
-    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(3);
+    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(4);
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
   });
 }
@@ -85,6 +85,7 @@ test("number inputs open a numeric keypad on phones (R-3)", async ({ page }) => 
 });
 
 test("no console errors on any page", async ({ page }) => {
+  test.setTimeout(180_000); // visits every page
   const errors: string[] = [];
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(e.message));

@@ -11,7 +11,7 @@
     "privacy": "Privacidad",
     "reportTranslation": "Informar de un error de traducción",
     "rights": "Numflo",
-    "suggestBanner": "View this page in English",
+    "viewInLanguage": "Ver esta página en español",
     "dismiss": "Cerrar",
     "breadcrumb": "Ruta de navegación",
     "about": "Acerca de",
@@ -40,7 +40,7 @@
   "meta": {
     "home": {
       "title": "Numflo – Calculadoras financieras gratis en tu idioma",
-      "description": "Calculadoras financieras gratis, rápidas y privadas. Calcula cuotas de préstamos, intereses y más en español o inglés, en tu propia moneda."
+      "description": "Calculadoras financieras gratis, rápidas y privadas. Calcula cuotas de préstamos, intereses y más en español, inglés o alemán, en tu propia moneda."
     },
     "loan": {
       "title": "Calculadora de préstamos – Cuota mensual | Numflo",
@@ -60,7 +60,7 @@
     },
     "about": {
       "title": "Acerca de Numflo",
-      "description": "Numflo es un proyecto independiente que crea calculadoras financieras gratuitas y privadas, con explicaciones claras, en español e inglés."
+      "description": "Numflo es un proyecto independiente que crea calculadoras financieras gratuitas y privadas, con explicaciones claras, en español, inglés y alemán."
     },
     "terms": {
       "title": "Términos de uso | Numflo",
@@ -511,7 +511,7 @@
   "about": {
     "heading": "Acerca de Numflo",
     "paragraphs": [
-      "Numflo es un proyecto independiente que crea calculadoras financieras gratuitas en las que puedes confiar. Cada calculadora te da el resultado y te explica qué significa, con un lenguaje sencillo, en español e inglés.",
+      "Numflo es un proyecto independiente que crea calculadoras financieras gratuitas en las que puedes confiar. Cada calculadora te da el resultado y te explica qué significa, con un lenguaje sencillo, en español, inglés y alemán.",
       "Nació de una observación simple: la mayoría de los sitios de calculadoras están solo en inglés, llenos de anuncios y dan un número sin ninguna explicación. Numflo quiere ser lo contrario: rápido, claro, privado y realmente útil.",
       "Cómo se crean las calculadoras: cada fórmula se basa en matemáticas financieras estándar y se comprueba con pruebas automáticas frente a valores de referencia calculados de forma independiente antes de cada publicación. Cada página muestra la fórmula que usa, un ejemplo resuelto y la fecha de su última revisión.",
       "Cómo se protege tu privacidad: no hay cuentas ni cookies de seguimiento, y todo lo que escribes se queda en tu dispositivo. El código es abierto y cualquiera puede revisarlo en GitHub.",

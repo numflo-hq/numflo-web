@@ -2,17 +2,23 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
-## [0.3.1] - Unreleased
+## [0.4.0] - Unreleased
 
 ### Added
 
-- `/llms.txt`: an index of every calculator in English and Spanish for AI assistants (BRD S-70).
+- German: every page at `/de/` with German URLs, German number formats, a German glossary and style
+  guide, and translations reviewed with the SDLC §4.4 process (back-translation QA).
+- `/llms.txt`: an index of every calculator in every language for AI assistants (BRD S-70).
 - IndexNow: every release tells Bing and other IndexNow engines about all pages (BRD S-71).
+- Swiss francs (CHF), chosen automatically for visitors in Switzerland and Liechtenstein.
+- The language suggestion now offers whichever site language matches the browser (English, Spanish or
+  German); the 404 page greets visitors in all three.
 
 ### Changed
 
 - robots.txt explicitly welcomes search and AI crawlers (ChatGPT, Claude, Perplexity, Google, Apple,
   Bing, DuckDuckGo). The post-build check fails if anything is ever blocked.
+- Long words (German compounds) break or hyphenate instead of overflowing on small phones.
 
 ## [0.3.0] - 2026-09-25
 

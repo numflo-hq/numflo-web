@@ -53,23 +53,20 @@ document.addEventListener("keydown", (e) => {
 });
 
 // ---- Language suggestion banner (BRD L-5, L-6): suggest, never redirect ----
+// Suggest the site language that best matches the browser's preferences, if the page is in
+// another language and the visitor has not chosen or dismissed one.
 const pageLang = document.body.dataset.lang;
-const banner = document.querySelector<HTMLElement>("[data-lang-banner]");
-if (banner && pageLang) {
-  const suggested = banner.dataset.langBanner;
+const banners = [...document.querySelectorAll<HTMLElement>("[data-lang-banner]")];
+if (banners.length && pageLang) {
   const chosen = store.get("numflo:lang");
   const dismissed = store.get("numflo:lang-banner-dismissed") === "1";
-  const browserPrefers = (navigator.languages ?? [navigator.language]).some((l) =>
-    l.toLowerCase().startsWith(suggested ?? "--"),
-  );
-  const browserMatchesPage = (navigator.languages ?? [navigator.language])[0]
-    ?.toLowerCase()
-    .startsWith(pageLang);
-  if (!dismissed && chosen !== pageLang && browserPrefers && !browserMatchesPage) {
-    banner.classList.remove("hidden");
-  }
-  banner.querySelector("[data-lang-banner-close]")?.addEventListener("click", () => {
-    banner.classList.add("hidden");
-    store.set("numflo:lang-banner-dismissed", "1");
-  });
+  const preferred = (navigator.languages ?? [navigator.language]).map((l) => l.toLowerCase().slice(0, 2));
+  const firstKnown = preferred.find((l) => l === pageLang || banners.some((b) => b.dataset.langBanner === l));
+  const banner = banners.find((b) => b.dataset.langBanner === firstKnown);
+  if (banner && !dismissed && chosen !== pageLang) banner.classList.remove("hidden");
+  for (const b of banners)
+    b.querySelector("[data-lang-banner-close]")?.addEventListener("click", () => {
+      b.classList.add("hidden");
+      store.set("numflo:lang-banner-dismissed", "1");
+    });
 }

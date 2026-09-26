@@ -251,6 +251,7 @@ test.describe("layout at the edges (R-1)", () => {
     // Stricter than the page-level scroll check: catches content a few pixels too wide even
     // when fonts render slightly differently (the schedule legend once did this in CI).
     test.skip(isMobile, "viewport is set explicitly");
+    test.setTimeout(180_000); // visits every page
     await page.setViewportSize({ width: 320, height: 640 });
     for (const p of PAGES) {
       await page.goto(p.path);
@@ -290,4 +291,26 @@ test("copied credit card result reads the payoff time as words", async ({ page, 
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
     "Paying $200 a month on a $5,000 balance at 22% APR clears it in 2 years 10 months. Total interest: $1,750; total paid: $6,750.",
   );
+});
+
+test.describe("German (L-1, L-13)", () => {
+  test("German page uses German labels and number formats", async ({ page }) => {
+    await page.goto("/de/baufinanzierungsrechner?cur=EUR");
+    await expect(page.locator("html")).toHaveAttribute("lang", "de");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Baufinanzierungsrechner");
+    await expect(out(page, "monthly")).toHaveText(/^2\.514,28\s€$/);
+  });
+  test("typing a German decimal comma works", async ({ page }) => {
+    await page.goto("/de/kreditrechner?cur=EUR");
+    await field(page, "rate").fill("4,5");
+    await expect(page).toHaveURL(/rate=4\.5/);
+  });
+  test("Swiss francs use Swiss grouping on German pages", async ({ page }) => {
+    await page.goto("/de/festgeldrechner?principal=100000&rate=7&years=5&frequency=4&cur=CHF");
+    await expect(out(page, "maturity")).toHaveText(/^CHF\s141['’]477\.82$/);
+  });
+  test("German durations", async ({ page }) => {
+    await page.goto("/de/kreditkarten-tilgungsrechner?cur=EUR");
+    await expect(out(page, "time")).toHaveText("2 Jahre und 10 Monate");
+  });
 });

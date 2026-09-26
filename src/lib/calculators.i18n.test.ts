@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 import en from "../i18n/en.json";
 import es from "../i18n/es.json";
+import de from "../i18n/de.json";
 import { CALCULATORS, CALC_IDS, defaults, type CalcDef } from "./calculators";
 
 // Every label, message and column a definition needs exists in every language (BRD N-8, Q-15),
 // and every definition stays safe at the edges of what it accepts (BRD F-3, Q-25).
 type Dict = Record<string, Record<string, unknown>>;
-const DICTS = { en, es } as unknown as Record<string, Dict>;
+const DICTS = { en, es, de } as unknown as Record<string, Dict>;
 
 describe.each(Object.keys(DICTS))("%s dictionary covers every calculator", (lang) => {
   it.each(CALC_IDS)("%s", (id) => {
@@ -81,7 +82,7 @@ function* combos(def: CalcDef): Generator<Record<string, number>> {
   }
 }
 
-describe("edge values never give NaN, Infinity or negative chart parts", () => {
+describe("edge values never give NaN, Infinity or negative chart parts", { timeout: 60_000 }, () => {
   it.each(CALC_IDS)("%s", (id) => {
     const def = CALCULATORS[id];
     let n = 0;

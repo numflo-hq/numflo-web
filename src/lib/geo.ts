@@ -12,6 +12,8 @@ export const COUNTRY_CURRENCY: Record<string, Currency> = {
   GB: "GBP",
   IN: "INR",
   MX: "MXN",
+  CH: "CHF",
+  LI: "CHF",
   // Eurozone
   AT: "EUR",
   BE: "EUR",
@@ -74,6 +76,8 @@ const TIMEZONE_COUNTRY: Record<string, string> = {
   "Europe/Amsterdam": "NL",
   "Europe/Brussels": "BE",
   "Europe/Vienna": "AT",
+  "Europe/Zurich": "CH",
+  "Europe/Vaduz": "LI",
   "Europe/Dublin": "IE",
   "Europe/Helsinki": "FI",
   "Europe/Athens": "GR",

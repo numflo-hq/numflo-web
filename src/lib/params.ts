@@ -63,7 +63,7 @@ export function loanQueryString(p: LoanParams): string {
  */
 export function parseLocalizedNumber(raw: unknown, range: Range, decimalSeparator: string): number | null {
   if (typeof raw !== "string") return null;
-  const s = raw.replace(/[\s\u00a0\u202f']/g, "");
+  const s = raw.replace(/[\s\u00a0\u202f'\u2019]/g, "");
   if (s.length === 0 || s.length > MAX_RAW_LENGTH || !/^[\d.,]+$/.test(s)) return null;
   const groupingSeparator = decimalSeparator === "," ? "." : ",";
   const GROUPED: Record<string, RegExp> = { ",": /^\d{1,3}(,\d{3})+$/, ".": /^\d{1,3}(\.\d{3})+$/ };

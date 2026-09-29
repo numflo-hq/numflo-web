@@ -17,4 +17,6 @@ export const CALC_ICONS: Record<CalcId, string> = {
   savings:
     "M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0M13 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0",
   inflation: "M3 12l9-9h8v8l-9 9zM16 8h.01",
+  ppf: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4",
+  grossNet: "M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h3",
 };

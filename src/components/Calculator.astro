@@ -1,7 +1,7 @@
 ---
 import { t, type Lang } from "../i18n";
 import { CALCULATORS, defaults, type CalcId, type FieldDef } from "../lib/calculators";
-import { CURRENCIES } from "../lib/currency";
+import { CURRENCIES, type Currency } from "../lib/currency";
 import { formatMoney, formatNumber, formatOutput, currencySymbol } from "../lib/format";
 
 interface Props {
@@ -26,7 +26,8 @@ const d = t(lang)[calc] as unknown as {
 const label = (key: string) => d.inputs[key] as string;
 
 // Server-rendered starting values, so crawlers and no-JS visitors see a real result (BRD S-1).
-const cur = "USD" as const;
+const cur: Currency = def.currency ?? "USD";
+const currencies = def.currency ? [def.currency] : CURRENCIES;
 const values = defaults(def);
 const initial = def.compute(values);
 const money = (v: number, dec = 0) => formatMoney(v, lang, cur, dec);
@@ -34,7 +35,7 @@ const CIRC = 2 * Math.PI * 42;
 const shareTotal = initial.share[0] + initial.share[1];
 const share = shareTotal > 0 ? initial.share[0] / shareTotal : 1;
 const inputValue = (f: FieldDef) =>
-  f.kind === "money"
+  f.kind === "money" && Number.isInteger(f.default)
     ? formatNumber(f.default, lang, cur)
     : formatNumber(
         f.default,
@@ -67,7 +68,7 @@ const labels = { copied: d.results.copied, summary: d.results.summary, units };
             class="bg-surface border-line text-ink min-h-11 rounded-xl border px-3 font-semibold"
             data-currency
           >
-            {CURRENCIES.map((c) => (
+            {currencies.map((c) => (
               <option value={c} selected={c === cur}>
                 {c}
               </option>
@@ -285,64 +286,66 @@ const labels = { copied: d.results.copied, summary: d.results.summary, units };
 </div>
 
 <!-- Year-by-year -->
-<section class="card mt-5 p-5 sm:p-6" aria-labelledby="schedule-title">
-  <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
-    <h2 id="schedule-title" class="text-lg font-semibold">
-      {d.schedule.title}
-    </h2>
-    <div class="text-muted flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
-      <span class="flex items-center gap-1.5">
-        <span class="bg-accent size-2.5 rounded-sm" aria-hidden="true"></span>
-        {d.results[def.parts[0]!.key]}
-      </span>
-      <span class="flex items-center gap-1.5">
-        <span class="bg-interest size-2.5 rounded-sm" aria-hidden="true"></span>
-        {d.results[def.parts[1]!.key]}
-      </span>
+{def.schedule !== false && (
+  <section class="card mt-5 p-5 sm:p-6" aria-labelledby="schedule-title">
+    <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+      <h2 id="schedule-title" class="text-lg font-semibold">
+        {d.schedule.title}
+      </h2>
+      <div class="text-muted flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+        <span class="flex items-center gap-1.5">
+          <span class="bg-accent size-2.5 rounded-sm" aria-hidden="true"></span>
+          {d.results[def.parts[0]!.key]}
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="bg-interest size-2.5 rounded-sm" aria-hidden="true"></span>
+          {d.results[def.parts[1]!.key]}
+        </span>
+      </div>
     </div>
-  </div>
-  <svg
-    class="mt-5 h-40 w-full"
-    viewBox="0 0 400 160"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-    data-bars
-  ></svg>
-  <div
-    class="border-line mt-5 max-h-[28rem] overflow-auto rounded-xl border"
-    tabindex="0"
-    role="region"
-    aria-labelledby="schedule-title"
-  >
-    <table class="w-full min-w-[32rem] text-right text-sm tabular-nums">
-      <caption class="sr-only">{d.schedule.caption}</caption>
-      <thead class="bg-surface-2 text-muted sticky top-0 text-xs font-semibold tracking-wide uppercase">
-        <tr>
-          <th scope="col" class="px-4 py-3 text-left">
-            {d.schedule.year}
-          </th>
-          {def.columns.map((c) => (
-            <th scope="col" class="px-4 py-3">
-              {d.schedule[c]}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody class="divide-line divide-y" data-schedule>
-        {initial.rows.map((row) => (
+    <svg
+      class="mt-5 h-40 w-full"
+      viewBox="0 0 400 160"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      data-bars
+    ></svg>
+    <div
+      class="border-line mt-5 max-h-[28rem] overflow-auto rounded-xl border"
+      tabindex="0"
+      role="region"
+      aria-labelledby="schedule-title"
+    >
+      <table class="w-full min-w-[32rem] text-right text-sm tabular-nums">
+        <caption class="sr-only">{d.schedule.caption}</caption>
+        <thead class="bg-surface-2 text-muted sticky top-0 text-xs font-semibold tracking-wide uppercase">
           <tr>
-            <th scope="row" class="px-4 py-2.5 text-left font-medium">
-              {row.year}
+            <th scope="col" class="px-4 py-3 text-left">
+              {d.schedule.year}
             </th>
-            {row.cols.map((v) => (
-              <td class="px-4 py-2.5">{money(v)}</td>
+            {def.columns.map((c) => (
+              <th scope="col" class="px-4 py-3">
+                {d.schedule[c]}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</section>
+        </thead>
+        <tbody class="divide-line divide-y" data-schedule>
+          {initial.rows.map((row) => (
+            <tr>
+              <th scope="row" class="px-4 py-2.5 text-left font-medium">
+                {row.year}
+              </th>
+              {row.cols.map((v) => (
+                <td class="px-4 py-2.5">{money(v)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+)}
 
 <script>
   import "../scripts/calculator";

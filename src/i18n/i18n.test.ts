@@ -35,7 +35,10 @@ describe("translations (BRD Q-15)", () => {
   });
 
   it.each(Object.entries(OTHERS))("no %s string is left in English", (_, X) => {
-    const untranslated = Object.keys(EN).filter((k) => !SAME_ALLOWED.has(k) && EN[k] === X[k]);
+    // Strings without letters (such as "3") are the same in every language.
+    const untranslated = Object.keys(EN).filter(
+      (k) => !SAME_ALLOWED.has(k) && /\p{L}/u.test(String(EN[k])) && EN[k] === X[k],
+    );
     expect(untranslated).toEqual([]);
   });
 

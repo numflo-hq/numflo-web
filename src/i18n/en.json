@@ -51,7 +51,7 @@
       "description": "Numflo does not collect personal data. Calculations run on your device and nothing you type is sent or stored."
     },
     "investment": {
-      "title": "Investment Calculator – Monthly SIP Returns | Numflo",
+      "title": "SIP Calculator – Monthly SIP & Investment Returns | Numflo",
       "description": "See how much a regular monthly investment (SIP) could grow to, with optional yearly step-up. Free, private and works in any currency."
     },
     "compound": {
@@ -109,6 +109,14 @@
     "inflation": {
       "title": "Inflation Calculator – Future Cost & Buying Power | Numflo",
       "description": "See what things will cost in the future and how inflation reduces what your money can buy, year by year. Free and private."
+    },
+    "ppf": {
+      "title": "PPF Calculator – Maturity & Interest at 7.1% | Numflo",
+      "description": "Calculate your Public Provident Fund (PPF) maturity amount and interest for 15 years or with 5-year extensions. Yearly or monthly deposits."
+    },
+    "grossNet": {
+      "title": "German Salary Calculator 2026 – Gross to Net | Numflo",
+      "description": "Work out your 2026 net salary in Germany: wage tax, solidarity surcharge, church tax and social insurance for every tax class, with the BMF formula."
     }
   },
   "home": {
@@ -122,7 +130,7 @@
         "text": "Monthly payment, total interest and a year-by-year repayment schedule."
       },
       "investment": {
-        "title": "Investment calculator",
+        "title": "SIP & investment calculator",
         "text": "See how regular monthly investing can grow over time."
       },
       "compound": {
@@ -168,6 +176,14 @@
       "inflation": {
         "title": "Inflation calculator",
         "text": "Future prices and what your money will buy."
+      },
+      "ppf": {
+        "title": "PPF calculator",
+        "text": "Maturity value of a Public Provident Fund account in India."
+      },
+      "grossNet": {
+        "title": "German salary calculator",
+        "text": "Net pay after tax and social insurance in Germany, 2026."
       }
     },
     "why": {
@@ -303,7 +319,7 @@
     "back": "Go to the home page"
   },
   "investment": {
-    "heading": "Investment calculator",
+    "heading": "SIP & investment calculator",
     "lead": "See how a regular monthly investment (SIP) could grow over time.",
     "inputs": {
       "legend": "Investment details",
@@ -1476,6 +1492,251 @@
       "methodology": "Future cost = amount × (1 + i)^t and purchasing power = amount ÷ (1 + i)^t, where i is the yearly inflation rate and t the number of years. Values are rounded for display only.",
       "lastReviewed": "Last reviewed",
       "disclaimer": "This calculator gives estimates for information only and is not financial advice. Actual inflation varies over time."
+    }
+  },
+  "ppf": {
+    "heading": "PPF calculator",
+    "lead": "Calculate the maturity value and interest of a Public Provident Fund account.",
+    "inputs": {
+      "legend": "PPF details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "yearly": "Deposit per year",
+      "rate": "Interest rate (per year)",
+      "years": "Account term",
+      "mode": "How you deposit",
+      "hints": {
+        "yearly": "Between ₹500 and ₹1,50,000 per financial year.",
+        "rate": "7.1% has applied since April 2020. The government reviews it every quarter."
+      },
+      "options": {
+        "years": {
+          "15": "15 years",
+          "20": "20 years (1 extension)",
+          "25": "25 years (2 extensions)",
+          "30": "30 years (3 extensions)",
+          "35": "35 years (4 extensions)",
+          "40": "40 years (5 extensions)",
+          "45": "45 years (6 extensions)",
+          "50": "50 years (7 extensions)"
+        },
+        "mode": {
+          "1": "Once a year, by 5 April",
+          "12": "Every month, by the 5th"
+        }
+      }
+    },
+    "errors": {
+      "yearly": "Enter an amount between ₹500 and ₹1,50,000.",
+      "rate": "Enter a rate between 0% and 15%."
+    },
+    "results": {
+      "title": "Your results",
+      "maturity": "Maturity value",
+      "deposits": "Total deposited",
+      "interest": "Total interest",
+      "chartLabel": "Share of deposits and interest in the maturity value",
+      "summary": "Depositing {yearly} a year in PPF at {rate}% for {years} years gives a maturity value of {maturity}: {deposits} deposited and {interest} of tax-free interest.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Growth by year",
+      "caption": "Year-by-year total deposits, interest earned and balance",
+      "year": "Year",
+      "deposits": "Deposited",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "The Public Provident Fund (PPF) is a government-backed savings scheme in India. You deposit up to ₹1.5 lakh each financial year for 15 years, interest is added every 31 March, and both the interest and the maturity amount are tax-free. This calculator shows what your account is worth at maturity.",
+      "sections": [
+        {
+          "title": "How PPF interest works",
+          "paragraphs": [
+            "Interest is worked out every month on the lowest balance between the 5th and the last day of the month, at one twelfth of the yearly rate. It is added to the account once a year, on 31 March, and then earns interest itself.",
+            "Money that arrives by the 5th counts for that whole month; money that arrives on the 6th or later starts earning from the next month. That is why depositing the full amount by 5 April earns the most."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Deposit ₹1,50,000 by 5 April every year for 15 years at 7.1%. You put in ₹22,50,000 and the account matures at about ₹40,68,209, so you earn ₹18,18,209 of tax-free interest.",
+            "Paying the same ₹1,50,000 as ₹12,500 by the 5th of every month gives about ₹39,44,599, around ₹1.2 lakh less, because each instalment earns interest for fewer months. Extending the account by 5 years with the same deposits takes the maturity value to about ₹66,58,288."
+          ]
+        },
+        {
+          "title": "Rules to know",
+          "paragraphs": [
+            "The minimum deposit is ₹500 and the maximum is ₹1,50,000 per financial year, across your own account and any account you open for a minor child. You can pay in one go or in several instalments.",
+            "The account runs for 15 full financial years after the year you open it. You can then withdraw the balance or extend the account in blocks of 5 years, with or without further deposits. Partial withdrawals are allowed from the 7th financial year, and loans against the balance from the 3rd to the 6th year.",
+            "Deposits qualify for the Section 80C deduction under the old tax regime, and the interest and maturity amount are tax-free."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "What is the current PPF interest rate?",
+          "a": "7.1% a year, compounded yearly. It has stayed at 7.1% since April 2020, but the government reviews it every quarter, so check the rate for the current quarter and change it in the calculator if needed."
+        },
+        {
+          "q": "Why does the calculator assume the same rate for every year?",
+          "a": "No one knows future rates. Using today's rate for the whole term gives a fair estimate; you can try a lower or higher rate to see the range of outcomes."
+        },
+        {
+          "q": "Is it better to deposit once a year or every month?",
+          "a": "One deposit by 5 April earns the most, because the whole amount earns interest for all twelve months. Monthly deposits are fine too; just make sure each arrives by the 5th."
+        },
+        {
+          "q": "What happens after 15 years?",
+          "a": "You can close the account and take the money, keep it open without new deposits (it still earns interest), or extend it for 5 years with deposits. Extensions can be repeated. Choose a longer term above to see the effect of extending with the same deposits."
+        },
+        {
+          "q": "Is PPF interest taxable?",
+          "a": "No. PPF has exempt-exempt-exempt status: deposits can be deducted under Section 80C in the old regime, and the interest and maturity amount are not taxed."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "For each financial year the interest is the sum over twelve months of (balance counted for that month) × r / 12, added on 31 March. With one deposit by 5 April the balance counted all year is the opening balance plus the deposit, so interest = (B + D) × r. With monthly deposits by the 5th, month m counts the opening balance plus m instalments. Amounts are shown rounded to the nearest rupee.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not financial advice. The PPF rate is set by the Government of India and can change every quarter; the rules of the scheme apply."
+    }
+  },
+  "grossNet": {
+    "heading": "German salary calculator 2026",
+    "lead": "Work out your net pay in Germany after wage tax and social insurance, for any tax class.",
+    "inputs": {
+      "legend": "Salary details",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "gross": "Gross salary per month",
+      "taxClass": "Tax class (Steuerklasse)",
+      "children": "Children",
+      "church": "Church tax",
+      "saxony": "Place of work",
+      "zusatz": "Health insurance additional rate",
+      "hints": {
+        "children": "Children you receive child benefit for. Assumes a full child allowance (1.0) per child, as for married parents.",
+        "zusatz": "Your health insurer's Zusatzbeitrag. The 2026 average is 2.9%."
+      },
+      "options": {
+        "taxClass": {
+          "1": "I – single",
+          "2": "II – single parent",
+          "3": "III – married, higher earner",
+          "4": "IV – married, similar incomes",
+          "5": "V – married, lower earner",
+          "6": "VI – second job"
+        },
+        "children": {
+          "0": "None",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6 or more"
+        },
+        "church": {
+          "0": "None",
+          "8": "8% (Bavaria, Baden-Württemberg)",
+          "9": "9% (all other states)"
+        },
+        "saxony": {
+          "0": "Any state except Saxony",
+          "1": "Saxony"
+        }
+      }
+    },
+    "errors": {
+      "gross": "Enter a monthly salary between €100 and €1,000,000.",
+      "zusatz": "Enter a rate between 0% and 6%.",
+      "taxClassRule": "Tax class II is for single parents: choose at least one child."
+    },
+    "results": {
+      "title": "Your net pay",
+      "netMonth": "Net pay per month",
+      "net": "Net pay",
+      "deductions": "Tax and social insurance",
+      "gross": "Gross pay",
+      "incomeTax": "Wage tax (Lohnsteuer)",
+      "soli": "Solidarity surcharge",
+      "churchTax": "Church tax",
+      "health": "Health insurance",
+      "care": "Long-term care insurance",
+      "pension": "Pension insurance",
+      "unemployment": "Unemployment insurance",
+      "netYear": "Net pay per year (12 months)",
+      "chartLabel": "Share of net pay and deductions in the gross salary",
+      "summary": "A gross salary of {gross} a month in tax class {taxClass} leaves {net} net in 2026, after {incomeTax} wage tax and {deductions} of tax and social insurance in total.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Breakdown",
+      "caption": "Breakdown of the salary",
+      "year": "Year",
+      "net": "Net",
+      "deductions": "Deductions",
+      "gross": "Gross"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "summary": "In Germany your employer deducts wage tax, often a solidarity surcharge and church tax, and your share of four social insurances from your gross pay. This calculator works out your 2026 net pay per month with the official formula of the Federal Ministry of Finance (BMF) and the 2026 contribution rates.",
+      "sections": [
+        {
+          "title": "What is deducted from your salary",
+          "paragraphs": [
+            "Wage tax (Lohnsteuer) is an advance payment on your income tax. It depends on your tax class and already takes into account the basic allowance of €12,348, the employee allowance of €1,230 and part of your social insurance contributions. The solidarity surcharge of 5.5% applies only to high wage tax. Church members pay church tax of 8% (Bavaria, Baden-Württemberg) or 9% of the wage tax.",
+            "Your share of social insurance in 2026: health insurance 7.3% plus half your insurer's additional rate, long-term care 1.8% (2.3% in Saxony), pension 9.3% and unemployment 1.3%. Health and care contributions stop at €5,812.50 a month, pension and unemployment at €8,450."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "A single employee without children in tax class I earning €4,000 a month pays €524.50 wage tax, no solidarity surcharge, €350.00 health insurance (with a 2.9% additional rate), €96.00 long-term care (including the 0.6% childless surcharge), €372.00 pension and €52.00 unemployment insurance. That leaves €2,605.50 net. As a church member in North Rhine-Westphalia another €47.20 goes, leaving €2,558.30.",
+            "The same €4,000 in tax class III leaves €2,928.17, and in tax class V €2,185.09. Classes III and V together are meant for married couples with very different incomes; the difference evens out in the yearly tax return."
+          ]
+        },
+        {
+          "title": "Children, midijobs and minijobs",
+          "paragraphs": [
+            "Children do not lower wage tax: they are supported through child benefit (Kindergeld), and because care contributions are lower with children, wage tax can even be slightly higher. Children do lower the solidarity surcharge and church tax, and long-term care insurance: without children, people aged 23 and over pay an extra 0.6%; from the second child under 25 the rate falls by 0.25 points per child, up to the fifth.",
+            "Up to €603 a month is a minijob: usually the employer pays a flat tax and you pay only 3.6% to the pension insurance. From €603.01 to €2,000 (the midijob range) your social insurance contributions are reduced and rise gradually to the full rate at €2,000. The calculator applies both rules. In tax class VI (a second job) the midijob reduction does not apply, because pay from all jobs is added together."
+          ]
+        }
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faqs": [
+        {
+          "q": "Which tax class am I in?",
+          "a": "Single people are in class I, single parents who live with their child in class II. Married couples and civil partners are in class IV by default, or can choose III and V. Class VI applies to a second job. Your tax class is shown on your payslip."
+        },
+        {
+          "q": "Why is my payslip slightly different?",
+          "a": "Allowances entered with the tax office, company pension, benefits in kind, one-off payments such as holiday or Christmas pay, and private health insurance all change the result. The calculator covers the common case: statutory health insurance, no extra allowances, under 64."
+        },
+        {
+          "q": "Why do children not reduce my wage tax?",
+          "a": "During the year children are supported through child benefit. The child allowance is only used for the solidarity surcharge and church tax, and in the tax return, where the tax office checks whether the allowance is worth more than the child benefit."
+        },
+        {
+          "q": "Does the calculator work for a yearly salary?",
+          "a": "Enter your monthly salary: divide a yearly salary by 12, or by 13 or 14 if part of it is paid as a 13th or 14th month. The yearly net shown is twelve times the monthly net."
+        },
+        {
+          "q": "Who pays the solidarity surcharge?",
+          "a": "Since 2021 only about the top tenth of earners. In 2026 it is due when the yearly wage tax exceeds €20,350 (€40,700 in class III), and it phases in gradually above that."
+        }
+      ],
+      "methodologyTitle": "Methodology",
+      "methodology": "Wage tax, solidarity surcharge and church-tax base follow the BMF Programmablaufplan for 2026 (monthly pay period), including the 2026 Vorsorgepauschale with unemployment insurance and the €1,900 limit, rounded exactly as prescribed; results were checked to the cent against an independent implementation of that plan in 20,000 cases. Employee social insurance uses the 2026 rates and ceilings; in the midijob range the reduced base 2000/(2000 − 603) × (gross − 603) applies, and the childless surcharge uses the total base with Faktor F = 0.6619.",
+      "lastReviewed": "Last reviewed",
+      "disclaimer": "This calculator gives estimates for information only and is not tax advice. Your actual payslip depends on your personal circumstances and the information your employer holds."
     }
   }
 }

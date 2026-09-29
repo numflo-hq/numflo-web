@@ -2,6 +2,21 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.5.0] - Unreleased
+
+### Added
+
+- PPF calculator (India, BRD F-40): maturity value and interest for 15 years or with 5-year extensions,
+  one deposit by 5 April or monthly deposits by the 5th, always in rupees.
+- German salary calculator 2026 (Brutto-Netto-Rechner, BRD F-41): wage tax, solidarity surcharge and church
+  tax per the BMF Programmablaufplan 2026, checked to the cent against an independent implementation in
+  20,000 cases; employee social insurance with the 2026 rates and ceilings, minijob and midijob rules.
+- Calculators can be tied to one currency, and can leave out the year-by-year schedule.
+
+### Changed
+
+- The English investment calculator is titled "SIP & investment calculator", the name most people search for.
+
 ## [0.4.1] - 2026-09-26
 
 ### Changed

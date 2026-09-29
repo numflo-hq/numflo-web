@@ -3,6 +3,7 @@
  * browser loads only the definition of the calculator on the page.
  */
 import { parseStrictNumber, type Range } from "./params";
+import type { Currency } from "./currency";
 
 export type CalcId =
   | "loan"
@@ -17,7 +18,9 @@ export type CalcId =
   | "cagr"
   | "retirement"
   | "savings"
-  | "inflation";
+  | "inflation"
+  | "ppf"
+  | "grossNet";
 
 export type FieldKind = "money" | "percent" | "years" | "select";
 
@@ -73,19 +76,30 @@ export interface CalcDef {
    * shown is `errors.<key>Rule` when it exists, otherwise the field's own error.
    */
   check?(values: Record<string, number>): string | null;
+  /** A calculator tied to one country's rules always uses that currency (no selector). */
+  currency?: Currency;
+  /** False when there is no year-by-year schedule (the section is left out). */
+  schedule?: boolean;
   compute(values: Record<string, number>): CalcResult;
 }
 
 // ---------- Field helpers for the definitions ----------
 
 type Slider = [min: number, max: number, step: number];
-export const money = (key: string, min: number, max: number, slider: Slider, def: number): FieldDef => ({
+export const money = (
+  key: string,
+  min: number,
+  max: number,
+  slider: Slider,
+  def: number,
+  decimals = 0,
+): FieldDef => ({
   key,
   kind: "money",
   range: { min, max },
   slider: { min: slider[0], max: slider[1], step: slider[2] },
   default: def,
-  decimals: 0,
+  decimals,
 });
 export const pct = (
   key: string,

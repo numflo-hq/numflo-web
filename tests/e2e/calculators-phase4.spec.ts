@@ -17,7 +17,8 @@ test.describe("default results rendered without JavaScript match the live result
         expect(t).not.toMatch(/NaN|undefined|Infinity/);
         expect(t.trim()).not.toBe("");
       }
-      expect(await page.locator("[data-schedule] tr").count()).toBeGreaterThan(0);
+      // The salary calculator has a breakdown instead of a year-by-year schedule.
+      if (p.key !== "grossNet") expect(await page.locator("[data-schedule] tr").count()).toBeGreaterThan(0);
     });
   }
 });
@@ -190,10 +191,10 @@ test.describe("planning calculators (F-34, F-35, F-36)", () => {
   });
 });
 
-test.describe("site navigation for 13 calculators (S-25)", () => {
+test.describe("site navigation for every calculator (S-25)", () => {
   test("home page groups every calculator by category", async ({ page }) => {
     await page.goto("/");
-    await expect(page.locator('#calcs ~ div ul[role="list"] > li')).toHaveCount(13);
+    await expect(page.locator('#calcs ~ div ul[role="list"] > li')).toHaveCount(CALC_PAGES.length / 3);
     await expect(page.locator("h3#cat-borrow")).toHaveText("Borrowing");
   });
   test("footer links to every calculator in the page language", async ({ page }) => {

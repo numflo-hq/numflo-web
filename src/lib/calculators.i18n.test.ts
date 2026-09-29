@@ -32,7 +32,8 @@ describe.each(Object.keys(DICTS))("%s dictionary covers every calculator", (lang
     ];
     if (def.total) outputs.push(def.total);
     for (const k of outputs) expect(d.results[k], `results.${k}`).toBeTruthy();
-    for (const c of def.columns) expect(d.schedule[c], `schedule.${c}`).toBeTruthy();
+    if (def.schedule !== false)
+      for (const c of def.columns) expect(d.schedule[c], `schedule.${c}`).toBeTruthy();
     // Every placeholder in the copied summary resolves to an output or a field.
     const known = new Set([
       ...outputs,
@@ -48,6 +49,7 @@ describe("rule messages exist for every field a rule can flag", () => {
   const flaggable: Record<string, string[]> = {
     affordability: ["debts"],
     creditCard: ["payment"],
+    grossNet: ["taxClass"],
     retirement: ["retireAge", "savings"],
   };
   it.each(Object.entries(flaggable))("%s", (id, keys) => {

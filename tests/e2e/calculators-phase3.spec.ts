@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { CALC_PAGES } from "./pages";
 
 // Investment and compound interest calculators (BRD F-11, F-12; issue #8).
 test.use({ locale: "en-US" });
@@ -128,7 +129,7 @@ test.describe("navigation between calculators (S-25)", () => {
     test.skip(isMobile, "menu is shown from the sm breakpoint");
     await page.goto("/");
     await page.locator("[data-menu] summary").click();
-    await expect(page.locator("[data-menu] a")).toHaveCount(13);
+    await expect(page.locator("[data-menu] a")).toHaveCount(CALC_PAGES.length / 3);
     await page.keyboard.press("Escape");
     await expect(page.locator("[data-menu]")).not.toHaveAttribute("open", "");
   });

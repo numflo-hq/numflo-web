@@ -32,6 +32,8 @@ const LOADERS: Record<CalcId, () => Promise<{ default: CalcDef }>> = {
   retirement: () => import("../lib/defs/retirement"),
   savings: () => import("../lib/defs/savings"),
   inflation: () => import("../lib/defs/inflation"),
+  ppf: () => import("../lib/defs/ppf"),
+  grossNet: () => import("../lib/defs/grossNet"),
 };
 
 const root = document.querySelector<HTMLElement>("[data-calc]");
@@ -64,15 +66,17 @@ function init(root: HTMLElement, def: CalcDef) {
       return null;
     }
   })();
-  const currencyIsFixed = isCurrency(urlCurrency) || isCurrency(savedCurrency);
-  let currency: Currency = isCurrency(urlCurrency)
-    ? urlCurrency
-    : isCurrency(savedCurrency)
-      ? savedCurrency
-      : offlineCurrencyGuess(
-          Intl.DateTimeFormat().resolvedOptions().timeZone,
-          navigator.languages ?? [navigator.language],
-        );
+  const currencyIsFixed = Boolean(def.currency) || isCurrency(urlCurrency) || isCurrency(savedCurrency);
+  let currency: Currency = def.currency
+    ? def.currency
+    : isCurrency(urlCurrency)
+      ? urlCurrency
+      : isCurrency(savedCurrency)
+        ? savedCurrency
+        : offlineCurrencyGuess(
+            Intl.DateTimeFormat().resolvedOptions().timeZone,
+            navigator.languages ?? [navigator.language],
+          );
 
   const decimalSeparator = () =>
     new Intl.NumberFormat(numberLocale(lang, currency)).formatToParts(1.5).find((p) => p.type === "decimal")
@@ -80,8 +84,12 @@ function init(root: HTMLElement, def: CalcDef) {
 
   const fmtField = (k: string, v: number) => {
     const f = def.fields.find((x) => x.key === k)!;
-    if (f.kind === "money") return formatNumber(v, lang, currency);
-    const dec = Number.isInteger(v) ? 0 : Math.min(2, (String(v).split(".")[1] ?? "").length);
+    if (f.kind === "money" && Number.isInteger(v)) return formatNumber(v, lang, currency);
+    const dec = Number.isInteger(v)
+      ? 0
+      : f.kind === "money"
+        ? 2
+        : Math.min(2, (String(v).split(".")[1] ?? "").length);
     return formatNumber(v, lang, currency, dec);
   };
 
@@ -129,8 +137,8 @@ function init(root: HTMLElement, def: CalcDef) {
 
   // ---- Rendering ----
   const donut = $<SVGCircleElement>("[data-donut]")!;
-  const bars = $<SVGSVGElement>("[data-bars]")!;
-  const tbody = $<HTMLTableSectionElement>("[data-schedule]")!;
+  const bars = $<SVGSVGElement>("[data-bars]");
+  const tbody = $<HTMLTableSectionElement>("[data-schedule]");
   const CIRC = 2 * Math.PI * 42;
   let last = def.compute(state);
 
@@ -157,6 +165,7 @@ function init(root: HTMLElement, def: CalcDef) {
     const dash = `${(share * CIRC).toFixed(2)} ${CIRC.toFixed(2)}`;
     if (donut.getAttribute("stroke-dasharray") !== dash) donut.setAttribute("stroke-dasharray", dash);
 
+    if (!tbody || !bars) return;
     // Update the table in place: the server already rendered the default rows, and
     // untouched cells cost no style or layout work (BRD Q-3 performance budget).
     const trs = tbody.rows;
@@ -294,7 +303,7 @@ function init(root: HTMLElement, def: CalcDef) {
 
   let userPickedCurrency = false;
   currencySelect.addEventListener("change", () => {
-    if (!isCurrency(currencySelect.value)) return;
+    if (!isCurrency(currencySelect.value) || def.currency) return;
     userPickedCurrency = true;
     interacted = true;
     currency = currencySelect.value;

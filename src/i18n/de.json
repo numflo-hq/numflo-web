@@ -109,6 +109,14 @@
     "inflation": {
       "title": "Inflationsrechner – künftige Preise & Kaufkraft | Numflo",
       "description": "Sieh, was Dinge in Zukunft kosten und wie die Inflation Jahr für Jahr die Kaufkraft deines Geldes senkt. Kostenlos und privat."
+    },
+    "ppf": {
+      "title": "PPF-Rechner (Indien) – Endbetrag und Zinsen | Numflo",
+      "description": "Berechne Endbetrag und Zinsen des indischen Public Provident Fund (PPF) für 15 Jahre oder mit Verlängerung. Jährliche oder monatliche Einzahlungen."
+    },
+    "grossNet": {
+      "title": "Brutto-Netto-Rechner 2026 – dein Nettogehalt | Numflo",
+      "description": "Berechne dein Nettogehalt 2026: Lohnsteuer, Soli, Kirchensteuer und Sozialabgaben für jede Steuerklasse – nach dem offiziellen BMF-Programmablaufplan."
     }
   },
   "home": {
@@ -168,6 +176,14 @@
       "inflation": {
         "title": "Inflationsrechner",
         "text": "Künftige Preise und was du dir für dein Geld leisten kannst."
+      },
+      "ppf": {
+        "title": "PPF-Rechner (Indien)",
+        "text": "Endbetrag eines indischen Public-Provident-Fund-Kontos."
+      },
+      "grossNet": {
+        "title": "Brutto-Netto-Rechner",
+        "text": "Dein Nettogehalt 2026 nach Steuern und Sozialabgaben."
       }
     },
     "why": {
@@ -1476,6 +1492,251 @@
       "methodology": "Künftige Kosten = Betrag × (1 + i)^t und Kaufkraft = Betrag ÷ (1 + i)^t, wobei i die jährliche Inflationsrate und t die Anzahl der Jahre ist. Die Werte werden nur für die Anzeige gerundet.",
       "lastReviewed": "Zuletzt geprüft",
       "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Die tatsächliche Inflation schwankt im Lauf der Zeit."
+    }
+  },
+  "ppf": {
+    "heading": "PPF-Rechner (Indien)",
+    "lead": "Berechne Endbetrag und Zinsen eines indischen Public-Provident-Fund-Kontos.",
+    "inputs": {
+      "legend": "Angaben zum PPF-Konto",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "yearly": "Einzahlung pro Jahr",
+      "rate": "Zinssatz (pro Jahr)",
+      "years": "Laufzeit",
+      "mode": "Einzahlungsweise",
+      "hints": {
+        "yearly": "Zwischen 500 ₹ und 150.000 ₹ pro Finanzjahr.",
+        "rate": "Seit April 2020 gelten 7,1 %. Die Regierung prüft den Satz jedes Quartal."
+      },
+      "options": {
+        "years": {
+          "15": "15 Jahre",
+          "20": "20 Jahre (1 Verlängerung)",
+          "25": "25 Jahre (2 Verlängerungen)",
+          "30": "30 Jahre (3 Verlängerungen)",
+          "35": "35 Jahre (4 Verlängerungen)",
+          "40": "40 Jahre (5 Verlängerungen)",
+          "45": "45 Jahre (6 Verlängerungen)",
+          "50": "50 Jahre (7 Verlängerungen)"
+        },
+        "mode": {
+          "1": "Einmal im Jahr, bis zum 5. April",
+          "12": "Jeden Monat, bis zum 5."
+        }
+      }
+    },
+    "errors": {
+      "yearly": "Gib einen Betrag zwischen 500 ₹ und 150.000 ₹ ein.",
+      "rate": "Gib einen Zinssatz zwischen 0 % und 15 % ein."
+    },
+    "results": {
+      "title": "Dein Ergebnis",
+      "maturity": "Endbetrag",
+      "deposits": "Eingezahlt",
+      "interest": "Zinsen gesamt",
+      "chartLabel": "Anteil von Einzahlungen und Zinsen am Endbetrag",
+      "summary": "Wer {years} Jahre lang {yearly} pro Jahr zu {rate} % in den PPF einzahlt, erhält einen Endbetrag von {maturity}: davon {deposits} eingezahlt und {interest} steuerfreie Zinsen.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Wachstum nach Jahren",
+      "caption": "Einzahlungen, erhaltene Zinsen und Guthaben im Überblick nach Jahren",
+      "year": "Jahr",
+      "deposits": "Eingezahlt",
+      "interest": "Zinsen",
+      "balance": "Guthaben"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Der Public Provident Fund (PPF) ist ein staatlich garantiertes Sparprogramm in Indien. Du zahlst 15 Jahre lang bis zu 1,5 Lakh Rupien (150.000 ₹) pro Finanzjahr ein, die Zinsen werden jeweils am 31. März gutgeschrieben, und Zinsen wie Endbetrag sind steuerfrei. Dieser Rechner zeigt, wie viel dein Konto am Ende wert ist.",
+      "sections": [
+        {
+          "title": "So werden PPF-Zinsen berechnet",
+          "paragraphs": [
+            "Die Zinsen werden jeden Monat auf das niedrigste Guthaben zwischen dem 5. und dem Monatsende berechnet, mit einem Zwölftel des Jahreszinssatzes. Gutgeschrieben werden sie einmal im Jahr am 31. März; danach bringen sie selbst Zinsen.",
+            "Geld, das bis zum 5. eingeht, zählt für den ganzen Monat; Geld, das ab dem 6. eingeht, erst ab dem Folgemonat. Deshalb bringt es am meisten, den vollen Betrag bis zum 5. April einzuzahlen."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Du zahlst 15 Jahre lang jedes Jahr bis zum 5. April 150.000 ₹ zu 7,1 % ein. Insgesamt sind das 2.250.000 ₹, und das Konto ist am Ende rund 4.068.209 ₹ wert – du erhältst also 1.818.209 ₹ steuerfreie Zinsen.",
+            "Zahlst du dieselben 150.000 ₹ in Monatsraten von 12.500 ₹ jeweils bis zum 5. ein, erreichst du rund 3.944.599 ₹, etwa 120.000 ₹ weniger, weil jede Rate weniger Monate verzinst wird. Verlängerst du das Konto um 5 Jahre mit denselben Einzahlungen, steigt der Endbetrag auf rund 6.658.288 ₹."
+          ]
+        },
+        {
+          "title": "Wichtige Regeln",
+          "paragraphs": [
+            "Pro Finanzjahr sind mindestens 500 ₹ und höchstens 150.000 ₹ erlaubt, zusammen für dein eigenes Konto und ein Konto, das du für ein minderjähriges Kind eröffnest. Du kannst auf einmal oder in mehreren Raten einzahlen.",
+            "Das Konto läuft 15 volle Finanzjahre nach dem Eröffnungsjahr. Danach kannst du das Guthaben abheben oder das Konto in Schritten von 5 Jahren verlängern, mit oder ohne weitere Einzahlungen. Teilentnahmen sind ab dem 7. Finanzjahr möglich, Darlehen auf das Guthaben vom 3. bis zum 6. Jahr.",
+            "Einzahlungen sind im alten indischen Steuersystem nach Section 80C absetzbar, Zinsen und Endbetrag sind steuerfrei."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Wie hoch ist der aktuelle PPF-Zinssatz?",
+          "a": "7,1 % pro Jahr mit jährlicher Zinsgutschrift. Der Satz gilt seit April 2020, wird aber jedes Quartal von der Regierung überprüft. Sieh dir den Satz für das laufende Quartal an und passe ihn im Rechner bei Bedarf an."
+        },
+        {
+          "q": "Warum nimmt der Rechner für jedes Jahr denselben Zinssatz an?",
+          "a": "Künftige Zinssätze kennt niemand. Der heutige Satz für die ganze Laufzeit ist eine faire Schätzung; mit einem niedrigeren oder höheren Satz siehst du die mögliche Spanne."
+        },
+        {
+          "q": "Lieber einmal im Jahr oder monatlich einzahlen?",
+          "a": "Eine Einzahlung bis zum 5. April bringt am meisten, weil der ganze Betrag alle zwölf Monate verzinst wird. Monatliche Einzahlungen sind ebenfalls in Ordnung – sie sollten nur jeweils bis zum 5. eingehen."
+        },
+        {
+          "q": "Was passiert nach 15 Jahren?",
+          "a": "Du kannst das Konto auflösen und das Geld abheben, es ohne neue Einzahlungen weiterlaufen lassen (es wird weiter verzinst) oder es mit Einzahlungen um 5 Jahre verlängern. Verlängerungen lassen sich wiederholen. Wähle oben eine längere Laufzeit, um die Wirkung einer Verlängerung mit denselben Einzahlungen zu sehen."
+        },
+        {
+          "q": "Sind PPF-Zinsen steuerpflichtig?",
+          "a": "Nein. Der PPF ist dreifach steuerbefreit: Einzahlungen sind im alten Steuersystem nach Section 80C absetzbar, Zinsen und Endbetrag werden nicht besteuert."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Die Zinsen eines Finanzjahres sind die Summe über zwölf Monate aus (für den Monat maßgebliches Guthaben) × r / 12, gutgeschrieben am 31. März. Bei einer Einzahlung bis zum 5. April zählt das ganze Jahr über das Anfangsguthaben plus Einzahlung, also Zinsen = (B + D) × r. Bei monatlichen Einzahlungen bis zum 5. zählt im Monat m das Anfangsguthaben plus m Raten. Beträge werden auf ganze Rupien gerundet angezeigt.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Den PPF-Zinssatz legt die indische Regierung fest, er kann sich jedes Quartal ändern; es gelten die Regeln des Programms."
+    }
+  },
+  "grossNet": {
+    "heading": "Brutto-Netto-Rechner 2026",
+    "lead": "Berechne dein Nettogehalt nach Lohnsteuer und Sozialabgaben – für jede Steuerklasse.",
+    "inputs": {
+      "legend": "Angaben zum Gehalt",
+      "currency": "Währung",
+      "yearsUnit": "Jahre",
+      "gross": "Bruttogehalt pro Monat",
+      "taxClass": "Steuerklasse",
+      "children": "Kinder",
+      "church": "Kirchensteuer",
+      "saxony": "Arbeitsort",
+      "zusatz": "Zusatzbeitrag der Krankenkasse",
+      "hints": {
+        "children": "Kinder, für die du Kindergeld bekommst. Gerechnet wird mit einem ganzen Kinderfreibetrag (1,0) je Kind, wie bei verheirateten Eltern.",
+        "zusatz": "Der Zusatzbeitrag deiner Krankenkasse. Durchschnitt 2026: 2,9 %."
+      },
+      "options": {
+        "taxClass": {
+          "1": "I – ledig",
+          "2": "II – alleinerziehend",
+          "3": "III – verheiratet, höheres Gehalt",
+          "4": "IV – verheiratet, ähnliches Gehalt",
+          "5": "V – verheiratet, niedrigeres Gehalt",
+          "6": "VI – Zweitjob"
+        },
+        "children": {
+          "0": "Keine",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6 oder mehr"
+        },
+        "church": {
+          "0": "Keine",
+          "8": "8 % (Bayern, Baden-Württemberg)",
+          "9": "9 % (alle anderen Länder)"
+        },
+        "saxony": {
+          "0": "Alle Länder außer Sachsen",
+          "1": "Sachsen"
+        }
+      }
+    },
+    "errors": {
+      "gross": "Gib ein Monatsgehalt zwischen 100 € und 1.000.000 € ein.",
+      "zusatz": "Gib einen Satz zwischen 0 % und 6 % ein.",
+      "taxClassRule": "Steuerklasse II gilt für Alleinerziehende: Wähle mindestens ein Kind."
+    },
+    "results": {
+      "title": "Dein Nettogehalt",
+      "netMonth": "Netto pro Monat",
+      "net": "Netto",
+      "deductions": "Steuern und Sozialabgaben",
+      "gross": "Brutto",
+      "incomeTax": "Lohnsteuer",
+      "soli": "Solidaritätszuschlag",
+      "churchTax": "Kirchensteuer",
+      "health": "Krankenversicherung",
+      "care": "Pflegeversicherung",
+      "pension": "Rentenversicherung",
+      "unemployment": "Arbeitslosenversicherung",
+      "netYear": "Netto pro Jahr (12 Monate)",
+      "chartLabel": "Anteil von Netto und Abzügen am Bruttogehalt",
+      "summary": "In Steuerklasse {taxClass} bleiben dir 2026 von {gross} brutto im Monat {net} netto – nach {incomeTax} Lohnsteuer und insgesamt {deductions} Steuern und Sozialabgaben.",
+      "copyLink": "Link kopieren",
+      "copyResult": "Ergebnis kopieren",
+      "copied": "Kopiert"
+    },
+    "schedule": {
+      "title": "Aufschlüsselung",
+      "caption": "Aufschlüsselung des Gehalts",
+      "year": "Jahr",
+      "net": "Netto",
+      "deductions": "Abzüge",
+      "gross": "Brutto"
+    },
+    "content": {
+      "summaryTitle": "Kurz gesagt",
+      "summary": "Vom Bruttogehalt behält dein Arbeitgeber die Lohnsteuer ein, gegebenenfalls Solidaritätszuschlag und Kirchensteuer, dazu deinen Anteil an vier Sozialversicherungen. Dieser Rechner ermittelt dein Nettogehalt 2026 pro Monat mit dem offiziellen Programmablaufplan des Bundesfinanzministeriums (BMF) und den Beitragssätzen 2026.",
+      "sections": [
+        {
+          "title": "Was vom Gehalt abgezogen wird",
+          "paragraphs": [
+            "Die Lohnsteuer ist eine Vorauszahlung auf die Einkommensteuer. Sie hängt von deiner Steuerklasse ab und berücksichtigt bereits den Grundfreibetrag von 12.348 €, den Arbeitnehmer-Pauschbetrag von 1.230 € und einen Teil deiner Sozialbeiträge (Vorsorgepauschale). Der Solidaritätszuschlag von 5,5 % fällt nur bei hoher Lohnsteuer an. Kirchenmitglieder zahlen 8 % (Bayern, Baden-Württemberg) oder 9 % der Lohnsteuer als Kirchensteuer.",
+            "Dein Anteil an der Sozialversicherung 2026: Krankenversicherung 7,3 % plus die Hälfte des Zusatzbeitrags, Pflegeversicherung 1,8 % (in Sachsen 2,3 %), Rentenversicherung 9,3 % und Arbeitslosenversicherung 1,3 %. Kranken- und Pflegebeiträge werden höchstens auf 5.812,50 € im Monat berechnet (Beitragsbemessungsgrenze), Renten- und Arbeitslosenbeiträge höchstens auf 8.450 €."
+          ]
+        },
+        {
+          "title": "Rechenbeispiel",
+          "paragraphs": [
+            "Bei 4.000 € brutto in Steuerklasse I, ledig und ohne Kinder, fallen 524,50 € Lohnsteuer an, dazu kein Solidaritätszuschlag, aber 350,00 € Krankenversicherung (mit 2,9 % Zusatzbeitrag), 96,00 € Pflegeversicherung (inklusive 0,6 % Kinderlosenzuschlag), 372,00 € Rentenversicherung und 52,00 € Arbeitslosenversicherung. Netto bleiben 2.605,50 €. Als Kirchenmitglied in Nordrhein-Westfalen gehen weitere 47,20 € ab, dann bleiben 2.558,30 €.",
+            "Dieselben 4.000 € ergeben in Steuerklasse III 2.928,17 € netto, in Steuerklasse V 2.185,09 €. Die Kombination III/V ist für Ehepaare mit sehr unterschiedlichen Einkommen gedacht; der Unterschied gleicht sich mit der Steuererklärung aus."
+          ]
+        },
+        {
+          "title": "Kinder, Midijob und Minijob",
+          "paragraphs": [
+            "Kinder senken die Lohnsteuer nicht – sie werden über das Kindergeld gefördert, und weil die Pflegebeiträge mit Kindern niedriger sind, kann die Lohnsteuer sogar etwas höher ausfallen. Kinder senken aber Solidaritätszuschlag und Kirchensteuer sowie den Beitrag zur Pflegeversicherung: Kinderlose ab 23 Jahren zahlen 0,6 Prozentpunkte mehr, ab dem zweiten Kind unter 25 sinkt der Satz um 0,25 Prozentpunkte je Kind, bis zum fünften.",
+            "Bis 603 € im Monat ist es ein Minijob: Meist zahlt der Arbeitgeber eine Pauschalsteuer, und du zahlst nur 3,6 % Rentenversicherung. Von 603,01 € bis 2.000 € (Übergangsbereich, Midijob) sind deine Sozialbeiträge ermäßigt und steigen gleitend bis zum vollen Satz bei 2.000 €. Der Rechner berücksichtigt beide Regeln. In Steuerklasse VI (Zweitjob) gilt der Übergangsbereich nicht, weil die Löhne aus allen Jobs zusammengerechnet werden."
+          ]
+        }
+      ],
+      "faqTitle": "Häufige Fragen",
+      "faqs": [
+        {
+          "q": "Welche Steuerklasse habe ich?",
+          "a": "Ledige sind in Steuerklasse I, Alleinerziehende, die mit ihrem Kind zusammenleben, in Klasse II. Ehepaare und eingetragene Lebenspartner haben standardmäßig Klasse IV oder wählen III und V. Klasse VI gilt für einen Zweitjob. Deine Steuerklasse steht auf deiner Lohnabrechnung."
+        },
+        {
+          "q": "Warum weicht meine Lohnabrechnung etwas ab?",
+          "a": "Freibeträge beim Finanzamt, betriebliche Altersvorsorge, Sachbezüge, Einmalzahlungen wie Urlaubs- oder Weihnachtsgeld und eine private Krankenversicherung verändern das Ergebnis. Der Rechner deckt den Normalfall ab: gesetzlich versichert, keine zusätzlichen Freibeträge, unter 64 Jahren."
+        },
+        {
+          "q": "Warum senken Kinder meine Lohnsteuer nicht?",
+          "a": "Während des Jahres werden Kinder über das Kindergeld gefördert. Der Kinderfreibetrag wirkt nur beim Solidaritätszuschlag und bei der Kirchensteuer – und in der Steuererklärung, wo das Finanzamt prüft, ob der Freibetrag günstiger ist als das Kindergeld."
+        },
+        {
+          "q": "Kann ich ein Jahresgehalt eingeben?",
+          "a": "Gib dein Monatsgehalt ein: Teile ein Jahresgehalt durch 12 – oder durch 13 bzw. 14, wenn ein Teil als 13. oder 14. Monatsgehalt gezahlt wird. Das angezeigte Jahresnetto ist das Zwölffache des Monatsnettos."
+        },
+        {
+          "q": "Wer zahlt noch Solidaritätszuschlag?",
+          "a": "Seit 2021 nur noch etwa die oberen zehn Prozent der Einkommen. 2026 fällt er an, wenn die Lohnsteuer im Jahr 20.350 € übersteigt (in Steuerklasse III 40.700 €), und steigt darüber gleitend an."
+        }
+      ],
+      "methodologyTitle": "Methodik",
+      "methodology": "Lohnsteuer, Solidaritätszuschlag und Bemessungsgrundlage der Kirchensteuer folgen dem Programmablaufplan des BMF für 2026 (monatlicher Lohnzahlungszeitraum), einschließlich der Vorsorgepauschale 2026 mit Arbeitslosenversicherung und der Höchstgrenze von 1.900 €, exakt nach den vorgeschriebenen Rundungsregeln; die Ergebnisse wurden in 20.000 Fällen centgenau mit einer unabhängigen Umsetzung dieses Plans abgeglichen. Die Arbeitnehmerbeiträge zur Sozialversicherung nutzen die Sätze und Grenzen 2026; im Übergangsbereich gilt die reduzierte Bemessungsgrundlage 2000/(2000 − 603) × (Brutto − 603), der Kinderlosenzuschlag nutzt die Gesamtbemessungsgrundlage mit Faktor F = 0,6619.",
+      "lastReviewed": "Zuletzt geprüft",
+      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Steuerberatung. Deine tatsächliche Lohnabrechnung hängt von deinen persönlichen Verhältnissen und den Daten ab, die deinem Arbeitgeber vorliegen."
     }
   }
 }

@@ -141,6 +141,8 @@ This is the core of the product, so it is specified in detail.
 | F-37 | Credit card payoff | Balance, APR, fixed monthly payment | Time to pay off (as a duration), total interest and paid, first month's interest, payment to be debt-free in 3 years; flags a payment that never clears the balance (≤ interest or > 50 years) |
 | F-38 | CAGR | Starting value, ending value, years | CAGR (%), total return (%), gain, smoothed yearly path; losses give a negative rate |
 | F-39 | Simple interest | Principal, rate, time | Interest, total, comparison with yearly compound interest |
+| F-40 | PPF (India) | Yearly deposit (₹500–₹1,50,000), rate (default 7.1%), term (15 years plus 5-year extensions), deposit timing (by 5 April, or monthly by the 5th) | Maturity value, deposits, interest, yearly table; always in rupees |
+| F-41 | German salary (Brutto-Netto) 2026 | Monthly gross, tax class I–VI, children, church tax (0/8/9%), Saxony, health insurer's additional rate | Net pay; wage tax, solidarity surcharge and church tax per the BMF Programmablaufplan 2026 (cent-exact); employee health, care, pension and unemployment contributions with 2026 rates and ceilings, including minijob and midijob rules; always in euros. Rules and figures are reviewed every January |
 
 Rules shared by F-30 to F-39: inputs that break a rule across fields (for example a retirement age before the current age) show a specific message on the field concerned, including when they arrive in a shared link; percentages and durations are formatted in the page's language; every calculator links to four related calculators (S-25).
 
@@ -397,3 +399,4 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 1.3 | 2026-09-24 | Added F-30 to F-39 (ten more calculators) and phase P3b, requested by the owner to reach AdSense-ready depth before adding a third language |
 | 1.4 | 2026-09-25 | Added §9.5a (S-70, S-71): visibility and citations in AI answers, IndexNow on every release, requested by the owner |
 | 1.5 | 2026-09-26 | German added (L-1, L-15, L-16, L-17a, Q-15, D-1); CHF currency |
+| 1.6 | 2026-09-28 | Added F-40 (PPF) and F-41 (German salary 2026), requested by the owner for high-volume local searches; the investment calculator (F-2) is presented as the SIP calculator in English |

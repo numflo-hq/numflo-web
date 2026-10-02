@@ -30,6 +30,8 @@ function parseHeaders(text) {
       current = line.trim().startsWith("/") ? { pattern: line.trim(), headers: [] } : null;
       if (current) rules.push(current);
     } else if (current) {
+      // "! Header-Name" removes a header Cloudflare adds by default; this server adds none.
+      if (line.trim().startsWith("!")) continue;
       const i = line.indexOf(":");
       current.headers.push([line.slice(0, i).trim(), line.slice(i + 1).trim()]);
     }

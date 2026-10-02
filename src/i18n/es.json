@@ -1498,7 +1498,7 @@
     "heading": "Calculadora PPF (India)",
     "lead": "Calcula el valor al vencimiento y los intereses de una cuenta Public Provident Fund.",
     "inputs": {
-      "legend": "Datos de la cuenta PPF",
+      "legend": "Datos del PPF",
       "currency": "Moneda",
       "yearsUnit": "años",
       "yearly": "Depósito anual",

@@ -5,7 +5,7 @@
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   font-weight: 100 900;
   src: url("../assets/fonts/inter-latin.woff2") format("woff2-variations");
   unicode-range:
@@ -15,12 +15,56 @@
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   font-weight: 100 900;
   src: url("../assets/fonts/inter-latin-ext.woff2") format("woff2-variations");
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
     U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* No layout shift from fonts (BRD Q-3). Inter is preloaded and uses font-display: optional: if it
+   is not ready for the first paint, that page view keeps the fallback and Inter is used from the
+   next page on (it is cached by then), so text never re-wraps mid-page. The fallback is a local
+   font scaled to Inter's average glyph width and line height, so both look alike. Values are computed from the font files (Inter 400 and 700 against Arial /
+   Liberation Sans, which share metrics, and Roboto). A missing local font skips to the next. */
+@font-face {
+  font-family: "Inter Fallback A";
+  font-weight: 100 599;
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 107.13%;
+  ascent-override: 90.43%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Fallback A";
+  font-weight: 600 900;
+  src:
+    local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"),
+    local("Arimo Bold");
+  size-adjust: 102.17%;
+  ascent-override: 94.82%;
+  descent-override: 23.61%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Fallback R";
+  font-weight: 100 599;
+  src: local("Roboto"), local("Roboto-Regular");
+  size-adjust: 106.99%;
+  ascent-override: 90.55%;
+  descent-override: 22.55%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Fallback R";
+  font-weight: 600 900;
+  src: local("Roboto Bold"), local("Roboto-Bold");
+  size-adjust: 108.49%;
+  ascent-override: 89.3%;
+  descent-override: 22.23%;
+  line-gap-override: 0%;
 }
 
 /* Dark mode is driven by data-theme on <html>, set before first paint by /theme.js (BRD U-3). */
@@ -64,7 +108,9 @@
 }
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans:
+    "Inter Variable", "Inter Fallback A", "Inter Fallback R", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
   --color-bg: var(--c-bg);
   --color-surface: var(--c-surface);
   --color-surface-2: var(--c-surface-2);

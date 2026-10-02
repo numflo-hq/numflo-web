@@ -5,7 +5,7 @@
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   font-weight: 100 900;
   src: url("../assets/fonts/inter-latin.woff2") format("woff2-variations");
   unicode-range:
@@ -15,7 +15,7 @@
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   font-weight: 100 900;
   src: url("../assets/fonts/inter-latin-ext.woff2") format("woff2-variations");
   unicode-range:
@@ -23,9 +23,10 @@
     U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* Metric-matched fallbacks (BRD Q-3): until Inter arrives, text is drawn in a local font scaled
-   to Inter's average glyph width and line height, so nothing re-wraps or moves when the web
-   font swaps in. Values are computed from the font files (Inter 400 and 700 against Arial /
+/* No layout shift from fonts (BRD Q-3). Inter is preloaded and uses font-display: optional: if it
+   is not ready for the first paint, that page view keeps the fallback and Inter is used from the
+   next page on (it is cached by then), so text never re-wraps mid-page. The fallback is a local
+   font scaled to Inter's average glyph width and line height, so both look alike. Values are computed from the font files (Inter 400 and 700 against Arial /
    Liberation Sans, which share metrics, and Roboto). A missing local font skips to the next. */
 @font-face {
   font-family: "Inter Fallback A";

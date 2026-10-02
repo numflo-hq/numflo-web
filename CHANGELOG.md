@@ -6,9 +6,10 @@ All notable changes to numflo.com. Versions follow [semantic versioning](https:/
 
 ### Fixed
 
-- Layout shift when the web font arrives late: text is first drawn in a local font scaled to Inter's
-  metrics, so nothing re-wraps (worst page 0.20 → 0.03; Lighthouse fails above 0.1). A new browser test
-  checks every page with a delayed font.
+- Layout shift when the web font arrives late (up to 0.20 on some pages; Lighthouse fails above 0.1): a
+  late font is no longer swapped in mid-page (`font-display: optional` with preload), and the fallback
+  is a local font scaled to Inter's metrics so both look alike. A new browser test checks every page
+  with a delayed font.
 - Production security scan: removed the `Access-Control-Allow-Origin: *` header that Cloudflare Pages adds
   by default (ZAP 10098). The Cloudflare Web Analytics script, which cannot carry an integrity hash, is a
   documented, narrowly scoped exception in the scan check (ZAP 90003).

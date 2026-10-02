@@ -14,9 +14,19 @@ for (const a of alerts)
  * which Cloudflare injects and updates in place, so a fixed integrity hash would break it. The
  * CSP limits scripts to our own origin and that one host. Any other script without SRI fails.
  */
+/** True when the evidence is one script tag whose src is exactly the Cloudflare beacon. */
+function isCloudflareBeacon(evidence = "") {
+  const srcs = [...evidence.matchAll(/\ssrc=["']([^"']+)["']/g)].map((m) => m[1]);
+  if (srcs.length !== 1) return false;
+  try {
+    const url = new URL(srcs[0]);
+    return url.origin === "https://static.cloudflareinsights.com" && url.pathname === "/beacon.min.js";
+  } catch {
+    return false;
+  }
+}
 const ACCEPTED = {
-  90003: (instance) =>
-    /https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js/.test(instance.evidence ?? ""),
+  90003: (instance) => isCloudflareBeacon(instance.evidence),
 };
 const accepted = (a) => {
   const rule = ACCEPTED[a.pluginid];

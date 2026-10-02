@@ -93,6 +93,35 @@ test("no console errors on any page", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test("nothing moves when the web font arrives late (Q-3, layout shift)", async ({ browser }) => {
+  test.setTimeout(300_000); // visits every page
+  // Lighthouse fails a page above 0.1; the budget here is half of that, on every page, at the
+  // Lighthouse phone size, with the font held back so the fallback font is always painted first.
+  const worst: string[] = [];
+  for (const p of PAGES) {
+    const context = await browser.newContext({ viewport: { width: 412, height: 823 } });
+    const page = await context.newPage();
+    await page.route("**/*.woff2", async (route) => {
+      await new Promise((r) => setTimeout(r, 500));
+      await route.continue();
+    });
+    await page.addInitScript(() => {
+      const w = window as unknown as { __cls: number };
+      w.__cls = 0;
+      new PerformanceObserver((list) => {
+        for (const e of list.getEntries() as unknown as { value: number; hadRecentInput: boolean }[])
+          if (!e.hadRecentInput) w.__cls += e.value;
+      }).observe({ type: "layout-shift", buffered: true });
+    });
+    await page.goto(p.path);
+    await page.waitForTimeout(1000);
+    const cls = await page.evaluate(() => (window as unknown as { __cls: number }).__cls);
+    if (cls > 0.05) worst.push(`${p.path}: ${cls.toFixed(3)}`);
+    await context.close();
+  }
+  expect(worst).toEqual([]);
+});
+
 test.describe("search and AI crawler files (S-70, S-71)", () => {
   test("robots.txt blocks nothing and names AI search crawlers", async ({ request }) => {
     const res = await request.get("/robots.txt");

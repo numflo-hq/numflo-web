@@ -8,7 +8,23 @@ const RISK = { 0: "Informational", 1: "Low", 2: "Medium", 3: "High" };
 
 for (const a of alerts)
   console.log(`[${RISK[a.riskcode]}] ${a.pluginid} ${a.name} (${a.count ?? a.instances?.length ?? 0})`);
-const blocking = alerts.filter((a) => Number(a.riskcode) >= 2);
+/**
+ * Accepted findings (SDLC §4.3). Each entry is as narrow as possible and explains itself.
+ * 90003 Sub Resource Integrity: the only script from another host is Cloudflare Web Analytics,
+ * which Cloudflare injects and updates in place, so a fixed integrity hash would break it. The
+ * CSP limits scripts to our own origin and that one host. Any other script without SRI fails.
+ */
+const ACCEPTED = {
+  90003: (instance) =>
+    /https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js/.test(instance.evidence ?? ""),
+};
+const accepted = (a) => {
+  const rule = ACCEPTED[a.pluginid];
+  return Boolean(rule) && (a.instances ?? []).length > 0 && a.instances.every(rule);
+};
+for (const a of alerts.filter(accepted))
+  console.log(`  accepted: ${a.pluginid} ${a.name} (Cloudflare Web Analytics only)`);
+const blocking = alerts.filter((a) => Number(a.riskcode) >= 2 && !accepted(a));
 if (blocking.length) {
   console.error(`\n✗ ${blocking.length} ZAP finding(s) at Medium or above. See the zap-report artifact.`);
   process.exit(1);

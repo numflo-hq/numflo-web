@@ -175,6 +175,8 @@ for (const h of [
 ]) {
   if (!headers.includes(h)) fail("_headers", `missing ${h}`);
 }
+if (!/^\s*! Access-Control-Allow-Origin\s*$/m.test(headers))
+  fail("_headers", "must remove Cloudflare's default Access-Control-Allow-Origin: *");
 if (/unsafe-inline|unsafe-eval/.test(headers))
   fail("_headers", "CSP must not allow unsafe-inline or unsafe-eval");
 

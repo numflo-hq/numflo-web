@@ -25,16 +25,30 @@ function isCloudflareBeacon(evidence = "") {
     return false;
   }
 }
+/** True for Cloudflare's own system endpoints on our host (/cdn-cgi/...), which we cannot configure. */
+function isCloudflareSystemPath(uri = "") {
+  try {
+    const url = new URL(uri);
+    return url.origin === "https://numflo.com" && url.pathname.startsWith("/cdn-cgi/");
+  } catch {
+    return false;
+  }
+}
 const ACCEPTED = {
   90003: (instance) => isCloudflareBeacon(instance.evidence),
+  // 10098 Cross-Domain Misconfiguration: /cdn-cgi/trace is served by Cloudflare itself with
+  // Access-Control-Allow-Origin: *; it only echoes the caller's own connection details. Our
+  // own pages and files must not send that header (public/_headers removes it).
+  10098: (instance) => isCloudflareSystemPath(instance.uri),
 };
 const accepted = (a) => {
   const rule = ACCEPTED[a.pluginid];
   return Boolean(rule) && (a.instances ?? []).length > 0 && a.instances.every(rule);
 };
 for (const a of alerts.filter(accepted))
-  console.log(`  accepted: ${a.pluginid} ${a.name} (Cloudflare Web Analytics only)`);
+  console.log(`  accepted: ${a.pluginid} ${a.name} (documented Cloudflare exception)`);
 const blocking = alerts.filter((a) => Number(a.riskcode) >= 2 && !accepted(a));
+for (const a of blocking) for (const i of a.instances ?? []) console.error(`  ${a.pluginid} ${i.uri ?? ""}`);
 if (blocking.length) {
   console.error(`\n✗ ${blocking.length} ZAP finding(s) at Medium or above. See the zap-report artifact.`);
   process.exit(1);

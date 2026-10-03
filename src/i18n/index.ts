@@ -13,7 +13,8 @@ export const HREFLANG: Record<Lang, string> = { en: "en", es: "es", de: "de" };
 export const OG_LOCALE: Record<Lang, string> = { en: "en_US", es: "es_ES", de: "de_DE" };
 
 export type Dictionary = typeof en;
-const dictionaries: Record<Lang, Dictionary> = { en, es, de };
+// Spanish and German leave out the calculators that are not offered in them (see ROUTES).
+const dictionaries = { en, es, de } as unknown as Record<Lang, Dictionary>;
 
 export function t(lang: Lang): Dictionary {
   return dictionaries[lang];
@@ -67,23 +68,44 @@ export const ROUTES = {
     de: "/de/sparzielrechner",
   },
   inflation: { en: "/inflation-calculator", es: "/es/calculadora-de-inflacion", de: "/de/inflationsrechner" },
-  ppf: { en: "/ppf-calculator", es: "/es/calculadora-ppf", de: "/de/ppf-rechner" },
-  grossNet: {
-    en: "/german-salary-calculator",
-    es: "/es/calculadora-de-sueldo-neto-alemania",
-    de: "/de/brutto-netto-rechner",
-  },
+  // Country-specific calculators exist only in the languages of their market (BRD L-20).
+  ppf: { en: "/ppf-calculator" },
+  grossNet: { en: "/german-salary-calculator", de: "/de/brutto-netto-rechner" },
   about: { en: "/about", es: "/es/acerca-de", de: "/de/ueber-uns" },
   terms: { en: "/terms", es: "/es/terminos", de: "/de/nutzungsbedingungen" },
   disclaimer: { en: "/disclaimer", es: "/es/descargo-de-responsabilidad", de: "/de/haftungsausschluss" },
   privacy: { en: "/privacy", es: "/es/privacidad", de: "/de/datenschutz" },
-} as const satisfies Record<string, Record<Lang, string>>;
+} as const satisfies Record<string, Partial<Record<Lang, string>> & { en: string }>;
 
 export type RouteKey = keyof typeof ROUTES;
 
-export function path(route: RouteKey, lang: Lang): string {
-  return ROUTES[route][lang];
+/** The path of a page in a language, or undefined when the page is not offered in it. */
+export function routePath(route: RouteKey, lang: Lang): string | undefined {
+  return (ROUTES[route] as Partial<Record<Lang, string>>)[lang];
 }
+export function hasRoute(route: RouteKey, lang: Lang): boolean {
+  return routePath(route, lang) !== undefined;
+}
+/** Languages a page is offered in, in site order. */
+export function routeLangs(route: RouteKey): Lang[] {
+  return LANGS.filter((l) => hasRoute(route, l));
+}
+/** The path of a page that exists in this language (throws otherwise: a bug in the caller). */
+export function path(route: RouteKey, lang: Lang): string {
+  const p = routePath(route, lang);
+  if (p === undefined) throw new Error(`Page "${route}" is not offered in "${lang}"`);
+  return p;
+}
+/** Where the language switcher goes: the same page, or that language's home page. */
+export function pathOrHome(route: RouteKey | null, lang: Lang): string {
+  return (route && routePath(route, lang)) || ROUTES.home[lang];
+}
+/** Old addresses of pages that were withdrawn from a language, and where they now lead (301). */
+export const REDIRECTS: Record<string, string> = {
+  "/de/ppf-rechner": "/de",
+  "/es/calculadora-ppf": "/es",
+  "/es/calculadora-de-sueldo-neto-alemania": "/es",
+};
 
 /** Replace {placeholders} in a template string. */
 export function fill(template: string, values: Record<string, string>): string {
@@ -94,20 +116,20 @@ export function fill(template: string, values: Record<string, string>): string {
 export const LAST_REVIEWED: Record<RouteKey, string> = {
   home: "2026-09-24",
   loan: "2026-09-21",
-  investment: "2026-09-28",
+  investment: "2026-10-03",
   compound: "2026-09-22",
   mortgage: "2026-09-24",
   affordability: "2026-09-24",
-  creditCard: "2026-09-24",
+  creditCard: "2026-10-03",
   fd: "2026-09-24",
-  rd: "2026-09-24",
+  rd: "2026-10-03",
   simple: "2026-09-24",
   cagr: "2026-09-24",
   retirement: "2026-09-24",
   savings: "2026-09-24",
-  inflation: "2026-09-24",
-  ppf: "2026-09-28",
-  grossNet: "2026-09-28",
+  inflation: "2026-10-03",
+  ppf: "2026-10-03",
+  grossNet: "2026-10-03",
   about: "2026-09-22",
   terms: "2026-09-22",
   disclaimer: "2026-09-22",

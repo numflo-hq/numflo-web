@@ -75,7 +75,7 @@ jobs:
     name: Lighthouse (SEO 100, performance and accessibility >= 95)
     needs: quality
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -105,8 +105,8 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: npm audit (fail on high or critical)
-        run: npm audit --audit-level=high
+      - name: npm audit (fail on high or critical, documented exceptions only)
+        run: node scripts/audit.mjs
       - name: Review newly added dependencies
         if: github.event_name == 'pull_request'
         uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0

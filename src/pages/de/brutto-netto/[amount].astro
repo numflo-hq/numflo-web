@@ -1,0 +1,324 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { HREFLANG, path, t } from "../../../i18n";
+import { formatMoney, formatNumber } from "../../../lib/format";
+import { calculateGrossNet, DE_2026 } from "../../../lib/payroll-de";
+import { SALARY_REVIEWED, SALARY_STEPS, salaryPath } from "../../../lib/salary-pages";
+
+// One page per common monthly gross salary (BRD F-42). German only.
+export function getStaticPaths() {
+  return SALARY_STEPS.map((gross) => ({ params: { amount: `${gross}-euro` }, props: { gross } }));
+}
+interface Props {
+  gross: number;
+}
+const { gross } = Astro.props;
+const lang = "de" as const;
+const d = t(lang);
+const eur = (v: number, dec = 2) => formatMoney(v, lang, "EUR", dec);
+const NB = "\u00a0"; // non-breaking space before € and %
+const G = `${formatNumber(gross, lang, "EUR")}${NB}€`;
+
+const base = { gross, children: 0, church: 0, saxony: 0, zusatz: DE_2026.averageZusatz };
+const c1 = calculateGrossNet({ ...base, taxClass: 1 });
+// Tax class II is for single parents, so it is shown with one child.
+const classes = [
+  { label: "I", note: "ledig, ohne Kinder", r: c1 },
+  {
+    label: "II",
+    note: "alleinerziehend, 1 Kind",
+    r: calculateGrossNet({ ...base, taxClass: 2, children: 1 }),
+  },
+  { label: "III", note: "verheiratet, höheres Gehalt", r: calculateGrossNet({ ...base, taxClass: 3 }) },
+  { label: "IV", note: "verheiratet, ähnliches Gehalt", r: calculateGrossNet({ ...base, taxClass: 4 }) },
+  { label: "V", note: "verheiratet, niedrigeres Gehalt", r: calculateGrossNet({ ...base, taxClass: 5 }) },
+  { label: "VI", note: "Zweitjob", r: calculateGrossNet({ ...base, taxClass: 6 }) },
+];
+const withChurch = calculateGrossNet({ ...base, taxClass: 1, church: 9 });
+const withChild = calculateGrossNet({ ...base, taxClass: 1, children: 1 });
+const midijob = gross < DE_2026.midijobTop;
+const midijobTop = gross === DE_2026.midijobTop;
+
+const breakdown = [
+  ["Lohnsteuer", c1.incomeTax],
+  ["Solidaritätszuschlag", c1.soli],
+  ["Krankenversicherung", c1.health],
+  ["Pflegeversicherung", c1.care],
+  ["Rentenversicherung", c1.pension],
+  ["Arbeitslosenversicherung", c1.unemployment],
+] as const;
+
+const calcHref = `${path("grossNet", lang)}?gross=${gross}&taxClass=1&children=0&church=0&saxony=0&zusatz=${DE_2026.averageZusatz}`;
+const own = salaryPath(gross);
+const url = new URL(own, Astro.site).href;
+const title = `${G} brutto in netto 2026 – alle Steuerklassen | Numflo`;
+const description = `Von ${G} brutto bleiben 2026 in Steuerklasse I ${eur(c1.net)} netto. Netto, Lohnsteuer und Sozialabgaben für alle Steuerklassen im Überblick.`;
+const reviewed = new Intl.DateTimeFormat(lang, { dateStyle: "long", timeZone: "UTC" }).format(
+  new Date(SALARY_REVIEWED),
+);
+const calcName = d.grossNet.heading;
+
+const faqs = [
+  {
+    q: `Wie viel netto bleibt von ${G} brutto?`,
+    a: `In Steuerklasse I ohne Kinder und ohne Kirchensteuer bleiben 2026 von ${G} brutto im Monat ${eur(c1.net)} netto. In Steuerklasse III sind es ${eur(classes[2]!.r.net)}, in Steuerklasse V ${eur(classes[4]!.r.net)}. Die Steuerklasse verschiebt bei Ehepaaren nur den monatlichen Abzug, nicht die Jahressteuer.`,
+  },
+  {
+    q: `Wie viel sind ${G} brutto im Jahr?`,
+    a: `${G} im Monat sind ${eur(gross * 12, 0)} brutto im Jahr (bei 12 Gehältern). In Steuerklasse I bleiben davon rund ${eur(c1.net * 12, 0)} netto im Jahr.`,
+  },
+  {
+    q: "Wovon hängt mein Netto noch ab?",
+    a: "Von deiner Steuerklasse, der Zahl deiner Kinder, der Kirchensteuer, dem Bundesland und dem Zusatzbeitrag deiner Krankenkasse. Freibeträge, betriebliche Altersvorsorge, Sachbezüge und eine private Krankenversicherung verändern das Ergebnis ebenfalls. Mit dem Rechner kannst du deine eigenen Angaben eingeben.",
+  },
+];
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: d.site.home,
+        item: new URL(path("home", lang), Astro.site).href,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: calcName,
+        item: new URL(path("grossNet", lang), Astro.site).href,
+      },
+      { "@type": "ListItem", position: 3, name: `${G} brutto in netto`, item: url },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: HREFLANG[lang],
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout lang={lang} route={null} ownPath={own} title={title} description={description} schema={schema}>
+  <div class="container-page pt-6 sm:pt-8">
+    <Breadcrumbs
+      lang={lang}
+      current={`${G} brutto in netto`}
+      parent={{ label: calcName, href: path("grossNet", lang) }}
+    />
+    <div class="mt-4 mb-6 max-w-2xl">
+      <h1 class="text-3xl font-bold sm:text-4xl">{G} brutto in netto (2026)</h1>
+      <p class="text-muted mt-2 text-lg">
+        Von {G} brutto im Monat bleiben 2026 in Steuerklasse I {eur(c1.net)} netto. Hier siehst du alle
+        Steuerklassen und was abgezogen wird.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-6">
+      <section class="card p-5 sm:p-6" aria-labelledby="net-title">
+        <h2 id="net-title" class="text-lg font-semibold">
+          Steuerklasse I, ledig, ohne Kinder
+        </h2>
+        <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+          <p class="text-muted text-sm font-medium">Netto pro Monat</p>
+          <p
+            class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums [overflow-wrap:anywhere] sm:text-5xl"
+            data-salary-net
+          >
+            {eur(c1.net)}
+          </p>
+        </div>
+        <dl class="mt-5 flex flex-col gap-3 text-sm">
+          <div class="flex items-center justify-between gap-3">
+            <dt>Brutto pro Monat</dt>
+            <dd class="font-semibold tabular-nums">{eur(gross)}</dd>
+          </div>
+          {breakdown.map(([label, value]) => (
+            <div class="flex items-center justify-between gap-3">
+              <dt class="text-muted min-w-0 hyphens-auto [overflow-wrap:anywhere]">{label}</dt>
+              <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">
+                {value > 0 ? "− " : ""}
+                {eur(value)}
+              </dd>
+            </div>
+          ))}
+          <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+            <dt class="min-w-0 font-medium">Netto pro Jahr (12 Monate)</dt>
+            <dd class="shrink-0 font-bold whitespace-nowrap tabular-nums">{eur(c1.net * 12, 0)}</dd>
+          </div>
+        </dl>
+        <a class="btn-primary mt-6 w-full justify-center px-5 sm:w-auto" href={calcHref}>
+          Mit deinen Angaben rechnen
+        </a>
+      </section>
+
+      <section class="card p-5 sm:p-6" aria-labelledby="classes-title">
+        <h2 id="classes-title" class="text-lg font-semibold">
+          {G} brutto in allen Steuerklassen
+        </h2>
+        <div
+          class="border-line mt-4 overflow-auto rounded-xl border"
+          tabindex="0"
+          role="region"
+          aria-labelledby="classes-title"
+        >
+          <table class="w-full min-w-[26rem] text-right text-sm tabular-nums">
+            <caption class="sr-only">
+              {`Netto, Steuern (Lohnsteuer und Solidaritätszuschlag) und Sozialabgaben pro Monat bei ${G} brutto nach Steuerklasse`}
+            </caption>
+            <thead class="bg-surface-2 text-muted text-xs font-semibold tracking-wide uppercase">
+              <tr>
+                <th scope="col" class="px-4 py-3 text-left">
+                  Steuerklasse
+                </th>
+                <th scope="col" class="px-4 py-3">
+                  Netto
+                </th>
+                <th scope="col" class="px-4 py-3">
+                  Steuern
+                </th>
+                <th scope="col" class="px-4 py-3">
+                  Sozialabgaben
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-line divide-y">
+              {classes.map((c) => (
+                <tr>
+                  <th scope="row" class="px-4 py-2.5 text-left font-medium">
+                    {c.label}
+                    <span class="text-muted block text-xs font-normal">{c.note}</span>
+                  </th>
+                  <td class="px-4 py-2.5 font-semibold">{eur(c.r.net)}</td>
+                  <td class="px-4 py-2.5">{eur(c.r.taxes)}</td>
+                  <td class="px-4 py-2.5">{eur(c.r.social)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <dl class="mt-5 flex flex-col gap-3 text-sm">
+          <div class="flex items-center justify-between gap-3">
+            <dt class="text-muted min-w-0">Steuerklasse I mit Kirchensteuer (9{NB}%)</dt>
+            <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{eur(withChurch.net)}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-3">
+            <dt class="text-muted min-w-0">Steuerklasse I mit 1 Kind (nicht alleinerziehend)</dt>
+            <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{eur(withChild.net)}</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+
+    <article class="mx-auto mt-14 max-w-3xl">
+      <section class="border-accent bg-accent-soft rounded-2xl border-s-4 p-5" aria-labelledby="summary">
+        <h2 id="summary" class="text-lg font-semibold">
+          Kurz gesagt
+        </h2>
+        <p class="mt-2">
+          {`Bei ${G} brutto im Monat gehen in Steuerklasse I ${eur(c1.taxes)} Steuern (Lohnsteuer${c1.soli > 0 ? " und Solidaritätszuschlag" : ""}) und ${eur(c1.social)} Sozialabgaben ab. Netto bleiben ${eur(c1.net)} – das sind ${formatNumber((c1.net / gross) * 100, lang, "EUR", 1)}${NB}% vom Brutto.`}
+        </p>
+      </section>
+
+      <section class="mt-10" aria-labelledby="assumptions">
+        <h2 id="assumptions" class="text-2xl font-bold">
+          So haben wir gerechnet
+        </h2>
+        <div class="prose-body text-ink/90 mt-3">
+          <p>
+            {`Die Werte gelten für 2026, für gesetzlich Versicherte mit dem durchschnittlichen Zusatzbeitrag von 2,9${NB}%, ohne Kirchensteuer und für alle Bundesländer außer Sachsen. Die Kirchensteuer beträgt 9${NB}% der Lohnsteuer, in Bayern und Baden-Württemberg 8${NB}%. Ohne Kinder ist der Kinderlosenzuschlag zur Pflegeversicherung (ab 23 Jahren) enthalten. Steuerklasse II ist mit einem Kind gerechnet, weil sie nur für Alleinerziehende gilt.`}
+          </p>
+          <p>
+            Mit Kind entfällt der Kinderlosenzuschlag; die Lohnsteuer steigt dabei leicht, weil weniger
+            Vorsorgeaufwand abgezogen wird. Die Steuerklassen III, IV und V ändern nur den monatlichen Abzug:
+            Wie viel Steuer ihr als Paar im Jahr zahlt, steht erst mit der Steuererklärung fest. Bei III/V ist
+            sie Pflicht, und oft wird eine Nachzahlung fällig.
+          </p>
+          {midijob && (
+            <p>
+              {`${G} liegen im Übergangsbereich (Midijob, 603,01${NB}€ bis 2.000${NB}€): Deine Sozialbeiträge sind ermäßigt und steigen gleitend bis zum vollen Satz bei 2.000${NB}€. Für Steuerklasse VI (Zweitjob) rechnen wir mit den vollen Beiträgen, weil die Löhne aus allen Jobs zusammengezählt werden und zusammen meist über 2.000${NB}€ liegen.`}
+            </p>
+          )}
+          {midijobTop && (
+            <p>
+              {`2.000${NB}€ sind die Obergrenze des Übergangsbereichs (Midijob): Ab diesem Gehalt zahlst du die vollen Sozialbeiträge.`}
+            </p>
+          )}
+          <p>
+            Die Lohnsteuer folgt dem Programmablaufplan 2026 des Bundesfinanzministeriums, die Sozialbeiträge
+            den Sätzen und Beitragsbemessungsgrenzen 2026. Für deine eigenen Angaben – Kinder, Kirchensteuer,
+            Zusatzbeitrag – nutze den{" "}
+            <a class="text-accent underline underline-offset-4" href={calcHref}>
+              {calcName}
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section class="mt-12" aria-labelledby="faq">
+        <h2 id="faq" class="text-2xl font-bold">
+          Häufige Fragen
+        </h2>
+        <div class="mt-4 flex flex-col gap-3">
+          {faqs.map((f) => (
+            <details class="card group p-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">
+                <h3 class="text-base">{f.q}</h3>
+                <svg
+                  viewBox="0 0 20 20"
+                  class="size-5 shrink-0 transition-transform group-open:rotate-180"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m5 7.5 5 5 5-5"></path>
+                </svg>
+              </summary>
+              <p class="text-muted mt-3">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-12" aria-labelledby="more">
+        <h2 id="more" class="text-2xl font-bold">
+          Weitere Gehälter
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-2" role="list">
+          {SALARY_STEPS.filter((s) => s !== gross).map((s) => (
+            <li>
+              <a class="btn-ghost" href={salaryPath(s)}>
+                {`${formatNumber(s, lang, "EUR")}${NB}€`}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="border-line mt-12 border-t pt-6 text-sm" aria-labelledby="note">
+        <h2 id="note" class="font-semibold">
+          Hinweis
+        </h2>
+        <p class="text-muted mt-1">
+          Diese Seite liefert Schätzungen nur zur Information und ist keine Steuerberatung. Deine tatsächliche
+          Lohnabrechnung hängt von deinen persönlichen Verhältnissen und den Daten ab, die deinem Arbeitgeber
+          vorliegen.
+        </p>
+        <p class="text-muted mt-3">
+          {d.grossNet.content.lastReviewed}: <time datetime={SALARY_REVIEWED}>{reviewed}</time>
+        </p>
+      </section>
+    </article>
+  </div>
+</BaseLayout>

@@ -107,6 +107,7 @@ This is the core of the product, so it is specified in detail.
 | L-15 | Translations are produced **and proofread by AI (Claude)**; no paid human review in v1. Every Spanish and German page passes the translation QA process in `docs/SDLC.md` §4.4: glossary check, style-guide check, an independent review pass with back-translation to English, and automated checks for missing text and number formats. |
 | L-16 | Financial terms follow local usage rather than literal translation (e.g. Spanish uses "cuota mensual" and "préstamo"; German uses "Tilgung" and "Sparplan"). Spanish is neutral international Spanish; German is standard German for Germany, Austria and Switzerland, addressing the reader as "du" (`docs/i18n/style-de.md`, `glossary-de.md`). |
 | L-17a | German pages live under `/de/` with German slugs; numbers use German format (1.234,56); Swiss francs (CHF) are offered and chosen automatically for Switzerland and Liechtenstein. |
+| L-20 | Country-specific calculators are offered only in the languages of their market: PPF (India) in English; the German salary calculator in German and English. In other languages they are not listed (home page, menu, footer, sitemap, `llms.txt`), carry no hreflang, and the language switcher leads to that language's home page. Addresses of pages withdrawn from a language redirect permanently (301) to that language's home page. |
 | L-17 | Every page has a small "Report a translation issue" link so native-speaking visitors can flag errors for free. |
 
 ## 6. Functional requirements
@@ -142,6 +143,7 @@ This is the core of the product, so it is specified in detail.
 | F-38 | CAGR | Starting value, ending value, years | CAGR (%), total return (%), gain, smoothed yearly path; losses give a negative rate |
 | F-39 | Simple interest | Principal, rate, time | Interest, total, comparison with yearly compound interest |
 | F-40 | PPF (India) | Yearly deposit (₹500–₹1,50,000), rate (default 7.1%), term (15 years plus 5-year extensions), deposit timing (by 5 April, or monthly by the 5th) | Maturity value, deposits, interest, yearly table; always in rupees |
+| F-42 | German salary pages | One page per common monthly gross salary (20 steps, 1,500 € to 10,000 €) | "X € brutto in netto": net pay, wage tax and social contributions for every tax class, breakdown for class I, link into the calculator with the salary filled in; German only; same engine and yearly review as F-41 |
 | F-41 | German salary (Brutto-Netto) 2026 | Monthly gross, tax class I–VI, children, church tax (0/8/9%), Saxony, health insurer's additional rate | Net pay; wage tax, solidarity surcharge and church tax per the BMF Programmablaufplan 2026 (cent-exact); employee health, care, pension and unemployment contributions with 2026 rates and ceilings, including minijob and midijob rules; always in euros. Rules and figures are reviewed every January |
 
 Rules shared by F-30 to F-39: inputs that break a rule across fields (for example a retirement age before the current age) show a specific message on the field concerned, including when they arrive in a shared link; percentages and durations are formatted in the page's language; every calculator links to four related calculators (S-25).
@@ -399,4 +401,5 @@ Every release, however small, goes through the full lifecycle defined in **`docs
 | 1.3 | 2026-09-24 | Added F-30 to F-39 (ten more calculators) and phase P3b, requested by the owner to reach AdSense-ready depth before adding a third language |
 | 1.4 | 2026-09-25 | Added §9.5a (S-70, S-71): visibility and citations in AI answers, IndexNow on every release, requested by the owner |
 | 1.5 | 2026-09-26 | German added (L-1, L-15, L-16, L-17a, Q-15, D-1); CHF currency |
+| 1.7 | 2026-10-03 | Added L-20 (country-specific calculators only in their market's languages) and F-42 (German salary pages), requested by the owner |
 | 1.6 | 2026-09-28 | Added F-40 (PPF) and F-41 (German salary 2026), requested by the owner for high-volume local searches; the investment calculator (F-2) is presented as the SIP calculator in English |

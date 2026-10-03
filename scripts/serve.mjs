@@ -41,6 +41,13 @@ function parseHeaders(text) {
 const rules = existsSync(join(ROOT, "_headers"))
   ? parseHeaders(readFileSync(join(ROOT, "_headers"), "utf8"))
   : [];
+/** Parse a Cloudflare _redirects file ("from to status" per line). */
+const redirects = existsSync(join(ROOT, "_redirects"))
+  ? readFileSync(join(ROOT, "_redirects"), "utf8")
+      .split("\n")
+      .map((l) => l.trim().split(/\s+/))
+      .filter((p) => p.length >= 2 && !p[0].startsWith("#"))
+  : [];
 const matches = (pattern, path) =>
   new RegExp(`^${pattern.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*")}$`).test(path);
 
@@ -56,7 +63,9 @@ function resolveFile(urlPath) {
   if (safe !== ROOT && !safe.startsWith(ROOT + sep)) return null;
   const candidates =
     p === "/" ? [join(ROOT, "index.html")] : [safe, `${safe}.html`, join(safe, "index.html")];
-  return candidates.find((c) => existsSync(c) && statSync(c).isFile() && !c.endsWith("_headers")) ?? null;
+  return (
+    candidates.find((c) => existsSync(c) && statSync(c).isFile() && !/_(headers|redirects)$/.test(c)) ?? null
+  );
 }
 
 createServer((req, res) => {
@@ -66,6 +75,11 @@ createServer((req, res) => {
 
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.writeHead(405, { Allow: "GET, HEAD" }).end();
+    return;
+  }
+  const redirect = redirects.find(([from]) => from === url.pathname);
+  if (redirect) {
+    res.writeHead(Number(redirect[2] ?? 302), { Location: redirect[1] }).end();
     return;
   }
   // Cloudflare Pages redirects /page.html to /page

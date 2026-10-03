@@ -4,7 +4,7 @@ import interLatin from "../assets/fonts/inter-latin.woff2?url";
 import Seo from "../components/Seo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { HREFLANG, LANGS, ROUTES, t, type Lang, type RouteKey } from "../i18n";
+import { HREFLANG, LANGS, hasRoute, pathOrHome, t, type Lang, type RouteKey } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -13,17 +13,21 @@ interface Props {
   description: string;
   schema?: Record<string, unknown>[];
   noindex?: boolean;
+  ownPath?: string;
 }
-const { lang, route, title, description, schema, noindex } = Astro.props;
+const { lang, route, title, description, schema, noindex, ownPath } = Astro.props;
 const d = t(lang);
 // Commit being served, set by Cloudflare Pages at build time; lets the smoke test confirm a release is live.
 const build = process.env.CF_PAGES_COMMIT_SHA ?? "local";
 // One suggestion per other language; the script shows at most one, matching the browser (L-6).
-const others = LANGS.filter((l) => l !== lang).map((l) => ({
-  lang: l,
-  href: route ? ROUTES[route][l] : ROUTES.home[l],
-  text: t(l).site.viewInLanguage,
-}));
+// Only languages that have this very page are suggested (a country-specific page is not).
+const others = LANGS.filter((l) => l !== lang && !ownPath && (route === null || hasRoute(route, l))).map(
+  (l) => ({
+    lang: l,
+    href: pathOrHome(route, l),
+    text: t(l).site.viewInLanguage,
+  }),
+);
 ---
 
 <!doctype html>
@@ -46,6 +50,7 @@ const others = LANGS.filter((l) => l !== lang).map((l) => ({
       description={description}
       schema={schema}
       noindex={noindex}
+      ownPath={ownPath}
     />
   </head>
   <body data-lang={lang}>

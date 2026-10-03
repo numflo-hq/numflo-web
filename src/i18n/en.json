@@ -79,7 +79,7 @@
       "description": "Find out how much house you can afford from your income, debts, down payment and mortgage rate, using the debt-to-income rule."
     },
     "creditCard": {
-      "title": "Credit Card Payoff Calculator | Numflo",
+      "title": "Credit Card Payoff Calculator – Interest & Time | Numflo",
       "description": "See how long it takes to pay off your credit card and how much interest you'll pay, plus the payment to be debt-free in 3 years."
     },
     "fd": {
@@ -87,7 +87,7 @@
       "description": "Calculate fixed deposit maturity value and interest with quarterly, monthly or yearly compounding. Free, private, any currency."
     },
     "rd": {
-      "title": "Recurring Deposit Calculator – RD Maturity | Numflo",
+      "title": "Recurring Deposit (RD) Calculator – Maturity Value | Numflo",
       "description": "Calculate the maturity value and interest of a recurring deposit (RD) with monthly deposits and quarterly compounding. Free and private."
     },
     "simple": {
@@ -837,6 +837,10 @@
         {
           "q": "Should I pay off my card or save first?",
           "a": "Keep a small emergency fund so a surprise bill does not go back on the card, then put extra money towards the highest-rate debt. Card interest is usually far higher than savings interest."
+        },
+        {
+          "q": "Which credit card should I pay off first?",
+          "a": "To pay the least interest, put every spare amount on the card with the highest interest rate and pay the minimum on the others (the avalanche method). Some people prefer to clear the smallest balance first for a quick win (the snowball method); it usually costs a little more interest. Run each card through the calculator to compare."
         }
       ],
       "methodologyTitle": "Methodology",

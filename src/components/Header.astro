@@ -2,7 +2,7 @@
 import Logo from "./Logo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { path, t, type Lang, type RouteKey } from "../i18n";
-import { CATEGORIES, type Category } from "../lib/calculators";
+import { CATEGORIES, calcsIn, type Category } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -40,7 +40,7 @@ const d = t(lang);
                 {d.site.categories[cat]}
               </p>
               <ul role="list" aria-labelledby={`menu-${cat}`}>
-                {CATEGORIES[cat].map((c) => (
+                {calcsIn(cat, lang).map((c) => (
                   <li>
                     <a
                       href={path(c, lang)}

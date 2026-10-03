@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import en from "../i18n/en.json";
 import es from "../i18n/es.json";
 import de from "../i18n/de.json";
-import { CALCULATORS, CALC_IDS, defaults, type CalcDef } from "./calculators";
+import { CALCULATORS, CALC_IDS, calcsFor, defaults, type CalcDef, type CalcId } from "./calculators";
+import { hasRoute, type Lang } from "../i18n";
 
 // Every label, message and column a definition needs exists in every language (BRD N-8, Q-15),
 // and every definition stays safe at the edges of what it accepts (BRD F-3, Q-25).
@@ -10,7 +11,7 @@ type Dict = Record<string, Record<string, unknown>>;
 const DICTS = { en, es, de } as unknown as Record<string, Dict>;
 
 describe.each(Object.keys(DICTS))("%s dictionary covers every calculator", (lang) => {
-  it.each(CALC_IDS)("%s", (id) => {
+  it.each(calcsFor(lang as Lang))("%s", (id) => {
     const def = CALCULATORS[id];
     const d = DICTS[lang]![id] as {
       inputs: Record<string, unknown> & { options?: Record<string, Record<string, string>> };
@@ -53,7 +54,7 @@ describe("rule messages exist for every field a rule can flag", () => {
     retirement: ["retireAge", "savings"],
   };
   it.each(Object.entries(flaggable))("%s", (id, keys) => {
-    for (const lang of Object.keys(DICTS))
+    for (const lang of Object.keys(DICTS).filter((l) => hasRoute(id as CalcId, l as Lang)))
       for (const k of keys)
         expect((DICTS[lang]![id] as { errors: Record<string, string> }).errors[`${k}Rule`]).toBeTruthy();
   });

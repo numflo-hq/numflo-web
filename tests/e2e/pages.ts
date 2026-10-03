@@ -306,21 +306,11 @@ export const PAGES = [
     altLang: "en",
     calc: true,
   },
-  { key: "ppf", path: "/ppf-calculator", lang: "en", alt: "/es/calculadora-ppf", altLang: "es", calc: true },
-  { key: "ppf", path: "/es/calculadora-ppf", lang: "es", alt: "/de/ppf-rechner", altLang: "de", calc: true },
-  { key: "ppf", path: "/de/ppf-rechner", lang: "de", alt: "/ppf-calculator", altLang: "en", calc: true },
+  { key: "ppf", path: "/ppf-calculator", lang: "en", alt: "/ppf-calculator", altLang: "en", calc: true },
   {
     key: "grossNet",
     path: "/german-salary-calculator",
     lang: "en",
-    alt: "/es/calculadora-de-sueldo-neto-alemania",
-    altLang: "es",
-    calc: true,
-  },
-  {
-    key: "grossNet",
-    path: "/es/calculadora-de-sueldo-neto-alemania",
-    lang: "es",
     alt: "/de/brutto-netto-rechner",
     altLang: "de",
     calc: true,
@@ -377,3 +367,18 @@ export const PAGES = [
 
 /** Calculator pages only. */
 export const CALC_PAGES = PAGES.filter((p) => p.calc);
+
+/** A sample of the German salary pages (single-language pages outside the route table). */
+export const SALARY_SAMPLE = [1500, 3000, 10_000].map((gross) => ({
+  key: "salary",
+  path: `/de/brutto-netto/${gross}-euro`,
+  lang: "de",
+  calc: false,
+}));
+
+/** Every page of the route table plus the salary sample: used by the quality and security tests. */
+export const ALL_PAGES = [...PAGES, ...SALARY_SAMPLE];
+
+/** Number of hreflang links a page must carry: one per language it is offered in, plus x-default. */
+export const hreflangCount = (p: { key: string }) =>
+  (p.key === "salary" ? 1 : PAGES.filter((x) => x.key === p.key).length) + 1;

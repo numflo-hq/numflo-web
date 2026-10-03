@@ -1,7 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import { path, t, type Lang } from "../i18n";
-import { CATEGORIES, type Category } from "../lib/calculators";
+import { CATEGORIES, calcsIn, type Category } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -32,7 +32,7 @@ const issueUrl =
             {d.site.categories[cat]}
           </p>
           <ul class="flex flex-col gap-2" role="list" aria-labelledby={`footer-${cat}`}>
-            {CATEGORIES[cat].map((c) => (
+            {calcsIn(cat, lang).map((c) => (
               <li>
                 <a class="hover:text-ink underline-offset-4 hover:underline" href={path(c, lang)}>
                   {d.home.cards[c].title}

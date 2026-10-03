@@ -10,6 +10,7 @@ const checks = [
   { path: "/es/calculadora-de-interes-compuesto", contains: "Calculadora de interés compuesto" },
   { path: "/ppf-calculator", contains: "40,68,209" },
   { path: "/de/brutto-netto-rechner", contains: "2.605,50" },
+  { path: "/de/brutto-netto/3000-euro", contains: "2.054,42" },
   { path: "/about", contains: "About Numflo" },
   { path: "/privacy", contains: "Privacy policy" },
   { path: "/sitemap.xml", contains: "<urlset" },

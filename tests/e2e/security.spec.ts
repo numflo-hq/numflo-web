@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { PAGES } from "./pages";
+import { ALL_PAGES } from "./pages";
 
 // Security headers and CSP behaviour in a real browser (BRD Q-24).
 
@@ -13,7 +13,7 @@ const REQUIRED_HEADERS = {
   "cross-origin-opener-policy": /^same-origin$/,
 };
 
-for (const p of PAGES) {
+for (const p of ALL_PAGES) {
   test(`security headers and zero CSP violations: ${p.path}`, async ({ page }) => {
     const violations: string[] = [];
     await page.exposeFunction("reportCsp", (v: string) => violations.push(v));

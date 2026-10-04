@@ -1,5 +1,5 @@
 ---
-import { LANG_NAMES, LANGS, ROUTES, t, type Lang, type RouteKey } from "../i18n";
+import { LANG_NAMES, LANGS, pathOrHome, t, type Lang, type RouteKey } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -7,7 +7,7 @@ interface Props {
 }
 const { lang, route } = Astro.props;
 // Real links to the same page in each language (BRD L-2); fallback to that language's home (L-3).
-const target = (l: Lang) => (route ? ROUTES[route][l] : ROUTES.home[l]);
+const target = (l: Lang) => pathOrHome(route, l);
 ---
 
 <details class="lang-switcher relative" data-lang-switcher>

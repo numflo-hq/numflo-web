@@ -51,7 +51,7 @@
       "description": "Numflo erhebt keine personenbezogenen Daten. Die Berechnungen laufen auf deinem Gerät, deine Eingaben werden weder gesendet noch gespeichert."
     },
     "investment": {
-      "title": "Sparplanrechner – Rendite deines Sparplans | Numflo",
+      "title": "Sparplanrechner mit Dynamik – Sparplan berechnen | Numflo",
       "description": "Sieh, wie stark ein monatlicher Sparplan wachsen kann – auf Wunsch mit jährlicher Dynamik. Kostenlos, privat und in jeder Währung."
     },
     "compound": {
@@ -107,12 +107,8 @@
       "description": "Berechne, wie viel du jeden Monat sparen musst, um dein Sparziel rechtzeitig zu erreichen – inklusive Zinsen und bereits Gespartem."
     },
     "inflation": {
-      "title": "Inflationsrechner – künftige Preise & Kaufkraft | Numflo",
+      "title": "Inflationsrechner – Preissteigerung berechnen | Numflo",
       "description": "Sieh, was Dinge in Zukunft kosten und wie die Inflation Jahr für Jahr die Kaufkraft deines Geldes senkt. Kostenlos und privat."
-    },
-    "ppf": {
-      "title": "PPF-Rechner (Indien) – Endbetrag und Zinsen | Numflo",
-      "description": "Berechne Endbetrag und Zinsen des indischen Public Provident Fund (PPF) für 15 Jahre oder mit Verlängerung. Jährliche oder monatliche Einzahlungen."
     },
     "grossNet": {
       "title": "Brutto-Netto-Rechner 2026 – dein Nettogehalt | Numflo",
@@ -176,10 +172,6 @@
       "inflation": {
         "title": "Inflationsrechner",
         "text": "Künftige Preise und was du dir für dein Geld leisten kannst."
-      },
-      "ppf": {
-        "title": "PPF-Rechner (Indien)",
-        "text": "Endbetrag eines indischen Public-Provident-Fund-Kontos."
       },
       "grossNet": {
         "title": "Brutto-Netto-Rechner",
@@ -837,6 +829,10 @@
         {
           "q": "Sollte ich zuerst die Karte abbezahlen oder sparen?",
           "a": "Lege eine kleine Notfallreserve an, damit eine unerwartete Rechnung nicht wieder auf der Karte landet. Steck zusätzliches Geld danach in die Schulden mit dem höchsten Zinssatz. Kreditkartenzinsen sind meist weit höher als Sparzinsen."
+        },
+        {
+          "q": "Welche Kreditkarte sollte ich zuerst abbezahlen?",
+          "a": "Am wenigsten Zinsen zahlst du, wenn du jeden übrigen Euro in die Karte mit dem höchsten Zinssatz steckst und bei den anderen nur die Mindestrate zahlst (Lawinenmethode). Manche tilgen lieber zuerst die Karte mit der kleinsten Restschuld, um schnell einen Erfolg zu sehen (Schneeballmethode) – das kostet meist etwas mehr Zinsen. Rechne jede Karte einzeln mit dem Rechner durch und vergleiche."
         }
       ],
       "methodologyTitle": "Methodik",
@@ -1492,117 +1488,6 @@
       "methodology": "Künftige Kosten = Betrag × (1 + i)^t und Kaufkraft = Betrag ÷ (1 + i)^t, wobei i die jährliche Inflationsrate und t die Anzahl der Jahre ist. Die Werte werden nur für die Anzeige gerundet.",
       "lastReviewed": "Zuletzt geprüft",
       "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Die tatsächliche Inflation schwankt im Lauf der Zeit."
-    }
-  },
-  "ppf": {
-    "heading": "PPF-Rechner (Indien)",
-    "lead": "Berechne Endbetrag und Zinsen eines indischen Public-Provident-Fund-Kontos.",
-    "inputs": {
-      "legend": "Angaben zum PPF-Konto",
-      "currency": "Währung",
-      "yearsUnit": "Jahre",
-      "yearly": "Einzahlung pro Jahr",
-      "rate": "Zinssatz (pro Jahr)",
-      "years": "Laufzeit",
-      "mode": "Einzahlungsweise",
-      "hints": {
-        "yearly": "Zwischen 500 ₹ und 150.000 ₹ pro Finanzjahr.",
-        "rate": "Seit April 2020 gelten 7,1 %. Die Regierung prüft den Satz jedes Quartal."
-      },
-      "options": {
-        "years": {
-          "15": "15 Jahre",
-          "20": "20 Jahre (1 Verlängerung)",
-          "25": "25 Jahre (2 Verlängerungen)",
-          "30": "30 Jahre (3 Verlängerungen)",
-          "35": "35 Jahre (4 Verlängerungen)",
-          "40": "40 Jahre (5 Verlängerungen)",
-          "45": "45 Jahre (6 Verlängerungen)",
-          "50": "50 Jahre (7 Verlängerungen)"
-        },
-        "mode": {
-          "1": "Einmal im Jahr, bis zum 5. April",
-          "12": "Jeden Monat, bis zum 5."
-        }
-      }
-    },
-    "errors": {
-      "yearly": "Gib einen Betrag zwischen 500 ₹ und 150.000 ₹ ein.",
-      "rate": "Gib einen Zinssatz zwischen 0 % und 15 % ein."
-    },
-    "results": {
-      "title": "Dein Ergebnis",
-      "maturity": "Endbetrag",
-      "deposits": "Eingezahlt",
-      "interest": "Zinsen gesamt",
-      "chartLabel": "Anteil von Einzahlungen und Zinsen am Endbetrag",
-      "summary": "Wer {years} Jahre lang {yearly} pro Jahr zu {rate} % in den PPF einzahlt, erhält einen Endbetrag von {maturity}: davon {deposits} eingezahlt und {interest} steuerfreie Zinsen.",
-      "copyLink": "Link kopieren",
-      "copyResult": "Ergebnis kopieren",
-      "copied": "Kopiert"
-    },
-    "schedule": {
-      "title": "Wachstum nach Jahren",
-      "caption": "Einzahlungen, erhaltene Zinsen und Guthaben im Überblick nach Jahren",
-      "year": "Jahr",
-      "deposits": "Eingezahlt",
-      "interest": "Zinsen",
-      "balance": "Guthaben"
-    },
-    "content": {
-      "summaryTitle": "Kurz gesagt",
-      "summary": "Der Public Provident Fund (PPF) ist ein staatlich garantiertes Sparprogramm in Indien. Du zahlst 15 Jahre lang bis zu 1,5 Lakh Rupien (150.000 ₹) pro Finanzjahr ein, die Zinsen werden jeweils am 31. März gutgeschrieben, und Zinsen wie Endbetrag sind steuerfrei. Dieser Rechner zeigt, wie viel dein Konto am Ende wert ist.",
-      "sections": [
-        {
-          "title": "So werden PPF-Zinsen berechnet",
-          "paragraphs": [
-            "Die Zinsen werden jeden Monat auf das niedrigste Guthaben zwischen dem 5. und dem Monatsende berechnet, mit einem Zwölftel des Jahreszinssatzes. Gutgeschrieben werden sie einmal im Jahr am 31. März; danach bringen sie selbst Zinsen.",
-            "Geld, das bis zum 5. eingeht, zählt für den ganzen Monat; Geld, das ab dem 6. eingeht, erst ab dem Folgemonat. Deshalb bringt es am meisten, den vollen Betrag bis zum 5. April einzuzahlen."
-          ]
-        },
-        {
-          "title": "Rechenbeispiel",
-          "paragraphs": [
-            "Du zahlst 15 Jahre lang jedes Jahr bis zum 5. April 150.000 ₹ zu 7,1 % ein. Insgesamt sind das 2.250.000 ₹, und das Konto ist am Ende rund 4.068.209 ₹ wert – du erhältst also 1.818.209 ₹ steuerfreie Zinsen.",
-            "Zahlst du dieselben 150.000 ₹ in Monatsraten von 12.500 ₹ jeweils bis zum 5. ein, erreichst du rund 3.944.599 ₹, etwa 120.000 ₹ weniger, weil jede Rate weniger Monate verzinst wird. Verlängerst du das Konto um 5 Jahre mit denselben Einzahlungen, steigt der Endbetrag auf rund 6.658.288 ₹."
-          ]
-        },
-        {
-          "title": "Wichtige Regeln",
-          "paragraphs": [
-            "Pro Finanzjahr sind mindestens 500 ₹ und höchstens 150.000 ₹ erlaubt, zusammen für dein eigenes Konto und ein Konto, das du für ein minderjähriges Kind eröffnest. Du kannst auf einmal oder in mehreren Raten einzahlen.",
-            "Das Konto läuft 15 volle Finanzjahre nach dem Eröffnungsjahr. Danach kannst du das Guthaben abheben oder das Konto in Schritten von 5 Jahren verlängern, mit oder ohne weitere Einzahlungen. Teilentnahmen sind ab dem 7. Finanzjahr möglich, Darlehen auf das Guthaben vom 3. bis zum 6. Jahr.",
-            "Einzahlungen sind im alten indischen Steuersystem nach Section 80C absetzbar, Zinsen und Endbetrag sind steuerfrei."
-          ]
-        }
-      ],
-      "faqTitle": "Häufige Fragen",
-      "faqs": [
-        {
-          "q": "Wie hoch ist der aktuelle PPF-Zinssatz?",
-          "a": "7,1 % pro Jahr mit jährlicher Zinsgutschrift. Der Satz gilt seit April 2020, wird aber jedes Quartal von der Regierung überprüft. Sieh dir den Satz für das laufende Quartal an und passe ihn im Rechner bei Bedarf an."
-        },
-        {
-          "q": "Warum nimmt der Rechner für jedes Jahr denselben Zinssatz an?",
-          "a": "Künftige Zinssätze kennt niemand. Der heutige Satz für die ganze Laufzeit ist eine faire Schätzung; mit einem niedrigeren oder höheren Satz siehst du die mögliche Spanne."
-        },
-        {
-          "q": "Lieber einmal im Jahr oder monatlich einzahlen?",
-          "a": "Eine Einzahlung bis zum 5. April bringt am meisten, weil der ganze Betrag alle zwölf Monate verzinst wird. Monatliche Einzahlungen sind ebenfalls in Ordnung – sie sollten nur jeweils bis zum 5. eingehen."
-        },
-        {
-          "q": "Was passiert nach 15 Jahren?",
-          "a": "Du kannst das Konto auflösen und das Geld abheben, es ohne neue Einzahlungen weiterlaufen lassen (es wird weiter verzinst) oder es mit Einzahlungen um 5 Jahre verlängern. Verlängerungen lassen sich wiederholen. Wähle oben eine längere Laufzeit, um die Wirkung einer Verlängerung mit denselben Einzahlungen zu sehen."
-        },
-        {
-          "q": "Sind PPF-Zinsen steuerpflichtig?",
-          "a": "Nein. Der PPF ist dreifach steuerbefreit: Einzahlungen sind im alten Steuersystem nach Section 80C absetzbar, Zinsen und Endbetrag werden nicht besteuert."
-        }
-      ],
-      "methodologyTitle": "Methodik",
-      "methodology": "Die Zinsen eines Finanzjahres sind die Summe über zwölf Monate aus (für den Monat maßgebliches Guthaben) × r / 12, gutgeschrieben am 31. März. Bei einer Einzahlung bis zum 5. April zählt das ganze Jahr über das Anfangsguthaben plus Einzahlung, also Zinsen = (B + D) × r. Bei monatlichen Einzahlungen bis zum 5. zählt im Monat m das Anfangsguthaben plus m Raten. Beträge werden auf ganze Rupien gerundet angezeigt.",
-      "lastReviewed": "Zuletzt geprüft",
-      "disclaimer": "Dieser Rechner liefert Schätzungen nur zur Information und ist keine Finanzberatung. Den PPF-Zinssatz legt die indische Regierung fest, er kann sich jedes Quartal ändern; es gelten die Regeln des Programms."
     }
   },
   "grossNet": {

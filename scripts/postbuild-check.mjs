@@ -116,7 +116,11 @@ for (const file of htmlFiles) {
   const alternates = Object.fromEntries(
     [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/gi)].map((m) => [m[1], m[2]]),
   );
-  for (const l of [...LANGS, "x-default"]) if (!alternates[l]) fail(rel, `missing hreflang="${l}"`);
+  // A page lists the languages it is offered in (some calculators are country-specific), always
+  // including its own language and x-default.
+  for (const l of [lang, "x-default"]) if (!alternates[l]) fail(rel, `missing hreflang="${l}"`);
+  for (const l of Object.keys(alternates))
+    if (l !== "x-default" && !LANGS.includes(l)) fail(rel, `unknown hreflang="${l}"`);
   if (alternates[lang] !== canonical) fail(rel, `hreflang for its own language must equal the canonical`);
   canonicals.set(canonical, { rel, lang, alternates });
 }
@@ -124,6 +128,7 @@ for (const file of htmlFiles) {
 // ---- hreflang must be reciprocal (L-7) ----
 for (const [canonical, { rel, lang, alternates }] of canonicals) {
   for (const l of LANGS) {
+    if (!alternates[l]) continue;
     const other = canonicals.get(alternates[l]);
     if (!other) fail(rel, `hreflang ${l} points to a page that does not exist: ${alternates[l]}`);
     else if (other.alternates[lang] !== canonical) fail(rel, `hreflang not reciprocal with ${alternates[l]}`);

@@ -1,23 +1,25 @@
 import { describe, expect, it } from "vitest";
-import { LANGS, ROUTES } from "./index";
+import { ROUTES, path, routeLangs, type RouteKey } from "./index";
 import { CALC_IDS } from "../lib/calculators";
 import { PAGES } from "../../tests/e2e/pages";
 
 describe("end-to-end page list (Q-10)", () => {
   it("matches the route table exactly, so every page is tested in every language", () => {
-    const expected = Object.entries(ROUTES).flatMap(([key, r]) =>
-      LANGS.map((lang, i) => {
-        const next = LANGS[(i + 1) % LANGS.length]!;
+    // `alt` is the same page in the next language that offers it (en → es → de → en).
+    const expected = (Object.keys(ROUTES) as RouteKey[]).flatMap((key) => {
+      const langs = routeLangs(key);
+      return langs.map((lang, i) => {
+        const next = langs[(i + 1) % langs.length]!;
         return {
           key,
-          path: r[lang],
+          path: path(key, lang),
           lang,
-          alt: r[next],
+          alt: path(key, next),
           altLang: next,
           calc: (CALC_IDS as readonly string[]).includes(key),
         };
-      }),
-    );
+      });
+    });
     expect(PAGES).toEqual(expected);
   });
 });

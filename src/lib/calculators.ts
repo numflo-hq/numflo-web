@@ -6,6 +6,7 @@
  * src/scripts/calculator.ts).
  */
 import type { CalcDef, CalcId } from "./engine";
+import { hasRoute, type Lang } from "../i18n";
 import loan from "./defs/loan";
 import investment from "./defs/investment";
 import compound from "./defs/compound";
@@ -32,6 +33,15 @@ export const CATEGORIES = {
 export type Category = keyof typeof CATEGORIES;
 
 export const CALC_IDS: readonly CalcId[] = Object.values(CATEGORIES).flat();
+
+/** The calculators of a category that are offered in a language (BRD L-20). */
+export function calcsIn(cat: Category, lang: Lang): CalcId[] {
+  return (CATEGORIES[cat] as readonly CalcId[]).filter((c) => hasRoute(c, lang));
+}
+/** Every calculator offered in a language. */
+export function calcsFor(lang: Lang): CalcId[] {
+  return CALC_IDS.filter((c) => hasRoute(c, lang));
+}
 
 /** Hand-picked "Related calculators" for each page: closest topics first. */
 export const RELATED: Record<CalcId, readonly CalcId[]> = {

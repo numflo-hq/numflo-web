@@ -129,7 +129,7 @@ test.describe("navigation between calculators (S-25)", () => {
     test.skip(isMobile, "menu is shown from the sm breakpoint");
     await page.goto("/");
     await page.locator("[data-menu] summary").click();
-    await expect(page.locator("[data-menu] a")).toHaveCount(CALC_PAGES.length / 3);
+    await expect(page.locator("[data-menu] a")).toHaveCount(CALC_PAGES.filter((p) => p.lang === "en").length);
     await page.keyboard.press("Escape");
     await expect(page.locator("[data-menu]")).not.toHaveAttribute("open", "");
   });

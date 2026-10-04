@@ -2,6 +2,31 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.6.0] - Unreleased
+
+### Added
+
+- German salary pages (BRD F-42): 20 pages such as "3.000 € brutto in netto" with the 2026 net pay for
+  every tax class, the breakdown, and a button into the calculator with that salary filled in.
+- "Which credit card should I pay off first?" in the credit card payoff FAQ (English, Spanish, German).
+
+### Changed
+
+- Country-specific calculators appear only in the languages of their market (BRD L-20): PPF in English;
+  the German salary calculator in German and English. `/de/ppf-rechner`, `/es/calculadora-ppf` and
+  `/es/calculadora-de-sueldo-neto-alemania` redirect permanently to that language's home page. Each
+  language's home page, menu, footer, sitemap and `llms.txt` list only its own calculators.
+- Page titles match the searches people already find us with: "Sparplanrechner mit Dynamik",
+  "Preissteigerung berechnen", credit card interest and payment (Spanish), RD calculator.
+- The language suggestion is shown only when the page itself exists in the suggested language.
+
+### Security
+
+- Dependency audit: a new advisory for `http-cache-semantics` (GHSA-ch52-4w7c-c8xp) has no patched version
+  yet. Astro uses the package only for remote images at build time, which this site does not have, so
+  it is a documented exception in `scripts/audit.mjs` that expires on 2026-11-15. Any other high or
+  critical advisory still fails the build.
+
 ## [0.5.1] - 2026-10-02
 
 ### Fixed
@@ -11,8 +36,9 @@ All notable changes to numflo.com. Versions follow [semantic versioning](https:/
   is a local font scaled to Inter's metrics so both look alike. A new browser test checks every page
   with a delayed font.
 - Production security scan: removed the `Access-Control-Allow-Origin: *` header that Cloudflare Pages adds
-  by default (ZAP 10098). The Cloudflare Web Analytics script, which cannot carry an integrity hash, is a
-  documented, narrowly scoped exception in the scan check (ZAP 90003).
+  by default (ZAP 10098). The Cloudflare Web Analytics script, which cannot carry an integrity hash
+  (ZAP 90003), and Cloudflare's own `/cdn-cgi/` system pages are documented, narrowly scoped exceptions
+  in the scan check.
 
 ## [0.5.0] - 2026-09-29
 

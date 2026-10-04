@@ -2,8 +2,9 @@
  * Builds /llms.txt (llmstxt.org): a plain Markdown index of the site for AI assistants,
  * so answer engines can find, understand and cite each calculator (BRD S-70).
  */
-import { LANGS, LANG_NAMES, ROUTES, t, type Lang } from "../i18n";
-import { CATEGORIES, type Category } from "./calculators";
+import { LANGS, LANG_NAMES, ROUTES, path, t, type Lang } from "../i18n";
+import { CATEGORIES, calcsIn, type Category } from "./calculators";
+import { SALARY_STEPS, salaryPath } from "./salary-pages";
 
 export function buildLlmsTxt(site: URL): string {
   const abs = (p: string) => new URL(p, site).href;
@@ -27,11 +28,18 @@ export function buildLlmsTxt(site: URL): string {
     lines.push(`## Calculators in ${LANG_NAMES[lang]}`, "");
     for (const cat of Object.keys(CATEGORIES) as Category[]) {
       lines.push(`### ${d.site.categories[cat]}`, "");
-      for (const c of CATEGORIES[cat])
-        lines.push(`- [${d.home.cards[c].title}](${abs(ROUTES[c][lang])}): ${d.meta[c].description}`);
+      for (const c of calcsIn(cat, lang))
+        lines.push(`- [${d.home.cards[c].title}](${abs(path(c, lang))}): ${d.meta[c].description}`);
       lines.push("");
     }
   }
+  // German salary pages (single-language pages outside the route table).
+  lines.push("## Brutto in netto 2026 (Deutsch)", "");
+  for (const gross of SALARY_STEPS)
+    lines.push(
+      `- [${gross} € brutto in netto](${abs(salaryPath(gross))}): Netto, Lohnsteuer und Sozialabgaben 2026 für alle Steuerklassen bei ${gross} € brutto im Monat.`,
+    );
+  lines.push("");
   lines.push(
     "## About",
     "",

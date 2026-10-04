@@ -5,6 +5,8 @@ import Calculator from "../components/Calculator.astro";
 import RelatedCalculators from "../components/RelatedCalculators.astro";
 import { HREFLANG, LAST_REVIEWED, path, t, type Lang } from "../i18n";
 import type { CalcId } from "../lib/calculators";
+import { formatNumber } from "../lib/format";
+import { SALARY_STEPS, salaryPath } from "../lib/salary-pages";
 
 interface Props {
   lang: Lang;
@@ -132,6 +134,23 @@ const schema = [
         </p>
       </section>
     </article>
+
+    {calc === "grossNet" && lang === "de" && (
+      <section class="mx-auto mt-16 max-w-3xl" aria-labelledby="salaries">
+        <h2 id="salaries" class="text-2xl font-bold">
+          Brutto in netto: häufige Gehälter
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-2" role="list">
+          {SALARY_STEPS.map((s) => (
+            <li>
+              <a class="btn-ghost" href={salaryPath(s)}>
+                {formatNumber(s, lang, "EUR")} € brutto
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <RelatedCalculators lang={lang} current={calc} />
   </div>

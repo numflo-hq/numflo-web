@@ -194,7 +194,9 @@ test.describe("planning calculators (F-34, F-35, F-36)", () => {
 test.describe("site navigation for every calculator (S-25)", () => {
   test("home page groups every calculator by category", async ({ page }) => {
     await page.goto("/");
-    await expect(page.locator('#calcs ~ div ul[role="list"] > li')).toHaveCount(CALC_PAGES.length / 3);
+    await expect(page.locator('#calcs ~ div ul[role="list"] > li')).toHaveCount(
+      CALC_PAGES.filter((p) => p.lang === "en").length,
+    );
     await expect(page.locator("h3#cat-borrow")).toHaveText("Borrowing");
   });
   test("footer links to every calculator in the page language", async ({ page }) => {

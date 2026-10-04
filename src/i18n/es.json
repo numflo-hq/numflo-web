@@ -79,7 +79,7 @@
       "description": "Descubre qué precio de vivienda puedes pagar según tus ingresos, tus deudas, tu pago inicial y la tasa, con la regla de deuda sobre ingresos."
     },
     "creditCard": {
-      "title": "Calculadora de pago de tarjeta de crédito | Numflo",
+      "title": "Calculadora de tarjeta de crédito: intereses y pago | Numflo",
       "description": "Descubre cuánto tardas en liquidar tu tarjeta de crédito y cuántos intereses pagarás, y el pago para liquidarla en 3 años."
     },
     "fd": {
@@ -109,14 +109,6 @@
     "inflation": {
       "title": "Calculadora de inflación: costo y poder adquisitivo | Numflo",
       "description": "Descubre cuánto costarán las cosas en el futuro y cómo la inflación reduce lo que puedes comprar con tu dinero, año por año."
-    },
-    "ppf": {
-      "title": "Calculadora PPF (India) – Valor al vencimiento | Numflo",
-      "description": "Calcula el valor al vencimiento y los intereses del Public Provident Fund (PPF) de la India a 15 años o con prórrogas. Depósitos anuales o mensuales."
-    },
-    "grossNet": {
-      "title": "Calculadora de sueldo neto en Alemania 2026 | Numflo",
-      "description": "Calcula tu sueldo neto en Alemania en 2026: impuesto sobre el salario, recargo de solidaridad, impuesto eclesiástico y seguridad social por clase fiscal."
     }
   },
   "home": {
@@ -176,14 +168,6 @@
       "inflation": {
         "title": "Calculadora de inflación",
         "text": "Precios futuros y lo que podrá comprar tu dinero."
-      },
-      "ppf": {
-        "title": "Calculadora PPF (India)",
-        "text": "Valor al vencimiento de una cuenta Public Provident Fund en la India."
-      },
-      "grossNet": {
-        "title": "Sueldo neto en Alemania",
-        "text": "Tu sueldo neto tras impuestos y seguridad social en Alemania, 2026."
       }
     },
     "why": {
@@ -837,6 +821,10 @@
         {
           "q": "¿Pago primero la tarjeta o ahorro?",
           "a": "Ten un pequeño fondo de emergencia para que un gasto imprevisto no vuelva a la tarjeta y luego destina el dinero extra a la deuda con la tasa más alta. Los intereses de una tarjeta suelen ser mucho más altos que los que te da una cuenta de ahorro."
+        },
+        {
+          "q": "¿Qué tarjeta de crédito conviene pagar primero?",
+          "a": "Para pagar menos intereses, destina todo el dinero extra a la tarjeta con la tasa de interés más alta y paga el mínimo en las demás (método avalancha). Algunas personas prefieren liquidar primero el saldo más pequeño para ver avances rápidos (método bola de nieve); suele costar algo más en intereses. Calcula cada tarjeta por separado en la calculadora para comparar."
         }
       ],
       "methodologyTitle": "Metodología",
@@ -1492,251 +1480,6 @@
       "methodology": "Costo futuro = monto × (1 + i)^t y poder adquisitivo = monto ÷ (1 + i)^t, donde i es la tasa de inflación anual y t el número de años. Los valores se redondean solo al mostrarlos.",
       "lastReviewed": "Última revisión",
       "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. La inflación real cambia con el tiempo."
-    }
-  },
-  "ppf": {
-    "heading": "Calculadora PPF (India)",
-    "lead": "Calcula el valor al vencimiento y los intereses de una cuenta Public Provident Fund.",
-    "inputs": {
-      "legend": "Datos del PPF",
-      "currency": "Moneda",
-      "yearsUnit": "años",
-      "yearly": "Depósito anual",
-      "rate": "Tasa de interés (anual)",
-      "years": "Plazo de la cuenta",
-      "mode": "Forma de depositar",
-      "hints": {
-        "yearly": "Entre ₹500 y ₹150 000 por año fiscal.",
-        "rate": "Se aplica una tasa del 7,1 % desde abril de 2020. El Gobierno la revisa cada trimestre."
-      },
-      "options": {
-        "years": {
-          "15": "15 años",
-          "20": "20 años (1 prórroga)",
-          "25": "25 años (2 prórrogas)",
-          "30": "30 años (3 prórrogas)",
-          "35": "35 años (4 prórrogas)",
-          "40": "40 años (5 prórrogas)",
-          "45": "45 años (6 prórrogas)",
-          "50": "50 años (7 prórrogas)"
-        },
-        "mode": {
-          "1": "Una vez al año, hasta el 5 de abril",
-          "12": "Cada mes, hasta el día 5"
-        }
-      }
-    },
-    "errors": {
-      "yearly": "Escribe un monto entre ₹500 y ₹150 000.",
-      "rate": "Escribe una tasa entre 0 % y 15 %."
-    },
-    "results": {
-      "title": "Tus resultados",
-      "maturity": "Valor al vencimiento",
-      "deposits": "Total depositado",
-      "interest": "Intereses totales",
-      "chartLabel": "Proporción de los depósitos y de los intereses en el valor al vencimiento",
-      "summary": "Depositar {yearly} al año en el PPF al {rate} % durante {years} años da un valor al vencimiento de {maturity}: {deposits} depositados y {interest} de intereses libres de impuestos.",
-      "copyLink": "Copiar enlace",
-      "copyResult": "Copiar resultado",
-      "copied": "Copiado"
-    },
-    "schedule": {
-      "title": "Crecimiento por año",
-      "caption": "Desglose anual de los depósitos, los intereses ganados y el saldo",
-      "year": "Año",
-      "deposits": "Depositado",
-      "interest": "Intereses",
-      "balance": "Saldo"
-    },
-    "content": {
-      "summaryTitle": "En resumen",
-      "summary": "El Public Provident Fund (PPF) es un plan de ahorro con garantía del Gobierno de la India. Depositas hasta 1,5 lakh de rupias (₹150 000) por año fiscal durante 15 años, los intereses se abonan cada 31 de marzo y tanto los intereses como el monto final están libres de impuestos. Esta calculadora muestra cuánto vale tu cuenta al vencimiento.",
-      "sections": [
-        {
-          "title": "Cómo se calculan los intereses del PPF",
-          "paragraphs": [
-            "Los intereses se calculan cada mes sobre el saldo más bajo entre el día 5 y el último día del mes, a una doceava parte de la tasa anual. Se abonan una vez al año, el 31 de marzo, y a partir de ahí también generan intereses.",
-            "El dinero que llega hasta el día 5 inclusive cuenta para todo ese mes; el que llega el día 6 o después empieza a generar intereses el mes siguiente. Por eso depositar el monto completo hasta el 5 de abril es lo que más rinde."
-          ]
-        },
-        {
-          "title": "Ejemplo práctico",
-          "paragraphs": [
-            "Depositas ₹150 000 hasta el 5 de abril cada año durante 15 años al 7,1 %. Aportas ₹2 250 000 y al vencimiento la cuenta suma unos ₹4 068 209, así que ganas ₹1 818 209 de intereses libres de impuestos.",
-            "Si pagas esos mismos ₹150 000 en aportaciones mensuales de ₹12 500 hasta el día 5 de cada mes, obtienes unos ₹3 944 599, alrededor de ₹120 000 menos, porque cada aportación genera intereses durante menos meses. Si prorrogas la cuenta 5 años con los mismos depósitos, el valor al vencimiento llega a unos ₹6 658 288."
-          ]
-        },
-        {
-          "title": "Reglas que conviene conocer",
-          "paragraphs": [
-            "El depósito mínimo es de ₹500 y el máximo de ₹150 000 por año fiscal, sumando tu propia cuenta y la que abras para un hijo menor. Puedes pagar de una vez o en varias cuotas.",
-            "La cuenta dura 15 años fiscales completos después del año de apertura. Después puedes retirar el saldo o prorrogar la cuenta en bloques de 5 años, con o sin nuevos depósitos. Se permiten retiros parciales desde el séptimo año fiscal y préstamos sobre el saldo del tercero al sexto año.",
-            "En el régimen fiscal antiguo de la India, los depósitos son deducibles según la sección 80C, y los intereses y el monto final están exentos de impuestos."
-          ]
-        }
-      ],
-      "faqTitle": "Preguntas frecuentes",
-      "faqs": [
-        {
-          "q": "¿Cuál es la tasa de interés actual del PPF?",
-          "a": "Un 7,1 % anual con capitalización anual. Se mantiene en el 7,1 % desde abril de 2020, pero el Gobierno la revisa cada trimestre, así que comprueba la tasa del trimestre en curso y cámbiala en la calculadora si hace falta."
-        },
-        {
-          "q": "¿Por qué la calculadora usa la misma tasa todos los años?",
-          "a": "Nadie conoce las tasas futuras. Usar la tasa actual para todo el plazo da una estimación razonable; puedes probar una tasa más baja o más alta para ver el rango de resultados."
-        },
-        {
-          "q": "¿Conviene depositar una vez al año o cada mes?",
-          "a": "Un solo depósito hasta el 5 de abril es lo que más rinde, porque todo el monto genera intereses los doce meses. Los depósitos mensuales también están bien; solo asegúrate de que cada uno llegue hasta el día 5."
-        },
-        {
-          "q": "¿Qué pasa después de 15 años?",
-          "a": "Puedes cerrar la cuenta y retirar el dinero, mantenerla abierta sin nuevos depósitos (sigue generando intereses) o prorrogarla 5 años con depósitos. Las prórrogas se pueden repetir. Elige arriba un plazo más largo para ver el efecto de prorrogar con los mismos depósitos."
-        },
-        {
-          "q": "¿Los intereses del PPF tributan?",
-          "a": "No. El PPF está exento en las tres etapas: los depósitos son deducibles según la sección 80C en el régimen antiguo, y los intereses y el monto final no tributan."
-        }
-      ],
-      "methodologyTitle": "Metodología",
-      "methodology": "Los intereses de cada año fiscal son la suma durante doce meses de (saldo que cuenta ese mes) × r / 12, abonada el 31 de marzo. Con un solo depósito hasta el 5 de abril, el saldo que cuenta todo el año es el saldo inicial más el depósito, así que intereses = (B + D) × r. Con depósitos mensuales hasta el día 5, el mes m cuenta el saldo inicial más m aportaciones. Los montos se muestran redondeados a la rupia entera.",
-      "lastReviewed": "Última revisión",
-      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento financiero. El Gobierno de la India fija la tasa del PPF y puede cambiarla cada trimestre; se aplican las reglas del plan."
-    }
-  },
-  "grossNet": {
-    "heading": "Calculadora de sueldo neto en Alemania 2026",
-    "lead": "Calcula tu sueldo neto en Alemania tras el impuesto sobre el salario y la seguridad social, en cualquier clase fiscal.",
-    "inputs": {
-      "legend": "Datos del sueldo",
-      "currency": "Moneda",
-      "yearsUnit": "años",
-      "gross": "Sueldo bruto mensual",
-      "taxClass": "Clase fiscal (Steuerklasse)",
-      "children": "Hijos",
-      "church": "Impuesto eclesiástico",
-      "saxony": "Lugar de trabajo",
-      "zusatz": "Cotización adicional del seguro médico",
-      "hints": {
-        "children": "Hijos por los que recibes la prestación por hijo (Kindergeld). Se cuenta una deducción por hijo completa (Kinderfreibetrag 1,0) por cada uno, como en los matrimonios.",
-        "zusatz": "La cotización adicional (Zusatzbeitrag) de tu aseguradora. El promedio de 2026 es del 2,9 %."
-      },
-      "options": {
-        "taxClass": {
-          "1": "I – soltero",
-          "2": "II – familia monoparental",
-          "3": "III – casado, ingreso más alto",
-          "4": "IV – casado, ingresos similares",
-          "5": "V – casado, ingreso más bajo",
-          "6": "VI – segundo empleo"
-        },
-        "children": {
-          "0": "Ninguno",
-          "1": "1",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5",
-          "6": "6 o más"
-        },
-        "church": {
-          "0": "Ninguno",
-          "8": "8 % (Baviera, Baden-Wurtemberg)",
-          "9": "9 % (resto de estados)"
-        },
-        "saxony": {
-          "0": "Cualquier estado salvo Sajonia",
-          "1": "Sajonia"
-        }
-      }
-    },
-    "errors": {
-      "gross": "Escribe un sueldo mensual entre 100 € y 1 000 000 €.",
-      "zusatz": "Escribe una tasa entre 0 % y 6 %.",
-      "taxClassRule": "La clase fiscal II es para familias monoparentales: elige al menos un hijo."
-    },
-    "results": {
-      "title": "Tu sueldo neto",
-      "netMonth": "Neto al mes",
-      "net": "Neto",
-      "deductions": "Impuestos y seguridad social",
-      "gross": "Bruto",
-      "incomeTax": "Impuesto sobre el salario (Lohnsteuer)",
-      "soli": "Recargo de solidaridad",
-      "churchTax": "Impuesto eclesiástico",
-      "health": "Seguro médico",
-      "care": "Seguro de dependencia",
-      "pension": "Seguro de pensiones",
-      "unemployment": "Seguro de desempleo",
-      "netYear": "Neto al año (12 meses)",
-      "chartLabel": "Proporción del neto y de las deducciones en el sueldo bruto",
-      "summary": "Con un sueldo bruto de {gross} al mes en la clase fiscal {taxClass}, en 2026 quedan {net} netos, tras {incomeTax} de impuesto sobre el salario y {deductions} de impuestos y seguridad social en total.",
-      "copyLink": "Copiar enlace",
-      "copyResult": "Copiar resultado",
-      "copied": "Copiado"
-    },
-    "schedule": {
-      "title": "Desglose",
-      "caption": "Desglose del sueldo",
-      "year": "Año",
-      "net": "Neto",
-      "deductions": "Deducciones",
-      "gross": "Bruto"
-    },
-    "content": {
-      "summaryTitle": "En resumen",
-      "summary": "En Alemania, tu empleador descuenta de tu sueldo bruto el impuesto sobre el salario, a menudo el recargo de solidaridad y el impuesto eclesiástico, y tu parte de cuatro seguros sociales. Esta calculadora obtiene tu sueldo neto mensual de 2026 con la fórmula oficial del Ministerio Federal de Finanzas (BMF) y las tasas de cotización de 2026.",
-      "sections": [
-        {
-          "title": "Qué se descuenta de tu sueldo",
-          "paragraphs": [
-            "El impuesto sobre el salario (Lohnsteuer) es un anticipo del impuesto sobre la renta. Depende de tu clase fiscal y ya tiene en cuenta el mínimo exento de 12 348 €, la deducción de 1230 € por gastos del trabajo y parte de tus cotizaciones sociales. El recargo de solidaridad del 5,5 % solo se aplica cuando el impuesto sobre el salario es alto. Los miembros de una iglesia pagan un impuesto eclesiástico del 8 % (Baviera, Baden-Wurtemberg) o del 9 % del impuesto sobre el salario.",
-            "Tu parte de la seguridad social en 2026: seguro médico 7,3 % más la mitad de la cotización adicional de tu aseguradora, seguro de dependencia 1,8 % (2,3 % en Sajonia), pensiones 9,3 % y desempleo 1,3 %. Las cotizaciones de salud y dependencia se calculan como máximo sobre 5812,50 € al mes; las de pensiones y desempleo, sobre 8450 €."
-          ]
-        },
-        {
-          "title": "Ejemplo práctico",
-          "paragraphs": [
-            "Una persona soltera sin hijos en la clase fiscal I que gana 4000 € al mes paga 524,50 € de impuesto sobre el salario, ningún recargo de solidaridad, 350,00 € de seguro médico (con una cotización adicional del 2,9 %), 96,00 € de seguro de dependencia (incluido el recargo del 0,6 % por no tener hijos), 372,00 € de pensiones y 52,00 € de desempleo. Le quedan 2605,50 € netos. Si es miembro de una iglesia en Renania del Norte-Westfalia, se descuentan otros 47,20 € y le quedan 2558,30 €.",
-            "Los mismos 4000 € dejan 2928,17 € en la clase III y 2185,09 € en la clase V. Las clases III y V juntas están pensadas para matrimonios con ingresos muy distintos; la diferencia se compensa en la declaración anual."
-          ]
-        },
-        {
-          "title": "Hijos, midijobs y minijobs",
-          "paragraphs": [
-            "Los hijos no reducen el impuesto sobre el salario: el apoyo llega a través de la prestación por hijo (Kindergeld) y, como el seguro de dependencia es más barato con hijos, el impuesto puede incluso ser algo mayor. Sí reducen el recargo de solidaridad, el impuesto eclesiástico y el seguro de dependencia: quienes no tienen hijos y tienen 23 años o más pagan un 0,6 % adicional; desde el segundo hijo menor de 25 años la tasa baja 0,25 puntos porcentuales por hijo, hasta el quinto.",
-            "Hasta 603 € al mes es un minijob: normalmente el empleador paga un impuesto a tanto alzado y tú solo pagas un 3,6 % al seguro de pensiones. De 603,01 € a 2000 € (tramo de transición o midijob) tus cotizaciones sociales son reducidas y suben poco a poco hasta la tasa completa en 2000 €. La calculadora aplica ambas reglas. En la clase VI (segundo empleo) no se aplica el tramo de transición, porque se suman los sueldos de todos los empleos."
-          ]
-        }
-      ],
-      "faqTitle": "Preguntas frecuentes",
-      "faqs": [
-        {
-          "q": "¿En qué clase fiscal estoy?",
-          "a": "Las personas solteras están en la clase I; las familias monoparentales que viven con su hijo, en la clase II. Los matrimonios y parejas registradas tienen la clase IV por defecto o pueden elegir III y V. La clase VI se aplica a un segundo empleo. Tu clase fiscal aparece en tu nómina."
-        },
-        {
-          "q": "¿Por qué mi nómina es un poco distinta?",
-          "a": "Las deducciones registradas en la oficina tributaria (Finanzamt), el plan de pensiones de empresa, las retribuciones en especie, los pagos únicos como la paga de vacaciones o de Navidad y el seguro médico privado cambian el resultado. La calculadora cubre el caso habitual: seguro médico público, sin deducciones adicionales, menos de 64 años."
-        },
-        {
-          "q": "¿Por qué los hijos no reducen mi impuesto sobre el salario?",
-          "a": "Durante el año, el apoyo por los hijos llega a través de la prestación por hijo. La deducción por hijo solo se usa para el recargo de solidaridad y el impuesto eclesiástico, y en la declaración, donde la oficina tributaria comprueba si la deducción es más ventajosa que la prestación."
-        },
-        {
-          "q": "¿Sirve para un sueldo anual?",
-          "a": "Escribe tu sueldo mensual: divide el sueldo anual entre 12, o entre 13 o 14 si parte se paga como 13.ª o 14.ª paga. El neto anual que se muestra es doce veces el neto mensual."
-        },
-        {
-          "q": "¿Quién paga el recargo de solidaridad?",
-          "a": "Desde 2021, solo alrededor del 10 % de las personas con mayores ingresos. En 2026 se aplica cuando el impuesto sobre el salario de todo el año supera los 20 350 € (40 700 € en la clase III) y aumenta gradualmente a partir de ahí."
-        }
-      ],
-      "methodologyTitle": "Metodología",
-      "methodology": "El impuesto sobre el salario, el recargo de solidaridad y la base del impuesto eclesiástico siguen el Programmablaufplan del BMF para 2026 (periodo de pago mensual), incluida la Vorsorgepauschale de 2026 con el seguro de desempleo y el límite de 1900 €, con el redondeo exacto que se prescribe; los resultados se compararon céntimo a céntimo con una implementación independiente de ese plan en 20 000 casos. Las cotizaciones sociales del trabajador usan las tasas y los límites de 2026; en el tramo de transición se aplica la base reducida 2000/(2000 − 603) × (bruto − 603), y el recargo por no tener hijos usa la base total con el factor F = 0,6619.",
-      "lastReviewed": "Última revisión",
-      "disclaimer": "Esta calculadora ofrece estimaciones solo con fines informativos y no es asesoramiento fiscal. Tu nómina real depende de tu situación personal y de los datos que tenga tu empleador."
     }
   }
 }

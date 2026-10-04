@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { PAGES } from "./pages";
+import { ALL_PAGES, PAGES, hreflangCount } from "./pages";
 
 // Accessibility (Q-13), responsive layout (R-1, Q-12) and SEO basics (S-20, S-21).
 
@@ -13,7 +13,7 @@ const VIEWPORTS = [
   { name: "desktop", width: 1920, height: 1080 },
 ];
 
-for (const p of PAGES) {
+for (const p of ALL_PAGES) {
   for (const scheme of ["light", "dark"] as const) {
     test(`a11y ${scheme}: ${p.path} has no serious or critical issues`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: scheme });
@@ -33,7 +33,7 @@ for (const p of PAGES) {
     expect(title.length).toBeGreaterThan(10);
     expect(title.length).toBeLessThanOrEqual(60);
     await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
-    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(4);
+    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(hreflangCount(p));
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
   });
 }
@@ -41,7 +41,7 @@ for (const p of PAGES) {
 test.describe("responsive: no horizontal scrolling (R-1)", () => {
   test.skip(({ isMobile }) => isMobile, "viewports are set explicitly");
   for (const vp of VIEWPORTS) {
-    for (const p of PAGES) {
+    for (const p of ALL_PAGES) {
       test(`${vp.name} ${vp.width}px: ${p.path}`, async ({ page }, info) => {
         await page.setViewportSize({ width: vp.width, height: vp.height });
         await page.goto(p.path);
@@ -89,7 +89,7 @@ test("no console errors on any page", async ({ page }) => {
   const errors: string[] = [];
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(e.message));
-  for (const p of PAGES) await page.goto(p.path);
+  for (const p of ALL_PAGES) await page.goto(p.path);
   expect(errors).toEqual([]);
 });
 
@@ -98,7 +98,7 @@ test("nothing moves when the web font arrives late (Q-3, layout shift)", async (
   // Lighthouse fails a page above 0.1; the budget here is half of that, on every page, at the
   // Lighthouse phone size, with the font held back so the fallback font is always painted first.
   const worst: string[] = [];
-  for (const p of PAGES) {
+  for (const p of ALL_PAGES) {
     const context = await browser.newContext({ viewport: { width: 412, height: 823 } });
     const page = await context.newPage();
     await page.route("**/*.woff2", async (route) => {

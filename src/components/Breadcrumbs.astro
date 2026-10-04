@@ -4,8 +4,10 @@ import { path, t, type Lang } from "../i18n";
 interface Props {
   lang: Lang;
   current: string;
+  /** Optional page between home and the current page. */
+  parent?: { label: string; href: string };
 }
-const { lang, current } = Astro.props;
+const { lang, current, parent } = Astro.props;
 const d = t(lang);
 ---
 
@@ -17,6 +19,16 @@ const d = t(lang);
       </a>
     </li>
     <li aria-hidden="true">/</li>
+    {parent && (
+      <>
+        <li>
+          <a class="hover:text-ink underline-offset-4 hover:underline" href={parent.href}>
+            {parent.label}
+          </a>
+        </li>
+        <li aria-hidden="true">/</li>
+      </>
+    )}
     <li>
       <span aria-current="page" class="text-ink font-medium">
         {current}

@@ -15,7 +15,8 @@
         "http://localhost:4321/credit-card-payoff-calculator",
         "http://localhost:4321/de",
         "http://localhost:4321/de/baufinanzierungsrechner",
-        "http://localhost:4321/de/brutto-netto-rechner"
+        "http://localhost:4321/de/brutto-netto-rechner",
+        "http://localhost:4321/de/brutto-netto/3000-euro"
       ],
       "numberOfRuns": 3,
       "settings": {

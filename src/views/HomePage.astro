@@ -5,7 +5,7 @@ import { calculateLoan } from "../lib/loan";
 import { formatMoney } from "../lib/format";
 import { LOAN_DEFAULTS } from "../lib/params";
 import { CALC_ICONS } from "../components/icons";
-import { CATEGORIES, type Category } from "../lib/calculators";
+import { CATEGORIES, calcsIn, type Category } from "../lib/calculators";
 
 interface Props {
   lang: Lang;
@@ -26,7 +26,7 @@ const sample = {
 const groups = (Object.keys(CATEGORIES) as Category[]).map((cat) => ({
   cat,
   title: d.site.categories[cat],
-  cards: CATEGORIES[cat].map((c) => ({
+  cards: calcsIn(cat, lang).map((c) => ({
     key: c,
     href: path(c, lang),
     ...d.home.cards[c],

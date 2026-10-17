@@ -19,4 +19,7 @@ export const CALC_ICONS: Record<CalcId, string> = {
   inflation: "M3 12l9-9h8v8l-9 9zM16 8h.01",
   ppf: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4",
   grossNet: "M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6M9 16h3",
+  incomeTax: "M5 3h14v18H5zM8 7h8M9 17l6-6M9.5 11.5h.01M14.5 16.5h.01",
+  hra: "M3 11l9-7 9 7M5 10v10h14V10M9 13h6M9 16h6M12 13v6",
+  gratuity: "M4 8h16v12H4zM4 12h16M12 8v12M8 8c-2-3 2-5 4 0c2-5 6-3 4 0",
 };

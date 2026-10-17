@@ -2,6 +2,24 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.7.0] - Unreleased
+
+### Added
+
+- India pack, in English and always in rupees (BRD F-43 to F-45):
+  - Income tax calculator for FY 2026-27 that compares the old and the new regime: slabs, standard
+    deduction, rebate, surcharge with marginal relief and cess, and which regime is cheaper.
+  - HRA calculator: the tax-exempt part of the house rent allowance, with the 50% limit for the eight
+    cities that qualify from 1 April 2026.
+  - Gratuity calculator: the 15/26 formula, the ₹20 lakh limit, the one-year rule for fixed-term staff
+    under the new labour codes, and the tax-free part.
+
+### Security
+
+- Dependency updates for three advisories: `sharp` (GHSA-wq5f-xc86-pv6w), `source-map-js`
+  (GHSA-68fv-2mgg-jv7q) and `http-cache-semantics` (GHSA-ch52-4w7c-c8xp, now patched). The audit
+  exception for `http-cache-semantics` is removed, so the audit again has no exceptions.
+
 ## [0.6.0] - 2026-10-04
 
 ### Added

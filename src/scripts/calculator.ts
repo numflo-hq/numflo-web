@@ -33,6 +33,9 @@ const LOADERS: Record<CalcId, () => Promise<{ default: CalcDef }>> = {
   savings: () => import("../lib/defs/savings"),
   inflation: () => import("../lib/defs/inflation"),
   ppf: () => import("../lib/defs/ppf"),
+  incomeTax: () => import("../lib/defs/incomeTax"),
+  hra: () => import("../lib/defs/hra"),
+  gratuity: () => import("../lib/defs/gratuity"),
   grossNet: () => import("../lib/defs/grossNet"),
 };
 

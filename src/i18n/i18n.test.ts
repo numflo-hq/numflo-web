@@ -85,7 +85,7 @@ describe("routes (BRD L-9, S-7)", () => {
 
   it("only country-specific calculators are limited to some languages (BRD L-20)", () => {
     const partial = (Object.keys(ROUTES) as RouteKey[]).filter((k) => routeLangs(k).length < LANGS.length);
-    expect(partial.sort()).toEqual(["grossNet", "ppf"]);
+    expect(partial.sort()).toEqual(["gratuity", "grossNet", "hra", "incomeTax", "ppf"]);
     expect(routeLangs("ppf")).toEqual(["en"]);
     expect(routeLangs("grossNet")).toEqual(["en", "de"]);
   });

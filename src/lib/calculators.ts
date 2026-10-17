@@ -22,13 +22,16 @@ import savings from "./defs/savings";
 import inflation from "./defs/inflation";
 import ppf from "./defs/ppf";
 import grossNet from "./defs/grossNet";
+import incomeTax from "./defs/incomeTax";
+import hra from "./defs/hra";
+import gratuity from "./defs/gratuity";
 
 export * from "./engine";
 
 export const CATEGORIES = {
   borrow: ["loan", "mortgage", "affordability", "creditCard"],
   grow: ["investment", "compound", "fd", "rd", "ppf", "simple", "cagr"],
-  plan: ["grossNet", "retirement", "savings", "inflation"],
+  plan: ["grossNet", "incomeTax", "hra", "gratuity", "retirement", "savings", "inflation"],
 } as const satisfies Record<string, readonly CalcId[]>;
 export type Category = keyof typeof CATEGORIES;
 
@@ -60,6 +63,9 @@ export const RELATED: Record<CalcId, readonly CalcId[]> = {
   inflation: ["retirement", "cagr", "compound", "savings"],
   ppf: ["fd", "investment", "rd", "compound"],
   grossNet: ["savings", "retirement", "inflation", "loan"],
+  incomeTax: ["hra", "ppf", "gratuity", "investment"],
+  hra: ["incomeTax", "gratuity", "ppf", "affordability"],
+  gratuity: ["incomeTax", "retirement", "ppf", "hra"],
 };
 
 export const CALCULATORS: Record<CalcId, CalcDef> = {
@@ -78,4 +84,7 @@ export const CALCULATORS: Record<CalcId, CalcDef> = {
   inflation,
   ppf,
   grossNet,
+  incomeTax,
+  hra,
+  gratuity,
 };

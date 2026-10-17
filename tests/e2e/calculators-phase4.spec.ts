@@ -17,8 +17,9 @@ test.describe("default results rendered without JavaScript match the live result
         expect(t).not.toMatch(/NaN|undefined|Infinity/);
         expect(t.trim()).not.toBe("");
       }
-      // The salary calculator has a breakdown instead of a year-by-year schedule.
-      if (p.key !== "grossNet") expect(await page.locator("[data-schedule] tr").count()).toBeGreaterThan(0);
+      // Salary and tax calculators have a breakdown instead of a year-by-year schedule.
+      if (!["grossNet", "incomeTax", "hra", "gratuity"].includes(p.key))
+        expect(await page.locator("[data-schedule] tr").count()).toBeGreaterThan(0);
     });
   }
 });

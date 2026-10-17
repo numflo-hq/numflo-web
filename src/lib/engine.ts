@@ -20,7 +20,10 @@ export type CalcId =
   | "savings"
   | "inflation"
   | "ppf"
-  | "grossNet";
+  | "grossNet"
+  | "incomeTax"
+  | "hra"
+  | "gratuity";
 
 export type FieldKind = "money" | "percent" | "years" | "select";
 

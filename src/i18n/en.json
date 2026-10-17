@@ -117,6 +117,18 @@
     "grossNet": {
       "title": "German Salary Calculator 2026 – Gross to Net | Numflo",
       "description": "Work out your 2026 net salary in Germany: wage tax, solidarity surcharge, church tax and social insurance for every tax class, with the BMF formula."
+    },
+    "incomeTax": {
+      "title": "Income Tax Calculator FY 2026-27 – Old vs New | Numflo",
+      "description": "Compare your income tax in India under the old and new regime for FY 2026-27, with rebate, surcharge and cess. Free, private, no sign-up."
+    },
+    "hra": {
+      "title": "HRA Calculator – HRA Exemption FY 2026-27 | Numflo",
+      "description": "Calculate how much of your HRA is tax-exempt in FY 2026-27, including the eight cities that now get the 50% limit. Free and private."
+    },
+    "gratuity": {
+      "title": "Gratuity Calculator India 2026 – Amount & Tax | Numflo",
+      "description": "Calculate your gratuity with the 15/26 formula, the ₹20 lakh limit and the one-year rule for fixed-term staff. See what is tax-free."
     }
   },
   "home": {
@@ -184,6 +196,18 @@
       "grossNet": {
         "title": "German salary calculator",
         "text": "Net pay after tax and social insurance in Germany, 2026."
+      },
+      "incomeTax": {
+        "title": "Income tax calculator (India)",
+        "text": "Old vs new regime for FY 2026-27, with the cheaper one shown."
+      },
+      "hra": {
+        "title": "HRA calculator",
+        "text": "How much of your house rent allowance is tax-exempt."
+      },
+      "gratuity": {
+        "title": "Gratuity calculator",
+        "text": "What you receive when you leave, and how much is tax-free."
       }
     },
     "why": {
@@ -1741,6 +1765,378 @@
       "methodology": "Wage tax, solidarity surcharge and church-tax base follow the BMF Programmablaufplan for 2026 (monthly pay period), including the 2026 Vorsorgepauschale with unemployment insurance and the €1,900 limit, rounded exactly as prescribed; results were checked to the cent against an independent implementation of that plan in 20,000 cases. Employee social insurance uses the 2026 rates and ceilings; in the midijob range the reduced base 2000/(2000 − 603) × (gross − 603) applies, and the childless surcharge uses the total base with Faktor F = 0.6619.",
       "lastReviewed": "Last reviewed",
       "disclaimer": "This calculator gives estimates for information only and is not tax advice. Your actual payslip depends on your personal circumstances and the information your employer holds."
+    }
+  },
+  "incomeTax": {
+    "heading": "Income tax calculator: old vs new regime",
+    "lead": "Compare your income tax in India for FY 2026-27 under both regimes and see which one costs less.",
+    "inputs": {
+      "legend": "Your income",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "income": "Income per year",
+      "salaried": "Type of income",
+      "age": "Age",
+      "deductions": "Deductions in the old regime",
+      "hints": {
+        "income": "Before any deduction. For a salary, the gross salary for the year, without the employer's PF share.",
+        "deductions": "80C, 80D, HRA exemption, home-loan interest, NPS and similar. Leave out the standard deduction: it is applied for you."
+      },
+      "options": {
+        "salaried": {
+          "0": "Other income",
+          "1": "Salary or pension"
+        },
+        "age": {
+          "0": "Under 60",
+          "60": "60 to 79",
+          "80": "80 or older"
+        }
+      }
+    },
+    "errors": {
+      "income": "Enter an income between ₹0 and ₹100 crore.",
+      "deductions": "Enter deductions between ₹0 and ₹10 crore."
+    },
+    "results": {
+      "title": "Your income tax",
+      "best": "Tax in the cheaper regime",
+      "afterTax": "Income after tax",
+      "taxShare": "Income tax",
+      "income": "Income",
+      "taxNew": "Tax in the new regime",
+      "taxOld": "Tax in the old regime",
+      "saveNew": "You save with the new regime",
+      "saveOld": "You save with the old regime",
+      "taxableNew": "Taxable income, new regime",
+      "taxableOld": "Taxable income, old regime",
+      "perMonth": "Tax per month",
+      "chartLabel": "Share of income tax in the income",
+      "summary": "On an income of {income} in FY 2026-27, income tax is {taxNew} in the new regime and {taxOld} in the old regime with {deductions} of deductions. The lower amount is {best}, about {perMonth} a month.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Breakdown",
+      "caption": "Breakdown of the income",
+      "year": "Year",
+      "afterTax": "After tax",
+      "taxShare": "Tax",
+      "income": "Income"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "faqTitle": "Frequently asked questions",
+      "methodologyTitle": "Methodology",
+      "lastReviewed": "Last reviewed",
+      "summary": "India has two income tax regimes. The new regime has lower rates and almost no deductions; the old regime has higher rates but lets you deduct investments, insurance, rent and home-loan interest. This calculator works out your tax for FY 2026-27 (1 April 2026 to 31 March 2027) under both, including the rebate, surcharge and the 4% cess, and shows which is cheaper.",
+      "sections": [
+        {
+          "title": "New regime rates for FY 2026-27",
+          "paragraphs": [
+            "No tax up to ₹4 lakh, then 5% up to ₹8 lakh, 10% up to ₹12 lakh, 15% up to ₹16 lakh, 20% up to ₹20 lakh, 25% up to ₹24 lakh and 30% above that. Each rate applies only to the part of your income inside that band.",
+            "Salaried people and pensioners get a standard deduction of ₹75,000. If your taxable income is ₹12 lakh or less, a rebate cancels the whole tax, so a salary of up to ₹12.75 lakh pays nothing. Just above ₹12 lakh the tax cannot be more than the income above ₹12 lakh.",
+            "The new regime is the default. The rates are the same for every age."
+          ]
+        },
+        {
+          "title": "Old regime rates",
+          "paragraphs": [
+            "Under 60: no tax up to ₹2.5 lakh, 5% up to ₹5 lakh, 20% up to ₹10 lakh and 30% above. From 60 to 79 the first ₹3 lakh is free, and from 80 the first ₹5 lakh.",
+            "The standard deduction is ₹50,000, and a rebate cancels the tax when taxable income is ₹5 lakh or less. On top of that you can deduct what the old regime allows: investments such as PPF, EPF and ELSS (up to ₹1.5 lakh), health insurance, the exempt part of your HRA, interest on a home loan and more."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "A salary of ₹15,00,000 with ₹2,00,000 of deductions. New regime: taxable income is ₹14,25,000, the tax is ₹93,750 and with 4% cess you pay ₹97,500. Old regime: taxable income is ₹12,50,000, the tax is ₹1,87,500 and with cess ₹1,95,000. The new regime saves ₹97,500.",
+            "At this salary the old regime only wins when your deductions pass about ₹5.44 lakh. At ₹25 lakh the break-even is about ₹8 lakh of deductions. Try your own figures above."
+          ]
+        },
+        {
+          "title": "Surcharge and cess",
+          "paragraphs": [
+            "A 4% health and education cess is added to the tax in both regimes. Above ₹50 lakh of taxable income a surcharge is added first: 10% up to ₹1 crore, 15% up to ₹2 crore and 25% above that. The old regime has a further 37% rate above ₹5 crore.",
+            "When your income is just above one of these thresholds, the extra tax and surcharge cannot be more than the income above the threshold. The calculator applies this relief."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Which regime is better for me?",
+          "a": "With few deductions the new regime is almost always cheaper, because its rates are lower and no tax is due when taxable income is ₹12 lakh or less. The old regime wins only when your deductions are large, typically a big HRA exemption or home-loan interest together with the full ₹1.5 lakh of investments. Enter your deductions above and the calculator shows the difference."
+        },
+        {
+          "q": "Can I switch between the regimes every year?",
+          "a": "If you only have salary, pension or similar income, yes: you choose each year, and you can still choose differently when you file your return by the due date. People with business or professional income who leave the new regime can return to it only once."
+        },
+        {
+          "q": "What counts as deductions in the old regime?",
+          "a": "The best known are investments and payments of up to ₹1.5 lakh a year (PPF, EPF, ELSS, life insurance, children's tuition, home-loan principal), health insurance premiums, the exempt part of your HRA, up to ₹2 lakh of interest on a loan for the home you live in, and an extra ₹50,000 for NPS. Add them up and enter the total."
+        },
+        {
+          "q": "Is income up to ₹12 lakh really tax-free?",
+          "a": "In the new regime, yes, for residents of India, as long as it is ordinary income such as salary, interest or rent. Income taxed at special rates, such as capital gains on shares, is not covered by the rebate and is taxed separately."
+        },
+        {
+          "q": "What does the calculator leave out?",
+          "a": "Capital gains and other income taxed at special rates, your employer's NPS contribution (deductible in both regimes), losses, family pension (which has a smaller standard deduction), and rules for non-residents. For salary, pension, interest and rent it gives the tax for the year."
+        },
+        {
+          "q": "Which year is FY 2026-27?",
+          "a": "Income earned from 1 April 2026 to 31 March 2027. It is the first year under the Income-tax Act, 2025, which calls it tax year 2026-27. The rates are the same as for FY 2025-26."
+        }
+      ],
+      "methodology": "Taxable income is income minus the standard deduction (₹75,000 new regime, ₹50,000 old regime, for salary or pension) and, in the old regime, your deductions. Tax is worked out band by band. It is nil when taxable income is at most ₹12 lakh (new) or ₹5 lakh (old); in the new regime it is limited to the income above ₹12 lakh. Surcharge of 10%, 15%, 25% (and 37% in the old regime) applies above ₹50 lakh, ₹1 crore, ₹2 crore (and ₹5 crore), with marginal relief at each threshold. Cess of 4% is added and the result is rounded to the rupee (the tax return rounds to the nearest ₹10). For a resident individual.",
+      "disclaimer": "This calculator gives estimates for information only and is not tax advice. Your actual tax depends on your full income and circumstances; check with the Income Tax Department or a tax adviser before you decide."
+    }
+  },
+  "hra": {
+    "heading": "HRA calculator",
+    "lead": "Work out how much of your house rent allowance is exempt from income tax in FY 2026-27.",
+    "inputs": {
+      "legend": "Salary and rent",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "basic": "Basic salary per month",
+      "hra": "HRA received per month",
+      "rent": "Rent paid per month",
+      "city": "Where you rent",
+      "hints": {
+        "basic": "Basic pay plus dearness allowance, if DA counts for your retirement benefits.",
+        "rent": "Rent only, without maintenance, electricity or other charges."
+      },
+      "options": {
+        "city": {
+          "40": "Any other city or town",
+          "50": "Delhi, Mumbai, Kolkata, Chennai, Bengaluru, Hyderabad, Pune or Ahmedabad"
+        }
+      }
+    },
+    "errors": {
+      "basic": "Enter a monthly salary between ₹0 and ₹1 crore.",
+      "hra": "Enter a monthly HRA between ₹0 and ₹1 crore.",
+      "rent": "Enter a monthly rent between ₹0 and ₹1 crore."
+    },
+    "results": {
+      "title": "Your HRA exemption",
+      "exemptYear": "Exempt HRA per year",
+      "exempt": "Exempt HRA",
+      "taxable": "Taxable HRA",
+      "received": "1. HRA received",
+      "rentExcess": "2. Rent above 10% of salary",
+      "cityLimit": "3. City limit (50% or 40% of salary)",
+      "exemptMonth": "Exempt HRA per month",
+      "chartLabel": "Share of exempt and taxable HRA",
+      "summary": "With a basic salary of {basic}, HRA of {hra} and rent of {rent} a month, {exempt} of HRA a year is exempt from tax and {taxable} is taxable (FY 2026-27, old regime).",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Breakdown",
+      "caption": "Breakdown of the HRA",
+      "year": "Year",
+      "exempt": "Exempt",
+      "taxable": "Taxable",
+      "received": "Received"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "faqTitle": "Frequently asked questions",
+      "methodologyTitle": "Methodology",
+      "lastReviewed": "Last reviewed",
+      "summary": "House rent allowance (HRA) is part of many Indian salaries. If you live in rented housing and choose the old tax regime, part of it is exempt from income tax. The exempt amount is the lowest of three figures, and from 1 April 2026 eight cities, not four, get the higher 50% limit.",
+      "sections": [
+        {
+          "title": "The three limits",
+          "paragraphs": [
+            "The exemption is the lowest of: the HRA you actually receive; the rent you pay minus 10% of your salary; and 50% of your salary if you rent in one of the eight listed cities, or 40% anywhere else.",
+            "Salary here means basic pay plus dearness allowance (when DA counts for retirement benefits) and any commission paid as a fixed percentage of turnover. Other allowances and bonuses do not count."
+          ]
+        },
+        {
+          "title": "Eight cities at 50% from April 2026",
+          "paragraphs": [
+            "Until 31 March 2026 only Delhi, Mumbai, Kolkata and Chennai had the 50% limit. From FY 2026-27 Bengaluru, Hyderabad, Pune and Ahmedabad are added. If you rent in one of these four, your exemption may be higher than last year."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Basic salary ₹50,000 a month, HRA ₹25,000 a month, rent ₹20,000 a month in Bengaluru. Per year: HRA received ₹3,00,000; rent above 10% of salary ₹2,40,000 − ₹60,000 = ₹1,80,000; 50% of salary ₹3,00,000. The lowest is ₹1,80,000, so that much is exempt and ₹1,20,000 of the HRA is taxed.",
+            "With a rent of ₹30,000 all three figures are ₹3,00,000 and the whole HRA is exempt."
+          ]
+        },
+        {
+          "title": "What you need",
+          "paragraphs": [
+            "You must actually pay rent for the home you live in, and keep rent receipts or bank records and the rent agreement for your employer. If the rent is more than ₹1 lakh a year you must give your landlord's PAN.",
+            "If you pay more than ₹50,000 a month, you have to deduct 2% tax (TDS) from the rent and pay it to the government."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Can I claim HRA in the new tax regime?",
+          "a": "No. The HRA exemption exists only in the old regime. In the new regime the whole HRA is taxed, but the rates are lower. Use our income tax calculator to compare the two with your exempt HRA entered as a deduction."
+        },
+        {
+          "q": "Which cities get the 50% limit?",
+          "a": "From 1 April 2026: Delhi, Mumbai, Kolkata, Chennai, Bengaluru, Hyderabad, Pune and Ahmedabad. Everywhere else the limit is 40% of salary. What counts is where the home you rent is, not where your employer is. Neighbouring cities such as Gurugram, Noida, Thane or Navi Mumbai are normally treated as 40%."
+        },
+        {
+          "q": "Can I pay rent to my parents?",
+          "a": "Yes, if they own the home, you really pay them rent, and they declare it as income in their own tax return. Keep a rent agreement and pay by bank transfer. From April 2026 the form you give your employer also asks how you are related to your landlord. Rent paid to your spouse is not barred by law, but tax officers often challenge it."
+        },
+        {
+          "q": "Can I claim HRA and a home-loan deduction together?",
+          "a": "Yes, when both are real: for example you own a flat in one city, or one that is still being built or is let out, and you rent where you work."
+        },
+        {
+          "q": "What if I pay rent but get no HRA?",
+          "a": "Then there is no HRA to exempt. The old regime has a separate, smaller deduction for rent paid by people who receive no HRA, of at most ₹5,000 a month, for people who do not own a home where they live."
+        },
+        {
+          "q": "What if my rent or salary changes during the year?",
+          "a": "The exemption is worked out for each period separately. Run the calculator once for each period and add up the monthly figures."
+        }
+      ],
+      "methodology": "Per year: (1) HRA received = monthly HRA × 12; (2) rent above 10% of salary = (monthly rent − 10% × monthly salary) × 12, not below zero; (3) city limit = 50% or 40% of monthly salary × 12. Exempt HRA is the lowest of the three; taxable HRA is the HRA received minus the exempt amount. Assumes the same salary, HRA, rent and city for all twelve months.",
+      "disclaimer": "This calculator gives estimates for information only and is not tax advice. Your employer works out the actual exemption from your documents; check with the Income Tax Department or a tax adviser if in doubt."
+    }
+  },
+  "gratuity": {
+    "heading": "Gratuity calculator",
+    "lead": "Estimate the gratuity you receive when you leave an employer in India, and how much of it is tax-free.",
+    "inputs": {
+      "legend": "Your service",
+      "currency": "Currency",
+      "yearsUnit": "years",
+      "wage": "Last drawn wages per month",
+      "years": "Years of service",
+      "months": "Further months",
+      "covered": "Employer",
+      "fixedTerm": "Type of employment",
+      "hints": {
+        "wage": "Basic pay plus dearness allowance. If that is less than half of your total pay, enter half of your total pay.",
+        "years": "Completed years with this employer."
+      },
+      "options": {
+        "months": {
+          "0": "0 months",
+          "1": "1 month",
+          "2": "2 months",
+          "3": "3 months",
+          "4": "4 months",
+          "5": "5 months",
+          "6": "6 months",
+          "7": "7 months",
+          "8": "8 months",
+          "9": "9 months",
+          "10": "10 months",
+          "11": "11 months"
+        },
+        "covered": {
+          "0": "Not covered by the gratuity law",
+          "1": "Covered by the gratuity law (10 or more employees)"
+        },
+        "fixedTerm": {
+          "0": "Permanent",
+          "1": "Fixed-term contract"
+        }
+      }
+    },
+    "errors": {
+      "wage": "Enter monthly wages between ₹1,000 and ₹1 crore.",
+      "years": "Enter whole years between 0 and 60.",
+      "yearsRule": "Gratuity needs at least 5 years of service, or 1 year on a fixed-term contract. The 5 years do not apply on death or disablement."
+    },
+    "results": {
+      "title": "Your gratuity",
+      "gratuity": "Gratuity payable",
+      "exempt": "Tax-free",
+      "taxable": "Taxable",
+      "formula": "Formula amount before any limit",
+      "chartLabel": "Share of tax-free and taxable gratuity",
+      "summary": "With last drawn wages of {wage} a month and {years} years of service, the gratuity is about {gratuity}, of which {exempt} is tax-free and {taxable} is taxable.",
+      "copyLink": "Copy link",
+      "copyResult": "Copy result",
+      "copied": "Copied"
+    },
+    "schedule": {
+      "title": "Breakdown",
+      "caption": "Breakdown of the gratuity",
+      "year": "Year",
+      "exempt": "Tax-free",
+      "taxable": "Taxable",
+      "gratuity": "Gratuity"
+    },
+    "content": {
+      "summaryTitle": "In short",
+      "faqTitle": "Frequently asked questions",
+      "methodologyTitle": "Methodology",
+      "lastReviewed": "Last reviewed",
+      "summary": "Gratuity is a lump sum your employer pays when you resign, retire or your employment ends after long service. The law sets it at 15 days of wages for every year worked, up to ₹20 lakh. Since the new labour codes took effect on 21 November 2025, fixed-term employees qualify after one year and wages must be at least half of total pay.",
+      "sections": [
+        {
+          "title": "The formula",
+          "paragraphs": [
+            "Gratuity = last drawn monthly wages × 15 ÷ 26 × years of service. The 26 stands for the working days in a month, so you get 15 days of wages for each year. A part of a year longer than six months counts as a full year: 10 years and 7 months count as 11 years, 10 years and 6 months as 10.",
+            "The law applies to employers with ten or more employees. Employers outside it who pay gratuity usually use 15 ÷ 30 and completed years only."
+          ]
+        },
+        {
+          "title": "Worked example",
+          "paragraphs": [
+            "Last drawn wages ₹50,000 a month and 10 years of service: ₹50,000 × 15 ÷ 26 × 10 = ₹2,88,462. All of it is tax-free.",
+            "With wages of ₹60,000 and 7 years 8 months, the service counts as 8 years: ₹60,000 × 15 ÷ 26 × 8 = ₹2,76,923."
+          ]
+        },
+        {
+          "title": "What changed with the new labour codes",
+          "paragraphs": [
+            "The Code on Social Security, 2020 replaced the Payment of Gratuity Act, 1972 on 21 November 2025. The formula and the ₹20 lakh limit stay the same, but two things changed.",
+            "First, wages now mean basic pay, dearness allowance and retaining allowance, and they must be at least 50% of your total pay: if your allowances are more than half, the excess is counted as wages. For people with a low basic salary this raises the gratuity. Second, employees on a fixed-term contract earn gratuity after one year, in proportion to the time worked."
+          ]
+        },
+        {
+          "title": "Tax on gratuity",
+          "paragraphs": [
+            "For private-sector employees gratuity is tax-free up to ₹20 lakh over your whole working life, across all employers. Anything above that is added to your salary income and taxed at your rate. The exemption applies in both tax regimes.",
+            "This calculator is for private-sector employees. Government employees are paid under their own pension rules, with a ₹25 lakh ceiling for central government staff, and their gratuity is fully tax-free."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "q": "When am I eligible for gratuity?",
+          "a": "After five years of continuous service with the same employer, when you resign, retire or are terminated. The five years are not required if employment ends through death or disablement, and fixed-term employees qualify after one year."
+        },
+        {
+          "q": "Do 4 years and 8 months count as 5 years?",
+          "a": "Some courts have held that 4 years plus 240 working days in the fifth year (190 days where the working week is shorter than six days) is enough, but employers do not all follow this. The calculator uses five completed years; ask your employer how they treat your case."
+        },
+        {
+          "q": "What are 'wages' for gratuity?",
+          "a": "Basic pay plus dearness allowance (and retaining allowance, if any). HRA, bonus, overtime and most other allowances are left out, but under the new codes only up to 50% of total pay: anything excluded beyond that is added back to wages."
+        },
+        {
+          "q": "Is there a maximum?",
+          "a": "Yes. Under the law the gratuity is limited to ₹20 lakh. An employer may pay more under its own scheme, but the amount above ₹20 lakh is taxable."
+        },
+        {
+          "q": "How soon must gratuity be paid?",
+          "a": "Within 30 days of the date it becomes payable. After that the employer owes interest on the amount."
+        },
+        {
+          "q": "Is gratuity part of my CTC?",
+          "a": "Often yes: many employers show about 4.81% of basic pay (15 ÷ 26 ÷ 12) as a gratuity component. You only receive it if you complete the qualifying service."
+        }
+      ],
+      "methodology": "Covered by the law: wages × 15 ÷ 26 × years, where a part of a year above six months counts as one year, limited to ₹20 lakh. Fixed-term contract: years and months are counted in proportion (months ÷ 12); some employers round to full years instead. Not covered: wages × 15 ÷ 30 × completed years, without a limit; this is the usual practice, but the employer's own scheme decides, including how many years are needed. The tax-free amount is the gratuity up to ₹20 lakh, assuming no gratuity was exempted earlier and that last drawn wages equal the average of the last ten months.",
+      "disclaimer": "This calculator gives estimates for information only and is not legal or tax advice. Your employer's records and scheme decide the actual amount."
     }
   }
 }

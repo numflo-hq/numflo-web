@@ -1,0 +1,168 @@
+---
+/**
+ * Shared frame of the English long-search pages (BRD F-46): breadcrumbs, heading, the page's
+ * own figures (default slot), a short summary, how it was calculated, FAQs, links to the
+ * other amounts and the note. Single-language pages outside the route table.
+ */
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { HREFLANG, path, t, type RouteKey } from "../i18n";
+
+interface Props {
+  own: string;
+  title: string;
+  description: string;
+  heading: string;
+  lead: string;
+  /** Short name of the page in the breadcrumb trail. */
+  crumb: string;
+  /** The calculator this page belongs to. */
+  calc: RouteKey;
+  summary: string;
+  method: string[];
+  faqs: { q: string; a: string }[];
+  more: { title: string; links: { href: string; label: string }[] };
+  note: string;
+  reviewed: string;
+}
+const p = Astro.props;
+const lang = "en" as const;
+const d = t(lang);
+const calcName = (d as unknown as Record<string, { heading: string }>)[p.calc]!.heading;
+const url = new URL(p.own, Astro.site).href;
+const reviewed = new Intl.DateTimeFormat("en-GB", { dateStyle: "long", timeZone: "UTC" }).format(
+  new Date(p.reviewed),
+);
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: d.site.home,
+        item: new URL(path("home", lang), Astro.site).href,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: calcName,
+        item: new URL(path(p.calc, lang), Astro.site).href,
+      },
+      { "@type": "ListItem", position: 3, name: p.crumb, item: url },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: HREFLANG[lang],
+    mainEntity: p.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  route={null}
+  ownPath={p.own}
+  title={p.title}
+  description={p.description}
+  schema={schema}
+>
+  <div class="container-page pt-6 sm:pt-8">
+    <Breadcrumbs lang={lang} current={p.crumb} parent={{ label: calcName, href: path(p.calc, lang) }} />
+    <div class="mt-4 mb-6 max-w-2xl">
+      <h1 class="text-3xl font-bold sm:text-4xl">{p.heading}</h1>
+      <p class="text-muted mt-2 text-lg">{p.lead}</p>
+    </div>
+
+    <div class="grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-6">
+      <slot />
+    </div>
+
+    <article class="mx-auto mt-14 max-w-3xl">
+      <section class="border-accent bg-accent-soft rounded-2xl border-s-4 p-5" aria-labelledby="summary">
+        <h2 id="summary" class="text-lg font-semibold">
+          In short
+        </h2>
+        <p class="mt-2">{p.summary}</p>
+      </section>
+
+      <section class="mt-10" aria-labelledby="assumptions">
+        <h2 id="assumptions" class="text-2xl font-bold">
+          How we calculated
+        </h2>
+        <div class="prose-body text-ink/90 mt-3">
+          {p.method.map((m) => (
+            <p>{m}</p>
+          ))}
+          <p>
+            For your own figures, use the{" "}
+            <a class="text-accent underline underline-offset-4" href={path(p.calc, lang)}>
+              {calcName.toLowerCase()}
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section class="mt-12" aria-labelledby="faq">
+        <h2 id="faq" class="text-2xl font-bold">
+          Frequently asked questions
+        </h2>
+        <div class="mt-4 flex flex-col gap-3">
+          {p.faqs.map((f) => (
+            <details class="card group p-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">
+                <h3 class="text-base">{f.q}</h3>
+                <svg
+                  viewBox="0 0 20 20"
+                  class="size-5 shrink-0 transition-transform group-open:rotate-180"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m5 7.5 5 5 5-5" />
+                </svg>
+              </summary>
+              <p class="text-muted mt-3">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-12" aria-labelledby="more">
+        <h2 id="more" class="text-2xl font-bold">
+          {p.more.title}
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-2" role="list">
+          {p.more.links.map((l) => (
+            <li>
+              <a class="btn-ghost" href={l.href}>
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="border-line mt-12 border-t pt-6 text-sm" aria-labelledby="note">
+        <h2 id="note" class="font-semibold">
+          Note
+        </h2>
+        <p class="text-muted mt-1">{p.note}</p>
+        <p class="text-muted mt-3">
+          {d.ppf.content.lastReviewed}: <time datetime={p.reviewed}>{reviewed}</time>
+        </p>
+      </section>
+    </article>
+  </div>
+</BaseLayout>

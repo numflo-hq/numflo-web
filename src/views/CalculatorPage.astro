@@ -7,6 +7,7 @@ import { HREFLANG, LAST_REVIEWED, path, t, type Lang } from "../i18n";
 import type { CalcId } from "../lib/calculators";
 import { formatNumber } from "../lib/format";
 import { SALARY_STEPS, salaryPath } from "../lib/salary-pages";
+import { EMI_STEPS, emiPath, lakhWords, SIP_STEPS, sipPath, TAX_STEPS, taxPath } from "../lib/india-pages";
 
 interface Props {
   lang: Lang;
@@ -62,6 +63,26 @@ const schema = [
     })),
   },
 ];
+// English pages for common amounts (BRD F-46).
+const amountLinks =
+  lang !== "en"
+    ? null
+    : calc === "incomeTax"
+      ? {
+          title: "Income tax by salary",
+          links: TAX_STEPS.map((a) => ({ href: taxPath(a), label: `₹${lakhWords(a)}` })),
+        }
+      : calc === "loan"
+        ? {
+            title: "Home-loan EMI by amount (India)",
+            links: EMI_STEPS.map((a) => ({ href: emiPath(a), label: `₹${lakhWords(a)}` })),
+          }
+        : calc === "investment"
+          ? {
+              title: "SIP by monthly amount (India)",
+              links: SIP_STEPS.map((a) => ({ href: sipPath(a), label: `₹${a.toLocaleString("en-IN")}` })),
+            }
+          : null;
 ---
 
 <BaseLayout lang={lang} route={calc} title={meta.title} description={meta.description} schema={schema}>
@@ -145,6 +166,23 @@ const schema = [
             <li>
               <a class="btn-ghost" href={salaryPath(s)}>
                 {formatNumber(s, lang, "EUR")} € brutto
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {amountLinks && (
+      <section class="mx-auto mt-16 max-w-3xl" aria-labelledby="amounts">
+        <h2 id="amounts" class="text-2xl font-bold">
+          {amountLinks.title}
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-2" role="list">
+          {amountLinks.links.map((l) => (
+            <li>
+              <a class="btn-ghost" href={l.href}>
+                {l.label}
               </a>
             </li>
           ))}

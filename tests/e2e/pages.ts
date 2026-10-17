@@ -400,9 +400,17 @@ export const SALARY_SAMPLE = [1500, 3000, 10_000].map((gross) => ({
   calc: false,
 }));
 
-/** Every page of the route table plus the salary sample: used by the quality and security tests. */
-export const ALL_PAGES = [...PAGES, ...SALARY_SAMPLE];
+/** A sample of the Indian pages for common amounts (English single-language pages, BRD F-46). */
+export const AMOUNT_SAMPLE = [
+  "/income-tax-on-15-lakh-salary",
+  "/income-tax-on-50-lakh-salary",
+  "/emi-for-1-crore-home-loan",
+  "/sip-of-50000-per-month",
+].map((path) => ({ key: "amount", path, lang: "en", calc: false }));
+
+/** Every page of the route table plus the samples: used by the quality and security tests. */
+export const ALL_PAGES = [...PAGES, ...SALARY_SAMPLE, ...AMOUNT_SAMPLE];
 
 /** Number of hreflang links a page must carry: one per language it is offered in, plus x-default. */
 export const hreflangCount = (p: { key: string }) =>
-  (p.key === "salary" ? 1 : PAGES.filter((x) => x.key === p.key).length) + 1;
+  (p.key === "salary" || p.key === "amount" ? 1 : PAGES.filter((x) => x.key === p.key).length) + 1;

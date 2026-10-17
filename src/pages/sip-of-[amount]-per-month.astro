@@ -1,0 +1,141 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import { formatMoney } from "../lib/format";
+import { calculateInvestment } from "../lib/investment";
+import { INDIA_PAGES_REVIEWED, SIP_STEPS, sipPath } from "../lib/india-pages";
+
+// "SIP of X per month" (BRD F-46). English only.
+export function getStaticPaths() {
+  return SIP_STEPS.map((monthly) => ({ params: { amount: String(monthly) }, props: { monthly } }));
+}
+interface Props {
+  monthly: number;
+}
+const { monthly } = Astro.props;
+const inr = (v: number) => formatMoney(v, "en", "INR", 0);
+const M = inr(monthly);
+const RATE = 12;
+const YEARS = [5, 10, 15, 20, 25, 30];
+const RATES = [8, 10, 12, 15];
+const sip = (rate: number, years: number) => calculateInvestment({ monthly, annualRatePct: rate, years });
+const y10 = sip(RATE, 10);
+const y20 = sip(RATE, 20);
+const y20low = sip(8, 20);
+
+const own = sipPath(monthly);
+const calcHref = `/investment-calculator?monthly=${monthly}&rate=${RATE}&years=10&stepup=0&cur=INR`;
+const title = `SIP of ${M} per Month – Returns in 5 to 30 Years | Numflo`;
+const description = `A SIP of ${M} a month at ${RATE}% grows to about ${inr(y10.value)} in 10 years and ${inr(y20.value)} in 20 years. Table for 5 to 30 years at 8% to 15%.`;
+const faqs = [
+  {
+    q: `What will a SIP of ${M} a month become?`,
+    a: `At ${RATE}% a year, about ${inr(y10.value)} after 10 years (you invest ${inr(y10.invested)}) and ${inr(y20.value)} after 20 years (you invest ${inr(y20.invested)}). At 8% the 20-year figure is ${inr(y20low.value)}. Returns are not guaranteed; the table shows a range.`,
+  },
+  {
+    q: "What return should I expect?",
+    a: "No mutual fund has a fixed return. Broad Indian equity funds have often returned 10–12% a year over long periods, with large swings from year to year, but past returns do not predict future ones; debt funds usually return less. Try a lower rate to plan conservatively.",
+  },
+  {
+    q: "Is SIP income taxed?",
+    a: "Gains are taxed when you redeem. For equity funds held more than a year, gains above ₹1.25 lakh a year are taxed at 12.5%; held a year or less, at 20%. Gains on debt funds bought after 1 April 2023 are added to your income and taxed at your slab rate. The values here are before tax.",
+  },
+];
+const more = {
+  title: "SIP of other amounts",
+  links: SIP_STEPS.filter((s) => s !== monthly).map((s) => ({ href: sipPath(s), label: inr(s) })),
+};
+---
+
+<AmountPage
+  own={own}
+  title={title}
+  description={description}
+  heading={`SIP of ${M} per month: what it grows to`}
+  lead={`Investing ${M} every month at ${RATE}% a year grows to about ${inr(y10.value)} in 10 years. See the value after 5 to 30 years at different returns.`}
+  crumb={`SIP of ${M}`}
+  calc="investment"
+  summary={`A SIP of ${M} a month for 10 years means investing ${inr(y10.invested)}. At ${RATE}% a year it grows to about ${inr(y10.value)}, of which ${inr(y10.gains)} is gains. Keep it going for 20 years and the gains are larger than everything you put in: ${inr(y20.value)} from ${inr(y20.invested)}.`}
+  method={[
+    "Each instalment is invested at the start of the month and the yearly return is applied monthly (rate ÷ 12), as many SIP calculators do; some convert the yearly return to an effective monthly rate instead, which gives results about 3–4% lower over 10 years. The return is assumed to stay the same every year; real returns vary.",
+    "Fund expenses are assumed to be already reflected in the return; tax on redemption and exit loads are not included.",
+  ]}
+  faqs={faqs}
+  more={more}
+  note="This page gives estimates for information only and is not investment advice. Mutual fund investments are subject to market risks."
+  reviewed={INDIA_PAGES_REVIEWED}
+>
+  <section class="card p-5 sm:p-6" aria-labelledby="sip-title">
+    <h2 id="sip-title" class="text-lg font-semibold">{`${RATE}% a year for 10 years`}</h2>
+    <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+      <p class="text-muted text-sm font-medium">Value after 10 years</p>
+      <p
+        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl"
+        data-amount-result
+      >
+        {inr(y10.value)}
+      </p>
+    </div>
+    <dl class="mt-5 flex flex-col gap-3 text-sm">
+      {[
+        ["Invested per month", M],
+        ["Total invested", inr(y10.invested)],
+        ["Gains", inr(y10.gains)],
+      ].map(([k, v]) => (
+        <div class="flex items-center justify-between gap-3">
+          <dt class="text-muted min-w-0">{k}</dt>
+          <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{v}</dd>
+        </div>
+      ))}
+      <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+        <dt class="min-w-0 font-medium">Value after 20 years</dt>
+        <dd class="shrink-0 font-bold whitespace-nowrap tabular-nums">{inr(y20.value)}</dd>
+      </div>
+    </dl>
+    <a class="btn-primary mt-6 w-full justify-center px-5 sm:w-auto" href={calcHref}>
+      Try a step-up or another period
+    </a>
+  </section>
+
+  <section class="card p-5 sm:p-6" aria-labelledby="table-title">
+    <h2 id="table-title" class="text-lg font-semibold">
+      Value by period and return
+    </h2>
+    <div
+      class="border-line mt-4 overflow-auto rounded-xl border"
+      tabindex="0"
+      role="region"
+      aria-labelledby="table-title"
+    >
+      <table class="w-full min-w-[24rem] text-right text-sm tabular-nums">
+        <caption class="sr-only">{`Value of a SIP of ${M} a month by number of years and yearly return`}</caption>
+        <thead class="bg-surface-2 text-muted text-xs font-semibold tracking-wide uppercase">
+          <tr>
+            <th scope="col" class="px-3 py-3 text-left">
+              Years
+            </th>
+            {RATES.map((r) => (
+              <th scope="col" class="px-3 py-3">
+                {`${r}%`}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody class="divide-line divide-y">
+          {YEARS.map((y) => (
+            <tr>
+              <th scope="row" class="px-3 py-2.5 text-left font-medium">
+                {`${y} years`}
+                <span class="text-muted block text-xs font-normal">{`${inr(monthly * 12 * y)} invested`}</span>
+              </th>
+              {RATES.map((r) => (
+                <td class:list={["px-3 py-2.5", r === RATE && y === 10 && "font-bold"]}>
+                  {inr(sip(r, y).value)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</AmountPage>

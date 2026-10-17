@@ -1281,6 +1281,10 @@
       "faqTitle": "Preguntas frecuentes",
       "faqs": [
         {
+          "q": "¿Cuánto dinero necesito para jubilarme?",
+          "a": "Una regla práctica es reunir unas 25 veces el gasto anual que deben cubrir tus ahorros: es la regla del 4 % al revés. Para gastar 20.000 al año con tus ahorros necesitarías unos 500.000. Resta antes lo que te pagará la pensión pública. Ajusta la tasa de retiro en la calculadora para ver la renta mensual que darían tus ahorros."
+        },
+        {
           "q": "¿Qué rendimiento debo usar?",
           "a": "Uno prudente para tu combinación de inversiones, después de comisiones y antes de la inflación (la inflación se escribe aparte). Muchos planes usan entre un 5 % y un 7 % anual para una cartera con muchas acciones, y menos para bonos o efectivo. Prueba varias tasas para ver el rango."
         },

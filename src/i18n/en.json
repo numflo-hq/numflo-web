@@ -99,7 +99,7 @@
       "description": "Calculate the compound annual growth rate (CAGR) between two values over any period, with total return and a yearly growth path."
     },
     "retirement": {
-      "title": "Retirement Calculator – How Much Will I Have? | Numflo",
+      "title": "How Much Do I Need to Retire? Calculator | Numflo",
       "description": "Estimate your retirement savings, their value in today's money and the monthly income they could give. Free, private, any currency."
     },
     "savings": {
@@ -1320,6 +1320,10 @@
       ],
       "faqTitle": "Frequently asked questions",
       "faqs": [
+        {
+          "q": "How much do I need to retire?",
+          "a": "A common rule of thumb is 25 times the yearly spending your savings must cover: the 4% rule turned around. To spend 40,000 a year from your savings you would need about 1,000,000. Because inflation is higher in many countries than in the US data behind the rule, some planners use a more cautious 3–3.5%, about 30 times. Subtract what a pension or social security will pay first. Set the withdrawal rate in the calculator to see the monthly income your savings could give."
+        },
         {
           "q": "What return should I use?",
           "a": "Something cautious for your mix of investments, after fees and before inflation (inflation is entered separately). Many plans use 5–7% a year for a stock-heavy portfolio and less for bonds or cash. Try a few rates to see the range."

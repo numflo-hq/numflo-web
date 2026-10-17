@@ -87,7 +87,7 @@
       "description": "Berechne Endbetrag und Zinsen deines Festgelds bei vierteljährlicher, monatlicher oder jährlicher Zinsgutschrift. Kostenlos und privat."
     },
     "rd": {
-      "title": "Ratensparrechner – Endbetrag berechnen | Numflo",
+      "title": "Ratensparrechner – Ratensparvertrag berechnen | Numflo",
       "description": "Berechne Endbetrag und Zinsen eines Ratensparvertrags mit monatlichen Einzahlungen und vierteljährlicher Zinsgutschrift. Kostenlos und privat."
     },
     "simple": {
@@ -938,7 +938,7 @@
   },
   "rd": {
     "heading": "Ratensparrechner",
-    "lead": "Sieh dir an, auf welchen Betrag eine feste monatliche Sparrate bis zum Ende der Laufzeit anwächst.",
+    "lead": "Sieh dir an, auf welchen Betrag die monatliche Sparrate eines Ratensparvertrags bis zum Ende der Laufzeit anwächst.",
     "inputs": {
       "legend": "Angaben zum Sparvertrag",
       "currency": "Währung",
@@ -1288,6 +1288,10 @@
       ],
       "faqTitle": "Häufige Fragen",
       "faqs": [
+        {
+          "q": "Wie viel Geld brauche ich für die Rente?",
+          "a": "Eine Faustregel ist das 25-Fache der jährlichen Ausgaben, die dein Vermögen decken soll – die 4-%-Regel umgekehrt. Für 20.000 € im Jahr aus dem Ersparten wären das rund 500.000 €. Zieh vorher ab, was die gesetzliche Rente zahlt. Mit der Entnahmerate im Rechner siehst du, welches monatliche Einkommen dein Vermögen ergeben könnte."
+        },
         {
           "q": "Mit welcher Rendite sollte ich rechnen?",
           "a": "Mit einem vorsichtigen Wert für deine Anlagemischung – nach Gebühren und vor Inflation (die Inflation gibst du separat ein). Viele rechnen bei einem aktienlastigen Portfolio mit 5–7 % pro Jahr, bei Anleihen oder Tagesgeld mit weniger. Probiere mehrere Werte aus, um die Bandbreite zu sehen."

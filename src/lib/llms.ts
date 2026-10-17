@@ -5,6 +5,7 @@
 import { LANGS, LANG_NAMES, ROUTES, path, t, type Lang } from "../i18n";
 import { CATEGORIES, calcsIn, type Category } from "./calculators";
 import { SALARY_STEPS, salaryPath } from "./salary-pages";
+import { EMI_STEPS, emiPath, lakhWords, SIP_STEPS, sipPath, TAX_STEPS, taxPath } from "./india-pages";
 
 export function buildLlmsTxt(site: URL): string {
   const abs = (p: string) => new URL(p, site).href;
@@ -38,6 +39,21 @@ export function buildLlmsTxt(site: URL): string {
   for (const gross of SALARY_STEPS)
     lines.push(
       `- [${gross} € brutto in netto](${abs(salaryPath(gross))}): Netto, Lohnsteuer und Sozialabgaben 2026 für alle Steuerklassen bei ${gross} € brutto im Monat.`,
+    );
+  lines.push("");
+  // Indian long-search pages (English, single-language pages outside the route table).
+  lines.push("## India: tax, EMI and SIP by amount (English)", "");
+  for (const s of TAX_STEPS)
+    lines.push(
+      `- [Income tax on ₹${lakhWords(s)} salary](${abs(taxPath(s))}): tax for FY 2026-27 in the new and old regime on a salary of ₹${lakhWords(s)} a year.`,
+    );
+  for (const s of EMI_STEPS)
+    lines.push(
+      `- [EMI for ₹${lakhWords(s)} home loan](${abs(emiPath(s))}): monthly EMI and total interest by rate and tenure.`,
+    );
+  for (const s of SIP_STEPS)
+    lines.push(
+      `- [SIP of ₹${s.toLocaleString("en-IN")} per month](${abs(sipPath(s))}): value after 5 to 30 years at 8% to 15%.`,
     );
   lines.push("");
   lines.push(

@@ -1,0 +1,187 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import { formatMoney, formatNumber } from "../lib/format";
+import { calculateIncomeTax, IN_2026 } from "../lib/india";
+import { breakEvenDeductions, INDIA_PAGES_REVIEWED, lakhWords, TAX_STEPS, taxPath } from "../lib/india-pages";
+
+// "Income tax on X lakh salary" (BRD F-46). English only.
+export function getStaticPaths() {
+  return TAX_STEPS.map((salary) => ({
+    params: { amount: taxPath(salary).replace("/income-tax-on-", "").replace("-salary", "") },
+    props: { salary },
+  }));
+}
+interface Props {
+  salary: number;
+}
+const { salary } = Astro.props;
+const inr = (v: number) => formatMoney(v, "en", "INR", 0);
+const words = lakhWords(salary);
+const r = calculateIncomeTax(salary, 1, 0, 0);
+const newTax = r.new.tax;
+const rate = (newTax / salary) * 100;
+const levels = [
+  { d: 150_000, note: "80C investments" },
+  { d: 200_000, note: "80C + ₹50,000 health insurance (you and parents)" },
+  { d: 350_000, note: "plus ₹1.5 lakh home-loan interest" },
+  { d: 500_000, note: "plus a larger HRA exemption" },
+].map((l) => ({ ...l, tax: calculateIncomeTax(salary, 1, 0, l.d).old.tax }));
+const oldNone = r.old.tax;
+const breakEven = breakEvenDeductions(salary);
+const be = breakEven === null ? null : inr(breakEven);
+
+const own = taxPath(salary);
+const calcHref = `/income-tax-calculator?income=${salary}&salaried=1&age=0&deductions=200000`;
+const S = inr(salary);
+const title = `Income Tax on ₹${words} Salary FY 2026-27 | Numflo`;
+const description =
+  newTax === 0
+    ? `A salary of ${S} pays no income tax in the new regime for FY 2026-27. See the calculation and the old regime with your deductions.`
+    : `Income tax on a ${S} salary is ${inr(newTax)} in the new regime for FY 2026-27. Old regime with deductions and the break-even point.`;
+const lead =
+  newTax === 0
+    ? `A salary of ${S} a year pays no income tax in the new regime for FY 2026-27. Here is why, and what the old regime would cost.`
+    : `On a salary of ${S} a year you pay ${inr(newTax)} of income tax in the new regime for FY 2026-27, about ${inr(newTax / 12)} a month. Here is the calculation and the old regime for comparison.`;
+const summary =
+  breakEven === 0
+    ? `With a ${S} salary you pay no income tax in either regime: taxable income stays within the rebate limit in both.`
+    : `With a ${S} salary the new regime costs ${inr(newTax)}. The old regime costs ${inr(oldNone)} without deductions${be ? ` and only becomes cheaper once your deductions pass about ${be}` : " and cannot become cheaper"}. For most people at this salary the new regime is the better choice.`;
+const faqs = [
+  {
+    q: `How much income tax do I pay on a ₹${words} salary?`,
+    a:
+      newTax === 0
+        ? `Nothing in the new regime for FY 2026-27. After the ₹75,000 standard deduction your taxable income is ${inr(r.new.taxable)}, and a rebate cancels the tax on taxable income of up to ₹12 lakh.`
+        : `${inr(newTax)} in the new regime for FY 2026-27, including the 4% cess. That is ${formatNumber(rate, "en", "INR", 1)}% of your salary. In the old regime without deductions it would be ${inr(oldNone)}.`,
+  },
+  {
+    q: `Old or new regime for a ₹${words} salary?`,
+    a:
+      breakEven === 0
+        ? "Either: both regimes charge no tax at this salary. The new regime needs no proof of investments, so it is the simpler choice."
+        : be
+          ? `The new regime, unless your old-regime deductions (80C, health insurance, HRA exemption, home-loan interest and similar) add up to more than about ${be} a year.`
+          : `The new regime: even with large deductions the old regime cannot be cheaper at this salary.`,
+  },
+  {
+    q: `What is the monthly in-hand salary on ₹${words}?`,
+    a: `After income tax in the new regime about ${inr((salary - newTax) / 12)} a month. Your payslip is lower when your employee PF contribution (usually 12% of basic pay plus DA) and professional tax (in states that levy it) are deducted, and when part of your CTC is employer PF or gratuity.`,
+  },
+];
+const more = {
+  title: "Income tax on other salaries",
+  links: TAX_STEPS.filter((s) => s !== salary).map((s) => ({ href: taxPath(s), label: `₹${lakhWords(s)}` })),
+};
+---
+
+<AmountPage
+  own={own}
+  title={title}
+  description={description}
+  heading={`Income tax on ₹${words} salary (FY 2026-27)`}
+  lead={lead}
+  crumb={`₹${words} salary`}
+  calc="incomeTax"
+  summary={summary}
+  method={[
+    `Salary or pension of a resident individual under 60, for FY 2026-27 (1 April 2026 to 31 March 2027). New regime: standard deduction of ₹75,000, rates of 5% to 30%, no tax on taxable income up to ₹12 lakh, and 4% health and education cess${r.new.taxable > 5_000_000 ? ", plus surcharge above ₹50 lakh" : ""}. Old regime: standard deduction of ₹50,000, rates of 5% to 30%, no tax on taxable income up to ₹5 lakh, and the deductions shown.`,
+    "Income taxed at special rates, such as capital gains, is not included.",
+  ]}
+  faqs={faqs}
+  more={more}
+  note="This page gives estimates for information only and is not tax advice. Your actual tax depends on your full income and circumstances."
+  reviewed={INDIA_PAGES_REVIEWED}
+>
+  <section class="card p-5 sm:p-6" aria-labelledby="new-title">
+    <h2 id="new-title" class="text-lg font-semibold">
+      New regime (the default)
+    </h2>
+    <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+      <p class="text-muted text-sm font-medium">Income tax for the year</p>
+      <p
+        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl"
+        data-amount-result
+      >
+        {inr(newTax)}
+      </p>
+    </div>
+    <dl class="mt-5 flex flex-col gap-3 text-sm">
+      {[
+        ["Salary per year", inr(salary)],
+        ["Standard deduction", `− ${inr(IN_2026.standardDeductionNew)}`],
+        ["Taxable income", inr(r.new.taxable)],
+        ["Income tax incl. 4% cess", inr(newTax)],
+        ["Tax per month", inr(newTax / 12)],
+        ["Share of salary", `${formatNumber(rate, "en", "INR", 1)}%`],
+      ].map(([k, v]) => (
+        <div class="flex items-center justify-between gap-3">
+          <dt class="text-muted min-w-0">{k}</dt>
+          <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{v}</dd>
+        </div>
+      ))}
+      <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+        <dt class="min-w-0 font-medium">Salary after tax per month</dt>
+        <dd class="shrink-0 font-bold whitespace-nowrap tabular-nums">{inr((salary - newTax) / 12)}</dd>
+      </div>
+    </dl>
+    <a class="btn-primary mt-6 w-full justify-center px-5 sm:w-auto" href={calcHref}>
+      Calculate with your deductions
+    </a>
+  </section>
+
+  <section class="card p-5 sm:p-6" aria-labelledby="old-title">
+    <h2 id="old-title" class="text-lg font-semibold">
+      Old regime with deductions
+    </h2>
+    <div
+      class="border-line mt-4 overflow-auto rounded-xl border"
+      tabindex="0"
+      role="region"
+      aria-labelledby="old-title"
+    >
+      <table class="w-full min-w-[22rem] text-right text-sm tabular-nums">
+        <caption class="sr-only">
+          {`Income tax on a ${S} salary in the old regime with different deductions, compared with ${inr(newTax)} in the new regime`}
+        </caption>
+        <thead class="bg-surface-2 text-muted text-xs font-semibold tracking-wide uppercase">
+          <tr>
+            <th scope="col" class="px-4 py-3 text-left">
+              Deductions
+            </th>
+            <th scope="col" class="px-4 py-3">
+              Old regime
+            </th>
+            <th scope="col" class="px-4 py-3">
+              vs new
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-line divide-y">
+          {[{ d: 0, note: "only the standard deduction", tax: oldNone }, ...levels].map((l) => (
+            <tr>
+              <th scope="row" class="px-4 py-2.5 text-left font-medium">
+                {inr(l.d)}
+                <span class="text-muted block text-xs font-normal">{l.note}</span>
+              </th>
+              <td class="px-4 py-2.5 font-semibold">{inr(l.tax)}</td>
+              <td class="px-4 py-2.5">
+                {l.tax === newTax
+                  ? "same"
+                  : l.tax > newTax
+                    ? `+ ${inr(l.tax - newTax)}`
+                    : `− ${inr(newTax - l.tax)}`}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-muted mt-4 text-sm">
+      {breakEven === 0
+        ? "Neither regime charges tax on this salary."
+        : be
+          ? `The old regime becomes cheaper only when your deductions pass about ${be}.`
+          : "At this salary the old regime cannot be cheaper, whatever your deductions."}
+    </p>
+  </section>
+</AmountPage>

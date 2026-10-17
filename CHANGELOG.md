@@ -2,6 +2,21 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.8.0] - Unreleased
+
+### Added
+
+- Pages for common amounts in India (BRD F-46), 39 in all: income tax on 20 salaries from ₹5 lakh
+  to ₹50 lakh (both regimes and the break-even deductions), home-loan EMI for 10 amounts from
+  ₹10 lakh to ₹1 crore, and SIP returns for 9 monthly amounts. Each opens its calculator with the
+  figures filled in.
+- "How much do I need to retire?" in the retirement FAQ (English, Spanish, German).
+
+### Changed
+
+- Titles that match what people search for: the retirement calculator ("How much do I need to
+  retire?") and the German recurring deposit calculator ("Ratensparvertrag berechnen").
+
 ## [0.7.0] - 2026-10-17
 
 ### Added

@@ -1,0 +1,151 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import { formatMoney, formatNumber } from "../lib/format";
+import { calculateLoan } from "../lib/loan";
+import { EMI_STEPS, emiPath, INDIA_PAGES_REVIEWED, lakhWords } from "../lib/india-pages";
+
+// "EMI for X lakh home loan" (BRD F-46). English only.
+export function getStaticPaths() {
+  return EMI_STEPS.map((loan) => ({
+    params: { amount: emiPath(loan).replace("/emi-for-", "").replace("-home-loan", "") },
+    props: { loan },
+  }));
+}
+interface Props {
+  loan: number;
+}
+const { loan } = Astro.props;
+const inr = (v: number) => formatMoney(v, "en", "INR", 0);
+const pct = (v: number) => `${formatNumber(v, "en", "INR", 2).replace(/\.?0+$/, "")}%`;
+const words = lakhWords(loan);
+const L = inr(loan);
+const RATE = 8.5;
+const YEARS = 20;
+const emi = (rate: number, years: number) =>
+  calculateLoan({ principal: loan, annualRatePct: rate, months: years * 12 });
+const main = emi(RATE, YEARS);
+const RATES = [7.5, 8, 8.5, 9, 9.5];
+const TERMS = [10, 15, 20, 25, 30];
+const y10 = emi(RATE, 10);
+const y30 = emi(RATE, 30);
+const plusHalf = emi(RATE + 0.5, YEARS);
+
+const own = emiPath(loan);
+const calcHref = `/loan-calculator?amount=${loan}&rate=${RATE}&years=${YEARS}&cur=INR`;
+const title = `EMI for ₹${words} Home Loan – 10 to 30 Years | Numflo`;
+const description = `The EMI on a ${L} home loan at ${pct(RATE)} for ${YEARS} years is ${inr(main.monthlyPayment)} a month. Table for 10 to 30 years at ${pct(RATES[0]!)} to ${pct(RATES.at(-1)!)}.`;
+const faqs = [
+  {
+    q: `What is the EMI for a ₹${words} home loan?`,
+    a: `At ${pct(RATE)} a year, about ${inr(main.monthlyPayment)} a month over ${YEARS} years, ${inr(y10.monthlyPayment)} over 10 years or ${inr(y30.monthlyPayment)} over 30 years. The table shows other rates; your bank's rate depends on the repo rate, your credit score and the loan amount.`,
+  },
+  {
+    q: "How can I pay less interest?",
+    a: `Choose the shortest tenure whose EMI you can comfortably afford and prepay when you can: over ${YEARS} years at ${pct(RATE)} you pay ${inr(main.totalInterest)} of interest, over 10 years ${inr(y10.totalInterest)}. RBI rules bar prepayment charges on floating-rate home loans to individuals; a fixed-rate loan may still carry one, so check your loan terms.`,
+  },
+  {
+    q: "Is there a tax benefit on a home loan?",
+    a: "In the old tax regime, interest of up to ₹2 lakh a year on a loan for the home you live in is deductible (₹30,000 if the home is not bought or built within five years of the loan), and the principal repaid counts within the ₹1.5 lakh 80C limit, shared with PPF, EPF and similar. The new regime gives neither for a home you live in.",
+  },
+];
+const more = {
+  title: "EMI for other loan amounts",
+  links: EMI_STEPS.filter((s) => s !== loan).map((s) => ({ href: emiPath(s), label: `₹${lakhWords(s)}` })),
+};
+---
+
+<AmountPage
+  own={own}
+  title={title}
+  description={description}
+  heading={`EMI for ₹${words} home loan`}
+  lead={`A ${L} home loan at ${pct(RATE)} for ${YEARS} years costs ${inr(main.monthlyPayment)} a month. Here are the totals and the EMI for other rates and tenures.`}
+  crumb={`₹${words} home loan`}
+  calc="loan"
+  summary={`On a ${L} home loan at ${pct(RATE)} for ${YEARS} years you pay ${inr(main.monthlyPayment)} a month and ${inr(main.totalInterest)} of interest in total, so you repay ${inr(main.totalPayment)}. Half a percentage point more (${pct(RATE + 0.5)}) raises the EMI to ${inr(plusHalf.monthlyPayment)}.`}
+  method={[
+    "EMI = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the loan amount, r the monthly interest rate (yearly rate ÷ 12) and n the number of months. The rate is assumed to stay the same for the whole tenure.",
+    "Processing fees, insurance and changes in a floating rate are not included. Amounts are rounded to the rupee.",
+  ]}
+  faqs={faqs}
+  more={more}
+  note="This page gives estimates for information only and is not financial advice. Your lender's offer decides the actual EMI."
+  reviewed={INDIA_PAGES_REVIEWED}
+>
+  <section class="card p-5 sm:p-6" aria-labelledby="emi-title">
+    <h2 id="emi-title" class="text-lg font-semibold">{`${pct(RATE)} for ${YEARS} years`}</h2>
+    <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+      <p class="text-muted text-sm font-medium">EMI per month</p>
+      <p
+        class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl"
+        data-amount-result
+      >
+        {inr(main.monthlyPayment)}
+      </p>
+    </div>
+    <dl class="mt-5 flex flex-col gap-3 text-sm">
+      {[
+        ["Loan amount", L],
+        ["Total interest", inr(main.totalInterest)],
+        [
+          "Interest as a share of the loan",
+          `${formatNumber((main.totalInterest / loan) * 100, "en", "INR", 0)}%`,
+        ],
+      ].map(([k, v]) => (
+        <div class="flex items-center justify-between gap-3">
+          <dt class="text-muted min-w-0">{k}</dt>
+          <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{v}</dd>
+        </div>
+      ))}
+      <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+        <dt class="min-w-0 font-medium">Total repaid</dt>
+        <dd class="shrink-0 font-bold whitespace-nowrap tabular-nums">{inr(main.totalPayment)}</dd>
+      </div>
+    </dl>
+    <a class="btn-primary mt-6 w-full justify-center px-5 sm:w-auto" href={calcHref}>
+      See the repayment schedule
+    </a>
+  </section>
+
+  <section class="card p-5 sm:p-6" aria-labelledby="table-title">
+    <h2 id="table-title" class="text-lg font-semibold">
+      EMI by rate and tenure
+    </h2>
+    <div
+      class="border-line mt-4 overflow-auto rounded-xl border"
+      tabindex="0"
+      role="region"
+      aria-labelledby="table-title"
+    >
+      <table class="w-full min-w-[26rem] text-right text-sm tabular-nums">
+        <caption class="sr-only">{`Monthly EMI on a ${L} home loan by interest rate and tenure`}</caption>
+        <thead class="bg-surface-2 text-muted text-xs font-semibold tracking-wide uppercase">
+          <tr>
+            <th scope="col" class="px-3 py-3 text-left">
+              Tenure
+            </th>
+            {RATES.map((r) => (
+              <th scope="col" class="px-3 py-3">
+                {pct(r)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody class="divide-line divide-y">
+          {TERMS.map((y) => (
+            <tr>
+              <th scope="row" class="px-3 py-2.5 text-left font-medium">
+                {`${y} years`}
+              </th>
+              {RATES.map((r) => (
+                <td class:list={["px-3 py-2.5", r === RATE && y === YEARS && "font-bold"]}>
+                  {inr(emi(r, y).monthlyPayment)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</AmountPage>

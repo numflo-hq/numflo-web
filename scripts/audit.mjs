@@ -3,17 +3,8 @@
 // this site, and expires, so it has to be looked at again.
 import { execFileSync } from "node:child_process";
 
-const EXCEPTIONS = [
-  {
-    id: "GHSA-ch52-4w7c-c8xp",
-    package: "http-cache-semantics",
-    reason:
-      "No patched version exists yet (4.2.0 is the latest). Astro uses the package only to cache " +
-      "remote images while building (astro/dist/assets/build/remote.js). This site has no remote " +
-      "images and ships static files only, so the code never runs for visitors.",
-    expires: "2026-11-15",
-  },
-];
+/** @type {{ id: string, package: string, reason: string, expires: string }[]} */
+const EXCEPTIONS = [];
 
 let report;
 try {

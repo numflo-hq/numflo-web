@@ -14,6 +14,12 @@ All notable changes to numflo.com. Versions follow [semantic versioning](https:/
   - Gratuity calculator: the 15/26 formula, the ₹20 lakh limit, the one-year rule for fixed-term staff
     under the new labour codes, and the tax-free part.
 
+### Security
+
+- Dependency updates for three advisories: `sharp` (GHSA-wq5f-xc86-pv6w), `source-map-js`
+  (GHSA-68fv-2mgg-jv7q) and `http-cache-semantics` (GHSA-ch52-4w7c-c8xp, now patched). The audit
+  exception for `http-cache-semantics` is removed, so the audit again has no exceptions.
+
 ## [0.6.0] - 2026-10-04
 
 ### Added

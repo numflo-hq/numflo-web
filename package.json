@@ -22,9 +22,9 @@
     "test:lighthouse": "npx --yes @lhci/cli@0.15.1 autorun"
   },
   "dependencies": {
-    "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.5",
-    "tailwindcss": "4.3.3"
+    "@tailwindcss/vite": "4.3.5",
+    "astro": "7.4.7",
+    "tailwindcss": "4.3.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

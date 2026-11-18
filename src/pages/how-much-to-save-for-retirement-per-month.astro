@@ -1,0 +1,87 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import AmountTable from "../components/AmountTable.astro";
+import ResultCard from "../components/ResultCard.astro";
+import { formatMoney } from "../lib/format";
+import {
+  GUIDE_PAGES_REVIEWED,
+  monthlyToReach,
+  REAL_RETURN,
+  RETIRE_AGES,
+  retirePath,
+  SAVE_PER_MONTH_PATH,
+  SAVINGS_BY_AGE_PATH,
+} from "../lib/guide-pages";
+
+// "How much should I save for retirement per month?" (BRD F-47). English only.
+const usd = (v: number) => formatMoney(v, "en", "USD", 0);
+const RETIRE = 65;
+const TARGETS = [500_000, 1_000_000, 1_500_000, 2_000_000];
+const STARTS = [25, 30, 35, 40, 45, 50, 55];
+const m = (target: number, start: number) => monthlyToReach(target, RETIRE - start);
+const faqs = [
+  {
+    q: "How much should I save for retirement each month?",
+    a: `To build ${usd(1_000_000)} in today's money by 65, about ${usd(m(1_000_000, 25))} a month from age 25, ${usd(m(1_000_000, 35))} from 35 or ${usd(m(1_000_000, 45))} from 45, at ${REAL_RETURN}% a year after inflation. A common guideline is to save about 15% of your salary, including any employer contribution, from your mid-20s.`,
+  },
+  {
+    q: "How much do I actually need?",
+    a: "Start from the yearly spending your savings must cover after any pension or Social Security, and multiply by 25 (the 4% rule) or a little more if you retire early. $40,000 a year means about $1,000,000.",
+  },
+  {
+    q: `Why ${REAL_RETURN}% a year?`,
+    a: "It is a return after inflation, so the targets stay in today's money. A balanced mix of stocks and bonds has historically earned roughly 3–5% a year above inflation over long periods, and future returns may be lower. Use the calculator to try other rates.",
+  },
+];
+---
+
+<AmountPage
+  own={SAVE_PER_MONTH_PATH}
+  title="How Much to Save for Retirement per Month | Numflo"
+  description={`To have ${usd(1_000_000)} at 65, save about ${usd(m(1_000_000, 25))} a month from 25 or ${usd(m(1_000_000, 35))} from 35. Table by starting age and target, in today's money.`}
+  heading="How much should I save for retirement per month?"
+  lead={`To have ${usd(1_000_000)} in today's money at 65, save about ${usd(m(1_000_000, 25))} a month from age 25, ${usd(m(1_000_000, 35))} from 35 or ${usd(m(1_000_000, 45))} from 45. Starting early matters more than anything else.`}
+  crumb="Save per month"
+  calc="retirement"
+  summary={`Every ten years you wait roughly doubles the monthly amount: ${usd(m(1_000_000, 25))} from 25, ${usd(m(1_000_000, 35))} from 35, ${usd(m(1_000_000, 45))} from 45 for the same ${usd(1_000_000)} at 65. Starting at 25, growth provides most of the money; starting at 55, you provide almost all of it.`}
+  method={[
+    `Monthly saving = target × i ÷ ((1 + i)^n − 1), where i is the monthly return (${REAL_RETURN}% a year after inflation ÷ 12) and n the number of months until 65, with savings at the end of each month. Targets are in today's money.`,
+    "Taxes, fees and changing returns are not included. The figures work the same in any currency.",
+  ]}
+  faqs={faqs}
+  more={{
+    title: "More on retirement",
+    links: [
+      ...RETIRE_AGES.map((a) => ({ href: retirePath(a), label: `Retire at ${a}` })),
+      { href: SAVINGS_BY_AGE_PATH, label: "Retirement savings by age" },
+    ],
+  }}
+  note="This page gives estimates for information only and is not financial advice. Past market returns do not guarantee future ones."
+  reviewed={GUIDE_PAGES_REVIEWED}
+>
+  <ResultCard
+    id="million-title"
+    title={`${usd(1_000_000)} by 65`}
+    label="Per month, starting at 25"
+    value={usd(m(1_000_000, 25))}
+    rows={STARTS.slice(1).map((s) => [`Starting at ${s}`, `${usd(m(1_000_000, s))} a month`])}
+    total={["You put in, from 25", usd(m(1_000_000, 25) * 12 * (RETIRE - 25))]}
+    cta={{
+      href: "/retirement-calculator?age=25&retireAge=65&savings=0&monthly=500&rate=7&inflation=2&withdrawal=4",
+      label: "Check your own plan",
+    }}
+  />
+  <AmountTable
+    id="table-title"
+    title="Monthly saving by target and starting age"
+    caption="Monthly saving needed to reach each target by age 65, by starting age"
+    head={["Start at", ...TARGETS.map((t) => usd(t))]}
+    rows={STARTS.map((s) => ({
+      th: String(s),
+      note: `${RETIRE - s} years`,
+      cells: TARGETS.map((t) => usd(m(t, s))),
+      bold: s === 25 ? 1 : undefined,
+    }))}
+    foot={`At ${REAL_RETURN}% a year after inflation, retiring at 65. Amounts in today's money.`}
+  />
+</AmountPage>

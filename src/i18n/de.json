@@ -726,6 +726,10 @@
       "faqTitle": "Häufige Fragen",
       "faqs": [
         {
+          "q": "Wie viel Kredit kann ich mir mit meinem Gehalt leisten?",
+          "a": "Eine verbreitete Faustregel der Banken: Alle Kreditraten zusammen, einschließlich der neuen Baufinanzierung sowie Grundsteuer und Versicherung, sollen höchstens 36 % deines monatlichen Bruttoeinkommens ausmachen. Bei 80.000 im Jahr sind das 2.400 im Monat insgesamt; was nach anderen Raten und den Kosten der Immobilie übrig bleibt, trägt die Rate für den Kredit. Gib oben dein Einkommen ein, um dein Ergebnis zu sehen."
+        },
+        {
           "q": "Leiht mir eine Bank genau diesen Betrag?",
           "a": "Es ist eine Schätzung nach einer einfachen Regel. Banken berücksichtigen auch deine Bonität, deinen Job, deine Ersparnisse und eigene Grenzen, die sich je nach Land und Kreditart unterscheiden."
         },

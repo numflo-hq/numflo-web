@@ -1,0 +1,81 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import AmountTable from "../components/AmountTable.astro";
+import ResultCard from "../components/ResultCard.astro";
+import { formatMoney } from "../lib/format";
+import {
+  GUIDE_PAGES_REVIEWED,
+  RETIRE_AGES,
+  retirePath,
+  SAVE_PER_MONTH_PATH,
+  SAVINGS_BY_AGE,
+  SAVINGS_BY_AGE_PATH,
+} from "../lib/guide-pages";
+
+// "Retirement savings by age" (BRD F-47). English only.
+const usd = (v: number) => formatMoney(v, "en", "USD", 0);
+const SALARIES = [50_000, 75_000, 100_000];
+const at = (age: number) => SAVINGS_BY_AGE.find(([a]) => a === age)![1];
+const faqs = [
+  {
+    q: "How much should I have saved for retirement by 40?",
+    a: `Fidelity's guideline is three times your salary by 40: ${usd(3 * 75_000)} on a ${usd(75_000)} salary. By 30 it is one year's salary, by 50 six times and by 60 eight times.`,
+  },
+  {
+    q: "I am behind. What can I do?",
+    a: "Raise your saving rate, especially when you get a raise; use any employer match in full; and consider working a few years longer, which adds savings, gives them more time to grow and shortens the time they must last. The monthly-savings table shows how much each starting age needs.",
+  },
+  {
+    q: "Is the guideline right for me?",
+    a: "It is a rough benchmark for someone who saves steadily from their mid-20s and retires around 67. A generous pension, a paid-off home or lower spending in retirement means you may need less; retiring early or expecting high costs means more.",
+  },
+];
+---
+
+<AmountPage
+  own={SAVINGS_BY_AGE_PATH}
+  title="Retirement Savings by Age: How Much by 30, 40, 50? | Numflo"
+  description="How much you should have saved for retirement at each age: 1× your salary by 30, 3× by 40, 6× by 50, 8× by 60 and 10× by 67, with examples by salary."
+  heading="Retirement savings by age: how much should you have?"
+  lead="Fidelity's guideline: one year's salary saved by 30, three times by 40, six times by 50, eight times by 60 and ten times by 67. Here is what that means for your salary."
+  crumb="Savings by age"
+  calc="retirement"
+  summary={`On a ${usd(75_000)} salary the guideline means about ${usd(75_000 * at(30))} by 30, ${usd(75_000 * at(40))} by 40, ${usd(75_000 * at(50))} by 50 and ${usd(75_000 * at(67))} by 67. Fall short and you can catch up by saving more, using your employer match and working a little longer.`}
+  method={[
+    "The multiples are Fidelity's savings guideline, which assumes you save about 15% of your salary a year from age 25 (including any employer contribution), retire at 67 and want your savings to replace about 45% of your pre-retirement income. Savings include all retirement accounts and other money set aside for retirement.",
+    "They are benchmarks, not targets: what you need depends on your spending, pensions and when you retire. The figures work the same in any currency.",
+  ]}
+  faqs={faqs}
+  more={{
+    title: "More on retirement",
+    links: [
+      ...RETIRE_AGES.map((a) => ({ href: retirePath(a), label: `Retire at ${a}` })),
+      { href: SAVE_PER_MONTH_PATH, label: "How much to save per month" },
+    ],
+  }}
+  note="This page gives estimates for information only and is not financial advice."
+  reviewed={GUIDE_PAGES_REVIEWED}
+>
+  <ResultCard
+    id="rule-title"
+    title="The guideline at a glance"
+    label="By 67"
+    value="10× salary"
+    rows={SAVINGS_BY_AGE.slice(0, -1).map(([a, x]) => [`By ${a}`, `${x}× salary`])}
+    cta={{
+      href: "/retirement-calculator?age=35&retireAge=67&savings=150000&monthly=900&rate=7&inflation=3&withdrawal=4",
+      label: "Check your own plan",
+    }}
+  />
+  <AmountTable
+    id="table-title"
+    title="Savings by age and salary"
+    caption="Retirement savings by age for three salaries, using the multiple-of-salary guideline"
+    head={["Age", ...SALARIES.map((s) => usd(s))]}
+    rows={SAVINGS_BY_AGE.map(([a, x]) => ({
+      th: String(a),
+      note: `${x}× salary`,
+      cells: SALARIES.map((s) => usd(s * x)),
+    }))}
+  />
+</AmountPage>

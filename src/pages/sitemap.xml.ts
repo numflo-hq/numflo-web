@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { HREFLANG, LAST_REVIEWED, ROUTES, path, routeLangs, type RouteKey } from "../i18n";
 import { SALARY_REVIEWED, SALARY_STEPS, salaryPath } from "../lib/salary-pages";
 import { INDIA_PAGES, INDIA_PAGES_REVIEWED } from "../lib/india-pages";
+import { GUIDE_PAGES, GUIDE_PAGES_REVIEWED } from "../lib/guide-pages";
 
 /** XML sitemap with hreflang alternates for every page (BRD S-4, L-7). */
 export const GET: APIRoute = ({ site }) => {
@@ -34,6 +35,14 @@ export const GET: APIRoute = ({ site }) => {
   for (const { path: p } of INDIA_PAGES)
     urls.push(
       entry(p, INDIA_PAGES_REVIEWED, [
+        [HREFLANG.en, p],
+        ["x-default", p],
+      ]),
+    );
+  // Single-language pages: English retirement and home-affordability questions.
+  for (const { path: p } of GUIDE_PAGES)
+    urls.push(
+      entry(p, GUIDE_PAGES_REVIEWED, [
         [HREFLANG.en, p],
         ["x-default", p],
       ]),

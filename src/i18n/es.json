@@ -718,6 +718,10 @@
       "faqTitle": "Preguntas frecuentes",
       "faqs": [
         {
+          "q": "¿Cuánta hipoteca puedo pagar con mi sueldo?",
+          "a": "Una regla habitual de los bancos es que todos los pagos de deudas, incluida la nueva hipoteca, los impuestos sobre la vivienda y el seguro, no superen el 36 % de tus ingresos brutos mensuales. Con 80.000 al año son 2.400 al mes en total; lo que queda después de otras deudas y de los gastos de la vivienda paga la hipoteca. Introduce tus ingresos arriba para ver tu resultado."
+        },
+        {
           "q": "¿Es lo que me prestará el banco?",
           "a": "Es una estimación con una regla sencilla. Los bancos también miran tu historial de crédito, tu empleo, tus ahorros y sus propios límites, que cambian según el país y el tipo de préstamo."
         },

@@ -1,0 +1,99 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import AmountTable from "../components/AmountTable.astro";
+import ResultCard from "../components/ResultCard.astro";
+import { formatMoney } from "../lib/format";
+import {
+  GUIDE_PAGES_REVIEWED,
+  HOUSE,
+  HOUSE_SALARIES,
+  houseFor,
+  housePath,
+  houseRule,
+} from "../lib/guide-pages";
+
+// "How much house can I afford on $X?" (BRD F-47). English only, US dollars, 28/36 rule.
+export function getStaticPaths() {
+  return HOUSE_SALARIES.map((salary) => ({ params: { amount: `${salary / 1000}k` }, props: { salary } }));
+}
+interface Props {
+  salary: number;
+}
+const { salary } = Astro.props;
+const usd = (v: number) => formatMoney(v, "en", "USD", 0);
+const K = `$${salary / 1000}k`;
+const main = houseRule(salary, 0, 20);
+const at36 = houseFor(salary, 0, 20);
+const monthly = salary / 12;
+// Other debts only lower the price once they pass the gap between the 36% and 28% limits.
+const freeDebt = (monthly * (HOUSE.dti - HOUSE.frontDti)) / 100;
+const DEBTS = [0, 300, 600];
+const DOWNS = [5, 10, 20];
+const calcHref = `/home-affordability-calculator?income=${salary}&debts=0&down=${Math.round(main.down)}&rate=${HOUSE.rate}&years=${HOUSE.years}&costs=${Math.round(main.costs)}&dti=${HOUSE.frontDti}&cur=USD`;
+const faqs = [
+  {
+    q: `How much house can I afford on ${K} a year?`,
+    a: `About ${usd(main.price)} with 20% down, at ${HOUSE.rate}% for 30 years, using the 28/36 rule: housing costs up to ${usd((monthly * HOUSE.frontDti) / 100)} a month (28% of gross income). Some lenders go up to 36% or more for housing when you have no other debts, which would mean about ${usd(at36.price)}.`,
+  },
+  {
+    q: "What is the 28/36 rule?",
+    a: `A common guideline, not a hard limit: housing costs (mortgage, property tax, insurance) up to 28% of gross monthly income, and all debt payments together up to 36%. On ${usd(salary)} a year that is ${usd((monthly * HOUSE.frontDti) / 100)} for housing and ${usd((monthly * HOUSE.dti) / 100)} for all debts. Actual limits depend on the loan type and the lender.`,
+  },
+  {
+    q: "What if I put down less than 20%?",
+    a: "Many loans allow 3–5% down (3% on some conventional loans, 3.5% with FHA, nothing with VA or USDA loans). Below 20% you usually pay mortgage insurance, often about 0.3–1.5% of the loan a year, which is not included here and lowers the price you can afford a little.",
+  },
+];
+---
+
+<AmountPage
+  own={housePath(salary)}
+  title={`How Much House Can I Afford on ${K} a Year? | Numflo`}
+  description={`On a ${K} salary you can afford a home of about ${usd(main.price)} with 20% down at ${HOUSE.rate}%, using the 28/36 rule. Table by down payment and other debts.`}
+  heading={`How much house can I afford on ${K} a year?`}
+  lead={`About ${usd(main.price)} with 20% down, at a ${HOUSE.rate}% 30-year rate: ${usd(main.payment)} a month for the mortgage plus about ${usd(main.costs)} for property tax and insurance, keeping housing at 28% of your gross income.`}
+  crumb={`${K} salary`}
+  calc="affordability"
+  summary={`On ${usd(salary)} a year the 28/36 rule allows ${usd((monthly * HOUSE.frontDti) / 100)} a month for housing and ${usd((monthly * HOUSE.dti) / 100)} for all debts. That buys about ${usd(main.price)} with 20% down. Car, card or student-loan payments only lower the price once they pass about ${usd(freeDebt)} a month.`}
+  method={[
+    `The price is the lower of two limits: housing costs within ${HOUSE.frontDti}% of gross monthly income, and housing plus other debt payments within ${HOUSE.dti}%. Housing costs are the mortgage at ${HOUSE.rate}% for ${HOUSE.years} years (the Freddie Mac average was 7.11% on 12 November 2026) and property tax plus home insurance, taken as a rough ${HOUSE.costsPct}% of the price a year; it varies widely by state.`,
+    "Mortgage insurance, HOA fees and closing costs are not included; your lender's rate and rules decide the actual amount.",
+  ]}
+  faqs={faqs}
+  more={{
+    title: "Other salaries",
+    links: HOUSE_SALARIES.filter((s) => s !== salary).map((s) => ({
+      href: housePath(s),
+      label: `$${s / 1000}k`,
+    })),
+  }}
+  note="This page gives estimates for information only and is not financial advice. Mortgage rates change every week."
+  reviewed={GUIDE_PAGES_REVIEWED}
+>
+  <ResultCard
+    id="house-title"
+    title="20% down, no other debts"
+    label="Home price you can afford"
+    value={usd(main.price)}
+    rows={[
+      ["Down payment (20%)", usd(main.down)],
+      ["Loan", usd(main.loan)],
+      [`Mortgage payment (${HOUSE.rate}%, 30 years)`, `${usd(main.payment)} a month`],
+      ["Property tax and insurance", `${usd(main.costs)} a month`],
+    ]}
+    total={["Housing cost per month", usd(main.payment + main.costs)]}
+    cta={{ href: calcHref, label: "Calculate with your numbers" }}
+  />
+  <AmountTable
+    id="table-title"
+    title="By down payment and other debts"
+    caption={`Home price affordable on ${usd(salary)} a year by down payment and other monthly debt payments, using the 28/36 rule`}
+    head={["Other debts", ...DOWNS.map((d) => `${d}% down`)]}
+    rows={DEBTS.map((debt) => ({
+      th: debt === 0 ? "None" : `${usd(debt)} a month`,
+      cells: DOWNS.map((d) => usd(houseRule(salary, debt, d).price)),
+      bold: debt === 0 ? 2 : undefined,
+    }))}
+    foot={`If a lender lets housing take up to 36% of your income when you have no other debts, the price with 20% down is about ${usd(at36.price)}.`}
+  />
+</AmountPage>

@@ -2,6 +2,21 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.9.0] - Unreleased
+
+### Added
+
+- Pages for retirement and home-buying questions in English (BRD F-47), 17 in all: "How much do I
+  need to retire at 50, 55, 60 and 65?", "How much should I save for retirement per month?",
+  "Retirement savings by age" and "How much house can I afford on $40k to $200k a year?". Each
+  opens its calculator with the figures filled in, and the calculators link to them.
+- "How much mortgage can I afford on my salary?" in the affordability FAQ (English, Spanish, German).
+
+### Changed
+
+- The affordability calculator's English title leads with "Mortgage affordability calculator", the
+  search it already ranks for.
+
 ## [0.8.0] - 2026-10-17
 
 ### Added

@@ -1,0 +1,44 @@
+---
+/** Headline figure with a short breakdown, used on the pages for common amounts (BRD F-46, F-47). */
+interface Props {
+  id: string;
+  title: string;
+  label: string;
+  value: string;
+  rows: [string, string][];
+  total?: [string, string];
+  cta?: { href: string; label: string };
+}
+const { id, title, label, value, rows, total, cta } = Astro.props;
+---
+
+<section class="card p-5 sm:p-6" aria-labelledby={id}>
+  <h2 id={id} class="text-lg font-semibold">
+    {title}
+  </h2>
+  <div class="bg-accent-soft mt-4 rounded-2xl p-5">
+    <p class="text-muted text-sm font-medium">{label}</p>
+    <p class="text-accent mt-1 text-4xl font-bold tracking-tight tabular-nums sm:text-5xl" data-amount-result>
+      {value}
+    </p>
+  </div>
+  <dl class="mt-5 flex flex-col gap-3 text-sm">
+    {rows.map(([k, v]) => (
+      <div class="flex items-center justify-between gap-3">
+        <dt class="text-muted min-w-0">{k}</dt>
+        <dd class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{v}</dd>
+      </div>
+    ))}
+    {total && (
+      <div class="border-line flex items-center justify-between gap-3 border-t pt-3">
+        <dt class="min-w-0 font-medium">{total[0]}</dt>
+        <dd class="shrink-0 font-bold whitespace-nowrap tabular-nums">{total[1]}</dd>
+      </div>
+    )}
+  </dl>
+  {cta && (
+    <a class="btn-primary mt-6 w-full justify-center px-5 sm:w-auto" href={cta.href}>
+      {cta.label}
+    </a>
+  )}
+</section>

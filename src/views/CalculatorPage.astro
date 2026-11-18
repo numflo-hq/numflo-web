@@ -8,6 +8,14 @@ import type { CalcId } from "../lib/calculators";
 import { formatNumber } from "../lib/format";
 import { SALARY_STEPS, salaryPath } from "../lib/salary-pages";
 import { EMI_STEPS, emiPath, lakhWords, SIP_STEPS, sipPath, TAX_STEPS, taxPath } from "../lib/india-pages";
+import {
+  HOUSE_SALARIES,
+  housePath,
+  RETIRE_AGES,
+  retirePath,
+  SAVE_PER_MONTH_PATH,
+  SAVINGS_BY_AGE_PATH,
+} from "../lib/guide-pages";
 
 interface Props {
   lang: Lang;
@@ -82,7 +90,21 @@ const amountLinks =
               title: "SIP by monthly amount (India)",
               links: SIP_STEPS.map((a) => ({ href: sipPath(a), label: `₹${a.toLocaleString("en-IN")}` })),
             }
-          : null;
+          : calc === "retirement"
+            ? {
+                title: "Retirement questions",
+                links: [
+                  ...RETIRE_AGES.map((a) => ({ href: retirePath(a), label: `How much to retire at ${a}` })),
+                  { href: SAVE_PER_MONTH_PATH, label: "How much to save per month" },
+                  { href: SAVINGS_BY_AGE_PATH, label: "Retirement savings by age" },
+                ],
+              }
+            : calc === "affordability"
+              ? {
+                  title: "How much house can I afford on…",
+                  links: HOUSE_SALARIES.map((s) => ({ href: housePath(s), label: `$${s / 1000}k a year` })),
+                }
+              : null;
 ---
 
 <BaseLayout lang={lang} route={calc} title={meta.title} description={meta.description} schema={schema}>

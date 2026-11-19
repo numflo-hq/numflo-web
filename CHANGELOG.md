@@ -17,6 +17,11 @@ All notable changes to numflo.com. Versions follow [semantic versioning](https:/
 - The affordability calculator's English title leads with "Mortgage affordability calculator", the
   search it already ranks for.
 
+### Security
+
+- Dependency updates for new high-severity advisories in `undici`, `vite` (via `launch-editor`) and
+  `zod`; all are build and test tools, not code that runs for visitors.
+
 ## [0.8.0] - 2026-10-17
 
 ### Added

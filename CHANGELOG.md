@@ -2,7 +2,7 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
-## [0.9.0] - Unreleased
+## [0.9.0] - 2026-11-19
 
 ### Added
 

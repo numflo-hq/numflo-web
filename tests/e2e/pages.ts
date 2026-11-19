@@ -406,6 +406,8 @@ export const AMOUNT_SAMPLE = [
   "/income-tax-on-50-lakh-salary",
   "/emi-for-1-crore-home-loan",
   "/sip-of-50000-per-month",
+  "/how-much-do-i-need-to-retire-at-50",
+  "/how-much-house-can-i-afford-on-200k",
 ].map((path) => ({ key: "amount", path, lang: "en", calc: false }));
 
 /** Every page of the route table plus the samples: used by the quality and security tests. */

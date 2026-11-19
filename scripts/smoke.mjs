@@ -13,6 +13,8 @@ const checks = [
   { path: "/hra-calculator", contains: "1,80,000" },
   { path: "/gratuity-calculator", contains: "2,88,462" },
   { path: "/income-tax-on-15-lakh-salary", contains: "97,500" },
+  { path: "/how-much-house-can-i-afford-on-80k", contains: "281,708" },
+  { path: "/how-much-do-i-need-to-retire-at-60", contains: "1,333,333" },
   { path: "/de/brutto-netto-rechner", contains: "2.605,50" },
   { path: "/de/brutto-netto/3000-euro", contains: "2.054,42" },
   { path: "/about", contains: "About Numflo" },

@@ -75,7 +75,7 @@
       "description": "Calculate your monthly mortgage payment with property tax and insurance, total interest and a yearly repayment schedule. Free and private."
     },
     "affordability": {
-      "title": "Home Affordability Calculator – How Much House? | Numflo",
+      "title": "Mortgage Affordability Calculator – How Much House? | Numflo",
       "description": "Find out how much house you can afford from your income, debts, down payment and mortgage rate, using the debt-to-income rule."
     },
     "creditCard": {
@@ -757,6 +757,10 @@
       ],
       "faqTitle": "Frequently asked questions",
       "faqs": [
+        {
+          "q": "How much mortgage can I afford on my salary?",
+          "a": "A common lender rule keeps all debt payments, including the new mortgage, property tax and insurance, under 36% of your gross monthly income. On 80,000 a year that is 2,400 a month in total; what is left after other debts and property costs pays the mortgage. Enter your income above, or see the examples by salary below."
+        },
         {
           "q": "Is this what a bank will lend me?",
           "a": "It is an estimate using a simple rule. Lenders also look at your credit history, job, savings and their own limits, which differ between countries and loan types."

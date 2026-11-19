@@ -1,0 +1,54 @@
+---
+/** A titled table of figures, used on the pages for common amounts (BRD F-46, F-47). */
+interface Props {
+  id: string;
+  title: string;
+  caption: string;
+  /** Column headers; the first is the row-header column. */
+  head: string[];
+  /** Each row: a header with an optional note, then the cells; `bold` marks the cell to stress. */
+  rows: { th: string; note?: string; cells: string[]; bold?: number }[];
+  /** Text under the table. */
+  foot?: string;
+}
+const { id, title, caption, head, rows, foot } = Astro.props;
+---
+
+<section class="card p-5 sm:p-6" aria-labelledby={id}>
+  <h2 id={id} class="text-lg font-semibold">
+    {title}
+  </h2>
+  <div
+    class="border-line mt-4 overflow-auto rounded-xl border"
+    tabindex="0"
+    role="region"
+    aria-labelledby={id}
+  >
+    <table class="w-full min-w-[20rem] text-right text-sm tabular-nums">
+      <caption class="sr-only">{caption}</caption>
+      <thead class="bg-surface-2 text-muted text-xs font-semibold tracking-wide uppercase">
+        <tr>
+          {head.map((h, i) => (
+            <th scope="col" class:list={["px-3 py-3", i === 0 && "text-left"]}>
+              {h}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody class="divide-line divide-y">
+        {rows.map((r) => (
+          <tr>
+            <th scope="row" class="px-3 py-2.5 text-left font-medium">
+              {r.th}
+              {r.note && <span class="text-muted block text-xs font-normal">{r.note}</span>}
+            </th>
+            {r.cells.map((c, i) => (
+              <td class:list={["px-3 py-2.5", r.bold === i && "font-bold"]}>{c}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  {foot && <p class="text-muted mt-4 text-sm">{foot}</p>}
+</section>

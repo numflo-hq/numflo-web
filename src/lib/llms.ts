@@ -6,6 +6,14 @@ import { LANGS, LANG_NAMES, ROUTES, path, t, type Lang } from "../i18n";
 import { CATEGORIES, calcsIn, type Category } from "./calculators";
 import { SALARY_STEPS, salaryPath } from "./salary-pages";
 import { EMI_STEPS, emiPath, lakhWords, SIP_STEPS, sipPath, TAX_STEPS, taxPath } from "./india-pages";
+import {
+  HOUSE_SALARIES,
+  housePath,
+  RETIRE_AGES,
+  retirePath,
+  SAVE_PER_MONTH_PATH,
+  SAVINGS_BY_AGE_PATH,
+} from "./guide-pages";
 
 export function buildLlmsTxt(site: URL): string {
   const abs = (p: string) => new URL(p, site).href;
@@ -54,6 +62,21 @@ export function buildLlmsTxt(site: URL): string {
   for (const s of SIP_STEPS)
     lines.push(
       `- [SIP of ₹${s.toLocaleString("en-IN")} per month](${abs(sipPath(s))}): value after 5 to 30 years at 8% to 15%.`,
+    );
+  lines.push("");
+  // Retirement and home-affordability questions (English).
+  lines.push("## Retirement and home buying: common questions (English)", "");
+  for (const a of RETIRE_AGES)
+    lines.push(
+      `- [How much do I need to retire at ${a}?](${abs(retirePath(a))}): savings needed by yearly spending, and the monthly saving to get there.`,
+    );
+  lines.push(
+    `- [How much should I save for retirement per month?](${abs(SAVE_PER_MONTH_PATH)}): monthly saving by starting age and target.`,
+    `- [Retirement savings by age](${abs(SAVINGS_BY_AGE_PATH)}): the multiple-of-salary guideline from 30 to 67.`,
+  );
+  for (const s of HOUSE_SALARIES)
+    lines.push(
+      `- [How much house can I afford on $${s / 1000}k?](${abs(housePath(s))}): home price by down payment and other debts, US mortgage rates.`,
     );
   lines.push("");
   lines.push(

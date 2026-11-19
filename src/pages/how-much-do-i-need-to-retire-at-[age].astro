@@ -1,0 +1,121 @@
+---
+import AmountPage from "../layouts/AmountPage.astro";
+import AmountTable from "../components/AmountTable.astro";
+import ResultCard from "../components/ResultCard.astro";
+import { formatMoney } from "../lib/format";
+import {
+  CAUTIOUS_RATE,
+  GUIDE_PAGES_REVIEWED,
+  monthlyToReach,
+  REAL_RETURN,
+  RETIRE_AGES,
+  retirePath,
+  SAVE_PER_MONTH_PATH,
+  SAVINGS_BY_AGE_PATH,
+  savingsNeeded,
+  SPENDING_STEPS,
+  type RetireAge,
+} from "../lib/guide-pages";
+
+// "How much do I need to retire at X?" (BRD F-47). English only.
+export function getStaticPaths() {
+  return RETIRE_AGES.map((age) => ({ params: { age: String(age) }, props: { age } }));
+}
+interface Props {
+  age: RetireAge;
+}
+const { age } = Astro.props;
+const usd = (v: number) => formatMoney(v, "en", "USD", 0);
+const pct = (v: number) => `${v}%`;
+const rate = CAUTIOUS_RATE[age];
+const cols = age === 65 ? [4, 3.5] : [rate, 4];
+const multiple = (r: number) => Math.round((100 / r) * 10) / 10;
+const EXAMPLE = 50_000;
+const target = savingsNeeded(EXAMPLE, rate);
+const startAges = [25, 30, 35, 40, 45].filter((a) => a <= age - 10);
+const calcHref = `/retirement-calculator?age=35&retireAge=${age}&savings=50000&monthly=1000&rate=7&inflation=3&withdrawal=${rate}`;
+
+const lead = `Plan on about ${multiple(rate)} times the yearly spending your savings must cover. To spend ${usd(EXAMPLE)} a year from savings when you retire at ${age}, aim for about ${usd(target)} in today's money.`;
+const summary =
+  age === 65
+    ? `Retiring at 65, the 4% rule says you need 25 times the yearly spending your savings must cover: ${usd(savingsNeeded(EXAMPLE, 4))} to spend ${usd(EXAMPLE)} a year. A pension or Social Security lowers the amount, because savings only need to cover the rest.`
+    : `Retiring at ${age}, your savings may have to last ${95 - age} years or more, longer than the 30 years the 4% rule was tested on. A cautious starting rate of ${pct(rate)} means about ${multiple(rate)} times your yearly spending: ${usd(target)} to spend ${usd(EXAMPLE)} a year, against ${usd(savingsNeeded(EXAMPLE, 4))} with the 4% rule.`;
+const faqs = [
+  {
+    q: `How much money do I need to retire at ${age}?`,
+    a: `Multiply the yearly spending your savings must cover by about ${multiple(rate)} (a ${pct(rate)} withdrawal rate). For ${usd(40_000)} a year that is ${usd(savingsNeeded(40_000, rate))}; for ${usd(60_000)}, ${usd(savingsNeeded(60_000, rate))}. These are amounts in today's money.`,
+  },
+  {
+    q: "Should I count Social Security or a pension?",
+    a: "Yes: subtract it first. If you want to spend $60,000 a year and a pension or Social Security will pay $24,000, your savings only need to cover $36,000. If that income starts later than you retire, your savings must cover the full amount until it does.",
+  },
+  {
+    q: "What is the 4% rule?",
+    a: "Studies of past US markets found that withdrawing 4% of your savings in the first year, then the same amount raised with inflation, lasted at least 30 years in almost every past period for a mix with at least about half in stocks. It is a rule of thumb based on the past, not a guarantee.",
+  },
+  ...(age < 65
+    ? [
+        {
+          q: `Why use ${pct(rate)} instead of 4%?`,
+          a: `Retiring at ${age} means your savings may need to last ${95 - age} years or more. Some research on retirements of 40 to 60 years suggests starting nearer 3.25–3.5%. The rates here are a cautious rule of thumb that steps down with each earlier retirement age; the table shows 4% as well, so you can see the range.`,
+        },
+      ]
+    : []),
+];
+const more = {
+  title: "Other retirement ages",
+  links: [
+    ...RETIRE_AGES.filter((a) => a !== age).map((a) => ({ href: retirePath(a), label: `Retire at ${a}` })),
+    { href: SAVE_PER_MONTH_PATH, label: "How much to save per month" },
+    { href: SAVINGS_BY_AGE_PATH, label: "Retirement savings by age" },
+  ],
+};
+---
+
+<AmountPage
+  own={retirePath(age)}
+  title={`How Much Do I Need to Retire at ${age}? | Numflo`}
+  description={`To retire at ${age}, plan on about ${multiple(rate)} times your yearly spending from savings: ${usd(target)} for ${usd(EXAMPLE)} a year. Tables and monthly savings.`}
+  heading={`How much do I need to retire at ${age}?`}
+  lead={lead}
+  crumb={`Retire at ${age}`}
+  calc="retirement"
+  summary={summary}
+  method={[
+    `Savings needed = yearly spending from savings ÷ the first-year withdrawal rate. All amounts are in today's money; after the first year, withdrawals rise with inflation. The monthly amounts assume a ${pct(REAL_RETURN)} return a year after inflation, compounded monthly, with savings made at the end of each month.`,
+    "Taxes on withdrawals, fees and investment risk are not included. The figures work the same in any currency.",
+  ]}
+  faqs={faqs}
+  more={more}
+  note="This page gives estimates for information only and is not financial advice. Past market returns do not guarantee future ones."
+  reviewed={GUIDE_PAGES_REVIEWED}
+>
+  <AmountTable
+    id="need-title"
+    title={`Savings needed to retire at ${age}`}
+    caption={`Savings needed to retire at ${age}, by yearly spending from savings and withdrawal rate`}
+    head={["Spending a year", ...cols.map((c) => `At ${pct(c)}`)]}
+    rows={SPENDING_STEPS.map((s) => ({
+      th: usd(s),
+      note: `${usd(s / 12)} a month`,
+      cells: cols.map((c) => usd(savingsNeeded(s, c))),
+      bold: s === EXAMPLE ? 0 : undefined,
+    }))}
+    foot={
+      age === 65
+        ? "4% is the classic rule for a 30-year retirement; 3.5% leaves more room for poor markets."
+        : `${pct(rate)} is a cautious rate for a retirement that starts at ${age}; 4% is the classic rule for 30 years.`
+    }
+  />
+  <ResultCard
+    id="save-title"
+    title={`Saving ${usd(target)} by ${age}`}
+    label={startAges.length ? `Per month, starting at ${startAges[0]}` : "Savings needed"}
+    value={startAges.length ? usd(monthlyToReach(target, age - startAges[0]!)) : usd(target)}
+    rows={startAges
+      .slice(1)
+      .map((a) => [`Starting at ${a}`, `${usd(monthlyToReach(target, age - a))} a month`])}
+    total={["Target in today's money", usd(target)]}
+    cta={{ href: calcHref, label: "Check your own plan" }}
+  />
+</AmountPage>

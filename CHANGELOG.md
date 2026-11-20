@@ -2,6 +2,13 @@
 
 All notable changes to numflo.com. Versions follow [semantic versioning](https://semver.org).
 
+## [0.9.1] - Unreleased
+
+### Security
+
+- Astro 7.4.13 (from 7.3.5) for two moderate advisories (GHSA-mh32-jxcr-mh9f, GHSA-r3h5-4585-7x3w)
+  and Vitest 5.1 for its mocker advisories. `npm audit` reports no vulnerabilities at any level.
+
 ## [0.9.0] - 2026-11-19
 
 ### Added
